@@ -1,0 +1,11 @@
+node_modules
+dist
+.sdd
+docs/superpowers
+*.log
+.env
+.vitepress/dist
+.vitepress/cache
+.turbo
+*.tsbuildinfo
+*.package-lock.json

@@ -1,0 +1,6 @@
+packages:
+  - packages/vue
+  - docs
+
+allowBuilds:
+  esbuild: true

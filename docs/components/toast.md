@@ -1,0 +1,141 @@
+# Toast
+
+Notificaciones temporales inspiradas en noice.nvim, con posicionamiento configurable y deduplicación.
+
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+import { ButtonTui, ButtonTuiGroup } from '@herdrate/vue'
+
+type Position = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top-center' | 'bottom-center'
+
+type Item = {
+  id: number;
+  message: string;
+  level: 'info' | 'warn' | 'error';
+  position: Position;
+}
+
+const items = ref<Item[]>([])
+
+function showAt(position: Position) {
+  items.value.push({
+    id: Date.now() + Math.random(),
+    message: `Toast en ${position}`,
+    level: position.includes('top') ? 'info' : position.includes('bottom') ? 'warn' : 'info',
+    position,
+  })
+}
+
+function dismiss(id: number) {
+  items.value = items.value.filter(t => t.id !== id)
+}
+
+function clearAll() {
+  items.value = []
+}
+
+const iconMap: Record<Position, string> = {
+  'top-left': '\u2196', 'top-center': '\u2B06', 'top-right': '\u2197',
+  'bottom-left': '\u2199', 'bottom-center': '\u2B07', 'bottom-right': '\u2198',
+}
+
+function label(p: Position): string {
+  const parts = p.split('-');
+  return `[ ${iconMap[p]} ${parts[0][0].toUpperCase()}${parts[1][0].toUpperCase()} ]`;
+}
+
+const positions: Position[] = [
+  'top-left', 'top-center', 'top-right',
+  'bottom-left', 'bottom-center', 'bottom-right',
+]
+
+const positionButtons = computed(() =>
+  positions.map(p => ({
+    label: label(p),
+    onClick: () => showAt(p),
+  }))
+)
+</script>
+
+## Demo
+
+<ClientOnly>
+  <div style="margin-bottom: 2rem;">
+    <ButtonTuiGroup :buttons="positionButtons" />
+    <ButtonTui variant="ghost" @click="clearAll">[ clear ]</ButtonTui>
+  </div>
+
+  <p v-if="items.length === 0" style="opacity: 0.5; font-style: italic;">
+    Haz clic en un botón para mostrar un toast flotante en esa posición.
+  </p>
+
+  <ToastContainer
+    v-for="p in positions" :key="p"
+    :toasts="items.filter(t => t.position === p)"
+    :remove="dismiss"
+    :position="p"
+  />
+</ClientOnly>
+
+## Código
+
+```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+import { ToastContainer } from '@herdrate/vue'
+
+const items = ref<{ id: number; message: string; level: string; position: string }[]>([])
+
+function showAt(position: string) {
+  items.value.push({ id: Date.now(), message: 'Hola', level: 'info', position })
+}
+
+function dismiss(id: number) {
+  items.value = items.value.filter(t => t.id !== id)
+}
+</script>
+
+<template>
+  <button @click="showAt('bottom-right')">bottom-right</button>
+  <ToastContainer
+    :toasts="items.filter(t => t.position === 'bottom-right')"
+    :remove="dismiss"
+    position="bottom-right"
+  />
+</template>
+```
+
+## API
+
+### Toast
+
+| Prop | Tipo | Default | Descripción |
+|---|---|---|---|
+| `message` | `string` | — | Contenido del toast |
+| `level` | `'info' \| 'warn' \| 'error'` | `'info'` | Nivel de severidad |
+| `icon` | `string` | `''` | Icono personalizado (default: ▼/●/✖) |
+
+### useToast()
+
+| Retorno | Tipo | Descripción |
+|---|---|---|
+| `toasts` | `Ref<ToastItem[]>` | Lista reactiva de toasts activos |
+| `add` | `(opts: AddOptions) => string` | Agrega un toast, retorna ID |
+| `remove` | `(id: string) => void` | Elimina un toast por ID |
+
+### AddOptions
+
+| Prop | Tipo | Default | Descripción |
+|---|---|---|---|
+| `message` | `string` | — | Contenido del toast |
+| `level` | `'info' \| 'warn' \| 'error'` | `'info'` | Nivel de severidad |
+| `replace` | `boolean` | `false` | Reemplaza toast duplicado |
+| `filter` | `string` | — | Clave para detectar duplicado |
+
+### ToastContainer
+
+| Prop | Tipo | Default | Descripción |
+|---|---|---|---|
+| `toasts` | `ToastItem[]` | — | Lista de toasts a mostrar |
+| `remove` | `(id: string) => void` | — | Función para cerrar toast |
+| `position` | `'bottom-right' \| 'bottom-left' \| 'top-right' \| 'top-left' \| 'top-center' \| 'bottom-center'` | `'bottom-right'` | Posición en pantalla |

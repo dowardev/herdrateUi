@@ -1,0 +1,29 @@
+{
+  "name": "@herdrate/vue",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/herdrate-vue.es.js",
+  "module": "./dist/herdrate-vue.es.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/herdrate-vue.es.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "vite build",
+    "lint": "biome check ."
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.7",
+    "happy-dom": "^15.11.0",
+    "typescript": "latest",
+    "vite": "latest",
+    "vite-plugin-css-injected-by-js": "^5.0.1",
+    "vue-tsc": "latest"
+  }
+}
