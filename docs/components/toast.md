@@ -11,17 +11,18 @@ type Position = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top
 type Item = {
   id: number;
   message: string;
-  level: 'info' | 'warn' | 'error';
+  color: 'primary' | 'success' | 'warning' | 'danger';
   position: Position;
 }
 
 const items = ref<Item[]>([])
 
 function showAt(position: Position) {
+  const color = position.includes('top') ? 'primary' : position.includes('bottom') ? 'warning' : 'primary'
   items.value.push({
     id: Date.now() + Math.random(),
     message: `Toast en ${position}`,
-    level: position.includes('top') ? 'info' : position.includes('bottom') ? 'warn' : 'info',
+    color,
     position,
   })
 }
@@ -62,7 +63,7 @@ const positionButtons = computed(() =>
 <ClientOnly>
   <div style="margin-bottom: 2rem;">
     <ButtonTuiGroup :buttons="positionButtons" />
-    <ButtonTui variant="ghost" @click="clearAll">[ clear ]</ButtonTui>
+    <ButtonTui color="medium" fill="clear" @click="clearAll">[ clear ]</ButtonTui>
   </div>
 
   <p v-if="items.length === 0" style="opacity: 0.5; font-style: italic;">
@@ -84,10 +85,10 @@ const positionButtons = computed(() =>
 import { ref } from 'vue'
 import { ToastContainer } from '@herdrate/vue'
 
-const items = ref<{ id: number; message: string; level: string; position: string }[]>([])
+const items = ref<{ id: number; message: string; color: string; position: string }[]>([])
 
 function showAt(position: string) {
-  items.value.push({ id: Date.now(), message: 'Hola', level: 'info', position })
+  items.value.push({ id: Date.now(), message: 'Hola', color: 'primary', position })
 }
 
 function dismiss(id: number) {
@@ -112,8 +113,8 @@ function dismiss(id: number) {
 | Prop | Tipo | Default | Descripción |
 |---|---|---|---|
 | `message` | `string` | — | Contenido del toast |
-| `level` | `'info' \| 'warn' \| 'error'` | `'info'` | Nivel de severidad |
-| `icon` | `string` | `''` | Icono personalizado (default: ▼/●/✖) |
+| `color` | [`Color`](/color) | `'primary'` | Color semántico del toast |
+| `icon` | `string` | `''` | Icono personalizado (default: ▼/✓/●/✖) |
 
 ### useToast()
 
@@ -128,7 +129,7 @@ function dismiss(id: number) {
 | Prop | Tipo | Default | Descripción |
 |---|---|---|---|
 | `message` | `string` | — | Contenido del toast |
-| `level` | `'info' \| 'warn' \| 'error'` | `'info'` | Nivel de severidad |
+| `color` | [`Color`](/color) | `'primary'` | Color semántico |
 | `replace` | `boolean` | `false` | Reemplaza toast duplicado |
 | `filter` | `string` | — | Clave para detectar duplicado |
 

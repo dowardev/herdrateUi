@@ -1,5 +1,5 @@
 <template>
-  <div :class="['toast', `toast--${level}`]" @click="$emit('close')">
+  <div :class="['toast', `color-${color}`]" @click="$emit('close')">
     <span class="toast__icon" v-text="iconChar" />
     <span class="toast__message" v-text="message" />
   </div>
@@ -7,25 +7,32 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import type { Color } from '../../types/color';
 
 const DEFAULT_ICONS: Record<string, string> = {
-  info: '\u25BC',
-  warn: '\u25CF',
-  error: '\u2716',
+  primary: '\u25BC',
+  success: '\u2713',
+  warning: '\u25CF',
+  danger: '\u2716',
 };
 
-const props = withDefaults(defineProps<{
-  message: string;
-  level?: 'info' | 'warn' | 'error';
-  icon?: string;
-}>(), {
-  level: 'info',
-  icon: '',
-});
+const props = withDefaults(
+  defineProps<{
+    message: string;
+    color?: Color;
+    icon?: string;
+  }>(),
+  {
+    color: 'primary',
+    icon: '',
+  },
+);
 
 defineEmits<{ close: [] }>();
 
-const iconChar = computed(() => props.icon || DEFAULT_ICONS[props.level] || DEFAULT_ICONS.info);
+const _iconChar = computed(
+  () => props.icon || DEFAULT_ICONS[props.color] || DEFAULT_ICONS.primary,
+);
 </script>
 
 <style scoped>
@@ -46,8 +53,5 @@ const iconChar = computed(() => props.icon || DEFAULT_ICONS[props.level] || DEFA
 }
 .toast:hover { opacity: 0.85; }
 .toast__icon { flex-shrink: 0; width: 1rem; text-align: center; }
-.toast--info .toast__icon { color: var(--accent, #89b4fa); }
-.toast--warn .toast__icon { color: var(--warn, #f9e2af); }
-.toast--error .toast__icon { color: var(--error, #f38ba8); }
 .toast__message { flex: 1; }
 </style>

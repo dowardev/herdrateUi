@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
+import { describe, expect, it } from 'vitest';
 import ButtonTui from '../button-tui/ButtonTui.vue';
 import ButtonTuiGroup from '../button-tui/ButtonTuiGroup.vue';
 
@@ -24,12 +24,19 @@ describe('ButtonTui', () => {
     expect(wrapper.text()).toContain('TL');
   });
 
-  it('applies ghost class', () => {
+  it('applies default fill and color data attributes', () => {
+    const wrapper = mount(ButtonTui, { slots: { default: 'OK' } });
+    expect(wrapper.attributes('data-fill')).toBe('solid');
+    expect(wrapper.attributes('data-color')).toBe('primary');
+  });
+
+  it('applies custom fill and color', () => {
     const wrapper = mount(ButtonTui, {
-      props: { variant: 'ghost' },
-      slots: { default: 'Ghost' },
+      props: { fill: 'outline', color: 'danger' },
+      slots: { default: 'Delete' },
     });
-    expect(wrapper.classes()).toContain('btn-tui--ghost');
+    expect(wrapper.attributes('data-fill')).toBe('outline');
+    expect(wrapper.attributes('data-color')).toBe('danger');
   });
 });
 
@@ -45,11 +52,39 @@ describe('ButtonTuiGroup', () => {
 
   it('calls onClick when button is clicked', async () => {
     const calls: string[] = [];
-    const buttons = [
-      { label: 'A', onClick: () => calls.push('A') },
-    ];
+    const buttons = [{ label: 'A', onClick: () => calls.push('A') }];
     const wrapper = mount(ButtonTuiGroup, { props: { buttons } });
     await wrapper.find('.btn-tui').trigger('click');
     expect(calls).toEqual(['A']);
+  });
+
+  it('applies group-level fill and color to all buttons', () => {
+    const buttons = [
+      { label: 'A', onClick: () => {} },
+      { label: 'B', onClick: () => {} },
+    ];
+    const wrapper = mount(ButtonTuiGroup, {
+      props: { buttons, fill: 'clear', color: 'secondary' },
+    });
+    const btns = wrapper.findAll('.btn-tui');
+    btns.forEach((btn) => {
+      expect(btn.attributes('data-fill')).toBe('clear');
+      expect(btn.attributes('data-color')).toBe('secondary');
+    });
+  });
+
+  it('allows individual button overrides for fill and color', () => {
+    const buttons = [
+      { label: 'A', onClick: () => {}, fill: 'solid', color: 'success' },
+      { label: 'B', onClick: () => {}, fill: 'outline', color: 'danger' },
+    ];
+    const wrapper = mount(ButtonTuiGroup, {
+      props: { buttons, fill: 'clear', color: 'primary' },
+    });
+    const btns = wrapper.findAll('.btn-tui');
+    expect(btns[0].attributes('data-fill')).toBe('solid');
+    expect(btns[0].attributes('data-color')).toBe('success');
+    expect(btns[1].attributes('data-fill')).toBe('outline');
+    expect(btns[1].attributes('data-color')).toBe('danger');
   });
 });

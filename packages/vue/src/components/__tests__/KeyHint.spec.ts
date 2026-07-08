@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
+import { describe, expect, it } from 'vitest';
 import KeyHint from '../key-hint/KeyHint.vue';
 
 describe('KeyHint', () => {
@@ -14,7 +14,10 @@ describe('KeyHint', () => {
   });
 
   it('applies sm size class', () => {
-    const wrapper = mount(KeyHint, { props: { size: 'sm' }, slots: { default: 'x' } });
+    const wrapper = mount(KeyHint, {
+      props: { size: 'sm' },
+      slots: { default: 'x' },
+    });
     expect(wrapper.classes()).toContain('key-hint--sm');
   });
 });

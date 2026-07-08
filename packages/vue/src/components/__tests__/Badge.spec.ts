@@ -1,23 +1,33 @@
-import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
+import { describe, expect, it } from 'vitest';
 import Badge from '../badge/Badge.vue';
 
 describe('Badge', () => {
-  const variants = ['success', 'warn', 'error', 'accent', 'default'];
-  
-  variants.forEach(variant => {
-    it(`applies correct class for variant: ${variant}`, () => {
-      const wrapper = mount(Badge, { 
-        props: { variant },
-        slots: { default: 'Test' } 
+  const colors = [
+    'primary',
+    'secondary',
+    'success',
+    'warning',
+    'danger',
+    'light',
+    'medium',
+    'dark',
+  ];
+
+  colors.forEach((color) => {
+    it(`applies correct classes for color: ${color}`, () => {
+      const wrapper = mount(Badge, {
+        props: { color },
+        slots: { default: 'Test' },
       });
-      expect(wrapper.classes()).toContain(`badge--${variant}`);
+      expect(wrapper.classes()).toContain(`color-${color}`);
+      expect(wrapper.classes()).toContain(`bd-color-${color}`);
     });
   });
 
   it('renders text content', () => {
-    const wrapper = mount(Badge, { 
-      slots: { default: 'CMD+K' } 
+    const wrapper = mount(Badge, {
+      slots: { default: 'CMD+K' },
     });
     expect(wrapper.text()).toBe('CMD+K');
   });

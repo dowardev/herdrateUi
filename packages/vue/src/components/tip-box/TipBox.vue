@@ -1,5 +1,5 @@
 <template>
-  <div :class="['tip-box', `tip-box--${variant}`]">
+  <div :class="['tip-box', `bd-color-${color}`]">
     <div class="tip-box-header">
       <span class="tip-box-icon">{{ icon }}</span>
       <strong v-if="title">{{ title }}</strong>
@@ -13,18 +13,28 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import type { Color } from '../../types/color';
+import { DEFAULT_COLOR } from '../../types/color';
 
-const props = defineProps<{
-  variant?: 'info' | 'warn' | 'error';
-  title?: string;
-  message?: string;
-}>();
+const props = withDefaults(
+  defineProps<{
+    color?: Color;
+    title?: string;
+    message?: string;
+  }>(),
+  {
+    color: DEFAULT_COLOR,
+  },
+);
 
-const icon = computed(() => {
-  switch (props.variant) {
-    case 'warn': return '⚠';
-    case 'error': return '✖';
-    default: return 'ℹ';
+const _icon = computed(() => {
+  switch (props.color) {
+    case 'warning':
+      return '\u26A0';
+    case 'danger':
+      return '\u2716';
+    default:
+      return '\u2139';
   }
 });
 </script>
@@ -33,6 +43,7 @@ const icon = computed(() => {
 .tip-box {
   border: 1px solid var(--border);
   border-left-width: 4px;
+  border-left-color: var(--color-primary, var(--accent));
   background: var(--bg-panel);
   color: var(--text);
   font-family: var(--font-mono);
@@ -52,7 +63,4 @@ const icon = computed(() => {
 .tip-box-body {
   padding: 0.5rem;
 }
-.tip-box--info { border-left-color: var(--accent); }
-.tip-box--warn { border-left-color: var(--warn); }
-.tip-box--error { border-left-color: var(--error); }
 </style>

@@ -5,37 +5,35 @@
 </template>
 
 <script setup lang="ts">
-import { ref, provide, type Ref } from 'vue'
+import { provide, type Ref, ref } from 'vue';
 
 export interface TabsContext {
-  activeValue: Ref<string>
-  setActive: (value: string) => void
-  closeTab: (value: string) => void
+  activeValue: Ref<string>;
+  setActive: (value: string) => void;
+  closeTab: (value: string) => void;
 }
 
-const TABS_KEY = Symbol('tabs')
+const _TABS_KEY = Symbol('tabs');
 
 const props = defineProps<{
-  defaultValue?: string
-}>()
+  defaultValue?: string;
+}>();
 
-const emit = defineEmits<{
-  (e: 'close', value: string): void
-}>()
+const emit = defineEmits<(e: 'close', value: string) => void>();
 
-const activeValue = ref(props.defaultValue || '')
+const activeValue = ref(props.defaultValue || '');
 
 function setActive(value: string) {
-  activeValue.value = value
+  activeValue.value = value;
 }
 
 function closeTab(value: string) {
-  emit('close', value)
+  emit('close', value);
 }
 
-provide<Ref<string>>('tabs-active', activeValue)
-provide('tabs-set-active', setActive)
-provide('tabs-close', closeTab)
+provide<Ref<string>>('tabs-active', activeValue);
+provide('tabs-set-active', setActive);
+provide('tabs-close', closeTab);
 </script>
 
 <style scoped>

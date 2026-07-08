@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
+import { describe, expect, it } from 'vitest';
 import Avatar from '../avatar/Avatar.vue';
 import { fnv1a } from '../avatar/hash';
 

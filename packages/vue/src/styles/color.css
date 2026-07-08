@@ -1,0 +1,158 @@
+/* ============================================
+   Semantic color utility classes
+   References --color-{name} variables
+   defined in theme.css (dark/light adaptive).
+   Users can override these classes or --color-* vars.
+   ============================================ */
+
+/* Text colors */
+.color-primary {
+  color: var(--color-primary);
+}
+.color-secondary {
+  color: var(--color-secondary);
+}
+.color-tertiary {
+  color: var(--color-tertiary);
+}
+.color-success {
+  color: var(--color-success);
+}
+.color-warning {
+  color: var(--color-warning);
+}
+.color-danger {
+  color: var(--color-danger);
+}
+.color-light {
+  color: var(--color-light);
+}
+.color-medium {
+  color: var(--color-medium);
+}
+.color-dark {
+  color: var(--color-dark);
+}
+
+/* Background colors */
+.bg-color-primary {
+  background: var(--color-primary);
+}
+.bg-color-secondary {
+  background: var(--color-secondary);
+}
+.bg-color-tertiary {
+  background: var(--color-tertiary);
+}
+.bg-color-success {
+  background: var(--color-success);
+}
+.bg-color-warning {
+  background: var(--color-warning);
+}
+.bg-color-danger {
+  background: var(--color-danger);
+}
+.bg-color-light {
+  background: var(--color-light);
+}
+.bg-color-medium {
+  background: var(--color-medium);
+}
+.bg-color-dark {
+  background: var(--color-dark);
+}
+
+/* Border colors */
+.bd-color-primary {
+  border-color: var(--color-primary);
+}
+.bd-color-secondary {
+  border-color: var(--color-secondary);
+}
+.bd-color-tertiary {
+  border-color: var(--color-tertiary);
+}
+.bd-color-success {
+  border-color: var(--color-success);
+}
+.bd-color-warning {
+  border-color: var(--color-warning);
+}
+.bd-color-danger {
+  border-color: var(--color-danger);
+}
+.bd-color-light {
+  border-color: var(--color-light);
+}
+.bd-color-medium {
+  border-color: var(--color-medium);
+}
+.bd-color-dark {
+  border-color: var(--color-dark);
+}
+
+/* ============================================
+   ButtonTui — fill + color via data attributes
+   ============================================ */
+.btn-tui[data-fill="solid"] {
+  background: var(--_btn-bg);
+  color: var(--bg);
+}
+.btn-tui[data-fill="solid"]:hover {
+  opacity: 0.85;
+}
+.btn-tui[data-fill="outline"] {
+  border: 1px solid var(--_btn-text);
+  color: var(--_btn-text);
+  background: transparent;
+}
+.btn-tui[data-fill="outline"]:hover {
+  background: var(--_btn-bg);
+  color: var(--bg);
+}
+.btn-tui[data-fill="clear"] {
+  color: var(--_btn-text);
+  background: transparent;
+  border: none;
+}
+.btn-tui[data-fill="clear"]:hover {
+  background: var(--bg-elevated);
+}
+
+.btn-tui[data-color="primary"] {
+  --_btn-bg: var(--color-primary);
+  --_btn-text: var(--color-primary);
+}
+.btn-tui[data-color="secondary"] {
+  --_btn-bg: var(--color-secondary);
+  --_btn-text: var(--color-secondary);
+}
+.btn-tui[data-color="tertiary"] {
+  --_btn-bg: var(--color-tertiary);
+  --_btn-text: var(--color-tertiary);
+}
+.btn-tui[data-color="success"] {
+  --_btn-bg: var(--color-success);
+  --_btn-text: var(--color-success);
+}
+.btn-tui[data-color="warning"] {
+  --_btn-bg: var(--color-warning);
+  --_btn-text: var(--color-warning);
+}
+.btn-tui[data-color="danger"] {
+  --_btn-bg: var(--color-danger);
+  --_btn-text: var(--color-danger);
+}
+.btn-tui[data-color="light"] {
+  --_btn-bg: var(--color-light);
+  --_btn-text: var(--color-light);
+}
+.btn-tui[data-color="medium"] {
+  --_btn-bg: var(--color-medium);
+  --_btn-text: var(--color-medium);
+}
+.btn-tui[data-color="dark"] {
+  --_btn-bg: var(--color-dark);
+  --_btn-text: var(--color-dark);
+}

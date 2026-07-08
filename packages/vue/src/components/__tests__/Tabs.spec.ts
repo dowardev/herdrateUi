@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
-import Tabs from '../tabs/Tabs.vue';
-import TabsList from '../tabs/TabsList.vue';
+import { describe, expect, it } from 'vitest';
 import Tab from '../tabs/Tab.vue';
 import TabPanel from '../tabs/TabPanel.vue';
+import Tabs from '../tabs/Tabs.vue';
+import TabsList from '../tabs/TabsList.vue';
 
 describe('Tabs', () => {
   it('renders tab triggers and shows active panel', () => {
@@ -40,7 +40,9 @@ describe('Tabs', () => {
         </Tabs>
       `,
     });
-    const tabB = wrapper.findAll('button').find(b => b.text().includes('Tab B'));
+    const tabB = wrapper
+      .findAll('button')
+      .find((b) => b.text().includes('Tab B'));
     await tabB?.trigger('click');
     expect(wrapper.text()).not.toContain('Content A');
     expect(wrapper.text()).toContain('Content B');

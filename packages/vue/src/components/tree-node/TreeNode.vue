@@ -11,13 +11,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, useSlots, computed } from 'vue';
+import { computed, ref, useSlots } from 'vue';
 
 const expanded = ref(false);
 const slots = useSlots();
-const hasChildren = computed(() => !!slots.default);
+const _hasChildren = computed(() => !!slots.default);
 
-function toggle() {
+function _toggle() {
   expanded.value = !expanded.value;
 }
 </script>

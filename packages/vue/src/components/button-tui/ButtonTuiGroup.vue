@@ -1,9 +1,11 @@
 <template>
-  <div :class="['btn-tui-group', variant === 'ghost' && 'btn-tui-group--ghost']" :style="{ gap: `${gap}rem` }">
+  <div :class="['btn-tui-group']" :style="{ gap: `${gap}rem` }">
     <button
       v-for="(b, i) in buttons"
       :key="i"
-      :class="['btn-tui', b.variant === 'ghost' && 'btn-tui--ghost']"
+      class="btn-tui"
+      :data-fill="b.fill || fill"
+      :data-color="b.color || color"
       @click="b.onClick"
     >
       <span v-if="b.icon" class="btn-tui__icon">{{ b.icon }}</span>
@@ -13,19 +15,28 @@
 </template>
 
 <script setup lang="ts">
+import type { Color, Fill } from '../../types/color';
+import { DEFAULT_COLOR } from '../../types/color';
+
 export interface ButtonTuiItem {
   label: string;
   icon?: string;
   onClick: () => void;
-  variant?: 'solid' | 'ghost';
+  fill?: Fill;
+  color?: Color;
 }
 
-withDefaults(defineProps<{
-  buttons: ButtonTuiItem[];
-  variant?: 'solid' | 'ghost';
-  gap?: number;
-}>(), {
-  variant: 'solid',
-  gap: 0.4,
-});
+withDefaults(
+  defineProps<{
+    buttons: ButtonTuiItem[];
+    fill?: Fill;
+    color?: Color;
+    gap?: number;
+  }>(),
+  {
+    fill: 'solid',
+    color: DEFAULT_COLOR,
+    gap: 0.4,
+  },
+);
 </script>

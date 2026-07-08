@@ -16,7 +16,17 @@
   --success: var(--ctp-mocha-green);
   --warning: var(--ctp-mocha-yellow);
   --warn: var(--ctp-mocha-yellow);
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-primary: var(--ctp-mocha-mauve);
+  --color-secondary: var(--ctp-mocha-lavender);
+  --color-tertiary: var(--ctp-mocha-blue);
+  --color-success: var(--ctp-mocha-green);
+  --color-warning: var(--ctp-mocha-yellow);
+  --color-danger: var(--ctp-mocha-red);
+  --color-light: var(--ctp-mocha-rosewater);
+  --color-medium: var(--ctp-mocha-overlay2);
+  --color-dark: var(--ctp-mocha-subtext1);
 }
 
 @media (prefers-color-scheme: light) {
@@ -38,7 +48,18 @@
     --success: var(--ctp-latte-green);
     --warning: var(--ctp-latte-yellow);
     --warn: var(--ctp-latte-yellow);
-    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+    /* Ionic-style semantic colors */
+    --color-primary: var(--ctp-latte-mauve);
+    --color-secondary: var(--ctp-latte-lavender);
+    --color-tertiary: var(--ctp-latte-blue);
+    --color-success: var(--ctp-latte-green);
+    --color-warning: var(--ctp-latte-yellow);
+    --color-danger: var(--ctp-latte-red);
+    --color-light: var(--ctp-latte-surface1);
+    --color-medium: var(--ctp-latte-overlay0);
+    --color-dark: var(--ctp-latte-text);
   }
 }
 
@@ -60,7 +81,17 @@
   --success: var(--ctp-latte-green);
   --warning: var(--ctp-latte-yellow);
   --warn: var(--ctp-latte-yellow);
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-primary: var(--ctp-latte-mauve);
+  --color-secondary: var(--ctp-latte-lavender);
+  --color-tertiary: var(--ctp-latte-blue);
+  --color-success: var(--ctp-latte-green);
+  --color-warning: var(--ctp-latte-yellow);
+  --color-danger: var(--ctp-latte-red);
+  --color-light: var(--ctp-latte-surface1);
+  --color-medium: var(--ctp-latte-overlay0);
+  --color-dark: var(--ctp-latte-text);
 }
 
 .theme-dark {
@@ -81,7 +112,17 @@
   --success: var(--ctp-mocha-green);
   --warning: var(--ctp-mocha-yellow);
   --warn: var(--ctp-mocha-yellow);
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-primary: var(--ctp-mocha-mauve);
+  --color-secondary: var(--ctp-mocha-lavender);
+  --color-tertiary: var(--ctp-mocha-blue);
+  --color-success: var(--ctp-mocha-green);
+  --color-warning: var(--ctp-mocha-yellow);
+  --color-danger: var(--ctp-mocha-red);
+  --color-light: var(--ctp-mocha-rosewater);
+  --color-medium: var(--ctp-mocha-overlay2);
+  --color-dark: var(--ctp-mocha-subtext1);
 }
 
 .btn-tui-group {
@@ -94,31 +135,19 @@
   font-size: 0.875rem;
   padding: 0.15rem 0.4rem;
   background: transparent;
-  color: var(--ctp-mocha-text);
-  border: none;
+  color: var(--text-muted);
+  border: 1px solid transparent;
   border-radius: 0;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   letter-spacing: 0.02em;
-  transition: background 0.12s, color 0.12s;
+  transition:
+    background 0.12s,
+    color 0.12s;
   font-weight: 400;
-}
-.btn-tui:hover {
-  background: var(--ctp-mocha-surface0);
-  color: var(--ctp-mocha-mauve);
-}
-.btn-tui:active {
-  color: var(--ctp-mocha-lavender);
 }
 .btn-tui__icon {
   margin-right: 0.25rem;
   font-size: 0.9rem;
-}
-.btn-tui--ghost {
-  color: var(--ctp-mocha-overlay0);
-}
-.btn-tui--ghost:hover {
-  background: transparent;
-  color: var(--ctp-mocha-mauve);
 }

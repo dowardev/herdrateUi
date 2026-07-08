@@ -1,6 +1,8 @@
 <template>
   <button
-    :class="['btn-tui', variant === 'ghost' && 'btn-tui--ghost']"
+    class="btn-tui"
+    :data-fill="fill"
+    :data-color="color"
     @click="$emit('click')"
   >
     <span v-if="icon" class="btn-tui__icon">{{ icon }}</span>
@@ -11,12 +13,20 @@
 </template>
 
 <script setup lang="ts">
-withDefaults(defineProps<{
-  icon?: string;
-  variant?: 'solid' | 'ghost';
-}>(), {
-  variant: 'solid',
-});
+import type { Color, Fill } from '../../types/color';
+import { DEFAULT_COLOR } from '../../types/color';
+
+withDefaults(
+  defineProps<{
+    icon?: string;
+    fill?: Fill;
+    color?: Color;
+  }>(),
+  {
+    fill: 'solid',
+    color: DEFAULT_COLOR,
+  },
+);
 
 defineEmits<{ click: [] }>();
 </script>

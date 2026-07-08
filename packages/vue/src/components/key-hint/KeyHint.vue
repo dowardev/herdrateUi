@@ -5,11 +5,14 @@
 </template>
 
 <script setup lang="ts">
-withDefaults(defineProps<{
-  size?: 'sm' | 'md';
-}>(), {
-  size: 'md',
-});
+withDefaults(
+  defineProps<{
+    size?: 'sm' | 'md';
+  }>(),
+  {
+    size: 'md',
+  },
+);
 </script>
 
 <style scoped>
