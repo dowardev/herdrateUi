@@ -1,9 +1,9 @@
 <template>
   <div
     :class="['avatar', `avatar--${size}`]"
-    :style="{ background: bg }"
+    :style="{ background: _bg }"
     :title="name"
-    v-text="initial"
+    v-text="_initial"
   />
 </template>
 

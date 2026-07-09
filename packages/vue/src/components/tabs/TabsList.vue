@@ -3,15 +3,15 @@
     <button
       v-if="showLeftChevron"
       class="tabs-chevron tabs-chevron--left"
-      @click="scrollBy(-100)"
+      @click="_scrollBy(-100)"
     >‹</button>
-    <div ref="scrollRef" class="tabs-scroll" @wheel.prevent="onWheel">
+    <div ref="scrollRef" class="tabs-scroll" @wheel.prevent="_onWheel">
       <slot />
     </div>
     <button
       v-if="showRightChevron"
       class="tabs-chevron tabs-chevron--right"
-      @click="scrollBy(100)"
+      @click="_scrollBy(100)"
     >›</button>
   </div>
 </template>

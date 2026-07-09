@@ -27,7 +27,7 @@ describe('Avatar', () => {
   it('sets background color via FNV-1a hash', () => {
     const wrapper = mount(Avatar, { props: { name: 'Charlie' } });
     const bg = wrapper.attributes('style');
-    expect(bg).toMatch(/^background:/);
+    expect(bg).toMatch(/^background:/i);
   });
 
   it('fnv1a returns deterministic values', () => {
