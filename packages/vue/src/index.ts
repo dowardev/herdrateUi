@@ -3,6 +3,7 @@ import './styles/theme.css';
 import './styles/reset.css';
 import './styles/color.css';
 
+export { default as Accordion } from './components/accordion/Accordion.vue';
 export { default as Avatar } from './components/avatar/Avatar.vue';
 export { default as Badge } from './components/badge/Badge.vue';
 export { default as Box } from './components/box/Box.vue';
