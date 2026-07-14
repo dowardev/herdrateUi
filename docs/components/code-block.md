@@ -92,6 +92,11 @@ The `formatter` receives `(code: string, language: string)` and can return a `st
 
 `usePrettierFormatter()` retorna una función formateadora que usa Prettier para formatear código según el lenguaje.
 
+Primero instala Prettier (opcional, necesario solo si usas el formateador):
+```
+npm i -D prettier
+```
+
 ### Lenguajes soportados
 
 | Lenguaje (`language`) | Parser Prettier | Plugin requerido | Built-in |
@@ -105,19 +110,19 @@ The `formatter` receives `(code: string, language: string)` and can return a `st
 | `yaml` / `yml` | `yaml` | — | ✅ |
 | `graphql` / `gql` | `graphql` | — | ✅ |
 | `flow` | `flow` | — | ✅ |
-| `sql` | — | `@prettier/plugin-sql` | ❌ |
+| `sql` | — | `prettier-plugin-sql` | ❌ |
 | `python` | — | `@prettier/plugin-python` | ❌ |
 | `ruby` | — | `@prettier/plugin-ruby` | ❌ |
-| `java` | — | `@prettier/plugin-java` | ❌ |
-| `php` | — | `@prettier/plugin-php` | ❌ |
-| `swift` | — | `@prettier/plugin-swift` | ❌ |
-| `go` | — | `@prettier/plugin-go` | ❌ |
-| `rust` | — | `@prettier/plugin-rust` | ❌ |
-| `toml` | — | `@prettier/plugin-toml` | ❌ |
+| `java` | — | `prettier-plugin-java` | ❌ |
+| `rust` | — | `prettier-plugin-rust` | ❌ |
+| `toml` | — | `prettier-plugin-toml` | ❌ |
+| `bash` / `sh` / `shell` / `zsh` | — | `prettier-plugin-sh` | ❌ |
+| `csharp` / `cs` | — | `prettier-plugin-csharp` | ❌ |
+| `xml` | — | `@prettier/plugin-xml` | ❌ |
 
 Los lenguajes marcados con ❌ requieren instalar el plugin Prettier correspondiente:
 ```
-npm i -D @prettier/plugin-sql
+npm i -D prettier-plugin-sql prettier-plugin-java prettier-plugin-rust
 ```
 
 El composable detecta automáticamente los plugins instalados. Si un parser no está disponible, devuelve el código original sin formatear.
