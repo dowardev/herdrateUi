@@ -18,9 +18,14 @@
     "build": "vite build",
     "lint": "biome check ."
   },
+  "peerDependencies": {
+    "prettier": "^3.0.0",
+    "vue": "^3.4.0"
+  },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.7",
     "happy-dom": "^15.11.0",
+    "prettier": "^3.9.5",
     "typescript": "latest",
     "vite": "latest",
     "vite-plugin-css-injected-by-js": "^5.0.1",
