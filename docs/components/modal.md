@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { modalMeta } from './meta/modal'
 const isOpen = ref(false)
 </script>
 
@@ -10,21 +9,21 @@ Terminal-style modal dialog with overlay, header, body, footer, and keyboard sup
 
 ## Demo
 
-<Modal open title="Example Modal" closable>
-  This is the modal body content.
-  <template #footer>
-    <button>OK</button>
-    <button>Cancel</button>
-  </template>
-</Modal>
-
-## Código
+<ClientOnly>
+  <button @click="isOpen = true">Abrir modal</button>
+  <Modal v-model:open="isOpen" title="Example Modal" closable>
+    This is the modal body content.
+    <template #footer>
+      <button @click="isOpen = false">OK</button>
+      <button @click="isOpen = false">Cancel</button>
+    </template>
+  </Modal>
+</ClientOnly>
 
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
 import { Modal } from '@herdrate/vue'
-
 const open = ref(false)
 </script>
 

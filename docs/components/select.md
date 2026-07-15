@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { selectMeta } from './meta/select'
 const selected = ref('')
 const selectedColor = ref('')
 const options = [
@@ -12,55 +11,75 @@ const options = [
 
 # Select
 
-A terminal-styled dropdown select component.
+Dropdown select estilo terminal.
 
-## Basic usage
+## Demo
 
-```vue
-<template>
-  <Select v-model="selected" :options="options" />
-</template>
-
-<script setup lang="ts">
-import { ref } from 'vue';
-import { Select } from '@herdrate/vue';
-
-const selected = ref('');
-const options = [
-  { label: 'Option 1', value: '1' },
-  { label: 'Option 2', value: '2' },
-  { label: 'Option 3', value: '3' },
-];
-</script>
-```
-
-## Placeholder
+<ClientOnly>
+  <Select v-model="selected" :options="options" placeholder="Elige una opción" />
+  <p style="color:var(--text-muted);font-size:0.8rem;">Seleccionado: {{ selected || '—' }}</p>
+</ClientOnly>
 
 ```vue
-<Select v-model="selected" :options="options" placeholder="Pick one" />
-```
-
-## Disabled
-
-```vue
-<Select v-model="selected" :options="options" disabled />
-```
-
-## Color
-
-```vue
-<Select v-model="selected" :options="options" color="success" />
+<Select v-model="selected" :options="options" placeholder="Elige una opción" />
 ```
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `string` | `''` | v-model value |
-| `options` | `{label:string,value:string}[]` | `[]` | Selectable options |
-| `color` | `Color` | `'primary'` | Focus border color |
-| `disabled` | `boolean` | `false` | Disabled state |
-| `placeholder` | `string` | `'Select...'` | Placeholder text |
+### placeholder
+
+Texto mostrado cuando no hay opción seleccionada.
+
+<ClientOnly>
+  <Select v-model="selected" :options="options" placeholder="Selecciona..." />
+</ClientOnly>
+
+```vue
+<Select v-model="selected" :options="options" placeholder="Selecciona..." />
+```
+
+### options
+
+Array de opciones con `label` y `value`.
+
+```ts
+const options = [
+  { label: 'Opción 1', value: '1' },
+  { label: 'Opción 2', value: '2' },
+]
+```
+
+```vue
+<Select v-model="selected" :options="options" />
+```
+
+### color
+
+Color de foco al abrir el dropdown.
+
+<ClientOnly>
+  <div style="display:flex;flex-direction:column;gap:0.5rem;">
+    <Select v-model="selectedColor" :options="options" color="primary" placeholder="Primary" />
+    <Select v-model="selectedColor" :options="options" color="success" placeholder="Success" />
+    <Select v-model="selectedColor" :options="options" color="danger" placeholder="Danger" />
+  </div>
+</ClientOnly>
+
+```vue
+<Select v-model="selectedColor" :options="options" color="primary" placeholder="Primary" />
+<Select v-model="selectedColor" :options="options" color="success" placeholder="Success" />
+<Select v-model="selectedColor" :options="options" color="danger" placeholder="Danger" />
+```
+
+### disabled
+
+Deshabilita la interacción.
+
+<Select v-model="selected" :options="options" disabled placeholder="Deshabilitado" />
+
+```vue
+<Select v-model="selected" :options="options" disabled />
+```
 
 ## Events
 
@@ -90,7 +109,3 @@ const options = [
 ## Tokens usados
 
 `--font-mono`, `--bg`, `--border`, `--text`, `--color-*`
-
-## Demo Interactiva
-
-<ComponentPlayground :meta="selectMeta" />

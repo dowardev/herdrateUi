@@ -40,7 +40,7 @@ describe('ComboBox', () => {
     await input.trigger('keydown', { key: 'Enter' });
     const emitted = wrapper.emitted('update:modelValue');
     expect(emitted).toBeTruthy();
-    expect(emitted![emitted!.length - 1][0]).toBe('apple');
+    expect(emitted?.[emitted?.length - 1][0]).toBe('apple');
   });
 
   it('keyboard navigation', async () => {
@@ -59,6 +59,6 @@ describe('ComboBox', () => {
     await input.trigger('keydown', { key: 'Enter' });
     const emitted = wrapper.emitted('update:modelValue');
     expect(emitted).toBeTruthy();
-    expect(emitted![emitted!.length - 1][0]).toBe('cherry');
+    expect(emitted?.[emitted?.length - 1][0]).toBe('cherry');
   });
 });

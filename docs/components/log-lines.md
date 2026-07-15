@@ -1,11 +1,29 @@
 # LogLines
 
-Terminal log viewer with level-based coloring.
+Visor de logs con coloreado por nivel estilo terminal.
 
-## Usage
+## Demo
+
+<LogLines
+  :lines="[
+    { text: 'INFO  Starting dev server...', level: 'info' },
+    { text: 'WARN  Deprecated API in v3', level: 'warn' },
+    { text: 'ERROR Failed to connect', level: 'error' },
+    { text: 'DEBUG Cache miss for key', level: 'debug' },
+    { text: 'INFO  Server ready on port 5173', level: 'info' },
+  ]"
+/>
 
 ```vue
-<LogLines :lines="logLines" />
+<LogLines
+  :lines="[
+    { text: 'INFO  Starting dev server...', level: 'info' },
+    { text: 'WARN  Deprecated API in v3', level: 'warn' },
+    { text: 'ERROR Failed to connect', level: 'error' },
+    { text: 'DEBUG Cache miss for key', level: 'debug' },
+    { text: 'INFO  Server ready on port 5173', level: 'info' },
+  ]"
+/>
 ```
 
 ## Props
@@ -100,13 +118,17 @@ Color del componente (se aplica al borde).
 | Campo | Tipo | Requerido | Descripción |
 |---|---|---|---|
 | `text` | `string` | ✅ | Contenido de la línea |
-| `level` | `'info' \| 'warn' \| 'error' \| 'debug'` | ❌ | Nivel de log |
+| `level` | `'info' \\| 'warn' \\| 'error' \\| 'debug'` | ❌ | Nivel de log |
 
 ## API
 
 | Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `lines` | `Array<{text: string, level?: 'info' \| 'warn' \| 'error' \| 'debug'}>` | `[]` | Log lines to display |
-| `max` | `number` | `100` | Max visible lines (truncates oldest) |
-| `color` | `Color` | `'primary'` | Component color |
-| `timestamps` | `boolean` | `false` | Prefix each line with `[HH:MM:SS]` |
+|---|---|---|---|
+| `lines` | `Array<{text, level?}>` | `[]` | Líneas de log |
+| `max` | `number` | `100` | Máximo de líneas visibles |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del componente |
+| `timestamps` | `boolean` | `false` | Prefijo `[HH:MM:SS]` |
+
+## Tokens usados
+
+`--font-mono`, `--text`, `--text-muted`, `--color-*`

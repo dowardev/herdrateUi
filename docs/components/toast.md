@@ -8,7 +8,6 @@ import { ButtonTui, ButtonTuiGroup } from '@herdrate/vue'
 import { toastMeta } from './meta/toast'
 
 type Position = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top-center' | 'bottom-center'
-
 type Item = {
   id: number;
   message: string;
@@ -79,19 +78,15 @@ const positionButtons = computed(() =>
   />
 </ClientOnly>
 
-## Código
-
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ToastContainer } from '@herdrate/vue'
-
-const items = ref<{ id: number; message: string; color: string; position: string }[]>([])
+const items = ref([])
 
 function showAt(position: string) {
   items.value.push({ id: Date.now(), message: 'Hola', color: 'primary', position })
 }
-
 function dismiss(id: number) {
   items.value = items.value.filter(t => t.id !== id)
 }
@@ -107,6 +102,18 @@ function dismiss(id: number) {
 </template>
 ```
 
+## Tipos
+
+### ToastItem
+
+| Campo | Tipo | Requerido | Descripción |
+|---|---|---|---|
+| `id` | `string` | ✅ | Identificador único |
+| `message` | `string` | ✅ | Mensaje a mostrar |
+| `color` | `Color` | ✅ | Color semántico |
+| `icon` | `string` | ✅ | Icono o emoji |
+| `timestamp` | `number` | ✅ | Timestamp UNIX |
+
 ## API
 
 ### Toast
@@ -114,7 +121,7 @@ function dismiss(id: number) {
 | Prop | Tipo | Default | Descripción |
 |---|---|---|---|
 | `message` | `string` | — | Contenido del toast |
-| `color` | [`Color`](/color) | `'primary'` | Color semántico del toast |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico del toast |
 | `icon` | `string` | `''` | Icono personalizado (default: ▼/✓/●/✖) |
 
 ### ToastContainer
@@ -123,7 +130,7 @@ function dismiss(id: number) {
 |---|---|---|---|
 | `toasts` | `ToastItem[]` | — | Lista de toasts a mostrar |
 | `remove` | `(id: string) => void` | — | Función para cerrar toast |
-| `position` | `'bottom-right' \| 'bottom-left' \| 'top-right' \| 'top-left' \| 'top-center' \| 'bottom-center'` | `'bottom-right'` | Posición en pantalla |
+| `position` | `'bottom-right' \\| 'bottom-left' \\| 'top-right' \\| 'top-left' \\| 'top-center' \\| 'bottom-center'` | `'bottom-right'` | Posición en pantalla |
 
 ### useToast()
 
@@ -138,14 +145,10 @@ function dismiss(id: number) {
 | Prop | Tipo | Default | Descripción |
 |---|---|---|---|
 | `message` | `string` | — | Contenido del toast |
-| `color` | [`Color`](/color) | `'primary'` | Color semántico |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico |
 | `replace` | `boolean` | `false` | Reemplaza toast duplicado |
 | `filter` | `string` | — | Clave para detectar duplicado |
 
-### ToastContainer
+## Tokens usados
 
 `--font-mono`, `--bg`, `--bg-elevated`, `--border`, `--text`, `--color-*`
-
-## Demo Interactiva
-
-<ComponentPlayground :meta="toastMeta" />

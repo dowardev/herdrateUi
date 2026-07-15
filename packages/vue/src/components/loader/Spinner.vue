@@ -71,7 +71,7 @@ onBeforeUnmount(() => {
   if (interval) clearInterval(interval);
 });
 
-const frame = computed(() => frames.value[frameIndex.value]);
+const _frame = computed(() => frames.value[frameIndex.value]);
 
 function parseCssTime(time: string): number {
   const num = Number.parseFloat(time);

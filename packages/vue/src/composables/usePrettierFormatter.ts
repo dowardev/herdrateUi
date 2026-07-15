@@ -3,7 +3,7 @@ export type Formatter = (
   lang: string,
 ) => Promise<string> | string;
 
-type PluginSpec =
+type ParserSpec =
   | { kind: 'internal'; modules: string[] }
   | { kind: 'external'; package: string };
 
@@ -41,10 +41,10 @@ const parserMap: Record<string, string> = {
   rust: 'rust',
   rs: 'rust',
   sql: 'sql',
-  bash: 'sh',
-  sh: 'sh',
-  shell: 'sh',
-  zsh: 'sh',
+  bash: 'bash',
+  sh: 'bash',
+  shell: 'bash',
+  zsh: 'bash',
   java: 'java',
   toml: 'toml',
   xml: 'xml',
@@ -53,7 +53,7 @@ const parserMap: Record<string, string> = {
   csharp_x: 'csharp',
 };
 
-const parserPlugins: Record<string, PluginSpec[]> = {
+const parserModules: Record<string, ParserSpec[]> = {
   babel: [
     { kind: 'internal', modules: ['prettier/plugins/babel'] },
     { kind: 'internal', modules: ['prettier/plugins/estree'] },
@@ -79,37 +79,63 @@ const parserPlugins: Record<string, PluginSpec[]> = {
   less: [{ kind: 'internal', modules: ['prettier/plugins/postcss'] }],
   html: [{ kind: 'internal', modules: ['prettier/plugins/html'] }],
   vue: [{ kind: 'internal', modules: ['prettier/plugins/html'] }],
-  angular: [{ kind: 'internal', modules: ['prettier/plugins/html'] }],
+  angular: [{ kind: 'internal', modules: ['prettier/plugins/angular'] }],
   markdown: [{ kind: 'internal', modules: ['prettier/plugins/markdown'] }],
   mdx: [{ kind: 'internal', modules: ['prettier/plugins/markdown'] }],
   yaml: [{ kind: 'internal', modules: ['prettier/plugins/yaml'] }],
   graphql: [{ kind: 'internal', modules: ['prettier/plugins/graphql'] }],
   flow: [
     { kind: 'internal', modules: ['prettier/plugins/babel'] },
-    { kind: 'internal', modules: ['prettier/plugins/estree'] },
+    { kind: 'internal', modules: ['prettier/plugins/flow'] },
   ],
-  // Opt-in peer dependencies
   python: [{ kind: 'external', package: '@prettier/plugin-python' }],
   ruby: [{ kind: 'external', package: '@prettier/plugin-ruby' }],
   rust: [{ kind: 'external', package: 'prettier-plugin-rust' }],
   sql: [{ kind: 'external', package: 'prettier-plugin-sql' }],
-  sh: [{ kind: 'external', package: 'prettier-plugin-sh' }],
+  bash: [{ kind: 'external', package: 'prettier-plugin-sh' }],
   java: [{ kind: 'external', package: 'prettier-plugin-java' }],
   toml: [{ kind: 'external', package: 'prettier-plugin-toml' }],
   xml: [{ kind: 'external', package: '@prettier/plugin-xml' }],
   csharp: [{ kind: 'external', package: 'prettier-plugin-csharp' }],
 };
 
-async function loadSpec(spec: PluginSpec): Promise<unknown> {
+const warnedExternal = new Set<string>();
+
+const internalPluginLoaders: Record<string, () => Promise<unknown>> = {
+  'prettier/plugins/estree': () => import('prettier/plugins/estree'),
+  'prettier/plugins/babel': () => import('prettier/plugins/babel'),
+  'prettier/plugins/typescript': () => import('prettier/plugins/typescript'),
+  'prettier/plugins/postcss': () => import('prettier/plugins/postcss'),
+  'prettier/plugins/html': () => import('prettier/plugins/html'),
+  'prettier/plugins/markdown': () => import('prettier/plugins/markdown'),
+  'prettier/plugins/yaml': () => import('prettier/plugins/yaml'),
+  'prettier/plugins/graphql': () => import('prettier/plugins/graphql'),
+  'prettier/plugins/flow': () => import('prettier/plugins/flow'),
+  'prettier/plugins/angular': () => import('prettier/plugins/angular'),
+};
+
+async function loadSpec(spec: ParserSpec): Promise<unknown[]> {
   try {
     if (spec.kind === 'internal') {
-      const modules = await Promise.all(spec.modules.map((m) => import(m)));
-      return modules;
+      const modules = await Promise.all(
+        spec.modules.map((m) => {
+          const loader = internalPluginLoaders[m];
+          if (!loader) throw new Error(`Unknown plugin: ${m}`);
+          return loader();
+        }),
+      );
+      return modules.map((m) => (m as { default?: unknown }).default ?? m);
     }
     const mod = await import(/* @vite-ignore */ spec.package);
-    return mod;
+    return [mod.default ?? mod];
   } catch {
-    return null;
+    if (spec.kind === 'external' && !warnedExternal.has(spec.package)) {
+      warnedExternal.add(spec.package);
+      console.warn(
+        `[@herdrate/vue] prettier plugin "${spec.package}" not installed`,
+      );
+    }
+    return [];
   }
 }
 
@@ -136,21 +162,12 @@ export function usePrettierFormatter(): Formatter {
 
     try {
       const prettier = await loadPrettier();
-      const specs = parserPlugins[parser];
+      const specs = parserModules[parser];
       if (!specs || specs.length === 0) return code;
 
       const loaded = await Promise.all(specs.map((s) => loadSpec(s)));
-      const plugins: unknown[] = [];
-      for (const item of loaded) {
-        if (item === null) continue;
-        if (Array.isArray(item)) {
-          for (const m of item) {
-            if (m !== null && m !== undefined) plugins.push(m);
-          }
-        } else {
-          plugins.push(item);
-        }
-      }
+      const plugins: unknown[] = loaded.flat().filter((p) => p != null);
+
       if (plugins.length === 0) return code;
 
       return await prettier.format(code, {

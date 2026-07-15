@@ -12,17 +12,42 @@ Avatar circular con inicial y color determinístico basado en hash FNV-1a del no
   <Avatar name="Eve" size="lg" />
 </div>
 
-## Código
-
 ```vue
 <Avatar name="Alice" />
 <Avatar name="Bob" size="lg" />
 <Avatar name="Charlie" size="sm" />
+<Avatar name="Diana" size="md" />
+<Avatar name="Eve" size="lg" />
+```
+
+## Props
+
+### name
+
+Nombre para extraer la inicial y generar el color por hash.
+
+```vue
+<Avatar name="Alice" />
+<Avatar name="Bob" />
+```
+
+### size
+
+Tamaño del avatar.
+
+<div style="display: flex; gap: 0.75rem; align-items: center;">
+  <Avatar name="A" size="sm" />
+  <Avatar name="B" size="md" />
+  <Avatar name="C" size="lg" />
+</div>
+
+```vue
+<Avatar name="A" size="sm" />
+<Avatar name="B" size="md" />
+<Avatar name="C" size="lg" />
 ```
 
 ## API
-
-### Props
 
 | Prop | Tipo | Default | Descripción |
 |---|---|---|---|
@@ -32,11 +57,3 @@ Avatar circular con inicial y color determinístico basado en hash FNV-1a del no
 ## Tokens usados
 
 `--font-mono`, `--color-*`
-
-## Demo Interactiva
-
-<ComponentPlayground :meta="avatarMeta" />
-
-<script setup>
-import { avatarMeta } from './meta/avatar'
-</script>

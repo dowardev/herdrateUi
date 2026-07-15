@@ -1,30 +1,12 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.5.4/schema.json",
-  "vcs": {
-    "enabled": true,
-    "clientKind": "git",
-    "useIgnoreFile": true
-  },
+  "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
   "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "linter": {
     "enabled": true,
-    "rules": {
-      "preset": "recommended",
-      "style": { "useVueMultiWordComponentNames": "off" }
-    }
+    "rules": { "preset": "recommended" }
   },
   "overrides": [
-    {
-      "includes": ["**/*.vue"],
-      "linter": {
-        "rules": {
-          "correctness": {
-            "noUnusedVariables": "off",
-            "noUnusedImports": "off"
-          }
-        }
-      }
-    }
+    { "includes": ["*.vue"], "linter": { "rules": { "correctness": { "noUnusedVariables": "off" } } } }
   ],
   "formatter": {
     "enabled": true,
@@ -33,8 +15,6 @@
     "lineWidth": 80
   },
   "javascript": {
-    "formatter": {
-      "quoteStyle": "single"
-    }
+    "formatter": { "quoteStyle": "single" }
   }
 }

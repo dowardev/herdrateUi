@@ -1,5 +1,7 @@
 import DefaultTheme from 'vitepress/theme';
 import '@catppuccin/vitepress/theme/mocha/mauve.css';
+import CommandPaletteDemo from '../../components/CommandPaletteDemo.vue';
+import MenuDemo from '../../components/MenuDemo.vue';
 import {
   Accordion,
   Avatar,
@@ -76,6 +78,7 @@ const components = {
   Input,
   Kbd,
   KeyHint,
+  MenuDemo,
   SnakeLoader,
   LogLines,
   Menu,

@@ -1,9 +1,3 @@
-# Todo
-
-Lista de tareas checkable con estilo TUI minimal. Click para alternar entre `[ ]` y `[x]`.
-
-## Demo
-
 <script setup lang="ts">
 import { ref } from 'vue'
 import { todoMeta } from './meta/todo'
@@ -13,6 +7,12 @@ const t2 = ref(true)
 const t3 = ref(false)
 </script>
 
+# Todo
+
+Lista de tareas checkable con estilo TUI minimal. Click para alternar entre `[ ]` y `[x]`.
+
+## Demo
+
 <ClientOnly>
   <div style="display: flex; flex-direction: column; gap: 0.25rem;">
     <Todo v-model:done="t1">Rediseñar Toast para que coincida con la estética esperada</Todo>
@@ -21,21 +21,28 @@ const t3 = ref(false)
   </div>
 </ClientOnly>
 
-## Código
+```vue
+<Todo v-model:done="t1">Rediseñar Toast para que coincida con la estética esperada</Todo>
+<Todo v-model:done="t2">Mejorar documentación del componente</Todo>
+<Todo v-model:done="t3">Agregar tests para todos los componentes</Todo>
+```
+
+## Props
+
+### done
+
+Estado completado del item.
 
 ```vue
-<script setup lang="ts">
-import { ref } from 'vue'
-import { Todo } from '@herdrate/vue'
+<Todo v-model:done="task.done">Hacer algo</Todo>
+```
 
-const tasks = ref([
-  { id: 1, text: 'Hacer algo', done: false },
-])
-</script>
+### text
 
-<template>
-  <Todo v-for="t in tasks" :key="t.id" v-model:done="t.done">{{ t.text }}</Todo>
-</template>
+Texto de la tarea como prop (alternativa al slot default).
+
+```vue
+<Todo v-model:done="done" text="Hacer algo" />
 ```
 
 ## API
@@ -53,7 +60,3 @@ const tasks = ref([
 ## Tokens usados
 
 `--font-mono`, `--text`, `--color-*`, `--border`
-
-## Demo Interactiva
-
-<ComponentPlayground :meta="todoMeta" />

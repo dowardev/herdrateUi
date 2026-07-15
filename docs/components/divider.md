@@ -10,20 +10,29 @@ Texto separado por divisor horizontal.
 
 <Divider orientation="horizontal" />
 
-Vertical entre contenido:
+```vue
+<Divider orientation="horizontal" />
+<Divider orientation="horizontal" />
+```
 
-<span style="display: inline-flex; align-items: center; gap: 0.5rem;">
+## Props
+
+### orientation
+
+Dirección del divisor.
+
+<Divider orientation="horizontal" />
+
+<div style="display: inline-flex; align-items: center; gap: 0.5rem;">
   Izquierda <Divider orientation="vertical" /> Derecha
-</span>
-
-## Código
+</div>
 
 ```vue
 <Divider orientation="horizontal" />
 <Divider orientation="vertical" />
 ```
 
-## Props
+## API
 
 | Prop | Tipo | Default | Descripción |
 |---|---|---|---|
