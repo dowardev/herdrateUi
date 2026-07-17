@@ -44,3 +44,11 @@ Wrapper decorativo con variantes de borde estilo terminal.
 ## Tokens usados
 
 `--color-{name}`, `--bg-panel`, `--border`, `--font-mono`, `--bg-*`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="boxMeta" />
+
+<script setup>
+import { boxMeta } from './meta/box'
+</script>

@@ -32,3 +32,11 @@ Vertical entre contenido:
 ## Tokens usados
 
 `--border`, `--font-mono`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="dividerMeta" />
+
+<script setup>
+import { dividerMeta } from './meta/divider'
+</script>

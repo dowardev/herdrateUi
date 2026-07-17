@@ -1,3 +1,14 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { accordionMeta } from './meta/accordion'
+const items = [
+  { title: 'Configuración', content: 'Ajustes de red y preferencias del sistema.' },
+  { title: 'Usuarios', content: 'Gestión de usuarios y permisos.' },
+  { title: 'Logs', content: 'Visualización de logs del sistema.' },
+]
+const opened = ref<number[]>([])
+</script>
+
 # Accordion
 
 A terminal-style collapsible accordion component.
@@ -62,7 +73,25 @@ const items = [
 
 ## Slots
 
-| Slot | Props | Description |
-|------|-------|-------------|
-| `item-title` | `{ index, open }` | Custom title rendering per panel |
-| `item-content` | `{ index, open }` | Custom content rendering per panel |
+### AccordionItem
+
+| Campo | Tipo | Requerido | Descripción |
+|---|---|---|---|
+| `title` | `string` | ✅ | Título del panel |
+| `content` | `string` | ❌ | Contenido del panel |
+
+## API
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `items` | `AccordionItem[]` | `[]` | Paneles del acordeón |
+| `multiple` | `boolean` | `false` | Permitir múltiples abiertos |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del indicador |
+
+## Tokens usados
+
+`--font-mono`, `--bg`, `--border`, `--text`, `--color-*`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="accordionMeta" />

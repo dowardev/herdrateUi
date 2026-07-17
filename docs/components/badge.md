@@ -29,3 +29,11 @@ Etiqueta ligera para mostrar información resaltada con variantes de color.
 ## Tokens usados
 
 `--color-{name}`, `--bg`, `--text`, `--border`, `--font-mono`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="badgeMeta" />
+
+<script setup>
+import { badgeMeta } from './meta/badge'
+</script>

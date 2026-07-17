@@ -58,3 +58,11 @@ function onSelect(id: string) {
 ## Tokens usados
 
 `--font-mono`, `--bg`, `--bg-panel`, `--border`, `--text`, `--text-muted`, `--color-*`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="commandPaletteMeta" />
+
+<script setup>
+import { commandPaletteMeta } from './meta/commandpalette'
+</script>
