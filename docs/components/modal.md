@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { modalMeta } from './meta/modal'
+const isOpen = ref(false)
+</script>
+
 # Modal
 
 Terminal-style modal dialog with overlay, header, body, footer, and keyboard support.
@@ -60,3 +66,7 @@ const open = ref(false)
 ## Tokens usados
 
 `--bg`, `--bg-panel`, `--border`, `--text`, `--font-mono`, `--color-{color}`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="modalMeta" />

@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { inputMeta } from './meta/input'
+const text = ref('')
+const password = ref('')
+const multiline = ref('Línea 1\nLínea 2\nLínea 3')
+</script>
+
 # Input
 
 A terminal-styled text input component that renders `<input>` or `<textarea>`.
@@ -57,6 +65,26 @@ Use the `rows` prop to render a `<textarea>`:
 
 ## Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| `update:modelValue` | `value: string` | Emitted on input |
+| Evento | Payload | Descripción |
+|---|---|---|
+| `update:modelValue` | `string` | Se emite al escribir en el input |
+
+## API
+
+| Prop | Tipo | Default | Descripción |
+|---|---|---|---|
+| `modelValue` | `string` | `''` | Valor del input (v-model) |
+| `placeholder` | `string` | `''` | Texto placeholder |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color de foco |
+| `disabled` | `boolean` | `false` | Deshabilitado |
+| `readonly` | `boolean` | `false` | Solo lectura |
+| `type` | `'text' \\| 'password' \\| 'number'` | `'text'` | Tipo de input |
+| `rows` | `number` | `1` | Número de filas (>1 = textarea) |
+
+## Tokens usados
+
+`--font-mono`, `--bg`, `--border`, `--text`, `--color-*`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="inputMeta" />
