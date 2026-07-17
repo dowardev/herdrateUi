@@ -54,7 +54,7 @@ import PropControlSelect from './controls/PropControlSelect.vue'
 import PropControlColor from './controls/PropControlColor.vue'
 import PropControlSlot from './controls/PropControlSlot.vue'
 
-interface PropMeta {
+export interface PropMeta {
   name: string
   type: 'boolean' | 'string' | 'number' | 'enum' | 'color'
   label?: string
@@ -68,18 +68,18 @@ interface PropMeta {
   placeholder?: string
 }
 
-interface SlotMeta {
+export interface SlotMeta {
   name: string
   label?: string
   description?: string
 }
 
-interface EventMeta {
+export interface EventMeta {
   name: string
   description?: string
 }
 
-interface ComponentMeta {
+export interface ComponentMeta {
   props: PropMeta[]
   slots?: SlotMeta[]
   events?: EventMeta[]
