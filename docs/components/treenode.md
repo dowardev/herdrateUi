@@ -35,3 +35,15 @@ Nodo de árbol colapsable con expansión instantánea.
 |---|---|
 | `label` | Contenido del nodo (texto o HTML) |
 | `default` | Nodos hijos (otros `TreeNode`) |
+
+## Tokens usados
+
+`--font-mono`, `--text`, `--border`, `--color-*`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="treeNodeMeta" />
+
+<script setup>
+import { treeNodeMeta } from './meta/treenode'
+</script>

@@ -6,6 +6,7 @@ Lista de tareas checkable con estilo TUI minimal. Click para alternar entre `[ ]
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { todoMeta } from './meta/todo'
 
 const t1 = ref(false)
 const t2 = ref(true)
@@ -48,3 +49,11 @@ const tasks = ref([
 |---|---|---|
 | `update:done` | `boolean` | Toggle de estado (v-model) |
 | `toggle` | `boolean` | Versión sin prefijo `update:` |
+
+## Tokens usados
+
+`--font-mono`, `--text`, `--color-*`, `--border`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="todoMeta" />

@@ -35,3 +35,11 @@ Componente de notificación con icono, título y mensaje.
 ## Tokens usados
 
 `--color-{name}`, `--bg-elevated`, `--bg`, `--text`, `--border`, `--font-mono`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="tipBoxMeta" />
+
+<script setup>
+import { tipBoxMeta } from './meta/tipbox'
+</script>

@@ -5,6 +5,7 @@ Notificaciones temporales inspiradas en noice.nvim, con posicionamiento configur
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { ButtonTui, ButtonTuiGroup } from '@herdrate/vue'
+import { toastMeta } from './meta/toast'
 
 type Position = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top-center' | 'bottom-center'
 
@@ -135,8 +136,8 @@ function dismiss(id: number) {
 
 ### ToastContainer
 
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `toasts` | `ToastItem[]` | — | Lista de toasts a mostrar |
-| `remove` | `(id: string) => void` | — | Función para cerrar toast |
-| `position` | `'bottom-right' \| 'bottom-left' \| 'top-right' \| 'top-left' \| 'top-center' \| 'bottom-center'` | `'bottom-right'` | Posición en pantalla |
+`--font-mono`, `--bg`, `--bg-elevated`, `--border`, `--text`, `--color-*`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="toastMeta" />
