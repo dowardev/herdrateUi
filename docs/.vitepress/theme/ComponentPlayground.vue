@@ -91,7 +91,7 @@ watch(
 }
 .playground-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(300px, 380px) minmax(0, 1fr);
   gap: 1.5rem;
   max-width: 100%;
 }
@@ -101,7 +101,6 @@ watch(
   border-radius: 4px;
   display: flex;
   flex-direction: column;
-  min-height: 300px;
 }
 .panel-header {
   display: flex;
@@ -130,7 +129,7 @@ watch(
 }
 .panel-body {
   flex: 1;
-  padding: 1rem;
+  padding: 0.75rem;
   overflow: auto;
 }
 .preview-body {
@@ -146,7 +145,7 @@ watch(
   width: 100%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 860px) {
   .playground-grid {
     grid-template-columns: 1fr;
   }

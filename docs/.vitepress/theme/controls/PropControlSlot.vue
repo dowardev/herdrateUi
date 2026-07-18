@@ -23,7 +23,7 @@ defineProps<{
 
 <style scoped>
 .prop-control {
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 .prop-label {
   font-family: var(--font-mono);
@@ -58,16 +58,22 @@ defineProps<{
   background: var(--bg);
   border: 1px dashed var(--border-soft, var(--border));
   border-radius: 2px;
-  padding: 0.5rem 0.75rem;
+  padding: 0.375rem 0.5rem;
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.375rem;
+  overflow: hidden;
+}
+.slot-preview code {
+  overflow-wrap: anywhere;
+  word-break: break-all;
 }
 .slot-hint {
   font-family: var(--font-sans, system-ui);
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
+  overflow-wrap: anywhere;
 }
 </style>

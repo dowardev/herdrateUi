@@ -58,6 +58,7 @@ function emitUpdate(event: Event) {
   color: var(--text-muted);
   font-size: 0.6875rem;
   font-family: var(--font-sans, system-ui);
+  overflow-wrap: anywhere;
 }
 .prop-select {
   background: var(--bg);
