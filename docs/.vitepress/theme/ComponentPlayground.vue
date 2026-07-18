@@ -88,10 +88,11 @@ watch(
   margin-top: 2rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--border);
+  container-type: inline-size;
 }
 .playground-grid {
   display: grid;
-  grid-template-columns: minmax(300px, 380px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
   gap: 1.5rem;
   max-width: 100%;
 }
@@ -144,8 +145,11 @@ watch(
   text-align: center;
   width: 100%;
 }
+.controls-panel {
+  max-height: 70vh;
+}
 
-@media (max-width: 860px) {
+@container (max-width: 860px) {
   .playground-grid {
     grid-template-columns: 1fr;
   }

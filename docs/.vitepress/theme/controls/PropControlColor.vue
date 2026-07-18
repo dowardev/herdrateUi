@@ -90,6 +90,9 @@ function emitUpdate(event: Event) {
   border-radius: 2px;
   outline: none;
   cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
 }
 .prop-select:focus {
   border-color: var(--accent);

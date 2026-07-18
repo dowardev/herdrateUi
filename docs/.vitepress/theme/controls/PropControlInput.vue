@@ -73,6 +73,9 @@ function emitUpdate(event: Event) {
   padding: 0.375rem 0.5rem;
   border-radius: 2px;
   outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
 }
 .prop-input:focus {
   border-color: var(--accent);

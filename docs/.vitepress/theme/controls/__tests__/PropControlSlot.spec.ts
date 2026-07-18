@@ -20,4 +20,22 @@ describe('PropControlSlot', () => {
     expect(wrapper.find('.slot-badge').exists()).toBe(true)
     expect(wrapper.find('.slot-badge').text()).toBe('slot')
   })
+
+  it('wraps long slot names without clipping', () => {
+    const wrapper = mount(PropControlSlot, {
+      props: { label: 'Long Slot Name', slotName: 'very-long-slot-name-that-should-not-be-clipped', description: 'A'.repeat(300) }
+    })
+    const preview = wrapper.find('.slot-preview')
+    expect(preview.exists()).toBe(true)
+    expect(preview.text()).toContain('very-long-slot-name')
+    expect(preview.text()).toContain('no editable')
+  })
+
+  it('renders slot code with wrapping support', () => {
+    const wrapper = mount(PropControlSlot, {
+      props: { label: 'Default', slotName: 'verylongslotnamethatcouldoverflowwithoutwordbreak' }
+    })
+    const code = wrapper.find('.slot-preview code')
+    expect(code.exists()).toBe(true)
+  })
 })

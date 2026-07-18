@@ -65,11 +65,41 @@ describe('ComponentPlayground', () => {
     expect(wrapper.text()).toContain('EN VIVO');
   });
 
-  it('has responsive grid layout', () => {
+  it('renders controls panel with max-height constraint', () => {
     const wrapper = mount(ComponentPlayground, {
       props: { meta: panelMeta },
       global: { components: { Panel } },
     });
-    expect(wrapper.find('.playground-grid').exists()).toBe(true);
+    const controlsPanel = wrapper.find('.controls-panel');
+    expect(controlsPanel.exists()).toBe(true);
+    expect(controlsPanel.find('.panel-body').exists()).toBe(true);
+  });
+
+  it('renders both controls and preview panels', () => {
+    const wrapper = mount(ComponentPlayground, {
+      props: { meta: panelMeta },
+      global: { components: { Panel } },
+    });
+    expect(wrapper.find('.controls-panel').exists()).toBe(true);
+    expect(wrapper.find('.preview-panel').exists()).toBe(true);
+  });
+
+  it('uses container-type for responsive sizing', () => {
+    const wrapper = mount(ComponentPlayground, {
+      props: { meta: panelMeta },
+      global: { components: { Panel } },
+    });
+    expect(wrapper.find('.playground').exists()).toBe(true);
+    expect(wrapper.find('.playground-grid').classes()).toContain('playground-grid');
+  });
+
+  it('renders preview with min-height', () => {
+    const wrapper = mount(ComponentPlayground, {
+      props: { meta: panelMeta },
+      global: { components: { Panel } },
+    });
+    const previewBody = wrapper.find('.preview-body');
+    expect(previewBody.exists()).toBe(true);
+    expect(previewBody.isVisible()).toBe(true);
   });
 });

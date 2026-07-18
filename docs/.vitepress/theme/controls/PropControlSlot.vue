@@ -65,15 +65,17 @@ defineProps<{
   display: flex;
   align-items: center;
   gap: 0.375rem;
-  overflow: hidden;
+  flex-wrap: wrap;
+  min-width: 0;
 }
 .slot-preview code {
   overflow-wrap: anywhere;
-  word-break: break-all;
+  min-width: 0;
 }
 .slot-hint {
   font-family: var(--font-sans, system-ui);
   font-size: 0.625rem;
   overflow-wrap: anywhere;
+  min-width: 0;
 }
 </style>
