@@ -11,7 +11,9 @@ const props = defineProps<{
   value: string;
 }>();
 
-const activeValue = inject<Ref<string>>('tabs-active')!;
+const _tmp = inject<Ref<string>>('tabs-active');
+if (!_tmp) throw new Error('<TabPanel> must be used inside <Tabs>');
+const activeValue = _tmp;
 
 const _isActive = computed(() => activeValue.value === props.value);
 </script>

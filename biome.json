@@ -1,13 +1,21 @@
 {
-  "root": false,
-  "$schema": "https://biomejs.dev/schemas/1.8.3/biome-json-schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.5.3/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
   "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "linter": {
     "enabled": true,
     "rules": {
-      "preset": "recommended"
+      "preset": "recommended",
+      "style": { "useVueMultiWordComponentNames": "off" }
     }
   },
+  "overrides": [
+    { "includes": ["**/*.vue"], "linter": { "rules": { "correctness": { "noUnusedVariables": "off", "noUnusedImports": "off" } } } }
+  ],
   "formatter": {
     "enabled": true,
     "indentStyle": "space",

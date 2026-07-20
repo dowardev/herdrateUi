@@ -117,6 +117,14 @@ function dismiss(id: number) {
 | `color` | [`Color`](/color) | `'primary'` | Color semántico del toast |
 | `icon` | `string` | `''` | Icono personalizado (default: ▼/✓/●/✖) |
 
+### ToastContainer
+
+| Prop | Tipo | Default | Descripción |
+|---|---|---|---|
+| `toasts` | `ToastItem[]` | — | Lista de toasts a mostrar |
+| `remove` | `(id: string) => void` | — | Función para cerrar toast |
+| `position` | `'bottom-right' \| 'bottom-left' \| 'top-right' \| 'top-left' \| 'top-center' \| 'bottom-center'` | `'bottom-right'` | Posición en pantalla |
+
 ### useToast()
 
 | Retorno | Tipo | Descripción |

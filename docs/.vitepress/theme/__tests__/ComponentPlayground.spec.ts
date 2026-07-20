@@ -1,3 +1,4 @@
+import { markRaw } from 'vue';
 import { Panel } from '@herdrate/vue';
 import { mount, shallowMount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
@@ -6,7 +7,7 @@ import PropControlToggle from '../controls/PropControlToggle.vue';
 import PropControls from '../PropControls.vue';
 
 const panelMeta = {
-  component: Panel,
+  component: markRaw(Panel),
   props: [
     {
       name: 'divider',

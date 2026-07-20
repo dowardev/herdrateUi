@@ -67,7 +67,6 @@ function removeTag(index: number) {
   emit('update:modelValue', next);
 }
 
-// biome-ignore lint/correctness/noUnusedVariables: used in template
 function onKeydown(e: KeyboardEvent) {
   if (e.key === 'Enter') {
     e.preventDefault();

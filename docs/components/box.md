@@ -31,15 +31,7 @@ Wrapper decorativo con variantes de borde estilo terminal.
 | Prop | Tipo | Default | Descripción |
 |---|---|---|---|
 | `borderStyle` | `'single' \| 'double' \| 'rounded' \| 'ascii' \| 'none'` | `'single'` | Variante de borde |
-| `color` | [`Color`](/color) | `'primary'` | Color semántico |
-
-## Slots
-
-| Slot | Descripción |
-|---|---|
-| `header` | Cabecera opcional |
-| `default` | Contenido principal |
-| `footer` | Pie opcional |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico |
 
 ## Tokens usados
 

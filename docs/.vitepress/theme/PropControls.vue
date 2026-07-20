@@ -95,7 +95,12 @@ const emit = defineEmits<{
 }>()
 
 const propMetas = computed(() => props.meta.props || [])
-const slotsMeta = computed(() => props.meta.slots || [])
+const slotsMeta = computed(() => {
+  const raw = props.meta.slots || [];
+  return raw.map((s) =>
+    typeof s === 'string' ? { name: s, label: s, description: '' } : s,
+  );
+})
 const eventsMeta = computed(() => props.meta.events || [])
 
 function resolveControl(prop: PropMeta) {

@@ -34,7 +34,7 @@ Tooltip informativo que aparece al hacer hover sobre un elemento, con retardo co
 |---|---|---|---|
 | `text` | `string` | `''` | Contenido del tooltip |
 | `position` | `'top' \| 'bottom' \| 'left' \| 'right'` | `'top'` | Posición relativa al trigger |
-| `color` | [`Color`](/color) | `'primary'` | Color del borde y flecha |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del borde y flecha |
 | `delay` | `number` | `300` | Milisegundos antes de mostrar |
 
 ## Tokens usados

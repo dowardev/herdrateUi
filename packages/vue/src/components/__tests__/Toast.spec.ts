@@ -21,7 +21,13 @@ describe('Toast', () => {
         icon: '\u25CF',
         timestamp: 0,
       },
-    ] as any;
+    ] as Array<{
+      id: string;
+      message: string;
+      color: string;
+      icon: string;
+      timestamp: number;
+    }>;
     const wrapper = mount(ToastContainer, {
       props: { toasts, remove },
     });

@@ -15,10 +15,10 @@ Inline block for labels and tokens.
 ## Props
 
 | Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `color` | `Color` | `'primary'` | Tag color |
+|---|---|---|---|
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Tag color |
 | `variant` | `'solid' \| 'outline'` | `'solid'` | Fill style |
-| `removable` | `boolean` | `false` | Show × remove button |
+| `removable` | `boolean` | `false` | Show x remove button |
 
 ## Events
 

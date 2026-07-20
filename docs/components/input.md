@@ -78,7 +78,7 @@ Use the `rows` prop to render a `<textarea>`:
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color de foco |
 | `disabled` | `boolean` | `false` | Deshabilitado |
 | `readonly` | `boolean` | `false` | Solo lectura |
-| `type` | `'text' \\| 'password' \\| 'number'` | `'text'` | Tipo de input |
+| `type` | `'text' \| 'password' \| 'number'` | `'text'` | Tipo de input |
 | `rows` | `number` | `1` | Número de filas (>1 = textarea) |
 
 ## Tokens usados

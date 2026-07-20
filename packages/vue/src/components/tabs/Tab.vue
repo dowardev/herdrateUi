@@ -27,9 +27,13 @@ const props = withDefaults(
   },
 );
 
-const activeValue = inject<Ref<string>>('tabs-active')!;
-const _setActive = inject<(value: string) => void>('tabs-set-active')!;
-const _closeTab = inject<(value: string) => void>('tabs-close')!;
+const _activeValue = inject<Ref<string>>('tabs-active');
+if (!_activeValue) throw new Error('<Tab> must be used inside <Tabs>');
+const activeValue = _activeValue;
+const _setActive = inject<(value: string) => void>('tabs-set-active');
+if (!_setActive) throw new Error('<Tab> must be used inside <Tabs>');
+const _closeTab = inject<(value: string) => void>('tabs-close');
+if (!_closeTab) throw new Error('<Tab> must be used inside <Tabs>');
 
 const _isActive = computed(() => activeValue.value === props.value);
 </script>

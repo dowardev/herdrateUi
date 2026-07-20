@@ -28,7 +28,7 @@ Spinner animado estilo terminal con frames braille cíclicos.
 
 | Prop | Tipo | Default | Descripción |
 |---|---|---|---|
-| `color` | [`Color`](/color) | `'primary'` | Color semántico |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Tamaño del spinner |
 | `speed` | `'slow' \| 'normal' \| 'fast'` | `'normal'` | Velocidad de la animación |
 

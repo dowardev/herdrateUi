@@ -23,7 +23,8 @@ const scrollRef = ref<HTMLElement | null>(null);
 const showLeftChevron = ref(false);
 const showRightChevron = ref(false);
 
-const _setActive = inject<(value: string) => void>('tabs-set-active')!;
+const _setActive = inject<(value: string) => void>('tabs-set-active');
+if (!_setActive) throw new Error('<TabsList> must be used inside <Tabs>');
 
 function updateChevrons() {
   const el = scrollRef.value;
