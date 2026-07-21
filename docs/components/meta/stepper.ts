@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { Stepper } from '@herdrate/vue'
+import { Stepper } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const stepperMeta: ComponentMeta = {
   component: Stepper,
@@ -21,4 +21,4 @@ export const stepperMeta: ComponentMeta = {
   ],
   slots: [],
   events: [],
-}
+};

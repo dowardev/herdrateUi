@@ -30,7 +30,7 @@ const props = withDefaults(
 
 defineEmits<{ close: [] }>();
 
-const _iconChar = computed(
+const iconChar = computed(
   () => props.icon || DEFAULT_ICONS[props.color] || DEFAULT_ICONS.primary,
 );
 </script>

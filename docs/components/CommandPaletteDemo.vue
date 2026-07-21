@@ -21,22 +21,22 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { CommandPalette } from '@herdrate/vue'
+import { CommandPalette } from '@herdrate/vue';
+import { ref } from 'vue';
 
-defineOptions({ name: 'CommandPaletteDemo' })
+defineOptions({ name: 'CommandPaletteDemo' });
 
-const open = ref(false)
-const lastSelection = ref<string | null>(null)
+const open = ref(false);
+const lastSelection = ref<string | null>(null);
 
 const commands = [
   { id: 'open', label: 'Open File', description: 'Abrir un archivo' },
   { id: 'save', label: 'Save File', description: 'Guardar cambios' },
   { id: 'close', label: 'Close', description: 'Cerrar pestaña' },
-]
+];
 
 function onSelect(id: string) {
-  lastSelection.value = id
+  lastSelection.value = id;
 }
 </script>
 

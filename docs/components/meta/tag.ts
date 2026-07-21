@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { Tag } from '@herdrate/vue'
+import { Tag } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const tagMeta: ComponentMeta = {
   component: Tag,
@@ -30,7 +30,5 @@ export const tagMeta: ComponentMeta = {
   slots: [
     { name: 'default', label: 'Contenido', description: 'Contenido del tag' },
   ],
-  events: [
-    { name: 'remove', description: 'Se emite al hacer clic en ×' },
-  ],
-}
+  events: [{ name: 'remove', description: 'Se emite al hacer clic en ×' }],
+};

@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { Tabs } from '@herdrate/vue'
+import { Tabs } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const tabsMeta: ComponentMeta = {
   component: Tabs,
@@ -13,9 +13,13 @@ export const tabsMeta: ComponentMeta = {
     },
   ],
   slots: [
-    { name: 'default', label: 'Contenido', description: 'Pestañas (Tab, TabsList, TabPanel)' },
+    {
+      name: 'default',
+      label: 'Contenido',
+      description: 'Pestañas (Tab, TabsList, TabPanel)',
+    },
   ],
   events: [
     { name: 'close', description: 'Se emite al cerrar un Tab con closable' },
   ],
-}
+};

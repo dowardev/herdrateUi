@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { CodeBlock } from '@herdrate/vue'
+import { CodeBlock } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const codeBlockMeta: ComponentMeta = {
   component: CodeBlock,
@@ -41,7 +41,11 @@ export const codeBlockMeta: ComponentMeta = {
     },
   ],
   slots: [
-    { name: 'default', label: 'Contenido', description: 'Alternativa a la prop code' },
+    {
+      name: 'default',
+      label: 'Contenido',
+      description: 'Alternativa a la prop code',
+    },
   ],
   events: [],
-}
+};

@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { ComboBox } from '@herdrate/vue'
+import { ComboBox } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const comboBoxMeta: ComponentMeta = {
   component: ComboBox,
@@ -35,6 +35,9 @@ export const comboBoxMeta: ComponentMeta = {
   ],
   slots: [],
   events: [
-    { name: 'update:modelValue', description: 'Se emite al seleccionar un ítem' },
+    {
+      name: 'update:modelValue',
+      description: 'Se emite al seleccionar un ítem',
+    },
   ],
-}
+};

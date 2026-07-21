@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { TipBox } from '@herdrate/vue'
+import { TipBox } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const tipBoxMeta: ComponentMeta = {
   component: TipBox,
@@ -27,7 +27,11 @@ export const tipBoxMeta: ComponentMeta = {
     },
   ],
   slots: [
-    { name: 'default', label: 'Contenido', description: 'Contenido personalizado (reemplaza title/message)' },
+    {
+      name: 'default',
+      label: 'Contenido',
+      description: 'Contenido personalizado (reemplaza title/message)',
+    },
   ],
   events: [],
-}
+};

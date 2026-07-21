@@ -18,28 +18,27 @@
 </template>
 
 <script setup lang="ts">
-import { useId } from 'vue'
+import { useId } from 'vue';
 
 const props = defineProps<{
-  modelValue: string | number
-  type: 'text' | 'number'
-  label: string
-  description?: string
-  min?: number
-  max?: number
-  step?: number
-}>()
+  modelValue: string | number;
+  type: 'text' | 'number';
+  label: string;
+  description?: string;
+  min?: number;
+  max?: number;
+  step?: number;
+}>();
 
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: string | number): void
-}>()
+const emit =
+  defineEmits<(e: 'update:modelValue', value: string | number) => void>();
 
-const id = useId()
+const id = useId();
 
 function emitUpdate(event: Event) {
-  const target = event.target as HTMLInputElement
-  const value = props.type === 'number' ? Number(target.value) : target.value
-  emit('update:modelValue', value)
+  const target = event.target as HTMLInputElement;
+  const value = props.type === 'number' ? Number(target.value) : target.value;
+  emit('update:modelValue', value);
 }
 </script>
 

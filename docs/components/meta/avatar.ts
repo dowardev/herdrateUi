@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { Avatar } from '@herdrate/vue'
+import { Avatar } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const avatarMeta: ComponentMeta = {
   component: Avatar,
@@ -22,4 +22,4 @@ export const avatarMeta: ComponentMeta = {
   ],
   slots: [],
   events: [],
-}
+};

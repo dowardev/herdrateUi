@@ -123,9 +123,10 @@ let prettierPromise: Promise<{
 async function loadPrettier() {
   if (!prettierPromise) {
     const p = await import('prettier/standalone');
-    prettierPromise = p as typeof prettierPromise;
+    prettierPromise = p as unknown as typeof prettierPromise;
   }
-  return prettierPromise;
+  // biome-ignore lint/style/noNonNullAssertion: vue-tsc requires this
+  return prettierPromise!;
 }
 
 export function usePrettierFormatter(): Formatter {

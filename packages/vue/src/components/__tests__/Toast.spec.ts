@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
+import type { ToastItem } from '../../composables/useToast';
 import { useToast } from '../../composables/useToast';
 import ToastContainer from '../toast/ToastContainer.vue';
 
@@ -21,13 +22,7 @@ describe('Toast', () => {
         icon: '\u25CF',
         timestamp: 0,
       },
-    ] as Array<{
-      id: string;
-      message: string;
-      color: string;
-      icon: string;
-      timestamp: number;
-    }>;
+    ] as ToastItem[];
     const wrapper = mount(ToastContainer, {
       props: { toasts, remove },
     });

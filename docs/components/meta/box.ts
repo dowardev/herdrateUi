@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { Box } from '@herdrate/vue'
+import { Box } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const boxMeta: ComponentMeta = {
   component: Box,
@@ -21,9 +21,21 @@ export const boxMeta: ComponentMeta = {
     },
   ],
   slots: [
-    { name: 'header', label: 'Header', description: 'Contenido opcional en la cabecera del box' },
-    { name: 'default', label: 'Contenido', description: 'Contenido principal del box' },
-    { name: 'footer', label: 'Footer', description: 'Contenido opcional en el pie del box' },
+    {
+      name: 'header',
+      label: 'Header',
+      description: 'Contenido opcional en la cabecera del box',
+    },
+    {
+      name: 'default',
+      label: 'Contenido',
+      description: 'Contenido principal del box',
+    },
+    {
+      name: 'footer',
+      label: 'Footer',
+      description: 'Contenido opcional en el pie del box',
+    },
   ],
   events: [],
-}
+};

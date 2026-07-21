@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { Table } from '@herdrate/vue'
+import { Table } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const tableMeta: ComponentMeta = {
   component: Table,
@@ -28,4 +28,4 @@ export const tableMeta: ComponentMeta = {
   ],
   slots: [],
   events: [],
-}
+};

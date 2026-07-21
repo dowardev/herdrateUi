@@ -12,7 +12,7 @@ describe('Badge', () => {
     'light',
     'medium',
     'dark',
-  ];
+  ] as const;
 
   colors.forEach((color) => {
     it(`applies correct classes for color: ${color}`, () => {

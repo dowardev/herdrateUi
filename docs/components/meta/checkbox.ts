@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { Checkbox } from '@herdrate/vue'
+import { Checkbox } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const checkboxMeta: ComponentMeta = {
   component: Checkbox,
@@ -37,4 +37,4 @@ export const checkboxMeta: ComponentMeta = {
   events: [
     { name: 'update:modelValue', description: 'Se emite al hacer toggle' },
   ],
-}
+};

@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { StatusBar } from '@herdrate/vue'
+import { StatusBar } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const statusBarMeta: ComponentMeta = {
   component: StatusBar,
@@ -34,7 +34,11 @@ export const statusBarMeta: ComponentMeta = {
     },
   ],
   slots: [
-    { name: 'default', label: 'Contenido', description: 'Reemplaza el área de info con contenido personalizado' },
+    {
+      name: 'default',
+      label: 'Contenido',
+      description: 'Reemplaza el área de info con contenido personalizado',
+    },
   ],
   events: [],
-}
+};

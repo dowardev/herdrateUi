@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { TagInput } from '@herdrate/vue'
+import { TagInput } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const tagInputMeta: ComponentMeta = {
   component: TagInput,
@@ -35,6 +35,9 @@ export const tagInputMeta: ComponentMeta = {
   ],
   slots: [],
   events: [
-    { name: 'update:modelValue', description: 'Se emite al añadir o eliminar un tag' },
+    {
+      name: 'update:modelValue',
+      description: 'Se emite al añadir o eliminar un tag',
+    },
   ],
-}
+};
