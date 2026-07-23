@@ -9,16 +9,14 @@
         {{ copied ? 'copied' : 'copy' }}
       </button>
     </div>
-    <pre><code><template v-if="$slots.default"><slot /></template><template v-else><span
-            v-for="(line, i) in lines"
-            :key="i"
-            class="code-block-line"
-          ><span v-if="showLines" :data-testid="'line-number'" class="code-block-ln">{{ i + 1 }}</span><span class="code-block-content">{{ line }}</span></span></template></code></pre>
+    <pre><code class="code-block-content"><slot v-if="$slots.default" /><span v-else v-html="renderedHtml" /></code></pre>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
+import type { Formatter } from '../../composables/usePrettierFormatter';
+import { highlight } from '../../lib/highlight';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
 
@@ -29,6 +27,7 @@ const props = withDefaults(
     color?: Color;
     showLines?: boolean;
     maxHeight?: string;
+    formatter?: Formatter;
   }>(),
   {
     code: '',
@@ -40,10 +39,56 @@ const props = withDefaults(
 );
 
 const copied = ref(false);
+const formattedCode = ref(props.code);
 
-const lines = computed(() => {
-  if (!props.code) return [''];
-  return props.code.split('\n');
+watch(
+  () => [props.code, props.language, props.formatter],
+  () => {
+    const { code, language, formatter } = props;
+    if (!code) {
+      formattedCode.value = '';
+      return;
+    }
+    if (formatter) {
+      try {
+        const result = formatter(code, language);
+        if (result instanceof Promise) {
+          result
+            .then((v) => {
+              formattedCode.value = v;
+            })
+            .catch(() => {
+              formattedCode.value = code;
+            });
+        } else {
+          formattedCode.value = result;
+        }
+      } catch {
+        formattedCode.value = code;
+      }
+    } else {
+      formattedCode.value = code;
+    }
+  },
+  { immediate: true },
+);
+
+const highlightedHtml = computed(() => {
+  if (!formattedCode.value) return '';
+  return highlight(formattedCode.value, props.language);
+});
+
+const renderedHtml = computed(() => {
+  if (!highlightedHtml.value) return '';
+  return highlightedHtml.value
+    .split('\n')
+    .map((line, i) => {
+      const lineNum = props.showLines
+        ? `<span data-testid="line-number" class="code-block-ln">${i + 1}</span>`
+        : '';
+      return `<span class="code-block-line-row">${lineNum}<span class="code-block-line">${line || ''}</span></span>`;
+    })
+    .join('');
 });
 
 const scrollStyle = computed(() => {
@@ -115,22 +160,6 @@ function handleCopy() {
   display: block;
 }
 
-.code-block-line {
-  display: block;
-  white-space: pre;
-}
-
-.code-block-ln {
-  display: inline-block;
-  width: 2.5em;
-  text-align: right;
-  margin-right: 8px;
-  color: var(--text-muted);
-  border-right: 1px solid var(--border);
-  padding-right: 8px;
-  user-select: none;
-}
-
 .code-block-content {
   white-space: pre;
 }
@@ -144,4 +173,27 @@ function handleCopy() {
 .code-block.color-light { border-color: var(--color-light); }
 .code-block.color-medium { border-color: var(--color-medium); }
 .code-block.color-dark { border-color: var(--color-dark); }
+</style>
+
+<style>
+.code-block-line-row {
+  display: block;
+  line-height: 1.4;
+}
+
+.code-block-line {
+  display: inline;
+  white-space: pre;
+}
+
+.code-block-ln {
+  display: inline-block;
+  width: 2.5em;
+  text-align: right;
+  margin-right: 8px;
+  color: var(--text-muted);
+  border-right: 1px solid var(--border);
+  padding-right: 8px;
+  user-select: none;
+}
 </style>
