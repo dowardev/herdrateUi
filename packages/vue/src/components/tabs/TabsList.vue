@@ -17,50 +17,50 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, inject, computed } from 'vue'
+import { inject, onMounted, onUnmounted, ref } from 'vue';
 
-const scrollRef = ref<HTMLElement | null>(null)
-const showLeftChevron = ref(false)
-const showRightChevron = ref(false)
+const scrollRef = ref<HTMLElement | null>(null);
+const showLeftChevron = ref(false);
+const showRightChevron = ref(false);
 
-const setActive = inject<(value: string) => void>('tabs-set-active')!
+const _setActive = inject<(value: string) => void>('tabs-set-active')!;
 
 function updateChevrons() {
-  const el = scrollRef.value
-  if (!el) return
-  showLeftChevron.value = el.scrollLeft > 4
-  showRightChevron.value = el.scrollLeft < el.scrollWidth - el.clientWidth - 4
+  const el = scrollRef.value;
+  if (!el) return;
+  showLeftChevron.value = el.scrollLeft > 4;
+  showRightChevron.value = el.scrollLeft < el.scrollWidth - el.clientWidth - 4;
 }
 
-function scrollBy(amount: number) {
-  const el = scrollRef.value
-  if (!el) return
-  el.scrollBy({ left: amount, behavior: 'smooth' })
-  setTimeout(updateChevrons, 100)
+function _scrollBy(amount: number) {
+  const el = scrollRef.value;
+  if (!el) return;
+  el.scrollBy({ left: amount, behavior: 'smooth' });
+  setTimeout(updateChevrons, 100);
 }
 
-function onWheel(e: WheelEvent) {
-  const el = scrollRef.value
-  if (!el) return
-  el.scrollLeft += e.deltaY
-  updateChevrons()
+function _onWheel(e: WheelEvent) {
+  const el = scrollRef.value;
+  if (!el) return;
+  el.scrollLeft += e.deltaY;
+  updateChevrons();
 }
 
-let resizeObserver: ResizeObserver | null = null
+let resizeObserver: ResizeObserver | null = null;
 
 onMounted(() => {
-  updateChevrons()
-  const el = scrollRef.value
+  updateChevrons();
+  const el = scrollRef.value;
   if (el) {
-    el.addEventListener('scroll', updateChevrons, { passive: true })
-    resizeObserver = new ResizeObserver(updateChevrons)
-    resizeObserver.observe(el)
+    el.addEventListener('scroll', updateChevrons, { passive: true });
+    resizeObserver = new ResizeObserver(updateChevrons);
+    resizeObserver.observe(el);
   }
-})
+});
 
 onUnmounted(() => {
-  resizeObserver?.disconnect()
-})
+  resizeObserver?.disconnect();
+});
 </script>
 
 <style scoped>

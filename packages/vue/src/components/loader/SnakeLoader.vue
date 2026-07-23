@@ -2,15 +2,23 @@
   <div class="snake-loader" :style="{ '--loader-speed': speed }">
     <span class="snake-text"><slot>Decoding...</slot></span>
     <div class="snake-track">
-      <div class="snake-block">█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄</div>
+      <div :class="['snake-block', `color-${color}`]">█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄█▄</div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-defineProps<{
-  speed?: string;
-}>();
+import type { Color } from '../../types/color';
+
+withDefaults(
+  defineProps<{
+    speed?: string;
+    color?: Color;
+  }>(),
+  {
+    color: 'primary',
+  },
+);
 </script>
 
 <style scoped>
@@ -36,7 +44,7 @@ defineProps<{
 .snake-block {
   position: absolute;
   white-space: nowrap;
-  color: var(--accent);
+  color: var(--color-primary, var(--accent));
   font-weight: bold;
   animation: slide var(--loader-speed) linear infinite;
 }

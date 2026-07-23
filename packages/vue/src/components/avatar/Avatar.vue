@@ -9,17 +9,20 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { fnv1a, COLORS } from './hash';
+import { COLORS, fnv1a } from './hash';
 
-const props = withDefaults(defineProps<{
-  name: string;
-  size?: 'sm' | 'md' | 'lg';
-}>(), {
-  size: 'md',
-});
+const props = withDefaults(
+  defineProps<{
+    name: string;
+    size?: 'sm' | 'md' | 'lg';
+  }>(),
+  {
+    size: 'md',
+  },
+);
 
-const initial = computed(() => props.name.charAt(0).toUpperCase());
-const bg = computed(() => {
+const _initial = computed(() => props.name.charAt(0).toUpperCase());
+const _bg = computed(() => {
   const idx = fnv1a(props.name) % COLORS.length;
   return COLORS[idx];
 });

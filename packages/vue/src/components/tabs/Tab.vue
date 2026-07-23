@@ -1,6 +1,6 @@
 <template>
   <button
-    :class="['tab', { 'tab--active': isActive }]"
+    :class="['tab', { 'tab--active': isActive }, isActive && `color-${color} bd-color-${color}`]"
     @click="setActive(value)"
   >
     <span class="tab-label"><slot /></span>
@@ -13,18 +13,25 @@
 </template>
 
 <script setup lang="ts">
-import { inject, computed, type Ref } from 'vue'
+import { computed, inject, type Ref } from 'vue';
+import type { Color } from '../../types/color';
 
-const props = defineProps<{
-  value: string
-  closable?: boolean
-}>()
+const props = withDefaults(
+  defineProps<{
+    value: string;
+    closable?: boolean;
+    color?: Color;
+  }>(),
+  {
+    color: 'primary',
+  },
+);
 
-const activeValue = inject<Ref<string>>('tabs-active')!
-const setActive = inject<(value: string) => void>('tabs-set-active')!
-const closeTab = inject<(value: string) => void>('tabs-close')!
+const activeValue = inject<Ref<string>>('tabs-active')!;
+const _setActive = inject<(value: string) => void>('tabs-set-active')!;
+const _closeTab = inject<(value: string) => void>('tabs-close')!;
 
-const isActive = computed(() => activeValue.value === props.value)
+const _isActive = computed(() => activeValue.value === props.value);
 </script>
 
 <style scoped>
@@ -52,8 +59,7 @@ const isActive = computed(() => activeValue.value === props.value)
 
 .tab--active {
   background: var(--bg);
-  color: var(--accent);
-  border-bottom: 1px solid var(--accent);
+  border-bottom: 1px solid;
   margin-bottom: -1px;
 }
 
@@ -76,6 +82,6 @@ const isActive = computed(() => activeValue.value === props.value)
 
 .tab-close:hover {
   background: var(--bg-elevated);
-  color: var(--error);
+  color: var(--color-danger, var(--error));
 }
 </style>

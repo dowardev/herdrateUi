@@ -8,8 +8,14 @@ function fnv1a(str: string): number {
 }
 
 const COLORS = [
-  '#f38ba8', '#fab387', '#f9e2af', '#a6e3a1',
-  '#94e2d5', '#89b4fa', '#cba6f7', '#f5c2e7',
+  '#f38ba8',
+  '#fab387',
+  '#f9e2af',
+  '#a6e3a1',
+  '#94e2d5',
+  '#89b4fa',
+  '#cba6f7',
+  '#f5c2e7',
 ];
 
-export { fnv1a, COLORS };
+export { COLORS, fnv1a };

@@ -8,12 +8,15 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 
-const props = withDefaults(defineProps<{
-  text?: string;
-  done?: boolean;
-}>(), {
-  done: false,
-});
+const props = withDefaults(
+  defineProps<{
+    text?: string;
+    done?: boolean;
+  }>(),
+  {
+    done: false,
+  },
+);
 
 const emit = defineEmits<{
   'update:done': [value: boolean];
@@ -22,11 +25,14 @@ const emit = defineEmits<{
 
 const internal = ref(props.done);
 
-watch(() => props.done, (val) => {
-  internal.value = val;
-});
+watch(
+  () => props.done,
+  (val) => {
+    internal.value = val;
+  },
+);
 
-function onClick() {
+function _onClick() {
   internal.value = !internal.value;
   emit('update:done', internal.value);
   emit('toggle', internal.value);

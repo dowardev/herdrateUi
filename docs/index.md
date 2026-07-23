@@ -2,6 +2,8 @@
 
 Librería de componentes Vue 3 con tema **Catppuccin** y estética CLI/terminal.
 
+Incluye un [sistema de colores semántico](./color) estilo Ionic con 9 colores (`primary` → `dark`) y 3 modos de relleno (`solid`, `outline`, `clear`), todos adaptados automáticamente al tema oscuro/claro.
+
 ## Componentes
 
 | Componente | Descripción |
@@ -23,20 +25,20 @@ Librería de componentes Vue 3 con tema **Catppuccin** y estética CLI/terminal.
 <Divider orientation="horizontal" />
 
 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-  <Badge variant="success">Success</Badge>
-  <Badge variant="warn">Warning</Badge>
-  <Badge variant="error">Error</Badge>
-  <Badge variant="accent">Accent</Badge>
+  <Badge color="success">Success</Badge>
+  <Badge color="warning">Warning</Badge>
+  <Badge color="danger">Danger</Badge>
+  <Badge color="primary">Primary</Badge>
 </div>
 
 <Divider orientation="horizontal" />
 
-<TipBox variant="info" title="Info" message="Componentes funcionando en vivo." />
+<TipBox color="primary" title="Info" message="Componentes funcionando en vivo." />
 
-<TipBox variant="warn" title="Advertencia" message="Revisa los tokens de color." />
+<TipBox color="warning" title="Advertencia" message="Revisa los tokens de color." />
 
-<TipBox variant="error" title="Error" message="Esto es solo un demo." />
+<TipBox color="danger" title="Error" message="Esto es solo un demo." />
 
 <Divider orientation="horizontal" />
 
-<SnakeLoader speed="1.2s">Cargando...</SnakeLoader>
+<SnakeLoader speed="1.2s" color="primary">Cargando...</SnakeLoader>

@@ -5,7 +5,7 @@
         v-for="t in toasts"
         :key="t.id"
         :message="t.message"
-        :level="t.level"
+        :color="t.color"
         :icon="t.icon"
         @close="remove(t.id)"
       />
@@ -15,11 +15,16 @@
 
 <script setup lang="ts">
 import type { ToastItem } from '../../composables/useToast';
-import Toast from './Toast.vue';
 
 defineProps<{
   toasts: ToastItem[];
-  position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top-center' | 'bottom-center';
+  position?:
+    | 'top-right'
+    | 'top-left'
+    | 'bottom-right'
+    | 'bottom-left'
+    | 'top-center'
+    | 'bottom-center';
   remove: (id: string) => void;
 }>();
 </script>

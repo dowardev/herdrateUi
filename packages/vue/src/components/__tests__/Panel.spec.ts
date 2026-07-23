@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
+import { describe, expect, it } from 'vitest';
 import Panel from '../panel/Panel.vue';
 
 describe('Panel Suite', () => {

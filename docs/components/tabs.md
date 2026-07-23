@@ -85,9 +85,10 @@ Pestañas con scroll horizontal, flechas de navegación y cierre individual.
 ### Tab
 
 | Prop | Tipo | Default | Descripción |
-|---|---|---|---|
+|---|---|---|---|---|
 | `value` | `string` | — | Identificador único |
 | `closable` | `boolean` | `false` | Muestra botón de cierre |
+| `color` | [`Color`](/color) | `'primary'` | Color del indicador de pestaña activa |
 
 ### TabPanel
 

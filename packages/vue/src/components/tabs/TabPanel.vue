@@ -5,15 +5,15 @@
 </template>
 
 <script setup lang="ts">
-import { inject, computed, type Ref } from 'vue'
+import { computed, inject, type Ref } from 'vue';
 
 const props = defineProps<{
-  value: string
-}>()
+  value: string;
+}>();
 
-const activeValue = inject<Ref<string>>('tabs-active')!
+const activeValue = inject<Ref<string>>('tabs-active')!;
 
-const isActive = computed(() => activeValue.value === props.value)
+const _isActive = computed(() => activeValue.value === props.value);
 </script>
 
 <style scoped>

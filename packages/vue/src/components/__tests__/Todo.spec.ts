@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
+import { describe, expect, it } from 'vitest';
 import Todo from '../todo/Todo.vue';
 
 describe('Todo', () => {
@@ -28,7 +28,7 @@ describe('Todo', () => {
     const wrapper = mount(Todo, { props: { text: 'A', done: false } });
     await wrapper.trigger('click');
     expect(wrapper.emitted()).toHaveProperty('update:done');
-    expect(wrapper.emitted('update:done')![0]).toEqual([true]);
+    expect(wrapper.emitted('update:done')?.[0]).toEqual([true]);
     expect(wrapper.text()).toContain('[x]');
   });
 

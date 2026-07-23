@@ -1,14 +1,26 @@
-import { describe, it, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
-import ToastContainer from '../toast/ToastContainer.vue';
+import { describe, expect, it } from 'vitest';
 import { useToast } from '../../composables/useToast';
+import ToastContainer from '../toast/ToastContainer.vue';
 
 describe('Toast', () => {
   it('renders toasts passed as prop', () => {
     const remove = () => {};
     const toasts = [
-      { id: '1', message: 'Hello', level: 'info', icon: '\u25BC', timestamp: 0 },
-      { id: '2', message: 'Warning', level: 'warn', icon: '\u25CF', timestamp: 0 },
+      {
+        id: '1',
+        message: 'Hello',
+        color: 'primary',
+        icon: '\u25BC',
+        timestamp: 0,
+      },
+      {
+        id: '2',
+        message: 'Warning',
+        color: 'warning',
+        icon: '\u25CF',
+        timestamp: 0,
+      },
     ] as any;
     mount(ToastContainer, {
       props: { toasts, remove },

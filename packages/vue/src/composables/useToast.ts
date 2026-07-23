@@ -1,9 +1,10 @@
-import { ref, type Ref } from 'vue';
+import { type Ref, ref } from 'vue';
+import type { Color } from '../types/color';
 
 export interface ToastItem {
   id: string;
   message: string;
-  level: 'info' | 'warn' | 'error';
+  color: Color;
   icon: string;
   timestamp: number;
 }
@@ -15,20 +16,21 @@ let nextId = 0;
 export function useToast() {
   function add(opts: {
     message: string;
-    level?: 'info' | 'warn' | 'error';
+    color?: Color;
     replace?: boolean;
     filter?: string;
   }) {
     const id = String(++nextId);
-    const level = opts.level ?? 'info';
+    const color = opts.color ?? 'primary';
     const icons: Record<string, string> = {
-      info: '\u25BC',
-      warn: '\u25CF',
-      error: '\u2716',
+      primary: '\u25BC',
+      success: '\u2713',
+      warning: '\u25CF',
+      danger: '\u2716',
     };
 
     if (opts.replace && opts.filter) {
-      const idx = toasts.value.findIndex(t => t.message === opts.filter);
+      const idx = toasts.value.findIndex((t) => t.message === opts.filter);
       if (idx !== -1) {
         toasts.value.splice(idx, 1);
       }
@@ -37,8 +39,8 @@ export function useToast() {
     toasts.value.push({
       id,
       message: opts.message,
-      level,
-      icon: icons[level] ?? icons.info,
+      color,
+      icon: icons[color] ?? icons.primary,
       timestamp: Date.now(),
     });
 
@@ -46,7 +48,7 @@ export function useToast() {
   }
 
   function remove(id: string) {
-    const idx = toasts.value.findIndex(t => t.id === id);
+    const idx = toasts.value.findIndex((t) => t.id === id);
     if (idx !== -1) toasts.value.splice(idx, 1);
   }
 

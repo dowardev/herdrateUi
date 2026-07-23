@@ -14,9 +14,16 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: 'Inicio', link: '/' },
+      { text: 'Colores', link: '/color' },
       { text: 'Componentes', link: '/components/panel' },
     ],
     sidebar: [
+      {
+        text: 'Sistema de colores',
+        items: [
+          { text: 'Color & Fill', link: '/color' },
+        ],
+      },
       {
         text: 'Componentes',
         items: [

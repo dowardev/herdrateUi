@@ -9,19 +9,17 @@ Botones con estilo terminal (TUI), minimales, diseñados para Catppuccin Mocha.
     <div>
       <h4>Individual</h4>
       <div style="display: flex; gap: 0.75rem;">
-        <ButtonTui icon="↖">[ TL ]</ButtonTui>
-        <ButtonTui icon="↗">[ TR ]</ButtonTui>
+        <ButtonTui icon="↖" fill="solid" color="primary">[ TL ]</ButtonTui>
+        <ButtonTui icon="↗" fill="outline" color="success">[ TR ]</ButtonTui>
+        <ButtonTui icon="↘" fill="clear" color="danger">[ BR ]</ButtonTui>
       </div>
     </div>
     <div>
       <h4>Grupo</h4>
-      <ButtonTuiGroup :buttons="[
+      <ButtonTuiGroup fill="solid" color="secondary" :buttons="[
         { icon: '↖', label: '[ TL ]', onClick: () => {} },
         { icon: '⬆', label: '[ TC ]', onClick: () => {} },
         { icon: '↗', label: '[ TR ]', onClick: () => {} },
-        { icon: '↙', label: '[ BL ]', onClick: () => {} },
-        { icon: '⬇', label: '[ BC ]', onClick: () => {} },
-        { icon: '↘', label: '[ BR ]', onClick: () => {} },
       ]" />
     </div>
   </div>
@@ -35,9 +33,10 @@ import { ButtonTui, ButtonTuiGroup } from '@herdrate/vue'
 </script>
 
 <template>
-  <ButtonTui icon="↖">[ TL ]</ButtonTui>
+  <ButtonTui icon="↖" fill="solid" color="primary">[ TL ]</ButtonTui>
+  <ButtonTui icon="↗" fill="outline" color="success">[ TR ]</ButtonTui>
 
-  <ButtonTuiGroup :buttons="[
+  <ButtonTuiGroup fill="solid" color="secondary" :buttons="[
     { icon: '↖', label: '[ TL ]', onClick: () => {} },
     { icon: '↗', label: '[ TR ]', onClick: () => {} },
   ]" />
@@ -51,7 +50,8 @@ import { ButtonTui, ButtonTuiGroup } from '@herdrate/vue'
 | Prop | Tipo | Default | Descripción |
 |---|---|---|---|
 | `icon` | `string` | — | Icono o emoji (opcional) |
-| `variant` | `'solid' \| 'ghost'` | `'solid'` | Estilo del botón |
+| `color` | [`Color`](/color) | `'primary'` | Color semántico |
+| `fill` | [`Fill`](/color) | `'solid'` | Modo de relleno |
 
 | Evento | Tipo | Descripción |
 |---|---|---|
@@ -62,7 +62,8 @@ import { ButtonTui, ButtonTuiGroup } from '@herdrate/vue'
 | Prop | Tipo | Default | Descripción |
 |---|---|---|---|
 | `buttons` | `ButtonTuiItem[]` | — | Lista de botones |
-| `variant` | `'solid' \| 'ghost'` | `'solid'` | Variante global |
+| `color` | [`Color`](/color) | `'primary'` | Color global (override por ítem) |
+| `fill` | [`Fill`](/color) | `'solid'` | Relleno global (override por ítem) |
 | `gap` | `number` | `0.4` | Espacio entre botones (rem) |
 
 ### ButtonTuiItem
@@ -72,4 +73,5 @@ import { ButtonTui, ButtonTuiGroup } from '@herdrate/vue'
 | `label` | `string` | Texto del botón |
 | `icon` | `string` | Icono opcional |
 | `onClick` | `() => void` | Callback al hacer clic |
-| `variant` | `'solid' \| 'ghost'` | Variante individual (opcional) |
+| `color` | [`Color`](/color) | Color individual (opcional) |
+| `fill` | [`Fill`](/color) | Relleno individual (opcional) |
