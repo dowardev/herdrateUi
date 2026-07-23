@@ -42,6 +42,7 @@ export { default as Toast } from './components/toast/Toast.vue';
 export { default as ToastContainer } from './components/toast/ToastContainer.vue';
 export { default as Todo } from './components/todo/Todo.vue';
 export { default as Toggle } from './components/toggle/Toggle.vue';
+export { default as Tooltip } from './components/tooltip/Tooltip.vue';
 export { default as TreeNode } from './components/tree-node/TreeNode.vue';
 export { useToast } from './composables/useToast';
 export type { Color, Fill } from './types/color';
