@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { Tooltip } from '@herdrate/vue'
+import { Tooltip } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const tooltipMeta: ComponentMeta = {
   component: Tooltip,
@@ -35,7 +35,11 @@ export const tooltipMeta: ComponentMeta = {
     },
   ],
   slots: [
-    { name: 'default', label: 'Trigger', description: 'Elemento que activa el tooltip al hacer hover' },
+    {
+      name: 'default',
+      label: 'Trigger',
+      description: 'Elemento que activa el tooltip al hacer hover',
+    },
   ],
   events: [],
-}
+};

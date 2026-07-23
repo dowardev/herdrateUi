@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { accordionMeta } from './meta/accordion'
 const items = [
   { title: 'Configuración', content: 'Ajustes de red y preferencias del sistema.' },
   { title: 'Usuarios', content: 'Gestión de usuarios y permisos.' },
@@ -11,67 +10,88 @@ const opened = ref<number[]>([])
 
 # Accordion
 
-A terminal-style collapsible accordion component.
+Panel plegable estilo terminal con soporte para múltiples secciones y slots personalizados.
 
-## Basic usage
+## Demo
+
+<ClientOnly>
+  <Accordion :items="items" @update:opened="opened = $event" />
+  <p v-if="opened.length" style="color:var(--text-muted);font-size:0.8rem;">Abiertos: {{ opened }}</p>
+</ClientOnly>
 
 ```vue
-<template>
-  <Accordion :items="items" />
-</template>
-
 <script setup lang="ts">
-import { Accordion } from '@herdrate/vue';
+import { ref } from 'vue'
+import { Accordion } from '@herdrate/vue'
 
 const items = [
-  { title: 'Section 1', content: 'Content for section 1' },
-  { title: 'Section 2', content: 'Content for section 2' },
-  { title: 'Section 3', content: 'Content for section 3' },
-];
+  { title: 'Configuración', content: 'Ajustes de red y preferencias del sistema.' },
+  { title: 'Usuarios', content: 'Gestión de usuarios y permisos.' },
+  { title: 'Logs', content: 'Visualización de logs del sistema.' },
+]
+const opened = ref<number[]>([])
 </script>
+
+<template>
+  <Accordion :items="items" @update:opened="opened = $event" />
+  <p v-if="opened.length" style="color:var(--text-muted);font-size:0.8rem;">
+    Abiertos: {{ opened }}
+  </p>
+</template>
 ```
 
-## Multiple mode
+## Props
+
+### items
+
+Array de paneles del acordeón. Cada item puede tener `title` y `content`.
+
+<ClientOnly>
+  <Accordion :items="[{ title: 'Sección 1', content: 'Contenido' }, { title: 'Sección 2', content: 'Contenido' }]" />
+</ClientOnly>
+
+```vue
+<Accordion :items="[
+  { title: 'Sección 1', content: 'Contenido' },
+  { title: 'Sección 2', content: 'Contenido' },
+]" />
+```
+
+### multiple
+
+Permite abrir varios paneles simultáneamente.
+
+<ClientOnly>
+  <Accordion :items="items" multiple />
+</ClientOnly>
 
 ```vue
 <Accordion :items="items" multiple />
 ```
 
-## Color
+### color
+
+Color del indicador de apertura (▶/▼).
+
+<ClientOnly>
+  <Accordion :items="[{ title: 'Primary', content: 'Color primary' }]" color="primary" />
+  <Accordion :items="[{ title: 'Success', content: 'Color success' }]" color="success" />
+  <Accordion :items="[{ title: 'Danger', content: 'Color danger' }]" color="danger" />
+</ClientOnly>
 
 ```vue
-<Accordion :items="items" color="success" />
+<Accordion :items="[{ title: 'Primary', content: 'Color primary' }]" color="primary" />
+<Accordion :items="[{ title: 'Success', content: 'Color success' }]" color="success" />
+<Accordion :items="[{ title: 'Danger', content: 'Color danger' }]" color="danger" />
 ```
-
-## Custom slots
-
-```vue
-<Accordion :items="items">
-  <template #item-title="{ index, open }">
-    <span>{{ open ? '▼' : '▶' }}</span>
-    <span>{{ open ? 'Close' : 'Open' }} section {{ index + 1 }}</span>
-  </template>
-  <template #item-content="{ index, open }">
-    <div v-if="open">Custom content for section {{ index + 1 }}</div>
-  </template>
-</Accordion>
-```
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `items` | `{title,content?}[]` | `[]` | Accordion panels |
-| `multiple` | `boolean` | `false` | Allow multiple panels open |
-| `color` | `Color` | `'primary'` | Indicator color |
 
 ## Events
 
 | Event | Payload | Description |
-|-------|---------|-------------|
-| `update:opened` | `indices: number[]` | Emitted when opened panels change |
+|---|---|---|
+| `update:opened` | `indices: number[]` | Se emite al cambiar paneles abiertos |
 
-## Slots
+## Tipos
 
 ### AccordionItem
 
@@ -91,7 +111,3 @@ const items = [
 ## Tokens usados
 
 `--font-mono`, `--bg`, `--border`, `--text`, `--color-*`
-
-## Demo Interactiva
-
-<ComponentPlayground :meta="accordionMeta" />

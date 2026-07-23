@@ -8,27 +8,45 @@ Keyboard key display element estilo terminal.
 <Kbd color="success">Enter</Kbd>
 <Kbd color="warning">⌘</Kbd>
 
-## Código
+```vue
+<Kbd>Ctrl</Kbd>
+<Kbd color="success">Enter</Kbd>
+<Kbd color="warning">⌘</Kbd>
+```
+
+## Props
+
+### color
+
+Color semántico del keycap.
+
+<Kbd color="primary">Primary</Kbd>
+<Kbd color="success">Success</Kbd>
+<Kbd color="warning">Warning</Kbd>
+<Kbd color="danger">Danger</Kbd>
+
+```vue
+<Kbd color="primary">Primary</Kbd>
+<Kbd color="success">Success</Kbd>
+<Kbd color="warning">Warning</Kbd>
+<Kbd color="danger">Danger</Kbd>
+```
+
+## Slots
+
+### default
+
+Contenido del key (etiqueta del atajo).
 
 ```vue
 <Kbd>Ctrl</Kbd>
-
-<Kbd color="success">Enter</Kbd>
-
-<Kbd color="warning">⌘ + S</Kbd>
 ```
 
 ## API
 
 | Prop | Tipo | Default | Descripción |
 |---|---|---|---|
-| `color` | [`Color`](/color) | `'primary'` | Color semántico |
-
-## Slots
-
-| Slot | Descripción |
-|---|---|
-| `default` | Contenido del key (etiqueta del atajo) |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico |
 
 ## Tokens usados
 

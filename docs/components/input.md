@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { inputMeta } from './meta/input'
 const text = ref('')
 const password = ref('')
 const multiline = ref('Línea 1\nLínea 2\nLínea 3')
@@ -8,60 +7,109 @@ const multiline = ref('Línea 1\nLínea 2\nLínea 3')
 
 # Input
 
-A terminal-styled text input component that renders `<input>` or `<textarea>`.
+Input de texto estilo terminal, con soporte para textarea, password y readonly.
 
-## Basic usage
+## Demo
 
-```vue
-<template>
-  <Input v-model="text" placeholder="Enter something" />
-</template>
-
-<script setup lang="ts">
-import { ref } from 'vue';
-import { Input } from '@herdrate/vue';
-
-const text = ref('');
-</script>
-```
-
-## Multiline
-
-Use the `rows` prop to render a `<textarea>`:
+<ClientOnly>
+  <div style="display:flex;flex-direction:column;gap:0.75rem;">
+    <div><label style="font-size:0.8rem;color:var(--text-muted)">Texto</label><Input v-model="text" placeholder="Escribe algo..." /></div>
+    <div><label style="font-size:0.8rem;color:var(--text-muted)">Password</label><Input v-model="password" type="password" placeholder="Contraseña" /></div>
+    <div><label style="font-size:0.8rem;color:var(--text-muted)">Multiline</label><Input v-model="multiline" :rows="3" /></div>
+  </div>
+</ClientOnly>
 
 ```vue
-<Input v-model="description" :rows="3" placeholder="Description" />
+<Input v-model="text" placeholder="Escribe algo..." />
+
+<Input v-model="password" type="password" placeholder="Contraseña" />
+
+<Input v-model="multiline" :rows="3" />
 ```
 
-## Password
+## Props
+
+### placeholder
+
+Texto temporal dentro del input mientras está vacío.
+
+<div style="display:flex;flex-direction:column;gap:0.5rem;">
+  <Input placeholder="Escribe algo..." />
+  <Input placeholder="ej: usuario@correo.com" />
+</div>
 
 ```vue
-<Input v-model="password" type="password" placeholder="Password" />
+<Input placeholder="Escribe algo..." />
+<Input placeholder="ej: usuario@correo.com" />
 ```
 
-## Disabled
+### color
+
+Color de foco y borde activo del input.
+
+<ClientOnly>
+  <div style="display:flex;flex-direction:column;gap:0.5rem;">
+    <Input v-model="text" color="primary" placeholder="Primary" />
+    <Input v-model="text" color="success" placeholder="Success" />
+    <Input v-model="text" color="danger" placeholder="Danger" />
+  </div>
+</ClientOnly>
 
 ```vue
-<Input v-model="text" disabled />
+<Input v-model="text" color="primary" placeholder="Primary" />
+<Input v-model="text" color="success" placeholder="Success" />
+<Input v-model="text" color="danger" placeholder="Danger" />
 ```
 
-## Readonly
+### disabled
+
+Deshabilita la interacción con el input.
+
+<Input placeholder="No puedes escribir aquí" disabled />
+
+```vue
+<Input placeholder="Deshabilitado" disabled />
+```
+
+### readonly
+
+Input de solo lectura, visible pero no editable.
+
+<ClientOnly>
+  <Input v-model="text" placeholder="Solo lectura" readonly />
+</ClientOnly>
 
 ```vue
 <Input v-model="text" readonly />
 ```
 
-## Props
+### type
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `string` | `''` | v-model value |
-| `placeholder` | `string` | `''` | Placeholder text |
-| `color` | `Color` | `'primary'` | Focus border color |
-| `disabled` | `boolean` | `false` | Disabled state |
-| `readonly` | `boolean` | `false` | Readonly state |
-| `type` | `'text' \| 'password' \| 'number'` | `'text'` | Input type |
-| `rows` | `number` | `1` | Number of rows (uses `<textarea>` when > 1) |
+Tipo de input: `text`, `password` o `number`.
+
+<ClientOnly>
+  <div style="display:flex;flex-direction:column;gap:0.5rem;">
+    <Input v-model="text" type="text" placeholder="Texto" />
+    <Input v-model="password" type="password" placeholder="Contraseña" />
+  </div>
+</ClientOnly>
+
+```vue
+<Input v-model="text" type="text" placeholder="Texto" />
+<Input v-model="password" type="password" placeholder="Contraseña" />
+```
+
+### rows
+
+Número de filas. Cuando es mayor a 1 se comporta como textarea.
+
+<ClientOnly>
+  <Input v-model="multiline" :rows="4" placeholder="Textarea..." />
+</ClientOnly>
+
+```vue
+<Input v-model="text" :rows="4" />
+```
 
 ## Events
 
@@ -84,7 +132,3 @@ Use the `rows` prop to render a `<textarea>`:
 ## Tokens usados
 
 `--font-mono`, `--bg`, `--border`, `--text`, `--color-*`
-
-## Demo Interactiva
-
-<ComponentPlayground :meta="inputMeta" />

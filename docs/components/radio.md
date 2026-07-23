@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { radioMeta } from './meta/radio'
 const selected = ref('a')
 const selectedColor = ref('a')
 const options = [
@@ -12,24 +11,59 @@ const options = [
 
 # Radio
 
-Terminal-styled radio button with `(o)` / `( )` display.
+Radio button estilo terminal con `(o)` / `( )`.
 
-## Usage
+## Demo
+
+<ClientOnly>
+  <div style="display:flex;flex-direction:column;gap:0.5rem;">
+    <Radio v-for="opt in options" :key="opt.value" v-model="selected" :value="opt.value" :label="opt.label" />
+  </div>
+  <p style="color:var(--text-muted);font-size:0.8rem;">Seleccionado: {{ selected }}</p>
+</ClientOnly>
 
 ```vue
-<Radio v-model="selected" value="a" label="Option A" />
-<Radio v-model="selected" value="b" label="Option B" />
+<Radio v-for="opt in options" :key="opt.value"
+  v-model="selected" :value="opt.value" :label="opt.label" />
 ```
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `string` | `''` | Currently selected value |
-| `value` | `string` | — | This radio's value (required) |
-| `color` | `Color` | `'primary'` | Selected indicator color |
-| `disabled` | `boolean` | `false` | Disable interaction |
-| `label` | `string` | `''` | Text shown after brackets |
+### label
+
+Texto que se muestra junto al radio button.
+
+<ClientOnly>
+  <Radio v-model="selected" value="x" label="Opción extra" />
+</ClientOnly>
+
+```vue
+<Radio v-model="selected" value="x" label="Opción extra" />
+```
+
+### color
+
+Color del indicador `(o)` cuando está seleccionado.
+
+<ClientOnly>
+  <div style="display:flex;flex-direction:column;gap:0.5rem;">
+    <Radio v-for="opt in ['primary','success','warning','danger']" :key="opt" v-model="selectedColor" :value="opt" :label="opt" :color="opt" />
+  </div>
+</ClientOnly>
+
+```vue
+<Radio v-model="selected" value="success" color="success" label="Success" />
+```
+
+### disabled
+
+Deshabilita la interacción.
+
+<Radio value="x" label="No disponible" disabled />
+
+```vue
+<Radio value="x" label="No disponible" disabled />
+```
 
 ## Events
 
@@ -50,7 +84,3 @@ Terminal-styled radio button with `(o)` / `( )` display.
 ## Tokens usados
 
 `--font-mono`, `--color-*`
-
-## Demo Interactiva
-
-<ComponentPlayground :meta="radioMeta" />

@@ -13,7 +13,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject, type Ref } from 'vue';
+import { computed, type Ref } from 'vue';
+import { requiredInject } from '../../composables/requiredInject';
 import type { Color } from '../../types/color';
 
 const props = withDefaults(
@@ -27,9 +28,15 @@ const props = withDefaults(
   },
 );
 
-const activeValue = inject<Ref<string>>('tabs-active')!;
-const _setActive = inject<(value: string) => void>('tabs-set-active')!;
-const _closeTab = inject<(value: string) => void>('tabs-close')!;
+const activeValue = requiredInject<Ref<string>>('tabs-active', '<Tab>');
+const _setActive = requiredInject<(value: string) => void>(
+  'tabs-set-active',
+  '<Tab>',
+);
+const _closeTab = requiredInject<(value: string) => void>(
+  'tabs-close',
+  '<Tab>',
+);
 
 const _isActive = computed(() => activeValue.value === props.value);
 </script>

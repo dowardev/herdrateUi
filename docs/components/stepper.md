@@ -10,33 +10,65 @@ Indicador de pasos horizontal con estilo terminal. Muestra progreso con formato 
 
 <Stepper color="success" :current="3" :steps="[{ label: 'Login' }, { label: 'Config' }, { label: 'Done' }]" />
 
-## Código
+```vue
+<Stepper color="primary" :current="1" :steps="[{ label: 'Login' }, { label: 'Config' }, { label: 'Done' }]" />
+<Stepper color="warning" :current="2" :steps="[{ label: 'Login' }, { label: 'Config' }, { label: 'Done' }]" />
+<Stepper color="success" :current="3" :steps="[{ label: 'Login' }, { label: 'Config' }, { label: 'Done' }]" />
+```
+
+## Props
+
+### steps
+
+Lista de pasos con su etiqueta.
 
 ```vue
-<script setup lang="ts">
-import { Stepper } from '@herdrate/vue'
-</script>
-
-<template>
-  <Stepper
-    color="primary"
-    :current="2"
-    :steps="[
-      { label: 'Login' },
-      { label: 'Config' },
-      { label: 'Done' }
-    ]"
-  />
-</template>
+<Stepper :steps="[
+  { label: 'Login' },
+  { label: 'Config' },
+  { label: 'Done' },
+]" />
 ```
+
+### current
+
+Paso actual (1-based). Determina qué paso está activo.
+
+<Stepper :current="2" :steps="[{ label: 'Uno' }, { label: 'Dos' }, { label: 'Tres' }]" />
+
+```vue
+<Stepper :current="2" :steps="steps" />
+```
+
+### color
+
+Color del paso activo.
+
+<Stepper color="primary" :current="2" :steps="[{ label: 'A' }, { label: 'B' }, { label: 'C' }]" />
+<Stepper color="success" :current="2" :steps="[{ label: 'A' }, { label: 'B' }, { label: 'C' }]" />
+<Stepper color="danger" :current="2" :steps="[{ label: 'A' }, { label: 'B' }, { label: 'C' }]" />
+
+```vue
+<Stepper color="primary" :current="2" :steps="[{ label: 'A' }, { label: 'B' }, { label: 'C' }]" />
+<Stepper color="success" :current="2" :steps="[{ label: 'A' }, { label: 'B' }, { label: 'C' }]" />
+<Stepper color="danger" :current="2" :steps="[{ label: 'A' }, { label: 'B' }, { label: 'C' }]" />
+```
+
+## Tipos
+
+### StepItem
+
+| Campo | Tipo | Requerido | Descripción |
+|---|---|---|---|
+| `label` | `string` | ✅ | Texto del paso |
 
 ## API
 
 | Prop | Tipo | Default | Descripción |
 |---|---|---|---|
-| `steps` | `Array<{label}>` | `[]` | Lista de pasos |
+| `steps` | `StepItem[]` | `[]` | Lista de pasos |
 | `current` | `number` | `1` | Paso actual (1-based) |
-| `color` | [`Color`](/color) | `'primary'` | Color del paso actual |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del paso actual |
 
 ## Tokens usados
 

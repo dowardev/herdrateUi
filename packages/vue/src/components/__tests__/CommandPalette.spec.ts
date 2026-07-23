@@ -60,7 +60,7 @@ describe('CommandPalette', () => {
     );
     await new Promise((r) => setTimeout(r, 50));
     expect(wrapper.emitted('select')).toBeTruthy();
-    expect(wrapper.emitted('select')![0][0]).toBe('open');
+    expect(wrapper.emitted('select')?.[0][0]).toBe('open');
   });
 
   it('closes on Escape', async () => {
@@ -74,6 +74,6 @@ describe('CommandPalette', () => {
     );
     await new Promise((r) => setTimeout(r, 50));
     expect(wrapper.emitted('update:modelValue')).toBeTruthy();
-    expect(wrapper.emitted('update:modelValue')![0][0]).toBe(false);
+    expect(wrapper.emitted('update:modelValue')?.[0][0]).toBe(false);
   });
 });

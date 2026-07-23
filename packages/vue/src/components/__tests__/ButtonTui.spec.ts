@@ -1,5 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
+import type { Color, Fill } from '../../types/color';
 import ButtonTui from '../button-tui/ButtonTui.vue';
 import ButtonTuiGroup from '../button-tui/ButtonTuiGroup.vue';
 
@@ -75,8 +76,18 @@ describe('ButtonTuiGroup', () => {
 
   it('allows individual button overrides for fill and color', () => {
     const buttons = [
-      { label: 'A', onClick: () => {}, fill: 'solid', color: 'success' },
-      { label: 'B', onClick: () => {}, fill: 'outline', color: 'danger' },
+      {
+        label: 'A',
+        onClick: () => {},
+        fill: 'solid' as Fill,
+        color: 'success' as Color,
+      },
+      {
+        label: 'B',
+        onClick: () => {},
+        fill: 'outline' as Fill,
+        color: 'danger' as Color,
+      },
     ];
     const wrapper = mount(ButtonTuiGroup, {
       props: { buttons, fill: 'clear', color: 'primary' },

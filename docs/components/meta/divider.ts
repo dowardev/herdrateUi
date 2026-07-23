@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { Divider } from '@herdrate/vue'
+import { Divider } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const dividerMeta: ComponentMeta = {
   component: Divider,
@@ -15,4 +15,4 @@ export const dividerMeta: ComponentMeta = {
   ],
   slots: [],
   events: [],
-}
+};

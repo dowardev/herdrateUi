@@ -13,7 +13,6 @@
 
 <script setup lang="ts">
 import type { ToastItem } from '../../composables/useToast';
-import Toast from './Toast.vue';
 
 defineProps<{
   toasts: ToastItem[];

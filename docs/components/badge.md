@@ -12,19 +12,37 @@ Etiqueta ligera para mostrar información resaltada con variantes de color.
   <Badge color="danger">Danger</Badge>
 </div>
 
-## Código
-
 ```vue
-<Badge color="success">Success</Badge>
-<Badge color="danger">Error</Badge>
 <Badge color="primary">Primary</Badge>
+<Badge color="secondary">Secondary</Badge>
+<Badge color="success">Success</Badge>
+<Badge color="warning">Warning</Badge>
+<Badge color="danger">Danger</Badge>
 ```
 
 ## Props
 
+### color
+
+Define el color semántico del badge.
+
+<div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+  <Badge color="primary">Primary</Badge>
+  <Badge color="success">Success</Badge>
+  <Badge color="danger">Danger</Badge>
+</div>
+
+```vue
+<Badge color="primary">Primary</Badge>
+<Badge color="success">Success</Badge>
+<Badge color="danger">Danger</Badge>
+```
+
+## API
+
 | Prop | Tipo | Default | Descripción |
-|---|---|---|---|---|
-| `color` | [`Color`](/color) | `'primary'` | Color semántico del badge |
+|---|---|---|---|
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico del badge |
 
 ## Tokens usados
 

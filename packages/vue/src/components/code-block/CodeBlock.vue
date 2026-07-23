@@ -41,37 +41,32 @@ const props = withDefaults(
 const copied = ref(false);
 const formattedCode = ref(props.code);
 
-watch(
-  () => [props.code, props.language, props.formatter],
-  () => {
-    const { code, language, formatter } = props;
-    if (!code) {
-      formattedCode.value = '';
-      return;
-    }
-    if (formatter) {
-      try {
-        const result = formatter(code, language);
-        if (result instanceof Promise) {
-          result
-            .then((v) => {
-              formattedCode.value = v;
-            })
-            .catch(() => {
-              formattedCode.value = code;
-            });
-        } else {
-          formattedCode.value = result;
-        }
-      } catch {
-        formattedCode.value = code;
-      }
-    } else {
-      formattedCode.value = code;
-    }
-  },
-  { immediate: true },
-);
+let formatToken = 0;
+
+async function applyFormatter() {
+  const { code, language, formatter } = props;
+  if (!code) {
+    formattedCode.value = '';
+    return;
+  }
+  if (!formatter) {
+    formattedCode.value = code;
+    return;
+  }
+  const mine = ++formatToken;
+  try {
+    const result = formatter(code, language);
+    const out = result instanceof Promise ? await result : result;
+    if (mine !== formatToken) return;
+    formattedCode.value = out;
+  } catch {
+    if (mine === formatToken) formattedCode.value = code;
+  }
+}
+
+watch(() => `${props.code}\0${props.language}`, applyFormatter, {
+  immediate: true,
+});
 
 const highlightedHtml = computed(() => {
   if (!formattedCode.value) return '';
@@ -99,7 +94,7 @@ const scrollStyle = computed(() => {
 });
 
 const copyText = computed(() => {
-  return props.code;
+  return formattedCode.value || props.code;
 });
 
 function handleCopy() {

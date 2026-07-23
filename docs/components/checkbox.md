@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { checkboxMeta } from './meta/checkbox'
 const checked = ref(false)
 const checked2 = ref(true)
 const checked3 = ref(false)
@@ -8,22 +7,70 @@ const checked3 = ref(false)
 
 # Checkbox
 
-Terminal-styled checkbox with `[x]` / `[ ]` display.
+Checkbox estilo terminal con `[x]` / `[ ]`.
 
-## Usage
+## Demo
+
+<ClientOnly>
+  <div style="display:flex;flex-direction:column;gap:0.5rem;">
+    <Checkbox v-model="checked" label="Opción A" />
+    <Checkbox v-model="checked2" color="success" label="Opción B (success)" />
+    <Checkbox v-model="checked3" disabled label="Deshabilitado" />
+  </div>
+  <p style="color:var(--text-muted);font-size:0.8rem;">checked: {{ checked }}, checked2: {{ checked2 }}</p>
+</ClientOnly>
 
 ```vue
-<Checkbox v-model="checked" label="Enable feature" />
+<Checkbox v-model="checked" label="Opción A" />
+<Checkbox v-model="checked" color="success" label="Opción B" />
+<Checkbox v-model="checked" disabled label="Deshabilitado" />
 ```
 
 ## Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `modelValue` | `boolean` | `false` | Checked state |
-| `color` | `Color` | `'primary'` | Check/bracket color |
-| `disabled` | `boolean` | `false` | Disable interaction |
-| `label` | `string` | `''` | Text shown after brackets |
+### label
+
+Texto que se muestra junto al checkbox.
+
+<ClientOnly>
+  <Checkbox v-model="checked" label="Aceptar términos" />
+</ClientOnly>
+
+```vue
+<Checkbox v-model="checked" label="Aceptar términos" />
+```
+
+### color
+
+Color del bracket `[ ]` cuando está marcado.
+
+<ClientOnly>
+  <div style="display:flex;flex-direction:column;gap:0.5rem;">
+    <Checkbox v-model="checked" color="primary" label="Primary" />
+    <Checkbox v-model="checked2" color="success" label="Success" />
+    <Checkbox v-model="checked2" color="warning" label="Warning" />
+    <Checkbox v-model="checked2" color="danger" label="Danger" />
+  </div>
+</ClientOnly>
+
+```vue
+<Checkbox v-model="checked" color="primary" label="Primary" />
+<Checkbox v-model="checked2" color="success" label="Success" />
+<Checkbox v-model="checked2" color="warning" label="Warning" />
+<Checkbox v-model="checked2" color="danger" label="Danger" />
+```
+
+### disabled
+
+Deshabilita la interacción.
+
+<ClientOnly>
+  <Checkbox v-model="checked3" disabled label="No editable" />
+</ClientOnly>
+
+```vue
+<Checkbox v-model="checked" disabled label="Deshabilitado" />
+```
 
 ## Events
 
@@ -43,7 +90,3 @@ Terminal-styled checkbox with `[x]` / `[ ]` display.
 ## Tokens usados
 
 `--font-mono`, `--color-*`
-
-## Demo Interactiva
-
-<ComponentPlayground :meta="checkboxMeta" />

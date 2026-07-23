@@ -1,13 +1,13 @@
 {
-  "root": false,
-  "$schema": "https://biomejs.dev/schemas/1.8.3/biome-json-schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
   "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "linter": {
     "enabled": true,
-    "rules": {
-      "preset": "recommended"
-    }
+    "rules": { "preset": "recommended" }
   },
+  "overrides": [
+    { "includes": ["*.vue"], "linter": { "rules": { "correctness": { "noUnusedVariables": "off" } } } }
+  ],
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
@@ -15,8 +15,6 @@
     "lineWidth": 80
   },
   "javascript": {
-    "formatter": {
-      "quoteStyle": "single"
-    }
+    "formatter": { "quoteStyle": "single" }
   }
 }

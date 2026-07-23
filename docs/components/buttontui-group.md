@@ -145,11 +145,3 @@ Espaciado entre botones (en rem).
 ## Tokens usados
 
 `--font-mono`, `--color-*`, `--fill-*`
-
-## Demo Interactiva
-
-<ComponentPlayground :meta="buttonTuiGroupMeta" />
-
-<script setup>
-import { buttonTuiGroupMeta } from './meta/buttontui-group'
-</script>

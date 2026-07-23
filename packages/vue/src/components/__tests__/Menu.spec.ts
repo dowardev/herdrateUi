@@ -35,7 +35,7 @@ describe('Menu', () => {
     });
     await wrapper.findAll('.menu-item')[0].trigger('click');
     expect(wrapper.emitted('select')).toBeTruthy();
-    expect(wrapper.emitted('select')![0]).toEqual([0]);
+    expect(wrapper.emitted('select')?.[0]).toEqual([0]);
   });
 
   it('does not emit select on disabled item click', async () => {

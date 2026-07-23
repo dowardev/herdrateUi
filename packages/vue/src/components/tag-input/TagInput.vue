@@ -25,7 +25,6 @@
 import { computed, ref } from 'vue';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
-import Tag from '../tag/Tag.vue';
 
 const props = withDefaults(
   defineProps<{
@@ -50,12 +49,15 @@ const emit = defineEmits<{
 
 const inputValue = ref('');
 
-const atMax = computed(() => props.max > 0 && props.modelValue.length >= props.max);
+const atMax = computed(
+  () => props.max > 0 && props.modelValue.length >= props.max,
+);
 
 function addTag() {
   const tag = inputValue.value.trim();
   if (!tag) return;
-  if (props.modelValue.some((t) => t.toLowerCase() === tag.toLowerCase())) return;
+  if (props.modelValue.some((t) => t.toLowerCase() === tag.toLowerCase()))
+    return;
   if (atMax.value) return;
   emit('update:modelValue', [...props.modelValue, tag]);
   inputValue.value = '';
@@ -67,7 +69,6 @@ function removeTag(index: number) {
   emit('update:modelValue', next);
 }
 
-// biome-ignore lint/correctness/noUnusedVariables: used in template
 function onKeydown(e: KeyboardEvent) {
   if (e.key === 'Enter') {
     e.preventDefault();

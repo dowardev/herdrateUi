@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { Accordion } from '@herdrate/vue'
+import { Accordion } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const accordionMeta: ComponentMeta = {
   component: Accordion,
@@ -20,10 +20,21 @@ export const accordionMeta: ComponentMeta = {
     },
   ],
   slots: [
-    { name: 'item-title', label: 'Item Title', description: 'Título personalizado del panel' },
-    { name: 'item-content', label: 'Item Content', description: 'Contenido personalizado del panel' },
+    {
+      name: 'item-title',
+      label: 'Item Title',
+      description: 'Título personalizado del panel',
+    },
+    {
+      name: 'item-content',
+      label: 'Item Content',
+      description: 'Contenido personalizado del panel',
+    },
   ],
   events: [
-    { name: 'update:opened', description: 'Se emite al cambiar paneles abiertos' },
+    {
+      name: 'update:opened',
+      description: 'Se emite al cambiar paneles abiertos',
+    },
   ],
-}
+};

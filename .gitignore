@@ -9,3 +9,4 @@ docs/superpowers
 .turbo
 *.tsbuildinfo
 *.package-lock.json
+docs/.vitepress/cache/

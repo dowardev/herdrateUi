@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { Toast } from '@herdrate/vue'
+import { Toast } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const toastMeta: ComponentMeta = {
   component: Toast,
@@ -30,4 +30,4 @@ export const toastMeta: ComponentMeta = {
   events: [
     { name: 'close', description: 'Se emite al hacer clic en el toast' },
   ],
-}
+};

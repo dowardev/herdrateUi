@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { ButtonTui } from '@herdrate/vue'
+import { ButtonTui } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const buttonTuiMeta: ComponentMeta = {
   component: ButtonTui,
@@ -30,7 +30,5 @@ export const buttonTuiMeta: ComponentMeta = {
   slots: [
     { name: 'default', label: 'Contenido', description: 'Contenido del botón' },
   ],
-  events: [
-    { name: 'click', description: 'Se dispara al hacer clic' },
-  ],
-}
+  events: [{ name: 'click', description: 'Se dispara al hacer clic' }],
+};

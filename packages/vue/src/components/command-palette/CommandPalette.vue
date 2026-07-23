@@ -72,7 +72,7 @@ const filtered = computed(() => {
   return props.commands.filter(
     (cmd) =>
       cmd.label.toLowerCase().includes(q) ||
-      (cmd.description && cmd.description.toLowerCase().includes(q)),
+      cmd.description?.toLowerCase().includes(q),
   );
 });
 

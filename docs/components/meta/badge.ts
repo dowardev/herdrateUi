@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { Badge } from '@herdrate/vue'
+import { Badge } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const badgeMeta: ComponentMeta = {
   component: Badge,
@@ -16,4 +16,4 @@ export const badgeMeta: ComponentMeta = {
     { name: 'default', label: 'Contenido', description: 'Contenido del badge' },
   ],
   events: [],
-}
+};

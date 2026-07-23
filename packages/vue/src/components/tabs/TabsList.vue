@@ -17,13 +17,17 @@
 </template>
 
 <script setup lang="ts">
-import { inject, onMounted, onUnmounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
+import { requiredInject } from '../../composables/requiredInject';
 
 const scrollRef = ref<HTMLElement | null>(null);
 const showLeftChevron = ref(false);
 const showRightChevron = ref(false);
 
-const _setActive = inject<(value: string) => void>('tabs-set-active')!;
+const _setActive = requiredInject<(value: string) => void>(
+  'tabs-set-active',
+  '<TabsList>',
+);
 
 function updateChevrons() {
   const el = scrollRef.value;

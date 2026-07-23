@@ -15,9 +15,9 @@ describe('LogLines', () => {
   it('applies level-based prefix', () => {
     const lines = [
       { text: 'info line' },
-      { text: 'warn line', level: 'warn' },
-      { text: 'error line', level: 'error' },
-      { text: 'debug line', level: 'debug' },
+      { text: 'warn line', level: 'warn' as const },
+      { text: 'error line', level: 'error' as const },
+      { text: 'debug line', level: 'debug' as const },
     ];
     const wrapper = mount(LogLines, {
       props: { lines },

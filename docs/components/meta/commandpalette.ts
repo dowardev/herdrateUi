@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { CommandPalette } from '@herdrate/vue'
+import { CommandPalette } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const commandPaletteMeta: ComponentMeta = {
   component: CommandPalette,
@@ -31,4 +31,4 @@ export const commandPaletteMeta: ComponentMeta = {
     { name: 'update:modelValue', description: 'Se emite al abrir/cerrar' },
     { name: 'select', description: 'Se emite al seleccionar un comando' },
   ],
-}
+};

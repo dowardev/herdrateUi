@@ -50,9 +50,7 @@ const props = withDefaults(
   },
 );
 
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: string): void;
-}>();
+const emit = defineEmits<(e: 'update:modelValue', value: string) => void>();
 
 const open = ref(false);
 const hoveredIndex = ref(0);

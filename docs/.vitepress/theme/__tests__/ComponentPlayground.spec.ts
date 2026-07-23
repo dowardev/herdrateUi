@@ -1,12 +1,13 @@
 import { Panel } from '@herdrate/vue';
 import { mount, shallowMount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
+import { markRaw } from 'vue';
 import ComponentPlayground from '../ComponentPlayground.vue';
 import PropControlToggle from '../controls/PropControlToggle.vue';
 import PropControls from '../PropControls.vue';
 
 const panelMeta = {
-  component: Panel,
+  component: markRaw(Panel),
   props: [
     {
       name: 'divider',
@@ -90,7 +91,9 @@ describe('ComponentPlayground', () => {
       global: { components: { Panel } },
     });
     expect(wrapper.find('.playground').exists()).toBe(true);
-    expect(wrapper.find('.playground-grid').classes()).toContain('playground-grid');
+    expect(wrapper.find('.playground-grid').classes()).toContain(
+      'playground-grid',
+    );
   });
 
   it('renders preview with min-height', () => {

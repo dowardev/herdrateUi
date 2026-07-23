@@ -26,7 +26,9 @@ describe('Modal', () => {
     const wrapper = mount(Modal, {
       props: { open: true },
     });
-    const overlay = document.body.querySelector('.modal-overlay') as HTMLElement;
+    const overlay = document.body.querySelector(
+      '.modal-overlay',
+    ) as HTMLElement;
     overlay.click();
     expect(wrapper.emitted('close')).toBeTruthy();
     expect(wrapper.emitted('update:open')).toBeTruthy();

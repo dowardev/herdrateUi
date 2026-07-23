@@ -5,13 +5,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, inject, type Ref } from 'vue';
+import { computed, type Ref } from 'vue';
+import { requiredInject } from '../../composables/requiredInject';
 
 const props = defineProps<{
   value: string;
 }>();
 
-const activeValue = inject<Ref<string>>('tabs-active')!;
+const activeValue = requiredInject<Ref<string>>('tabs-active', '<TabPanel>');
 
 const _isActive = computed(() => activeValue.value === props.value);
 </script>

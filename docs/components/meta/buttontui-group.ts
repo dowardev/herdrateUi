@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { ButtonTuiGroup } from '@herdrate/vue'
+import { ButtonTuiGroup } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const buttonTuiGroupMeta: ComponentMeta = {
   component: ButtonTuiGroup,
@@ -29,4 +29,4 @@ export const buttonTuiGroupMeta: ComponentMeta = {
   ],
   slots: [],
   events: [],
-}
+};

@@ -51,7 +51,6 @@ const props = withDefaults(
   },
 );
 
-// biome-ignore lint/correctness/noUnusedVariables: used in template
 const displayLines = computed<DisplayLine[]>(() => {
   const now = new Date();
   const ts = props.timestamps

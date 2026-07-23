@@ -25,15 +25,42 @@
   "peerDependenciesMeta": {
     "prettier": {
       "optional": true
+    },
+    "prettier-plugin-sql": {
+      "optional": true
+    },
+    "prettier-plugin-java": {
+      "optional": true
+    },
+    "prettier-plugin-sh": {
+      "optional": true
+    },
+    "prettier-plugin-toml": {
+      "optional": true
+    },
+    "@prettier/plugin-python": {
+      "optional": true
+    },
+    "@prettier/plugin-ruby": {
+      "optional": true
+    },
+    "@prettier/plugin-xml": {
+      "optional": true
+    },
+    "prettier-plugin-rust": {
+      "optional": true
+    },
+    "prettier-plugin-csharp": {
+      "optional": true
     }
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.7",
     "happy-dom": "^15.11.0",
     "prettier": "^3.9.5",
-    "typescript": "latest",
-    "vite": "latest",
-    "vite-plugin-css-injected-by-js": "^5.0.1",
-    "vue-tsc": "latest"
+    "typescript": "~5.6.3",
+    "vite": "^6.0.0",
+    "vite-plugin-css-injected-by-js": "^4.0.0",
+    "vue-tsc": "~3.0.0"
   }
 }

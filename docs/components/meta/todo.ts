@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { Todo } from '@herdrate/vue'
+import { Todo } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const todoMeta: ComponentMeta = {
   component: Todo,
@@ -20,10 +20,20 @@ export const todoMeta: ComponentMeta = {
     },
   ],
   slots: [
-    { name: 'default', label: 'Contenido', description: 'Reemplaza el texto de la tarea' },
+    {
+      name: 'default',
+      label: 'Contenido',
+      description: 'Reemplaza el texto de la tarea',
+    },
   ],
   events: [
-    { name: 'update:done', description: 'Se emite al cambiar el estado (v-model)' },
-    { name: 'toggle', description: 'Se emite al hacer clic con el nuevo estado' },
+    {
+      name: 'update:done',
+      description: 'Se emite al cambiar el estado (v-model)',
+    },
+    {
+      name: 'toggle',
+      description: 'Se emite al hacer clic con el nuevo estado',
+    },
   ],
-}
+};

@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { Breadcrumbs } from '@herdrate/vue'
+import { Breadcrumbs } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const breadcrumbsMeta: ComponentMeta = {
   component: Breadcrumbs,
@@ -20,7 +20,11 @@ export const breadcrumbsMeta: ComponentMeta = {
     },
   ],
   slots: [
-    { name: 'default', label: 'Contenido', description: 'Alternativa a items, permite markup personalizado' },
+    {
+      name: 'default',
+      label: 'Contenido',
+      description: 'Alternativa a items, permite markup personalizado',
+    },
   ],
   events: [],
-}
+};

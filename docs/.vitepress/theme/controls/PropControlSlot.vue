@@ -15,10 +15,10 @@
 
 <script setup lang="ts">
 defineProps<{
-  label: string
-  description?: string
-  slotName: string
-}>()
+  label: string;
+  description?: string;
+  slotName: string;
+}>();
 </script>
 
 <style scoped>

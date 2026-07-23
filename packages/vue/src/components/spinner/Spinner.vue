@@ -17,7 +17,6 @@ import { computed } from 'vue';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
 
-// biome-ignore lint/correctness/noUnusedVariables: used in template
 const brailleFrames = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'];
 
 const props = withDefaults(
@@ -33,7 +32,6 @@ const props = withDefaults(
   },
 );
 
-// biome-ignore lint/correctness/noUnusedVariables: used in template
 const speedDuration = computed(() => {
   switch (props.speed) {
     case 'slow':

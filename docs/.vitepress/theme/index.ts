@@ -2,13 +2,6 @@ import DefaultTheme from 'vitepress/theme';
 import '@catppuccin/vitepress/theme/mocha/mauve.css';
 import CommandPaletteDemo from '../../components/CommandPaletteDemo.vue';
 import MenuDemo from '../../components/MenuDemo.vue';
-import ComponentPlayground from './ComponentPlayground.vue';
-import PropControls from './PropControls.vue';
-import PropControlInput from './controls/PropControlInput.vue';
-import PropControlToggle from './controls/PropControlToggle.vue';
-import PropControlSelect from './controls/PropControlSelect.vue';
-import PropControlColor from './controls/PropControlColor.vue';
-import PropControlSlot from './controls/PropControlSlot.vue';
 import {
   Accordion,
   Avatar,
@@ -19,14 +12,13 @@ import {
   ButtonTuiGroup,
   Checkbox,
   CodeBlock,
-  CommandPalette,
   ComboBox,
+  CommandPalette,
   Divider,
   Gutter,
   Input,
   Kbd,
   KeyHint,
-  SnakeLoader,
   LogLines,
   Menu,
   Modal,
@@ -38,11 +30,12 @@ import {
   Radio,
   ScrollView,
   Select,
+  SnakeLoader,
   Spinner,
-  Stepper,
   StatusBar,
-  Table,
+  Stepper,
   Tab,
+  Table,
   TabPanel,
   Tabs,
   TabsList,
@@ -57,6 +50,15 @@ import {
   TreeNode,
   useToast,
 } from '@herdrate/vue';
+import CommandPaletteDemo from '../../components/CommandPaletteDemo.vue';
+import MenuDemo from '../../components/MenuDemo.vue';
+import ComponentPlayground from './ComponentPlayground.vue';
+import PropControlColor from './controls/PropControlColor.vue';
+import PropControlInput from './controls/PropControlInput.vue';
+import PropControlSelect from './controls/PropControlSelect.vue';
+import PropControlSlot from './controls/PropControlSlot.vue';
+import PropControlToggle from './controls/PropControlToggle.vue';
+import PropControls from './PropControls.vue';
 
 const components = {
   Accordion,
@@ -76,6 +78,7 @@ const components = {
   Input,
   Kbd,
   KeyHint,
+  MenuDemo,
   SnakeLoader,
   LogLines,
   Menu,

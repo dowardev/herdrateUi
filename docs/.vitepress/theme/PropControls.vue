@@ -47,76 +47,88 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import PropControlInput from './controls/PropControlInput.vue'
-import PropControlToggle from './controls/PropControlToggle.vue'
-import PropControlSelect from './controls/PropControlSelect.vue'
-import PropControlColor from './controls/PropControlColor.vue'
-import PropControlSlot from './controls/PropControlSlot.vue'
+import { computed } from 'vue';
+import PropControlColor from './controls/PropControlColor.vue';
+import PropControlInput from './controls/PropControlInput.vue';
+import PropControlSelect from './controls/PropControlSelect.vue';
+import PropControlSlot from './controls/PropControlSlot.vue';
+import PropControlToggle from './controls/PropControlToggle.vue';
 
 export interface PropMeta {
-  name: string
-  type: 'boolean' | 'string' | 'number' | 'enum' | 'color'
-  label?: string
-  description?: string
-  default?: any
-  options?: string[]
-  control?: 'toggle' | 'input' | 'select' | 'color'
-  min?: number
-  max?: number
-  step?: number
-  placeholder?: string
+  name: string;
+  type: 'boolean' | 'string' | 'number' | 'enum' | 'color';
+  label?: string;
+  description?: string;
+  default?: any;
+  options?: string[];
+  control?: 'toggle' | 'input' | 'select' | 'color';
+  min?: number;
+  max?: number;
+  step?: number;
+  placeholder?: string;
 }
 
 export interface SlotMeta {
-  name: string
-  label?: string
-  description?: string
+  name: string;
+  label?: string;
+  description?: string;
 }
 
 export interface EventMeta {
-  name: string
-  description?: string
+  name: string;
+  description?: string;
 }
 
 export interface ComponentMeta {
-  props: PropMeta[]
-  slots?: SlotMeta[]
-  events?: EventMeta[]
+  props: PropMeta[];
+  slots?: SlotMeta[];
+  events?: EventMeta[];
 }
 
 const props = defineProps<{
-  modelValue: Record<string, any>
-  meta: ComponentMeta
-}>()
+  modelValue: Record<string, any>;
+  meta: ComponentMeta;
+}>();
 
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: Record<string, any>): void
-}>()
+const emit =
+  defineEmits<(e: 'update:modelValue', value: Record<string, any>) => void>();
 
-const propMetas = computed(() => props.meta.props || [])
-const slotsMeta = computed(() => props.meta.slots || [])
-const eventsMeta = computed(() => props.meta.events || [])
+const propMetas = computed(() => props.meta.props || []);
+const slotsMeta = computed(() => {
+  const raw = props.meta.slots || [];
+  return raw.map((s) =>
+    typeof s === 'string' ? { name: s, label: s, description: '' } : s,
+  );
+});
+const eventsMeta = computed(() => props.meta.events || []);
 
 function resolveControl(prop: PropMeta) {
   if (prop.control) {
     switch (prop.control) {
-      case 'toggle': return PropControlToggle
-      case 'select': return PropControlSelect
-      case 'color': return PropControlColor
-      default: return PropControlInput
+      case 'toggle':
+        return PropControlToggle;
+      case 'select':
+        return PropControlSelect;
+      case 'color':
+        return PropControlColor;
+      default:
+        return PropControlInput;
     }
   }
   switch (prop.type) {
-    case 'boolean': return PropControlToggle
-    case 'enum': return PropControlSelect
-    case 'color': return PropControlColor
-    default: return PropControlInput
+    case 'boolean':
+      return PropControlToggle;
+    case 'enum':
+      return PropControlSelect;
+    case 'color':
+      return PropControlColor;
+    default:
+      return PropControlInput;
   }
 }
 
 function onPropUpdate(key: string, value: any) {
-  emit('update:modelValue', { ...props.modelValue, [key]: value })
+  emit('update:modelValue', { ...props.modelValue, [key]: value });
 }
 </script>
 

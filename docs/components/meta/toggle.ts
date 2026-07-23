@@ -1,5 +1,5 @@
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
-import { Toggle } from '@herdrate/vue'
+import { Toggle } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const toggleMeta: ComponentMeta = {
   component: Toggle,
@@ -28,6 +28,9 @@ export const toggleMeta: ComponentMeta = {
   ],
   slots: [],
   events: [
-    { name: 'update:modelValue', description: 'Se emite al cambiar el estado del toggle' },
+    {
+      name: 'update:modelValue',
+      description: 'Se emite al cambiar el estado del toggle',
+    },
   ],
-}
+};

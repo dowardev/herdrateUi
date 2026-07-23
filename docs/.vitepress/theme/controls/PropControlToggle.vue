@@ -18,18 +18,16 @@
 
 <script setup lang="ts">
 defineProps<{
-  modelValue: boolean
-  label: string
-  description?: string
-}>()
+  modelValue: boolean;
+  label: string;
+  description?: string;
+}>();
 
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: boolean): void
-}>()
+const emit = defineEmits<(e: 'update:modelValue', value: boolean) => void>();
 
 function emitUpdate(event: Event) {
-  const target = event.target as HTMLInputElement
-  emit('update:modelValue', target.checked)
+  const target = event.target as HTMLInputElement;
+  emit('update:modelValue', target.checked);
 }
 </script>
 
