@@ -40,3 +40,11 @@ Tooltip informativo que aparece al hacer hover sobre un elemento, con retardo co
 ## Tokens usados
 
 `--bg-elevated`, `--border`, `--font-mono`, `--color-{name}`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="tooltipMeta" />
+
+<script setup>
+import { tooltipMeta } from './meta/tooltip'
+</script>

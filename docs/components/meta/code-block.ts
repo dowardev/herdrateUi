@@ -1,0 +1,47 @@
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue'
+import { CodeBlock } from '@herdrate/vue'
+
+export const codeBlockMeta: ComponentMeta = {
+  component: CodeBlock,
+  props: [
+    {
+      name: 'code',
+      type: 'string',
+      label: 'Código',
+      description: 'Código fuente a mostrar',
+      default: '',
+    },
+    {
+      name: 'language',
+      type: 'string',
+      label: 'Lenguaje',
+      description: 'Etiqueta del lenguaje mostrada en el encabezado',
+      default: '',
+    },
+    {
+      name: 'color',
+      type: 'color',
+      label: 'Color',
+      description: 'Color de acento del borde',
+      default: 'primary',
+    },
+    {
+      name: 'showLines',
+      type: 'boolean',
+      label: 'Mostrar líneas',
+      description: 'Muestra números de línea',
+      default: true,
+    },
+    {
+      name: 'maxHeight',
+      type: 'string',
+      label: 'Altura máxima',
+      description: 'Altura máxima antes de que el bloque se vuelva desplazable',
+      default: 'none',
+    },
+  ],
+  slots: [
+    { name: 'default', label: 'Contenido', description: 'Alternativa a la prop code' },
+  ],
+  events: [],
+}

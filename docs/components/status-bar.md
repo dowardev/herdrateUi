@@ -19,6 +19,12 @@ Terminal status bar at the bottom of a container showing contextual info.
 
 ## Slots
 
-| Slot | Description |
-|------|-------------|
-| `default` | Replaces the info area content |
+`--font-mono`, `--bg`, `--bg-panel`, `--border`, `--text`, `--color-*`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="statusBarMeta" />
+
+<script setup>
+import { statusBarMeta } from './meta/status-bar'
+</script>

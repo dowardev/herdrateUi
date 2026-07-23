@@ -41,3 +41,11 @@ import { Stepper } from '@herdrate/vue'
 ## Tokens usados
 
 `--font-mono`, `--text`, `--text-muted`, `--border`, `--color-*`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="stepperMeta" />
+
+<script setup>
+import { stepperMeta } from './meta/stepper'
+</script>

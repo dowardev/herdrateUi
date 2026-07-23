@@ -43,3 +43,11 @@ Contenedor versátil con header, body y footer, más divisor vertical opcional.
 ## Tokens usados
 
 `--bg-panel`, `--bg`, `--text`, `--border`, `--font-mono`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="panelMeta" />
+
+<script setup>
+import { panelMeta } from './meta/panel'
+</script>

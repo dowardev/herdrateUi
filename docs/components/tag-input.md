@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { tagInputMeta } from './meta/tag-input'
+const tags = ref<string[]>(['vue', 'typescript'])
+const tagsColor = ref<string[]>(['uno', 'dos'])
+const tagsLimited = ref<string[]>(['a', 'b', 'c'])
+</script>
+
 # TagInput
 
 Input que crea tags al presionar Enter, con soporte para lÃ­mite mÃ¡ximo, eliminaciÃ³n y prevenciÃ³n de duplicados.
@@ -31,3 +39,7 @@ Input que crea tags al presionar Enter, con soporte para lÃ­mite mÃ¡ximo, el
 ## Tokens usados
 
 `--bg`, `--border`, `--font-mono`, `--text`, `--color-{name}`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="tagInputMeta" />

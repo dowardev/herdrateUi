@@ -1,3 +1,15 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { radioMeta } from './meta/radio'
+const selected = ref('a')
+const selectedColor = ref('a')
+const options = [
+  { value: 'a', label: 'Opción A' },
+  { value: 'b', label: 'Opción B' },
+  { value: 'c', label: 'Opción C' },
+]
+</script>
+
 # Radio
 
 Terminal-styled radio button with `(o)` / `( )` display.
@@ -21,6 +33,24 @@ Terminal-styled radio button with `(o)` / `( )` display.
 
 ## Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| `update:modelValue` | `string` | Emitted with the radio's value on click |
+| Evento | Payload | Descripción |
+|---|---|---|
+| `update:modelValue` | `string` | Se emite al seleccionar |
+
+## API
+
+| Prop | Tipo | Default | Descripción |
+|---|---|---|---|
+| `modelValue` | `string` | `''` | Valor seleccionado (v-model) |
+| `value` | `string` | — | Valor de este radio (requerido) |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del indicador |
+| `disabled` | `boolean` | `false` | Deshabilitar |
+| `label` | `string` | `''` | Texto junto al radio |
+
+## Tokens usados
+
+`--font-mono`, `--color-*`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="radioMeta" />

@@ -28,3 +28,15 @@ Avatar circular con inicial y color determinístico basado en hash FNV-1a del no
 |---|---|---|---|
 | `name` | `string` | — | Nombre para extraer inicial y hash |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Tamaño del avatar |
+
+## Tokens usados
+
+`--font-mono`, `--color-*`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="avatarMeta" />
+
+<script setup>
+import { avatarMeta } from './meta/avatar'
+</script>

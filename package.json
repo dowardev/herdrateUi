@@ -2,6 +2,7 @@
   "name": "ui-lib",
   "private": true,
   "scripts": {
+    "docs:dev": "pnpm --filter herdrate-docs run docs:dev",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "format": "biome format .",

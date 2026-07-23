@@ -95,3 +95,15 @@ Pestañas con scroll horizontal, flechas de navegación y cierre individual.
 | Prop | Tipo | Default | Descripción |
 |---|---|---|---|
 | `value` | `string` | — | Valor que vincula al `Tab` |
+
+## Tokens usados
+
+`--font-mono`, `--bg`, `--border`, `--text`, `--color-*`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="tabsMeta" />
+
+<script setup>
+import { tabsMeta } from './meta/tabs'
+</script>

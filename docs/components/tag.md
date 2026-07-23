@@ -29,5 +29,17 @@ Inline block for labels and tokens.
 ## Slots
 
 | Slot | Description |
-|------|-------------|
+|---|---|
 | `default` | Tag content |
+
+## Tokens usados
+
+`--font-mono`, `--bg`, `--border`, `--text`, `--color-*`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="tagMeta" />
+
+<script setup>
+import { tagMeta } from './meta/tag'
+</script>

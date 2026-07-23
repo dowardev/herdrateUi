@@ -1,3 +1,22 @@
+<script setup lang="ts">
+import { breadcrumbsMeta } from './meta/breadcrumbs'
+const simpleItems = [
+  { label: 'Home' },
+  { label: 'Documentos', href: '/docs' },
+  { label: 'Reporte' },
+]
+const projectItems = [
+  { label: 'Inicio' },
+  { label: 'Proyectos' },
+  { label: 'Dashboard' },
+]
+const deployItems = [
+  { label: 'Root' },
+  { label: 'Deploy' },
+  { label: 'Live' },
+]
+</script>
+
 # Breadcrumbs
 
 Navegación breadcrumb con estilo terminal, colores semánticos y slot para contenido personalizado.
@@ -54,3 +73,7 @@ import { Breadcrumbs } from '@herdrate/vue'
 ## Tokens usados
 
 `--font-mono`, `--text`, `--color-*`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="breadcrumbsMeta" />

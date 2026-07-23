@@ -59,19 +59,12 @@ import { ButtonTui, ButtonTuiGroup } from '@herdrate/vue'
 
 ### ButtonTuiGroup
 
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `buttons` | `ButtonTuiItem[]` | — | Lista de botones |
-| `color` | [`Color`](/color) | `'primary'` | Color global (override por ítem) |
-| `fill` | [`Fill`](/color) | `'solid'` | Relleno global (override por ítem) |
-| `gap` | `number` | `0.4` | Espacio entre botones (rem) |
+`--font-mono`, `--color-*`, `--fill-*`
 
-### ButtonTuiItem
+## Demo Interactiva
 
-| Prop | Tipo | Descripción |
-|---|---|---|
-| `label` | `string` | Texto del botón |
-| `icon` | `string` | Icono opcional |
-| `onClick` | `() => void` | Callback al hacer clic |
-| `color` | [`Color`](/color) | Color individual (opcional) |
-| `fill` | [`Fill`](/color) | Relleno individual (opcional) |
+<ComponentPlayground :meta="buttonTuiMeta" />
+
+<script setup>
+import { buttonTuiMeta } from './meta/buttontui'
+</script>

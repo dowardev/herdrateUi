@@ -1,3 +1,16 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { comboBoxMeta } from './meta/combobox'
+const fruta = ref('')
+const frutas = [
+  { label: 'Apple', value: 'apple' },
+  { label: 'Banana', value: 'banana' },
+  { label: 'Cherry', value: 'cherry' },
+  { label: 'Date', value: 'date' },
+  { label: 'Elderberry', value: 'elderberry' },
+]
+</script>
+
 # ComboBox
 
 Input con dropdown de opciones filtrables. Soporta navegación por teclado (↑↓, Enter, Escape).
@@ -58,3 +71,7 @@ const frutas = [
 ## Tokens usados
 
 `--bg`, `--bg-elevated`, `--border`, `--text`, `--font-mono`, `--color-*`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="comboBoxMeta" />

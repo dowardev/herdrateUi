@@ -1,6 +1,14 @@
 import DefaultTheme from 'vitepress/theme';
 import '@catppuccin/vitepress/theme/mocha/mauve.css';
 import CommandPaletteDemo from '../../components/CommandPaletteDemo.vue';
+import MenuDemo from '../../components/MenuDemo.vue';
+import ComponentPlayground from './ComponentPlayground.vue';
+import PropControls from './PropControls.vue';
+import PropControlInput from './controls/PropControlInput.vue';
+import PropControlToggle from './controls/PropControlToggle.vue';
+import PropControlSelect from './controls/PropControlSelect.vue';
+import PropControlColor from './controls/PropControlColor.vue';
+import PropControlSlot from './controls/PropControlSlot.vue';
 import {
   Accordion,
   Avatar,
@@ -97,6 +105,13 @@ const components = {
   Toggle,
   Tooltip,
   TreeNode,
+  ComponentPlayground,
+  PropControls,
+  PropControlInput,
+  PropControlToggle,
+  PropControlSelect,
+  PropControlColor,
+  PropControlSlot,
 };
 
 export default {

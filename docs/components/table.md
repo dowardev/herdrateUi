@@ -31,3 +31,15 @@ A terminal-styled table component with color variants, striped rows, and compact
 | `color` | `Color` | `'primary'` | Header border color |
 | `striped` | `boolean` | `false` | Alternating row background |
 | `compact` | `boolean` | `false` | Reduced cell padding |
+
+## Tokens usados
+
+`--font-mono`, `--bg`, `--border`, `--text`, `--color-*`
+
+## Demo Interactiva
+
+<ComponentPlayground :meta="tableMeta" />
+
+<script setup>
+import { tableMeta } from './meta/table'
+</script>
