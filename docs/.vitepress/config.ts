@@ -1,8 +1,9 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig } from 'vitepress';
 
 export default defineConfig({
   title: 'Herdrate Vue UI Library',
-  description: 'Catppuccin-themed Vue 3 UI component library with CLI aesthetics',
+  description:
+    'Catppuccin-themed Vue 3 UI component library with CLI aesthetics',
 
   markdown: {
     theme: {
@@ -20,27 +21,29 @@ export default defineConfig({
     sidebar: [
       {
         text: 'Sistema de colores',
-        items: [
-          { text: 'Color & Fill', link: '/color' },
-        ],
+        items: [{ text: 'Color & Fill', link: '/color' }],
       },
       {
         text: 'Componentes',
         items: [
-          { text: 'ButtonTui', link: '/components/buttontui' },
-          { text: 'Panel', link: '/components/panel' },
-          { text: 'Divider', link: '/components/divider' },
-          { text: 'Badge', link: '/components/badge' },
-          { text: 'TipBox', link: '/components/tipbox' },
-          { text: 'SnakeLoader', link: '/components/snakeloader' },
-          { text: 'Tabs', link: '/components/tabs' },
-          { text: 'Toast', link: '/components/toast' },
           { text: 'Avatar', link: '/components/avatar' },
+          { text: 'Badge', link: '/components/badge' },
+          { text: 'Breadcrumbs', link: '/components/breadcrumbs' },
+          { text: 'ButtonTui', link: '/components/buttontui' },
+          { text: 'ComboBox', link: '/components/combobox' },
+          { text: 'CommandPalette', link: '/components/commandpalette' },
+          { text: 'Divider', link: '/components/divider' },
           { text: 'KeyHint', link: '/components/keyhint' },
+          { text: 'Panel', link: '/components/panel' },
+          { text: 'SnakeLoader', link: '/components/snakeloader' },
+          { text: 'Stepper', link: '/components/stepper' },
+          { text: 'Tabs', link: '/components/tabs' },
+          { text: 'TipBox', link: '/components/tipbox' },
+          { text: 'Toast', link: '/components/toast' },
           { text: 'Todo', link: '/components/todo' },
           { text: 'TreeNode', link: '/components/treenode' },
         ],
       },
     ],
   },
-})
+});

@@ -1,5 +1,5 @@
 <template>
-  <label :class="['todo', internal && 'todo--done']" @click="onClick">
+  <label :class="['todo', internal && 'todo--done']" @click="_onClick">
     <span class="todo__check">{{ internal ? '[x]' : '[ ]' }}</span>
     <span class="todo__text"><slot>{{ text }}</slot></span>
   </label>

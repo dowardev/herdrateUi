@@ -1,7 +1,7 @@
 <template>
   <div :class="['tip-box', `bd-color-${color}`]">
     <div class="tip-box-header">
-      <span class="tip-box-icon">{{ icon }}</span>
+      <span class="tip-box-icon">{{ _icon }}</span>
       <strong v-if="title">{{ title }}</strong>
     </div>
     <div class="tip-box-body">

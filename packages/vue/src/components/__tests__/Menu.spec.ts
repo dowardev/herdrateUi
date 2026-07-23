@@ -1,0 +1,55 @@
+import { mount } from '@vue/test-utils';
+import { describe, expect, it } from 'vitest';
+import Menu from '../menu/Menu.vue';
+
+const items = [
+  { label: 'New File' },
+  { label: 'Open File', icon: '>' },
+  { label: 'Save', disabled: true },
+  { label: '', divider: true },
+  { label: 'Quit' },
+];
+
+describe('Menu', () => {
+  it('renders items from props', () => {
+    const wrapper = mount(Menu, {
+      props: { items },
+    });
+    expect(wrapper.text()).toContain('New File');
+    expect(wrapper.text()).toContain('Open File');
+    expect(wrapper.text()).toContain('Quit');
+  });
+
+  it('highlights active item', () => {
+    const wrapper = mount(Menu, {
+      props: { items, activeIndex: 1 },
+    });
+    const activeItem = wrapper.find('.menu-item.active');
+    expect(activeItem.exists()).toBe(true);
+    expect(activeItem.text()).toContain('Open File');
+  });
+
+  it('emits select on item click', async () => {
+    const wrapper = mount(Menu, {
+      props: { items },
+    });
+    await wrapper.findAll('.menu-item')[0].trigger('click');
+    expect(wrapper.emitted('select')).toBeTruthy();
+    expect(wrapper.emitted('select')![0]).toEqual([0]);
+  });
+
+  it('does not emit select on disabled item click', async () => {
+    const wrapper = mount(Menu, {
+      props: { items },
+    });
+    await wrapper.findAll('.menu-item')[2].trigger('click');
+    expect(wrapper.emitted('select')).toBeFalsy();
+  });
+
+  it('renders divider', () => {
+    const wrapper = mount(Menu, {
+      props: { items },
+    });
+    expect(wrapper.find('.menu-divider').exists()).toBe(true);
+  });
+});

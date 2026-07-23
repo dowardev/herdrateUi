@@ -1,13 +1,13 @@
 <template>
   <button
-    :class="['tab', { 'tab--active': isActive }, isActive && `color-${color} bd-color-${color}`]"
-    @click="setActive(value)"
+    :class="['tab', { 'tab--active': _isActive }, _isActive && `color-${color} bd-color-${color}`]"
+    @click="_setActive(value)"
   >
     <span class="tab-label"><slot /></span>
     <span
       v-if="closable"
       class="tab-close"
-      @click.stop="closeTab(value)"
+      @click.stop="_closeTab(value)"
     >✕</span>
   </button>
 </template>

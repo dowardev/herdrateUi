@@ -1,10 +1,10 @@
 <template>
   <div class="tree-node">
-    <div class="tree-node__row" @click="toggle">
+    <div class="tree-node__row" @click="_toggle">
       <span class="tree-node__arrow" v-text="expanded ? '\u25BC' : '\u25B6'" />
       <span class="tree-node__label"><slot name="label" /></span>
     </div>
-    <div v-if="expanded && hasChildren" class="tree-node__children">
+    <div v-if="expanded && _hasChildren" class="tree-node__children">
       <slot />
     </div>
   </div>

@@ -22,12 +22,11 @@ describe('Toast', () => {
         timestamp: 0,
       },
     ] as any;
-    mount(ToastContainer, {
+    const wrapper = mount(ToastContainer, {
       props: { toasts, remove },
-      attachTo: document.body,
     });
-    expect(document.body.textContent).toContain('Hello');
-    expect(document.body.textContent).toContain('Warning');
+    expect(wrapper.text()).toContain('Hello');
+    expect(wrapper.text()).toContain('Warning');
   });
 
   it('useToast add and remove work', () => {

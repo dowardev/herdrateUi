@@ -1,20 +1,19 @@
 <template>
-  <Teleport to="body">
-    <div :class="['toast-container', `toast-container--${position}`]">
-      <Toast
-        v-for="t in toasts"
-        :key="t.id"
-        :message="t.message"
-        :color="t.color"
-        :icon="t.icon"
-        @close="remove(t.id)"
-      />
-    </div>
-  </Teleport>
+  <div :class="['toast-container', `toast-container--${position}`]">
+    <Toast
+      v-for="t in toasts"
+      :key="t.id"
+      :message="t.message"
+      :color="t.color"
+      :icon="t.icon"
+      @close="remove(t.id)"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
 import type { ToastItem } from '../../composables/useToast';
+import Toast from './Toast.vue';
 
 defineProps<{
   toasts: ToastItem[];
