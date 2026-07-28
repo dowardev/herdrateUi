@@ -30,6 +30,7 @@ docs/components/
 - Export from `src/index.ts`
 - All props typed, all events documented
 - Color prop always uses `Color` type from `src/types/color.ts`, defaults to `DEFAULT_COLOR`
+- Docs demos must use library components (ButtonTui, Modal, etc.) instead of native HTML elements for visual examples
 
 ## Branching
 - No push without verification (lint + typecheck + test)
