@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { breadcrumbsMeta } from './meta/breadcrumbs'
 const simpleItems = [
   { label: 'Home' },
   { label: 'Documentos', href: '/docs' },
@@ -19,6 +20,8 @@ const deployItems = [
 # Breadcrumbs
 
 Navegación breadcrumb con estilo terminal, colores semánticos y slot para contenido personalizado.
+
+<PlayHost :meta="breadcrumbsMeta" />
 
 ## Demo
 
@@ -132,7 +135,3 @@ Color del último ítem y del hover de links.
 ## Tokens usados
 
 `--font-mono`, `--text`, `--color-*`
-
-## Demo Interactiva
-
-<ComponentPlayground :meta="breadcrumbsMeta" />

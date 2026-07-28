@@ -1,6 +1,12 @@
+<script setup>
+import { boxMeta } from './meta/box'
+</script>
+
 # Box
 
 Wrapper decorativo con variantes de borde estilo terminal.
+
+<PlayHost :meta="boxMeta" />
 
 ## Demo
 
@@ -96,11 +102,3 @@ Contenido opcional en el pie del box.
 ## Tokens usados
 
 `--color-{name}`, `--bg-panel`, `--border`, `--font-mono`, `--bg-*`
-
-## Demo Interactiva
-
-<ComponentPlayground :meta="boxMeta" />
-
-<script setup>
-import { boxMeta } from './meta/box'
-</script>

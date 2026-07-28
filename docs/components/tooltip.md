@@ -1,6 +1,12 @@
+<script setup>
+import { tooltipMeta } from './meta/tooltip'
+</script>
+
 # Tooltip
 
 Tooltip informativo que aparece al hacer hover sobre un elemento, con retardo configurable y flecha direccional.
+
+<PlayHost :meta="tooltipMeta" />
 
 ## Demo
 
@@ -130,11 +136,3 @@ Milisegundos de retardo antes de mostrar el tooltip.
 ## Tokens usados
 
 `--bg-elevated`, `--border`, `--font-mono`, `--color-{name}`
-
-## Demo Interactiva
-
-<ComponentPlayground :meta="tooltipMeta" />
-
-<script setup>
-import { tooltipMeta } from './meta/tooltip'
-</script>

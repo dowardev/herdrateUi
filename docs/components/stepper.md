@@ -1,6 +1,12 @@
+<script setup>
+import { stepperMeta } from './meta/stepper'
+</script>
+
 # Stepper
 
 Indicador de pasos horizontal con estilo terminal. Muestra progreso con formato `[1]──[2]──[3]`.
+
+<PlayHost :meta="stepperMeta" />
 
 ## Demo
 
@@ -73,11 +79,3 @@ Color del paso activo.
 ## Tokens usados
 
 `--font-mono`, `--text`, `--text-muted`, `--border`, `--color-*`
-
-## Demo Interactiva
-
-<ComponentPlayground :meta="stepperMeta" />
-
-<script setup>
-import { stepperMeta } from './meta/stepper'
-</script>

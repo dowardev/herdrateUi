@@ -5,6 +5,36 @@ export const tableMeta: ComponentMeta = {
   component: Table,
   props: [
     {
+      name: 'columns',
+      type: 'array',
+      control: 'array',
+      label: 'Columnas',
+      description: 'Lista de columnas de la tabla',
+      default: [
+        { key: 'name', label: 'Nombre' },
+        { key: 'role', label: 'Rol' },
+      ],
+      arrayShape: [
+        { key: 'key', label: 'Key' },
+        { key: 'label', label: 'Label' },
+      ],
+    },
+    {
+      name: 'rows',
+      type: 'array',
+      control: 'array',
+      label: 'Filas',
+      description: 'Lista de filas. Las keys deben coincidir con las columnas.',
+      default: [
+        { name: 'Ada', role: 'Admin' },
+        { name: 'Linus', role: 'Editor' },
+      ],
+      arrayShape: [
+        { key: 'name', label: 'name' },
+        { key: 'role', label: 'role' },
+      ],
+    },
+    {
       name: 'color',
       type: 'color',
       label: 'Color',

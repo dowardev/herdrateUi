@@ -1,6 +1,12 @@
+<script setup>
+import { buttonTuiMeta } from './meta/buttontui'
+</script>
+
 # ButtonTui
 
 Botones con estilo terminal (TUI), minimales, diseñados para Catppuccin Mocha.
+
+<PlayHost :meta="buttonTuiMeta" />
 
 ## Demo
 

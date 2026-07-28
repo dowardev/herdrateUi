@@ -1,0 +1,11 @@
+body[data-play-mode="on"] {
+  --border-hairline: rgba(255, 255, 255, 0.08);
+  --border-divider: rgba(255, 255, 255, 0.06);
+  --radius-card: 12px;
+  --radius-input: 8px;
+  --easing-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --text-muted: #a6adc8;
+  --accent: #cba6f7;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --danger: #f38ba8;
+}

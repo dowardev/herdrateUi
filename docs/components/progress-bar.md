@@ -1,6 +1,12 @@
+<script setup>
+import { progressBarMeta } from './meta/progress-bar'
+</script>
+
 # ProgressBar
 
 Barra de progreso estilo terminal con porcentaje.
+
+<PlayHost :meta="progressBarMeta" />
 
 ## Demo
 

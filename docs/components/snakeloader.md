@@ -1,6 +1,12 @@
+<script setup>
+import { snakeloaderMeta } from './meta/snakeloader'
+</script>
+
 # SnakeLoader
 
 Animación de carga inspirada en terminales con caracteres bloque Unicode.
+
+<PlayHost :meta="snakeloaderMeta" />
 
 ## Demo
 

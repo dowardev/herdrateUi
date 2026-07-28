@@ -1,6 +1,12 @@
+<script setup>
+import { statusBarMeta } from './meta/status-bar'
+</script>
+
 # StatusBar
 
 Barra de estado estilo terminal con modo, posición e info.
+
+<PlayHost :meta="statusBarMeta" />
 
 ## Demo
 

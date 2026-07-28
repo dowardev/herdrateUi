@@ -5,6 +5,15 @@ export const tagInputMeta: ComponentMeta = {
   component: TagInput,
   props: [
     {
+      name: 'modelValue',
+      type: 'array',
+      control: 'array',
+      label: 'Tags',
+      description: 'Lista de tags (v-model)',
+      default: [{ tag: 'vue' }, { tag: 'tui' }],
+      arrayShape: [{ key: 'tag', label: 'Tag' }],
+    },
+    {
       name: 'color',
       type: 'color',
       label: 'Color',
@@ -38,6 +47,7 @@ export const tagInputMeta: ComponentMeta = {
     {
       name: 'update:modelValue',
       description: 'Se emite al añadir o eliminar un tag',
+      payload: 'tags: string[]',
     },
   ],
 };

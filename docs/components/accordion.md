@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { accordionMeta } from './meta/accordion'
 const items = [
   { title: 'Configuración', content: 'Ajustes de red y preferencias del sistema.' },
   { title: 'Usuarios', content: 'Gestión de usuarios y permisos.' },
@@ -11,6 +12,8 @@ const opened = ref<number[]>([])
 # Accordion
 
 Panel plegable estilo terminal con soporte para múltiples secciones y slots personalizados.
+
+<PlayHost :meta="accordionMeta" />
 
 ## Demo
 

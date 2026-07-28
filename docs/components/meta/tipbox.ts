@@ -15,15 +15,14 @@ export const tipBoxMeta: ComponentMeta = {
       name: 'title',
       type: 'string',
       label: 'Título',
-      description: 'Título opcional',
-      default: '',
+      description: 'Título opcional. Sin default en el componente (undefined).',
     },
     {
       name: 'message',
       type: 'string',
       label: 'Mensaje',
-      description: 'Mensaje opcional',
-      default: '',
+      description:
+        'Mensaje opcional. Sin default en el componente (undefined).',
     },
   ],
   slots: [

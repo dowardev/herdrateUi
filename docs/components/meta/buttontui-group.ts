@@ -5,6 +5,21 @@ export const buttonTuiGroupMeta: ComponentMeta = {
   component: ButtonTuiGroup,
   props: [
     {
+      name: 'buttons',
+      type: 'array',
+      control: 'array',
+      required: true,
+      label: 'Botones',
+      description: 'Lista de botones del grupo',
+      default: [{ label: 'Aceptar' }, { label: 'Cancelar', fill: 'outline' }],
+      arrayShape: [
+        { key: 'label', label: 'Label' },
+        { key: 'icon', label: 'Icon (opcional)' },
+        { key: 'fill', label: 'Fill (opcional)' },
+        { key: 'color', label: 'Color (opcional)' },
+      ],
+    },
+    {
       name: 'fill',
       type: 'enum',
       label: 'Relleno',

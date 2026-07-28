@@ -8,8 +8,8 @@ export const todoMeta: ComponentMeta = {
       name: 'text',
       type: 'string',
       label: 'Texto',
-      description: 'Texto de la tarea',
-      default: '',
+      description:
+        'Texto de la tarea. Sin default en el componente (undefined).',
     },
     {
       name: 'done',

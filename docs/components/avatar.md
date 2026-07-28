@@ -1,6 +1,12 @@
+<script setup>
+import { avatarMeta } from './meta/avatar'
+</script>
+
 # Avatar
 
 Avatar circular con inicial y color determinístico basado en hash FNV-1a del nombre.
+
+<PlayHost :meta="avatarMeta" />
 
 ## Demo
 

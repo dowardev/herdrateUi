@@ -10,3 +10,6 @@ docs/superpowers
 *.tsbuildinfo
 *.package-lock.json
 docs/.vitepress/cache/
+_inspect.mjs
+.playwright-cli/
+.superpowers/

@@ -1,6 +1,12 @@
+<script setup>
+import { panelMeta } from './meta/panel'
+</script>
+
 # Panel
 
 Contenedor versátil con header, body y footer, más divisor vertical opcional.
+
+<PlayHost :meta="panelMeta" />
 
 ## Demo
 
@@ -90,11 +96,3 @@ Pie del panel.
 ## Tokens usados
 
 `--bg-panel`, `--bg`, `--text`, `--border`, `--font-mono`
-
-## Demo Interactiva
-
-<ComponentPlayground :meta="panelMeta" />
-
-<script setup>
-import { panelMeta } from './meta/panel'
-</script>

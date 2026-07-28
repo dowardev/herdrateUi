@@ -1,6 +1,12 @@
+<script setup>
+import { badgeMeta } from './meta/badge'
+</script>
+
 # Badge
 
 Etiqueta ligera para mostrar información resaltada con variantes de color.
+
+<PlayHost :meta="badgeMeta" />
 
 ## Demo
 
@@ -47,11 +53,3 @@ Define el color semántico del badge.
 ## Tokens usados
 
 `--color-{name}`, `--bg`, `--text`, `--border`, `--font-mono`
-
-## Demo Interactiva
-
-<ComponentPlayground :meta="badgeMeta" />
-
-<script setup>
-import { badgeMeta } from './meta/badge'
-</script>

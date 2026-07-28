@@ -5,6 +5,22 @@ export const comboBoxMeta: ComponentMeta = {
   component: ComboBox,
   props: [
     {
+      name: 'items',
+      type: 'array',
+      control: 'array',
+      label: 'Ítems',
+      description: 'Lista de opciones del combo',
+      default: [
+        { label: 'Opción A', value: 'a' },
+        { label: 'Opción B', value: 'b' },
+        { label: 'Opción C', value: 'c' },
+      ],
+      arrayShape: [
+        { key: 'label', label: 'Label' },
+        { key: 'value', label: 'Value' },
+      ],
+    },
+    {
       name: 'modelValue',
       type: 'string',
       label: 'Valor',
@@ -38,6 +54,7 @@ export const comboBoxMeta: ComponentMeta = {
     {
       name: 'update:modelValue',
       description: 'Se emite al seleccionar un ítem',
+      payload: 'value: string',
     },
   ],
 };

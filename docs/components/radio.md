@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { radioMeta } from './meta/radio'
 const selected = ref('a')
 const selectedColor = ref('a')
 const options = [
@@ -12,6 +13,8 @@ const options = [
 # Radio
 
 Radio button estilo terminal con `(o)` / `( )`.
+
+<PlayHost :meta="radioMeta" />
 
 ## Demo
 

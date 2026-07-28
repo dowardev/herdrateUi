@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { selectMeta } from './meta/select'
 const selected = ref('')
 const selectedColor = ref('')
 const options = [
@@ -12,6 +13,8 @@ const options = [
 # Select
 
 Dropdown select estilo terminal.
+
+<PlayHost :meta="selectMeta" />
 
 ## Demo
 

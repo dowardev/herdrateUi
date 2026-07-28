@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { tagInputMeta } from './meta/tag-input'
 const tags = ref<string[]>(['vue', 'typescript'])
 const tagsColor = ref<string[]>(['uno', 'dos'])
 const tagsLimited = ref<string[]>(['a', 'b', 'c'])
@@ -8,6 +9,8 @@ const tagsLimited = ref<string[]>(['a', 'b', 'c'])
 # TagInput
 
 Input que crea tags al presionar Enter, con soporte para límite máximo, eliminación y prevención de duplicados.
+
+<PlayHost :meta="tagInputMeta" />
 
 ## Demo
 
@@ -107,7 +110,3 @@ Número máximo de tags permitidos (0 = sin límite).
 ## Tokens usados
 
 `--bg`, `--border`, `--font-mono`, `--text`, `--color-{name}`
-
-## Demo Interactiva
-
-<ComponentPlayground :meta="tagInputMeta" />

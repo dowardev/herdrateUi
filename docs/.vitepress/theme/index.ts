@@ -1,3 +1,4 @@
+import './play-mode.css';
 import DefaultTheme from 'vitepress/theme';
 import '@catppuccin/vitepress/theme/mocha/mauve.css';
 import CommandPaletteDemo from '../../components/CommandPaletteDemo.vue';
@@ -50,11 +51,11 @@ import {
   TreeNode,
   useToast,
 } from '@herdrate/vue';
-import CommandPaletteDemo from '../../components/CommandPaletteDemo.vue';
-import MenuDemo from '../../components/MenuDemo.vue';
-import ComponentPlayground from './ComponentPlayground.vue';
+import PlayHost from './PlayHost.vue';
+import PropControlArray from './controls/PropControlArray.vue';
 import PropControlColor from './controls/PropControlColor.vue';
 import PropControlInput from './controls/PropControlInput.vue';
+import PropControlSegmented from './controls/PropControlSegmented.vue';
 import PropControlSelect from './controls/PropControlSelect.vue';
 import PropControlSlot from './controls/PropControlSlot.vue';
 import PropControlToggle from './controls/PropControlToggle.vue';
@@ -108,9 +109,11 @@ const components = {
   Toggle,
   Tooltip,
   TreeNode,
-  ComponentPlayground,
+  PlayHost,
   PropControls,
+  PropControlArray,
   PropControlInput,
+  PropControlSegmented,
   PropControlToggle,
   PropControlSelect,
   PropControlColor,

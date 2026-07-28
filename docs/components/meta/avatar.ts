@@ -7,9 +7,10 @@ export const avatarMeta: ComponentMeta = {
     {
       name: 'name',
       type: 'string',
+      required: true,
       label: 'Nombre',
       description: 'Nombre para extraer la inicial y generar el color por hash',
-      default: '',
+      placeholder: 'Ada Lovelace',
     },
     {
       name: 'size',

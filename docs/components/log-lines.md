@@ -1,6 +1,12 @@
+<script setup>
+import { logLinesMeta } from './meta/log-lines'
+</script>
+
 # LogLines
 
 Visor de logs con coloreado por nivel estilo terminal.
+
+<PlayHost :meta="logLinesMeta" />
 
 ## Demo
 

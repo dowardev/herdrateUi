@@ -6,7 +6,7 @@
     "rules": { "preset": "recommended" }
   },
   "overrides": [
-    { "includes": ["*.vue"], "linter": { "rules": { "correctness": { "noUnusedVariables": "off" } } } }
+    { "includes": ["*.vue"], "linter": { "rules": { "correctness": { "noUnusedVariables": "off", "noUnusedImports": "off" } } } }
   ],
   "formatter": {
     "enabled": true,

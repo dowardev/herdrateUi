@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { toggleMeta } from './meta/toggle'
 const enabled = ref(false)
 const custom = ref(true)
 </script>
@@ -7,6 +8,8 @@ const custom = ref(true)
 # Toggle
 
 Toggle switch estilo terminal con `[ON]` / `[OFF]`.
+
+<PlayHost :meta="toggleMeta" />
 
 ## Demo
 

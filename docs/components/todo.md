@@ -11,6 +11,8 @@ const t3 = ref(false)
 
 Lista de tareas checkable con estilo TUI minimal. Click para alternar entre `[ ]` y `[x]`.
 
+<PlayHost :meta="todoMeta" />
+
 ## Demo
 
 <ClientOnly>

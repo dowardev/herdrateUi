@@ -1,6 +1,12 @@
+<script setup>
+import { scrollViewMeta } from './meta/scroll-view'
+</script>
+
 # ScrollView
 
 Contenedor con scroll y barra personalizada estilo terminal.
+
+<PlayHost :meta="scrollViewMeta" />
 
 ## Demo
 

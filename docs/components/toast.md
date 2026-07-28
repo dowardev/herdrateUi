@@ -2,10 +2,13 @@
 
 Notificaciones temporales inspiradas en noice.nvim, con posicionamiento configurable y deduplicación.
 
+<PlayHost :meta="toastMeta" />
+
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { ButtonTui, ButtonTuiGroup } from '@herdrate/vue'
 import { toastMeta } from './meta/toast'
+import ToastDemo from './ToastDemo.vue'
 
 type Position = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top-center' | 'bottom-center'
 type Item = {
@@ -101,6 +104,14 @@ function dismiss(id: number) {
   />
 </template>
 ```
+
+## Demo con useToast()
+
+<ClientOnly>
+  <ToastDemo />
+</ClientOnly>
+
+Esta demo usa la composable `useToast()` real del paquete (singleton, estado compartido) — alineada con el flujo que copiarías a tu proyecto.
 
 ## Tipos
 

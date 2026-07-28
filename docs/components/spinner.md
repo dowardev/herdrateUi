@@ -1,6 +1,12 @@
+<script setup>
+import { spinnerMeta } from './meta/spinner'
+</script>
+
 # Spinner
 
 Spinner animado estilo terminal con frames braille cíclicos.
+
+<PlayHost :meta="spinnerMeta" />
 
 ## Demo
 

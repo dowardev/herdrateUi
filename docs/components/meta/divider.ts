@@ -8,8 +8,8 @@ export const dividerMeta: ComponentMeta = {
       name: 'orientation',
       type: 'enum',
       label: 'Orientación',
-      description: 'Dirección del divisor',
-      default: 'horizontal',
+      description:
+        'Dirección del divisor. Sin default declarado en el componente: el valor por defecto en runtime es undefined (renderiza rama vertical).',
       options: ['horizontal', 'vertical'],
     },
   ],
