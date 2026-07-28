@@ -1,6 +1,12 @@
+<script setup>
+import { buttonTuiGroupMeta } from './meta/buttontui-group'
+</script>
+
 # ButtonTuiGroup
 
 Agrupa botones TUI horizontalmente con gap y estilos consistentes.
+
+<PlayHost :meta="buttonTuiGroupMeta" />
 
 ## Demo
 

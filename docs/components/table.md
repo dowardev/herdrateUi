@@ -1,6 +1,12 @@
+<script setup>
+import { tableMeta } from './meta/table'
+</script>
+
 # Table
 
 Tabla con estilo terminal, filas alternadas y modo compacto.
+
+<PlayHost :meta="tableMeta" />
 
 ## Demo
 

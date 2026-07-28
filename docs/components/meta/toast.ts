@@ -7,9 +7,10 @@ export const toastMeta: ComponentMeta = {
     {
       name: 'message',
       type: 'string',
+      required: true,
       label: 'Mensaje',
-      description: 'Contenido del toast',
-      default: '',
+      description: 'Contenido del toast (requerido)',
+      placeholder: '¡Operación exitosa!',
     },
     {
       name: 'color',

@@ -5,6 +5,22 @@ export const breadcrumbsMeta: ComponentMeta = {
   component: Breadcrumbs,
   props: [
     {
+      name: 'items',
+      type: 'array',
+      control: 'array',
+      label: 'Ítems',
+      description: 'Lista de migas del breadcrumb',
+      default: [
+        { label: 'Inicio', href: '/' },
+        { label: 'Componentes', href: '/components/' },
+        { label: 'Breadcrumbs' },
+      ],
+      arrayShape: [
+        { key: 'label', label: 'Label' },
+        { key: 'href', label: 'Href (opcional)' },
+      ],
+    },
+    {
       name: 'separator',
       type: 'string',
       label: 'Separador',

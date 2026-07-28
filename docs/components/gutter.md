@@ -1,6 +1,12 @@
+<script setup>
+import { gutterMeta } from './meta/gutter'
+</script>
+
 # Gutter
 
 Columna de números de línea con marcadores opcionales estilo terminal.
+
+<PlayHost :meta="gutterMeta" />
 
 ## Demo
 

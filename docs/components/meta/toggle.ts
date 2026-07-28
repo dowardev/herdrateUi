@@ -25,6 +25,14 @@ export const toggleMeta: ComponentMeta = {
       description: 'Deshabilita la interacción',
       default: false,
     },
+    {
+      name: 'labels',
+      type: 'string',
+      control: 'none',
+      label: 'Labels',
+      description:
+        "Objeto { on, off } para el texto del toggle. Default: { on: 'ON', off: 'OFF' }.",
+    },
   ],
   slots: [],
   events: [

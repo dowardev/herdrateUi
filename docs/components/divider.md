@@ -1,6 +1,12 @@
+<script setup>
+import { dividerMeta } from './meta/divider'
+</script>
+
 # Divider
 
 Divisor horizontal o vertical con estética de terminal.
+
+<PlayHost :meta="dividerMeta" />
 
 ## Demo
 
@@ -41,11 +47,3 @@ Dirección del divisor.
 ## Tokens usados
 
 `--border`, `--font-mono`
-
-## Demo Interactiva
-
-<ComponentPlayground :meta="dividerMeta" />
-
-<script setup>
-import { dividerMeta } from './meta/divider'
-</script>

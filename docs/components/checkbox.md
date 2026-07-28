@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { checkboxMeta } from './meta/checkbox'
 const checked = ref(false)
 const checked2 = ref(true)
 const checked3 = ref(false)
@@ -8,6 +9,8 @@ const checked3 = ref(false)
 # Checkbox
 
 Checkbox estilo terminal con `[x]` / `[ ]`.
+
+<PlayHost :meta="checkboxMeta" />
 
 ## Demo
 

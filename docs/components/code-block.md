@@ -1,6 +1,12 @@
+<script setup>
+import { codeBlockMeta } from './meta/code-block'
+</script>
+
 # CodeBlock
 
 A terminal-style code block with syntax-friendly display, line numbers, and a copy button.
+
+<PlayHost :meta="codeBlockMeta" />
 
 ## Demo
 
@@ -147,11 +153,3 @@ El composable detecta automáticamente los plugins instalados. Si un parser no e
 ## Tokens usados
 
 `--font-mono`, `--bg`, `--bg-panel`, `--border`, `--text`, `--text-muted`, `--color-*`
-
-## Demo Interactiva
-
-<ComponentPlayground :meta="codeBlockMeta" />
-
-<script setup>
-import { codeBlockMeta } from './meta/code-block'
-</script>

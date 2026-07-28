@@ -1,6 +1,12 @@
+<script setup>
+import { tagMeta } from './meta/tag'
+</script>
+
 # Tag
 
 Etiqueta inline para labels y tokens.
+
+<PlayHost :meta="tagMeta" />
 
 ## Demo
 

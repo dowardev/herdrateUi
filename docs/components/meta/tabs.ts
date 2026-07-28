@@ -8,8 +8,8 @@ export const tabsMeta: ComponentMeta = {
       name: 'defaultValue',
       type: 'string',
       label: 'Valor por defecto',
-      description: 'Valor de la pestaña activa por defecto',
-      default: '',
+      description:
+        'Valor de la pestaña activa por defecto. Sin default declarado en el componente (undefined).',
     },
   ],
   slots: [
@@ -20,6 +20,10 @@ export const tabsMeta: ComponentMeta = {
     },
   ],
   events: [
-    { name: 'close', description: 'Se emite al cerrar un Tab con closable' },
+    {
+      name: 'close',
+      description: 'Se emite al cerrar un Tab con closable',
+      payload: 'value: string',
+    },
   ],
 };

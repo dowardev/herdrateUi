@@ -1,6 +1,12 @@
+<script setup>
+import { treeNodeMeta } from './meta/treenode'
+</script>
+
 # TreeNode
 
 Nodo de árbol colapsable con expansión instantánea.
+
+<PlayHost :meta="treeNodeMeta" />
 
 ## Demo
 

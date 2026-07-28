@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { inputMeta } from './meta/input'
 const text = ref('')
 const password = ref('')
 const multiline = ref('Línea 1\nLínea 2\nLínea 3')
@@ -8,6 +9,8 @@ const multiline = ref('Línea 1\nLínea 2\nLínea 3')
 # Input
 
 Input de texto estilo terminal, con soporte para textarea, password y readonly.
+
+<PlayHost :meta="inputMeta" />
 
 ## Demo
 

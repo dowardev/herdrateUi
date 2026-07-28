@@ -1,6 +1,12 @@
+<script setup>
+import { kbdMeta } from './meta/kbd'
+</script>
+
 # Kbd
 
 Keyboard key display element estilo terminal.
+
+<PlayHost :meta="kbdMeta" />
 
 ## Demo
 

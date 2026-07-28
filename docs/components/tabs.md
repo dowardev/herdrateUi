@@ -1,6 +1,12 @@
+<script setup>
+import { tabsMeta } from './meta/tabs'
+</script>
+
 # Tabs
 
 Pestañas con scroll horizontal, flechas de navegación y cierre individual.
+
+<PlayHost :meta="tabsMeta" />
 
 ## Demo
 
@@ -27,6 +33,18 @@ Pestañas con scroll horizontal, flechas de navegación y cierre individual.
   <TabPanel value="tab3">Contenido</TabPanel>
 </Tabs>
 ```
+
+## Demo interactiva
+
+<script setup lang="ts">
+import TabsDemo from './TabsDemo.vue'
+</script>
+
+<ClientOnly>
+  <TabsDemo />
+</ClientOnly>
+
+Agrega, quita y cierra pestañas en vivo. Esta demo monta el subsistema completo (`<Tabs>` + `<TabsList>` + `<Tab>` + `<TabPanel>`) — patrón faithful para provide/inject.
 
 ## Props
 

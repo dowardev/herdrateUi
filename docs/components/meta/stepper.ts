@@ -5,6 +5,19 @@ export const stepperMeta: ComponentMeta = {
   component: Stepper,
   props: [
     {
+      name: 'steps',
+      type: 'array',
+      control: 'array',
+      label: 'Pasos',
+      description: 'Lista de pasos del stepper',
+      default: [
+        { label: 'Cuenta' },
+        { label: 'Perfil' },
+        { label: 'Confirmar' },
+      ],
+      arrayShape: [{ key: 'label', label: 'Label' }],
+    },
+    {
       name: 'current',
       type: 'number',
       label: 'Paso actual',

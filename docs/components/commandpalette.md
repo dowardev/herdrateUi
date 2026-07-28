@@ -1,6 +1,12 @@
+<script setup>
+import { commandPaletteMeta } from './meta/commandpalette'
+</script>
+
 # CommandPalette
 
 Paleta de comandos con overlay, filtrado en vivo y navegación por teclado, ideal para atajos tipo Cmd+K / Ctrl+K.
+
+<PlayHost :meta="commandPaletteMeta" />
 
 ## Demo
 
@@ -112,11 +118,3 @@ Placeholder del input de búsqueda.
 ## Tokens usados
 
 `--font-mono`, `--bg`, `--bg-panel`, `--border`, `--text`, `--text-muted`, `--color-*`
-
-## Demo Interactiva
-
-<ComponentPlayground :meta="commandPaletteMeta" />
-
-<script setup>
-import { commandPaletteMeta } from './meta/commandpalette'
-</script>

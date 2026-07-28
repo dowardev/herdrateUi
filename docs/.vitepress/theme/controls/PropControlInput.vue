@@ -11,6 +11,7 @@
       :min="min"
       :max="max"
       :step="step"
+      :placeholder="placeholder"
       @input="emitUpdate"
       class="prop-input"
     />
@@ -25,6 +26,7 @@ const props = defineProps<{
   type: 'text' | 'number';
   label: string;
   description?: string;
+  placeholder?: string;
   min?: number;
   max?: number;
   step?: number;
@@ -46,8 +48,8 @@ function emitUpdate(event: Event) {
 .prop-control {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  margin-bottom: 1rem;
+  gap: 0.375rem;
+  margin-bottom: 0.75rem;
 }
 .prop-label {
   font-family: var(--font-mono);
@@ -64,23 +66,24 @@ function emitUpdate(event: Event) {
   overflow-wrap: anywhere;
 }
 .prop-input {
-  background: var(--bg);
-  border: 1px solid var(--border);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-divider, rgba(255,255,255,0.06));
   color: var(--text);
   font-family: var(--font-mono);
   font-size: 0.8125rem;
-  padding: 0.375rem 0.5rem;
-  border-radius: 2px;
+  padding: 0.375rem 0;
   outline: none;
   width: 100%;
   box-sizing: border-box;
   min-width: 0;
+  transition: border-color 0.15s var(--easing-spring, ease);
 }
 .prop-input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 1px var(--accent);
+  border-bottom-color: var(--color-primary);
 }
 .prop-input::placeholder {
-  color: var(--text-dim);
+  color: var(--text-muted);
+  opacity: 0.5;
 }
 </style>

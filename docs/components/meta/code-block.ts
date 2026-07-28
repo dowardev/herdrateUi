@@ -39,6 +39,14 @@ export const codeBlockMeta: ComponentMeta = {
       description: 'Altura máxima antes de que el bloque se vuelva desplazable',
       default: 'none',
     },
+    {
+      name: 'formatter',
+      type: 'string',
+      control: 'none',
+      label: 'Formatter',
+      description:
+        'Función (code, language) => string | Promise<string> para formatear. Por defecto none.',
+    },
   ],
   slots: [
     {

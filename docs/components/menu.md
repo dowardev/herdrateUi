@@ -1,6 +1,12 @@
+<script setup>
+import { menuMeta } from './meta/menu'
+</script>
+
 # Menu
 
 Menú vertical estilo terminal con items, divisores, disabled y slot personalizado.
+
+<PlayHost :meta="menuMeta" />
 
 ## Demo
 
