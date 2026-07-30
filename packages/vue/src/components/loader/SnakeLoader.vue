@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+
 <template>
   <div class="snake-loader" :style="{ '--loader-speed': speed }">
     <span class="snake-text"><slot>Decoding...</slot></span>

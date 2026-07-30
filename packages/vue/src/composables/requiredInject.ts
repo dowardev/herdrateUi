@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import { inject } from 'vue';
 
 export function requiredInject<T>(key: string, component: string): T {

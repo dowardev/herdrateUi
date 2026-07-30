@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+
 <template>
   <div :class="['toast', `color-${color}`]" @click="$emit('close')">
     <span class="toast__icon" v-text="iconChar" />

@@ -1,6 +1,7 @@
 {
   "name": "ui-lib",
   "private": true,
+  "license": "GPL-3.0-or-later",
   "scripts": {
     "docs:dev": "pnpm --filter herdrate-docs run docs:dev",
     "test": "node ./node_modules/.pnpm/vitest@3.1.3_happy-dom@15.11.7_lightningcss@1.32.0/node_modules/vitest/vitest.mjs run",

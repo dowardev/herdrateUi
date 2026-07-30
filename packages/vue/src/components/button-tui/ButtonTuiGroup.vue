@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+
 <template>
   <div :class="['btn-tui-group']" :style="{ gap: `${gap}rem` }">
     <button

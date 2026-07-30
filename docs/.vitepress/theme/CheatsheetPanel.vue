@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+
 <template>
   <aside v-if="meta" class="cheatsheet">
     <div class="cheatsheet-header">

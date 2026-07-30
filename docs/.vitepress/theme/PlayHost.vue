@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+
 <template>
   <section class="play-host">
     <PlayHeader v-if="mode === 'closed'" v-model="mode" :meta="meta" />

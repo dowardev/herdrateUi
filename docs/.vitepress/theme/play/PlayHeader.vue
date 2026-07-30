@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+
 <template>
   <header :class="['play-header', variant === 'modal' ? 'play-header--modal' : '']">
     <div class="play-header-info">

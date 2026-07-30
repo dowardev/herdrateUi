@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import './play-mode.css';
 import DefaultTheme from 'vitepress/theme';
 import '@catppuccin/vitepress/theme/mocha/mauve.css';

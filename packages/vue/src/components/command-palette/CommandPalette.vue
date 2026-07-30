@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+
 <template>
   <Teleport to="body">
     <div v-if="modelValue" class="cp-overlay" @click.self="close">

@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+
 <template>
   <div :class="['divider', `divider--${orientation}`]">
     <span v-if="orientation === 'horizontal'">────</span>

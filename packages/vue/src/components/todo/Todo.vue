@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+
 <template>
   <label :class="['todo', internal && 'todo--done']" @click="_onClick">
     <span class="todo__check">{{ internal ? '[x]' : '[ ]' }}</span>

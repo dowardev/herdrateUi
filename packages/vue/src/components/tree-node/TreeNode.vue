@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+
 <template>
   <div class="tree-node">
     <div class="tree-node__row" @click="_toggle">
