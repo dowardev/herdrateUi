@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-import { Box } from '@herdrate/vue';
+import { Box } from '@dowardev/herdrate-vue';
 import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const boxMeta: ComponentMeta = {

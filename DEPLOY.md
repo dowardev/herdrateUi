@@ -108,7 +108,7 @@ For deploying from your local machine without GitLab CI/CD.
 pnpm install --frozen-lockfile
 
 # 2. Build the library first (docs depend on it)
-pnpm --filter @herdrate/vue build
+pnpm --filter @dowardev/herdrate-vue build
 
 # 3. Build the docs
 pnpm --filter herdrate-docs docs:build
@@ -156,12 +156,12 @@ pnpm docs:dev
 
 ## Publish the library to npm (manual)
 
-The `@herdrate/vue` library is **not automatically published** by the
+The `@dowardev/herdrate-vue` library is **not automatically published** by the
 pipeline. It must be published manually:
 
 ```bash
 # 1. Build the library (if not already built)
-pnpm --filter @herdrate/vue build
+pnpm --filter @dowardev/herdrate-vue build
 
 # 2. Publish to npm
 cd packages/vue
@@ -172,7 +172,7 @@ npm publish
 
 - An account at [npmjs.com](https://npmjs.com)
 - Logged in: `npm login`
-- Publish permissions for the `@herdrate/vue` package
+- Publish permissions for the `@dowardev/herdrate-vue` package
 
 ---
 

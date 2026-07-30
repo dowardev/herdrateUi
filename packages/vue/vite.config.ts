@@ -16,7 +16,7 @@ export default defineConfig({
       fileName: () => 'herdrate-vue.es.js',
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', 'prettier/standalone', /^prettier\/plugins\/.*/],
       output: {
         globals: {
           vue: 'Vue',

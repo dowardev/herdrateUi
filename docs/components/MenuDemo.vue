@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { Menu } from '@herdrate/vue';
+import { Menu } from '@dowardev/herdrate-vue';
 import { ref } from 'vue';
 
 const lastSelected = ref<number | null>(null);

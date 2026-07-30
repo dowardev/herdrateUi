@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Setup the monorepo infrastructure, build system, design tokens, and base CLI components for `@herdrate/vue`.
+**Goal:** Setup the monorepo infrastructure, build system, design tokens, and base CLI components for `@dowardev/herdrate-vue`.
 
 **Architecture:** PNPM Workspaces with Turborepo for task orchestration. Vite in Library Mode for the Vue package to support ESM/CJS. Design tokens based on Catppuccin Mocha/Latte.
 
@@ -90,11 +90,11 @@
 - Create: `examples/playground/src/App.vue`
 
 **Interfaces:**
-- Consumes: `@herdrate/vue` (local workspace link).
+- Consumes: `@dowardev/herdrate-vue` (local workspace link).
 - Produces: Living documentation site and dev playground.
 
 - [ ] **Step 1: Scaffold VitePress in `packages/docs`**
-- [ ] **Step 2: Configure VitePress to import components from `@herdrate/vue`**
+- [ ] **Step 2: Configure VitePress to import components from `@dowardev/herdrate-vue`**
 - [ ] **Step 3: Create a basic index page and one component page for `Panel`**
 - [ ] **Step 4: Setup `examples/playground` as a Vite + Vue app**
 - [ ] **Step 5: Implement a "Gallery" page in playground showing all base components**

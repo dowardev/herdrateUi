@@ -15,7 +15,7 @@ theme.
 ## Installation
 
 ```bash
-pnpm add @herdrate/vue
+pnpm add @dowardev/herdrate-vue
 ```
 
 Requires `vue ^3.4` as a peer dependency.
@@ -26,7 +26,7 @@ CSS is automatically injected when importing any component.
 
 ```vue
 <script setup lang="ts">
-import { ButtonTui, Panel } from "@herdrate/vue";
+import { ButtonTui, Panel } from "@dowardev/herdrate-vue";
 </script>
 
 <template>

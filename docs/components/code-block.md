@@ -82,7 +82,7 @@ Optional function to format code before syntax highlighting. Useful for auto-for
 
 ```vue
 <script setup>
-import { usePrettierFormatter } from '@herdrate/vue'
+import { usePrettierFormatter } from '@dowardev/herdrate-vue'
 
 const formatter = usePrettierFormatter()
 </script>

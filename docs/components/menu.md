@@ -20,7 +20,7 @@ Menú vertical estilo terminal con items, divisores, disabled y slot personaliza
 </template>
 
 <script setup lang="ts">
-import { Menu } from '@herdrate/vue'
+import { Menu } from '@dowardev/herdrate-vue'
 
 const items = [
   { label: 'New File' },

@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-import { LogLines } from '@herdrate/vue';
+import { LogLines } from '@dowardev/herdrate-vue';
 import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const logLinesMeta: ComponentMeta = {

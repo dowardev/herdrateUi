@@ -8,7 +8,7 @@
         Componente
         <code>CodeBlock</code>
         de
-        <code>@herdrate/vue</code>
+        <code>@dowardev/herdrate-vue</code>
         con
         <code>usePrettierFormatter()</code>
       </p>
@@ -52,7 +52,7 @@
 </template>
 
 <script setup>
-import { CodeBlock, usePrettierFormatter } from '@herdrate/vue';
+import { CodeBlock, usePrettierFormatter } from '@dowardev/herdrate-vue';
 
 const formatter = usePrettierFormatter();
 

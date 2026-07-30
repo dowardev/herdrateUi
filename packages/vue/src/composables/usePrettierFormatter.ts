@@ -134,7 +134,7 @@ async function loadSpec(spec: ParserSpec): Promise<unknown[]> {
     if (spec.kind === 'external' && !warnedExternal.has(spec.package)) {
       warnedExternal.add(spec.package);
       console.warn(
-        `[@herdrate/vue] prettier plugin "${spec.package}" not installed`,
+        `[@dowardev/herdrate-vue] prettier plugin "${spec.package}" not installed`,
       );
     }
     return [];

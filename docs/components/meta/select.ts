@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-import { Select } from '@herdrate/vue';
+import { Select } from '@dowardev/herdrate-vue';
 import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const selectMeta: ComponentMeta = {

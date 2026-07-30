@@ -35,7 +35,7 @@ Navegación breadcrumb con estilo terminal, colores semánticos y slot para cont
 
 ```vue
 <script setup lang="ts">
-import { Breadcrumbs } from '@herdrate/vue'
+import { Breadcrumbs } from '@dowardev/herdrate-vue'
 
 const items = [
   { label: 'Home' },

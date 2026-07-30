@@ -35,7 +35,7 @@ importers:
 
   apps/demo:
     dependencies:
-      '@herdrate/vue':
+      '@dowardev/herdrate-vue':
         specifier: workspace:*
         version: link:../../packages/vue
       prettier:
@@ -57,7 +57,7 @@ importers:
       '@catppuccin/vitepress':
         specifier: ^0.1.0
         version: 0.1.2(typescript@7.0.2)
-      '@herdrate/vue':
+      '@dowardev/herdrate-vue':
         specifier: workspace:*
         version: link:../packages/vue
       vitepress:

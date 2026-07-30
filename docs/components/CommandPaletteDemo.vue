@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { CommandPalette } from '@herdrate/vue';
+import { CommandPalette } from '@dowardev/herdrate-vue';
 import { ref } from 'vue';
 
 defineOptions({ name: 'CommandPaletteDemo' });

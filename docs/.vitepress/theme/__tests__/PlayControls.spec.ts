@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-import { Panel } from '@herdrate/vue';
+import { Panel } from '@dowardev/herdrate-vue';
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
 import { markRaw } from 'vue';

@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import { Tab, TabPanel, Tabs, TabsList } from '@herdrate/vue';
+import { Tab, TabPanel, Tabs, TabsList } from '@dowardev/herdrate-vue';
 import { ref } from 'vue';
 
 defineOptions({ name: 'TabsDemo' });

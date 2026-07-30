@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      '@herdrate/vue': resolve(__dirname, 'packages/vue/src/index.ts'),
+      '@dowardev/herdrate-vue': resolve(__dirname, 'packages/vue/src/index.ts'),
     },
   },
   test: {

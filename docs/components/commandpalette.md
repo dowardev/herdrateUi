@@ -17,7 +17,7 @@ Paleta de comandos con overlay, filtrado en vivo y navegación por teclado, idea
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { CommandPalette } from '@herdrate/vue'
+import { CommandPalette } from '@dowardev/herdrate-vue'
 
 const open = ref(false)
 const commands = [

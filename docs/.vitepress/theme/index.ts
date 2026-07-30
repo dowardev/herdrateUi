@@ -50,7 +50,7 @@ import {
   Tooltip,
   TreeNode,
   useToast,
-} from '@herdrate/vue';
+} from '@dowardev/herdrate-vue';
 import CommandPaletteDemo from '../../components/CommandPaletteDemo.vue';
 import MenuDemo from '../../components/MenuDemo.vue';
 import PropControlArray from './controls/PropControlArray.vue';

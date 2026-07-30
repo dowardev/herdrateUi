@@ -1,4 +1,4 @@
-# 2026-07-05 — `@herdrate/vue` UI Library Design
+# 2026-07-05 — `@dowardev/herdrate-vue` UI Library Design
 
 ## Resumen
 
@@ -47,7 +47,7 @@ ui-lib/
 ├── turbo.json
 ├── biome.json
 ├── packages/
-│   ├── vue/                  # @herdrate/vue (la librería)
+│   ├── vue/                  # @dowardev/herdrate-vue (la librería)
 │   │   ├── src/
 │   │   │   ├── components/
 │   │   │   │   ├── panel/        # Panel, PanelHeader, PanelBody, PanelFooter
@@ -205,7 +205,7 @@ Tokens semánticos:
 ## Criterios de éxito (v1)
 
 1. `pnpm install && pnpm dev` levanta playground con todos los componentes visibles.
-2. `pnpm -F @herdrate/vue build` produce bundle ESM/CJS/d.ts sin warnings.
+2. `pnpm -F @dowardev/herdrate-vue build` produce bundle ESM/CJS/d.ts sin warnings.
 3. Tests pasan con cobertura ≥80%.
 4. `pnpm -F docs dev` muestra todas las páginas de componentes.
 5. Publicable a npm: `pnpm changeset version` genera versionado correcto.

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { modalMeta } from './meta/modal'
-import { ButtonTui, Modal } from '@herdrate/vue'
+import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
 const isOpen = ref(false)
 const openTitle = ref(false)
 const openColorP = ref(false)
@@ -37,7 +37,7 @@ Terminal-style modal dialog with overlay, header, body, footer, and keyboard sup
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ButtonTui, Modal } from '@herdrate/vue'
+import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
 const open = ref(false)
 </script>
 
@@ -72,7 +72,7 @@ Título mostrado en la cabecera del modal. Cuando está vacío, no se muestra es
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ButtonTui, Modal } from '@herdrate/vue'
+import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
 const open = ref(false)
 </script>
 
@@ -120,7 +120,7 @@ Color semántico del título en el header.
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ButtonTui, Modal } from '@herdrate/vue'
+import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
 const openPrimary = ref(false)
 const openSuccess = ref(false)
 const openDanger = ref(false)
@@ -179,7 +179,7 @@ Ancho del modal. Acepta cualquier valor CSS: `ch`, `px`, `rem`, `%`.
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ButtonTui, Modal } from '@herdrate/vue'
+import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
 const openNarrow = ref(false)
 const openWide = ref(false)
 </script>
@@ -230,7 +230,7 @@ Muestra u oculta el botón de cierre (×) en la cabecera.
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ButtonTui, Modal } from '@herdrate/vue'
+import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
 const openWithClose = ref(false)
 const openWithoutClose = ref(false)
 </script>
@@ -279,7 +279,7 @@ Contenido principal del modal. Puede incluir cualquier HTML o componente Vue.
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ButtonTui, Modal } from '@herdrate/vue'
+import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
 const open = ref(false)
 </script>
 
@@ -317,7 +317,7 @@ const open = ref(false)
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ButtonTui, Modal } from '@herdrate/vue'
+import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
 const open = ref(false)
 </script>
 

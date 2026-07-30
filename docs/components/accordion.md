@@ -25,7 +25,7 @@ Panel plegable estilo terminal con soporte para múltiples secciones y slots per
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Accordion } from '@herdrate/vue'
+import { Accordion } from '@dowardev/herdrate-vue'
 
 const items = [
   { title: 'Configuración', content: 'Ajustes de red y preferencias del sistema.' },

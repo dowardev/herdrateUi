@@ -6,7 +6,7 @@ Notificaciones temporales inspiradas en noice.nvim, con posicionamiento configur
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { ButtonTui, ButtonTuiGroup } from '@herdrate/vue'
+import { ButtonTui, ButtonTuiGroup } from '@dowardev/herdrate-vue'
 import { toastMeta } from './meta/toast'
 import ToastDemo from './ToastDemo.vue'
 
@@ -84,7 +84,7 @@ const positionButtons = computed(() =>
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ToastContainer } from '@herdrate/vue'
+import { ToastContainer } from '@dowardev/herdrate-vue'
 const items = ref([])
 
 function showAt(position: string) {

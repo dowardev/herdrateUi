@@ -45,7 +45,7 @@
 </template>
 
 <script setup lang="ts">
-import { CodeBlock, usePrettierFormatter } from '@herdrate/vue';
+import { CodeBlock, usePrettierFormatter } from '@dowardev/herdrate-vue';
 import { computed, ref } from 'vue';
 
 const props = defineProps<{
@@ -143,7 +143,7 @@ const snippet = computed(() => {
   lines.push('</template>');
   lines.push('');
   lines.push('<script setup lang="ts">');
-  lines.push(`import { ${name} } from '@herdrate/vue'`);
+  lines.push(`import { ${name} } from '@dowardev/herdrate-vue'`);
   lines.push('<' + '/script>');
   return lines.join('\n');
 });

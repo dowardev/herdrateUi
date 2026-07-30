@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-import { CodeBlock } from '@herdrate/vue';
+import { CodeBlock } from '@dowardev/herdrate-vue';
 import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const codeBlockMeta: ComponentMeta = {
