@@ -1,12 +1,12 @@
 <script setup>
-import { keyHintMeta } from './meta/keyhint'
+import { keyhintMeta } from './meta/keyhint'
 </script>
 
 # KeyHint
 
 Tecla o atajo de teclado con estilo inline.
 
-<PlayHost :meta="keyHintMeta" />
+<PlayHost :meta="keyhintMeta" />
 
 ## Demo
 

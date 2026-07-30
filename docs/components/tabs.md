@@ -1,5 +1,6 @@
-<script setup>
+<script setup lang="ts">
 import { tabsMeta } from './meta/tabs'
+import TabsDemo from './TabsDemo.vue'
 </script>
 
 # Tabs
@@ -35,10 +36,6 @@ Pestañas con scroll horizontal, flechas de navegación y cierre individual.
 ```
 
 ## Demo interactiva
-
-<script setup lang="ts">
-import TabsDemo from './TabsDemo.vue'
-</script>
 
 <ClientOnly>
   <TabsDemo />
