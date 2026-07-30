@@ -6,11 +6,12 @@
   "type": "module",
   "scripts": {
     "docs:dev": "vitepress dev .",
+    "build": "vitepress build .",
     "docs:build": "vitepress build .",
     "docs:preview": "vitepress preview ."
   },
   "devDependencies": {
-    "@catppuccin/vitepress": "latest",
+    "@catppuccin/vitepress": "^0.1.0",
     "@herdrate/vue": "workspace:*",
     "vitepress": "^2.0.0-alpha.7",
     "vue": "^3.5.39"

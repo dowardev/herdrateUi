@@ -1,4 +1,4 @@
-image: node:lts-alpine
+image: node:24-alpine
 
 stages:
   - lint
@@ -29,6 +29,7 @@ cache:
 
 .install_deps:
   before_script:
+    - apk add --no-cache make g++ python3 musl-dev
     - corepack enable
     - pnpm install --frozen-lockfile
 

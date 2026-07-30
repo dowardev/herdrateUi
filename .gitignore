@@ -8,7 +8,7 @@ docs/superpowers
 .vitepress/cache
 .turbo
 *.tsbuildinfo
-*.package-lock.json
+package-lock.json
 docs/.vitepress/cache/
 _inspect.mjs
 .playwright-cli/

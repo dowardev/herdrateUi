@@ -27,6 +27,7 @@
 import { computed, ref } from 'vue';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
+import Tag from '../tag/Tag.vue';
 
 const props = withDefaults(
   defineProps<{

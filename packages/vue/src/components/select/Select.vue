@@ -52,7 +52,7 @@ const emit = defineEmits<(e: 'update:modelValue', value: string) => void>();
 const open = ref(false);
 const hoveredIndex = ref(0);
 
-const _selectedLabel = computed(() => {
+const selectedLabel = computed(() => {
   const option = props.options.find((o) => o.value === props.modelValue);
   return option ? option.label : '';
 });

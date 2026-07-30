@@ -36,7 +36,7 @@ const props = withDefaults(
   },
 );
 
-const _checked = computed(() => props.modelValue === props.value);
+const checked = computed(() => props.modelValue === props.value);
 
 defineEmits<(e: 'update:modelValue', value: string) => void>();
 </script>
