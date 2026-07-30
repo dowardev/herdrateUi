@@ -22,23 +22,41 @@ describe('PropControlSlot', () => {
 
   it('renders an editable textarea bound to modelValue', () => {
     const wrapper = mount(PropControlSlot, {
-      props: { modelValue: 'initial text', label: 'Default', slotName: 'default' },
+      props: {
+        modelValue: 'initial text',
+        label: 'Default',
+        slotName: 'default',
+      },
     });
     const textarea = wrapper.find('textarea');
     expect(textarea.exists()).toBe(true);
-    expect((textarea.element as HTMLTextAreaElement).value).toBe('initial text');
+    expect((textarea.element as HTMLTextAreaElement).value).toBe(
+      'initial text',
+    );
   });
 
   it('uses 2 rows for default slot, 1 for named', () => {
     const wDefault = mount(PropControlSlot, {
       props: { modelValue: '', label: 'D', slotName: 'default' },
     });
-    expect(Number((wDefault.find('textarea').element as HTMLTextAreaElement).getAttribute('rows'))).toBe(2);
+    expect(
+      Number(
+        (wDefault.find('textarea').element as HTMLTextAreaElement).getAttribute(
+          'rows',
+        ),
+      ),
+    ).toBe(2);
 
     const wNamed = mount(PropControlSlot, {
       props: { modelValue: '', label: 'H', slotName: 'header' },
     });
-    expect(Number((wNamed.find('textarea').element as HTMLTextAreaElement).getAttribute('rows'))).toBe(1);
+    expect(
+      Number(
+        (wNamed.find('textarea').element as HTMLTextAreaElement).getAttribute(
+          'rows',
+        ),
+      ),
+    ).toBe(1);
   });
 
   it('emits update:modelValue when textarea input changes', async () => {
@@ -76,7 +94,9 @@ describe('PropControlSlot', () => {
     const wrapper = mount(PropControlSlot, {
       props: { modelValue: '', label: 'Footer', slotName: 'footer' },
     });
-    const placeholder = (wrapper.find('textarea').element as HTMLTextAreaElement).placeholder;
+    const placeholder = (
+      wrapper.find('textarea').element as HTMLTextAreaElement
+    ).placeholder;
     expect(placeholder).toContain('#footer');
   });
 

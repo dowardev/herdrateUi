@@ -60,7 +60,9 @@ const local = ref<Record<string, any>[]>([]);
 
 function emptyRow(): Record<string, any> {
   const row: Record<string, any> = {};
-  props.shape.forEach((f) => (row[f.key] = ''));
+  props.shape.forEach((f) => {
+    row[f.key] = '';
+  });
   return row;
 }
 

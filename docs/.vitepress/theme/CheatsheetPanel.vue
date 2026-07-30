@@ -103,7 +103,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { computed, ref } from 'vue';
 import type { ComponentMeta, SlotMeta } from './PropControls.vue';
 
 const props = defineProps<{
@@ -135,7 +135,7 @@ function toggle(key: string) {
   expanded.value[key] = !expanded.value[key];
 }
 
-function formatDefault(val: any): string {
+function formatDefault(val: unknown): string {
   if (val === undefined || val === null) return '—';
   if (typeof val === 'string') return val ? `"${val}"` : '""';
   if (typeof val === 'boolean') return val ? 'true' : 'false';

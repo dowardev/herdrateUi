@@ -10,10 +10,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { Menu } from '@herdrate/vue'
+import { Menu } from '@herdrate/vue';
+import { ref } from 'vue';
 
-const lastSelected = ref<number | null>(null)
+const lastSelected = ref<number | null>(null);
 
 const items = [
   { label: 'New File' },
@@ -21,9 +21,9 @@ const items = [
   { label: 'Save', disabled: true },
   { label: '', divider: true },
   { label: 'Quit' },
-]
+];
 
 function onSelect(index: number) {
-  lastSelected.value = index
+  lastSelected.value = index;
 }
 </script>
