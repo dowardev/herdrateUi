@@ -1,6 +1,7 @@
 {
   "name": "@herdrate/vue",
   "version": "0.0.1",
+  "license": "GPL-3.0-or-later",
   "type": "module",
   "main": "./dist/herdrate-vue.es.js",
   "module": "./dist/herdrate-vue.es.js",

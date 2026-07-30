@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+
 <template>
   <span class="kbd-group">
     <template v-for="(_, idx) in keys" :key="idx">

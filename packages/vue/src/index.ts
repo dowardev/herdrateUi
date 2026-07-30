@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import './styles/tokens.css';
 import './styles/theme.css';
 import './styles/reset.css';

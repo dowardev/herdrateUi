@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+
 <template>
   <aside class="play-controls">
     <div class="play-controls-header">Controles</div>

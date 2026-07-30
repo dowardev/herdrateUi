@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+
 <template>
   <div :class="['panel', { 'panel--with-divider': divider }]">
     <div v-if="$slots.header" class="panel-header">

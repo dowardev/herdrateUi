@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+
 <template>
   <div :class="['box', `box-border-${borderStyle}`, `color-${color}`]">
     <div v-if="$slots.header" class="box-header">

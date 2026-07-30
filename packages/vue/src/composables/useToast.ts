@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import { type Ref, ref } from 'vue';
 import type { Color } from '../types/color';
 

@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+
 <template>
   <div class="stepper">
     <template v-for="(step, index) in props.steps" :key="step.label || index">

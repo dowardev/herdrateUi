@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import { StatusBar } from '@herdrate/vue';
 import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 

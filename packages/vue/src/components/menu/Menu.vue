@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+
 <template>
   <div :class="['menu', `color-${color}`]">
     <template v-if="$slots.default">

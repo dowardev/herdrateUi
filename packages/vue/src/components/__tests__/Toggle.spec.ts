@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
 import Toggle from '../toggle/Toggle.vue';

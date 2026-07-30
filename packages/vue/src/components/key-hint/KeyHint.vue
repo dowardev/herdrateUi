@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+
 <template>
   <kbd :class="['key-hint', `key-hint--${size}`]">
     <slot />

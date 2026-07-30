@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+
 <template>
   <span
     :class="['spinner', `color-${color}`, `size-${size}`, `speed-${speed}`]"

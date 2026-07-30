@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+
 <template>
   <div :class="['progress-bar', `color-${color}`, `size-${size}`]">
     <div class="progress-bar-track">

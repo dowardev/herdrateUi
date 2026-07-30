@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+
 <template>
   <button
     :class="['tab', { 'tab--active': _isActive }, _isActive && `color-${color} bd-color-${color}`]"
