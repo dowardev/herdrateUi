@@ -1,7 +1,6 @@
 # Deploy
 
-Documentation for deploying the project docs and publishing the
-library.
+Documentation for deploying the project docs and publishing the library.
 
 ## Table of contents
 
@@ -21,10 +20,8 @@ There are two ways to deploy the project docs:
 
 | Method | When to use | Requirements |
 |--------|-------------|--------------|
-| **GitLab CI/CD** | Official releases with tag | GitLab Maintainer, runner,
-  SSH configured in CI variables |
-| **Manual** | Debug, hotfix, local dev | Node + pnpm + direct SSH access
-  to server |
+| **GitLab CI/CD** | Official releases with tag | GitLab Maintainer, runner, SSH configured in CI variables |
+| **Manual** | Debug, hotfix, local dev | Node + pnpm + direct SSH access to server |
 
 Choose the one that best fits your case.
 
@@ -32,14 +29,12 @@ Choose the one that best fits your case.
 
 ## Automatic deploy with GitLab CI/CD
 
-The pipeline runs automatically when a tag matching `v*.*.*` is
-created.
+The pipeline runs automatically when a tag matching `v*.*.*` is created.
 
-### Requirements
+### Requirements (CI/CD)
 
 - **Access to the GitLab repository** with at least `Maintainer` role.
-- **GitLab CI/CD enabled** (a runner must be active for the
-  project/group).
+- **GitLab CI/CD enabled** (a runner must be active for the project/group).
 - **SSH access to the target server** where docs will be deployed.
 - **Private SSH key** to authenticate against the server.
 
@@ -48,15 +43,18 @@ created.
 The pipeline uses GitLab environment variables instead of hardcoded
 values. Configure them at:
 
-**GitLab → Settings → CI/CD → Variables**
+#### GitLab path
+
+```
+Settings → CI/CD → Variables
+```
 
 Add each variable with "Protect variable" disabled and "Mask variable"
 enabled for secrets:
 
 | Variable | Description | Example |
 |----------|-------------|---------|
-| `SSH_PRIVATE_KEY` | Private SSH key | `-----BEGIN OPENSSH PRIVATE
-  KEY-----...` |
+| `SSH_PRIVATE_KEY` | Private SSH key | `-----BEGIN OPENSSH PRIVATE KEY-----...` |
 | `SSH_HOST` | Server IP or domain | `deploy.ejemplo.com` |
 | `SSH_PORT` | SSH port | `22` |
 | `SSH_USER` | SSH user | `deploy_user` |
@@ -82,15 +80,13 @@ View the pipeline at: **GitLab → CI/CD → Pipelines**
 | `lint` | `lint` | `pnpm check` | Biome + pipe check in markdown |
 | `test` | `test` | `pnpm test` | Unit tests with Vitest |
 | `build` | `build` | `pnpm build` | Builds library + docs |
-| `deploy` | `deploy_docs` | `tar + scp + ssh` | Packages, uploads and
-  extracts docs on server |
+| `deploy` | `deploy_docs` | `tar + scp + ssh` | Packages, uploads and extracts docs on server |
 
 ```text
 [Create tag v*.*.*] → lint → test → build → deploy_docs
 ```
 
-If **lint** or **test** fail, the pipeline stops and nothing is
-deployed.
+If **lint** or **test** fail, the pipeline stops and nothing is deployed.
 
 ---
 
@@ -98,13 +94,11 @@ deployed.
 
 For deploying from your local machine without GitLab CI/CD.
 
-### Requirements
+### Requirements (manual)
 
 - **Node 24** (see `mise.toml`)
-- **pnpm 11.3.0**
-  (`corepack enable && corepack prepare pnpm@11.3.0 --activate`)
-- **SSH access** to the target server (public key added to
-  `authorized_keys`)
+- **pnpm 11.3.0** (`corepack enable && corepack prepare pnpm@11.3.0 --activate`)
+- **SSH access** to the target server (public key added to `authorized_keys`)
 - **Know** the server host, port, user, and path for the docs
 
 ### Step by step
@@ -174,7 +168,7 @@ cd packages/vue
 npm publish
 ```
 
-### Requirements
+### Requirements (npm)
 
 - An account at [npmjs.com](https://npmjs.com)
 - Logged in: `npm login`
@@ -212,16 +206,10 @@ git push origin --delete v0.2.0
 ## Troubleshooting
 
 | Problem | Likely cause | Solution |
-|---------|-------------|----------|
-| Pipeline does not run on push | Tag does not match `v*.*.*` |
-  Verify: `git tag -l` and that it starts with `v` |
-| `SSH_PRIVATE_KEY` does not work | Key not loaded correctly |
-  Verify the variable has the full key value |
-| `ssh: handshake failed` | Host key mismatch or wrong port |
-  Check `SSH_HOST` and `SSH_PORT` |
-| `Permission denied (publickey)` | Key not authorized on server |
-  Add the public key to `authorized_keys` |
-| `pnpm install --frozen-lockfile` fails | Lockfile not up to date |
-  Run `pnpm install` locally and commit `pnpm-lock.yaml` |
-| Deployed docs look empty/broken | `DEPLOY_PATH_DOCS` does not exist
-  on server | Create the directory or verify the path |
+|---------|--------------|----------|
+| Pipeline does not run on push | Tag does not match `v*.*.*` | Verify: `git tag -l` and that it starts with `v` |
+| `SSH_PRIVATE_KEY` does not work | Key not loaded correctly | Verify the variable has the full key value |
+| `ssh: handshake failed` | Host key mismatch or wrong port | Check `SSH_HOST` and `SSH_PORT` |
+| `Permission denied (publickey)` | Key not authorized on server | Add the public key to `authorized_keys` |
+| `pnpm install --frozen-lockfile` fails | Lockfile not up to date | Run `pnpm install` locally and commit `pnpm-lock.yaml` |
+| Deployed docs look empty/broken | `DEPLOY_PATH_DOCS` does not exist on server | Create the directory or verify the path |
