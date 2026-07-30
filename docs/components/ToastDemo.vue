@@ -48,8 +48,8 @@
 </template>
 
 <script setup lang="ts">
+import { type Color, ToastContainer, useToast } from '@herdrate/vue';
 import { ref } from 'vue';
-import { ToastContainer, useToast, type Color } from '@herdrate/vue';
 
 defineOptions({ name: 'ToastDemo' });
 

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 import { Radio } from '@herdrate/vue';
+import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
 export const radioMeta: ComponentMeta = {
   component: Radio,

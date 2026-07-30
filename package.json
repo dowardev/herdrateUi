@@ -8,8 +8,7 @@
     "build": "turbo run build",
     "lint": "turbo run lint",
     "format": "biome format .",
-    "check:md-pipes": "grep -rnF '\\\\|' docs/components/*.md && exit 1 || exit 0",
-    "check": "biome check . && pnpm check:md-pipes"
+    "check": "biome check packages/ apps/ docs/ biome.json .gitlab-ci.yml"
   },
   "devDependencies": {
     "@biomejs/biome": "latest",

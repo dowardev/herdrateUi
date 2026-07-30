@@ -52,9 +52,9 @@
 </template>
 
 <script setup>
-import { CodeBlock, usePrettierFormatter } from '@herdrate/vue'
+import { CodeBlock, usePrettierFormatter } from '@herdrate/vue';
 
-const formatter = usePrettierFormatter()
+const formatter = usePrettierFormatter();
 
 const snippets = {
   messyJs: `const express = require('express')
@@ -123,7 +123,7 @@ input CreateUserInput{name:String!,email:String!}
 type Mutation {
     createUser(input: CreateUserInput!): User!
 }`,
-}
+};
 </script>
 
 <style>

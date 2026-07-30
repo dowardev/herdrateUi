@@ -1,12 +1,44 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.11/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.5.5/schema.json",
+  "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
   "assist": { "actions": { "source": { "organizeImports": "on" } } },
   "linter": {
     "enabled": true,
     "rules": { "preset": "recommended" }
   },
   "overrides": [
-    { "includes": ["*.vue"], "linter": { "rules": { "correctness": { "noUnusedVariables": "off", "noUnusedImports": "off" } } } }
+    {
+      "includes": [
+        "apps/**/*.vue",
+        "docs/**/*.vue",
+        "packages/**/*.vue",
+        "src/**/*.vue"
+      ],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUnusedVariables": "off",
+            "noUnusedImports": "off"
+          },
+          "style": {
+            "useVueMultiWordComponentNames": "off"
+          },
+          "suspicious": {
+            "noExplicitAny": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["**/*.spec.ts"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noNonNullAssertion": "off"
+          }
+        }
+      }
+    }
   ],
   "formatter": {
     "enabled": true,

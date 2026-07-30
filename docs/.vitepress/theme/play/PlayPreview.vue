@@ -130,7 +130,7 @@ const snippet = computed(() => {
     for (const slot of namedSlotMetas.value) {
       const txt = (props.slots[slot.name] || '').trim();
       const scoped = slot.scopedProps && slot.scopedProps.length > 0;
-      const sigla = scoped ? `="{ ${slot.scopedProps!.join(', ')} }"` : '';
+      const sigla = scoped ? `="{ ${slot.scopedProps?.join(', ')} }"` : '';
       lines.push(`    <template #${slot.name}${sigla}>`);
       if (txt) lines.push(`      ${txt}`);
       else lines.push(`      <!-- contenido de #${slot.name} -->`);
