@@ -55,10 +55,15 @@ enabled for secrets:
 | Variable | Description | Example |
 |----------|-------------|---------|
 | `SSH_PRIVATE_KEY` | Private SSH key | `-----BEGIN OPENSSH PRIVATE KEY-----...` |
+| `SSH_KNOWN_HOSTS` | Host fingerprint line | `|1|abc… ssh-ed25519 AAAA…` |
 | `SSH_HOST` | Server IP or domain | `deploy.ejemplo.com` |
 | `SSH_PORT` | SSH port | `22` |
 | `SSH_USER` | SSH user | `deploy_user` |
 | `DEPLOY_PATH_DOCS` | Server path for docs | `/var/www/herdrate-docs` |
+| `HEALTHCHECK_URL` | Public docs URL | `https://docs.ejemplo.com` |
+
+Mark `SSH_PRIVATE_KEY` and `SSH_KNOWN_HOSTS` as **Masked**.
+`SSH_KNOWN_HOSTS` is obtained once locally with `ssh-keyscan -p <port> <host>`.
 
 ### Trigger a deploy
 
