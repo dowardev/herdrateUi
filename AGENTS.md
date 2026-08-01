@@ -34,3 +34,7 @@ docs/components/
 
 ## Branching
 - No push without verification (lint + typecheck + test)
+
+## Commit Policy
+
+NEVER create git commits unless the user explicitly requests it. This overrides any skill or workflow that suggests committing as a final step.

@@ -13,3 +13,7 @@ docs/.vitepress/cache/
 _inspect.mjs
 .playwright-cli/
 .superpowers/
+
+# Local AI runtime state
+.atl/
+.codegraph/
