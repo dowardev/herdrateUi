@@ -10,7 +10,7 @@ repositorio lo implementa con las adaptaciones de su stack.
 
 | Decisión | Valor | Justificación |
 |----------|-------|---------------|
-| Disparo | Tag semver con prereleases | `^v\d+\.\d+\.\d+(-(alpha\|beta\|rc)\.\d+)?$` — coherencia entre proyectos |
+| Disparo | Tag semver con prereleases + `dryrun` para validación | `^v\d+\.\d+\.\d+(-(alpha\|beta\|rc\|dryrun)\.\d+)?$` — coherencia entre proyectos |
 | `SSH_KNOWN_HOSTS` | CI var *masked* con el fingerprint | Sustituye a `ssh-keyscan` (MITM) |
 | `SSH_PRIVATE_KEY` | CI var *masked* | Nunca en el repo, nunca en logs |
 | `APP_KEY` (Laravel) | CI var *masked* *protected* | Elimina el hardcode del yml |
@@ -48,10 +48,10 @@ cache:
 
 # ---------- Templates reutilizables (jobs ocultos) ----------
 
-# Dispara solo en tags vX.Y.Z con prerelease opcional (-alpha.N | -beta.N | -rc.N)
+# Dispara solo en tags vX.Y.Z con prerelease opcional (-alpha.N | -beta.N | -rc.N | -dryrun.N)
 .tag_semver:
   rules:
-    - if: '$CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+(-(alpha|beta|rc)\.\d+)?$/'
+    - if: '$CI_COMMIT_TAG =~ /^v\d+\.\d+\.\d+(-(alpha|beta|rc|dryrun)\.\d+)?$/'
 
 # SSH con known_hosts explícito (NO ssh-keyscan)
 .ssh_setup:

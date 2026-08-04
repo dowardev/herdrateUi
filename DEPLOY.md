@@ -78,6 +78,22 @@ git push origin v0.2.0
 
 View the pipeline at: **GitLab → CI/CD → Pipelines**
 
+### Validation deploys (dryrun)
+
+To exercise the pipeline end-to-end against the real server without polluting
+release history, push a tag with the `-dryrun.N` suffix:
+
+```bash
+git tag -a v0.0.0-dryrun.1 -m "dryrun: validate CI changes against server"
+git push origin v0.0.0-dryrun.1
+# ... watch pipeline, verify behaviour ...
+git tag -d v0.0.0-dryrun.1
+git push origin :refs/tags/v0.0.0-dryrun.1
+```
+
+The pipeline accepts `vX.Y.Z`, `vX.Y.Z-alpha.N`, `vX.Y.Z-beta.N`,
+`vX.Y.Z-rc.N`, and `vX.Y.Z-dryrun.N`. Anything else is ignored.
+
 ### Pipeline stages explained
 
 | Stage | Job | Command | Description |
