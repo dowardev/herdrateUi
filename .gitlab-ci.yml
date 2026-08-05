@@ -5,7 +5,6 @@ stages:
   - test
   - build
   - deploy
-  - post-deploy
   - rollback
 
 cache:
@@ -72,18 +71,6 @@ deploy_docs:
     - tar czvf dist.tar.gz -C docs/.vitepress/dist .
     - scp -P "$SSH_PORT" dist.tar.gz "$SSH_USER@$SSH_HOST:$DEPLOY_PATH_DOCS"
     - ssh -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" "cd $DEPLOY_PATH_DOCS && tar xzvf dist.tar.gz && rm dist.tar.gz"
-
-post-deploy:
-  stage: post-deploy
-  image: alpine
-  extends:
-    - .tag_only
-  needs:
-    - deploy_docs
-  before_script:
-    - apk add --no-cache wget
-  script:
-    - wget -q -S --spider "$HEALTHCHECK_URL"
 
 rollback:
   stage: rollback
