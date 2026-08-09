@@ -60,7 +60,6 @@ enabled for secrets:
 | `SSH_PORT` | SSH port | `22` |
 | `SSH_USER` | SSH user | `deploy_user` |
 | `DEPLOY_PATH_DOCS` | Server path for docs | `/var/www/herdrate-docs` |
-| `HEALTHCHECK_URL` | Public docs URL | `https://docs.ejemplo.com` |
 
 Mark `SSH_PRIVATE_KEY` and `SSH_KNOWN_HOSTS` as **Masked**.
 `SSH_KNOWN_HOSTS` is obtained once locally with `ssh-keyscan -p <port> <host>`.

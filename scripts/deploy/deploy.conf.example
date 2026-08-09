@@ -1,0 +1,23 @@
+# deploy.conf.example — ui-lib
+# Configuración del proyecto para deploy.sh
+# ESTE ARCHIVO SE COMMITEA — Config de build, paths, excludes, comandos
+# Copia a scripts/deploy.conf si necesitas overrides locales (gitignored)
+
+# ============================================================
+# Project Type
+# ============================================================
+PROJECT_TYPE="docs"
+
+# ============================================================
+# Build & Artifact
+# ============================================================
+BUILD_CMD="pnpm build"
+TEST_CMD="pnpm test"
+ARTIFACT_SOURCE="docs/.vitepress/dist"
+ARTIFACT_NAME="dist.tar.gz"
+
+# ============================================================
+# Version Check (optional)
+# ============================================================
+# VERSION_CHECK_PKG="@dowardev/herdrate-vue"
+# VERSION_CHECK_FILE="packages/vue/package.json"
