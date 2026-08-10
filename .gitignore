@@ -11,6 +11,9 @@ docs/superpowers
 package-lock.json
 docs/.vitepress/cache/
 _inspect.mjs
+findings.md
+progress.md
+task_plan.md
 .playwright-cli/
 .superpowers/
 
