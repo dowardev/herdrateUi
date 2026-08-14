@@ -2,7 +2,7 @@
 
 <template>
   <div
-    :class="['code-block', `color-${color}`]"
+    :class="['code-block', `color-${color}`, { 'code-block-border-none': !border }]"
     :style="scrollStyle"
   >
     <div class="code-block-header">
@@ -11,7 +11,7 @@
         {{ copied ? 'copied' : 'copy' }}
       </button>
     </div>
-    <pre><code class="code-block-content"><slot v-if="$slots.default" /><span v-else v-html="renderedHtml" /></code></pre>
+    <pre class="code-block-scroll"><code class="code-block-content"><slot v-if="$slots.default" /><span v-else v-html="renderedHtml" /></code></pre>
   </div>
 </template>
 
@@ -27,6 +27,7 @@ const props = withDefaults(
     code?: string;
     language?: string;
     color?: Color;
+    border?: boolean;
     showLines?: boolean;
     maxHeight?: string;
     formatter?: Formatter;
@@ -35,6 +36,7 @@ const props = withDefaults(
     code: '',
     language: '',
     color: DEFAULT_COLOR,
+    border: true,
     showLines: true,
     maxHeight: 'none',
   },
@@ -151,6 +153,7 @@ function handleCopy() {
 .code-block pre {
   margin: 0;
   padding: 8px;
+  overflow-x: auto;
 }
 
 .code-block code {
@@ -159,6 +162,10 @@ function handleCopy() {
 
 .code-block-content {
   white-space: pre;
+}
+
+.code-block-border-none {
+  border: none;
 }
 
 .code-block.color-primary { border-color: var(--color-primary); }

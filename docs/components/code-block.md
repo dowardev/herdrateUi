@@ -4,7 +4,7 @@ import { codeBlockMeta } from './meta/code-block'
 
 # CodeBlock
 
-A terminal-style code block with syntax-friendly display, line numbers, and a copy button.
+A terminal-style code block with syntax-friendly display, line numbers, a copy button, and horizontal scroll for long lines.
 
 <PlayHost :meta="codeBlockMeta" />
 
@@ -54,6 +54,18 @@ Border accent color of the code block.
 <CodeBlock code="const x = 1;" language="ts" color="primary" />
 <CodeBlock code="const x = 1;" language="ts" color="success" />
 <CodeBlock code="const x = 1;" language="ts" color="danger" />
+```
+
+### border
+
+Toggle the outer border. Defaults to `true`.
+
+<CodeBlock code="const x = 1;" language="ts" border />
+<CodeBlock code="const x = 1;" language="ts" :border="false" />
+
+```vue
+<CodeBlock code="const x = 1;" language="ts" border />
+<CodeBlock code="const x = 1;" language="ts" :border="false" />
 ```
 
 ### showLines
@@ -140,6 +152,7 @@ El composable detecta automáticamente los plugins instalados. Si un parser no e
 | `code` | `string` | `''` | Source code to display |
 | `language` | `string` | `''` | Language label shown as tag |
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `DEFAULT_COLOR` | Border accent color |
+| `border` | `boolean` | `true` | Show the outer border |
 | `showLines` | `boolean` | `true` | Show line numbers |
 | `maxHeight` | `string` | `'none'` | Max height before scroll |
 | `formatter` | `(code: string, lang: string) => Promise\<string\> \| string` | — | Optional formatter function |

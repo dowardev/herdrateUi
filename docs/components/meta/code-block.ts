@@ -28,6 +28,13 @@ export const codeBlockMeta: ComponentMeta = {
       default: 'primary',
     },
     {
+      name: 'border',
+      type: 'boolean',
+      label: 'Borde',
+      description: 'Muestra el borde exterior del bloque',
+      default: true,
+    },
+    {
       name: 'showLines',
       type: 'boolean',
       label: 'Mostrar líneas',

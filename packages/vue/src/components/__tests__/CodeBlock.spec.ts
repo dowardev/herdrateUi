@@ -52,6 +52,27 @@ describe('CodeBlock', () => {
     expect(wrapper.classes()).toContain('color-success');
   });
 
+  it('renders with border by default', () => {
+    const wrapper = mount(CodeBlock, {
+      props: { code: sampleCode },
+    });
+    expect(wrapper.classes()).not.toContain('code-block-border-none');
+  });
+
+  it('removes border when border=false', () => {
+    const wrapper = mount(CodeBlock, {
+      props: { code: sampleCode, border: false },
+    });
+    expect(wrapper.classes()).toContain('code-block-border-none');
+  });
+
+  it('enables horizontal scroll on the code area', () => {
+    const wrapper = mount(CodeBlock, {
+      props: { code: sampleCode },
+    });
+    expect(wrapper.find('pre').classes()).toContain('code-block-scroll');
+  });
+
   it('calls sync formatter before highlight', () => {
     const formatter = vi.fn((code: string) => code.toUpperCase());
     const wrapper = mount(CodeBlock, {
