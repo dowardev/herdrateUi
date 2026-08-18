@@ -28,7 +28,7 @@
         >
           <div class="cheatsheet-item-header">
             <span class="cheatsheet-item-label">{{ prop.label || prop.name }}</span>
-            <span v-if="prop.required" class="req-dot" title="Requerido" />
+            <span v-if="prop.required" class="req-dot" :title="t('required')" />
             <span class="cheatsheet-chevron">{{ expanded[prop.name] ? '▾' : '▸' }}</span>
           </div>
           <div v-if="expanded[prop.name]" class="cheatsheet-item-body">
@@ -98,13 +98,16 @@
     </div>
   </aside>
   <aside v-else class="cheatsheet cheatsheet-empty">
-    <p class="cheatsheet-empty-text">Selecciona un componente para ver su documentación</p>
+    <p class="cheatsheet-empty-text">{{ t('empty') }}</p>
   </aside>
 </template>
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import type { ComponentMeta, SlotMeta } from './PropControls.vue';
+import { useDocsI18n } from './useDocsI18n';
+
+const { t } = useDocsI18n();
 
 const props = defineProps<{
   meta: ComponentMeta | null;
@@ -128,7 +131,7 @@ const eventMetas = computed(() => props.meta?.events || []);
 const tabs = computed(() => [
   { key: 'props' as const, label: 'Props', count: propMetas.value.length },
   { key: 'slots' as const, label: 'Slots', count: slotMetas.value.length },
-  { key: 'events' as const, label: 'Eventos', count: eventMetas.value.length },
+  { key: 'events' as const, label: t('eventsTab'), count: eventMetas.value.length },
 ]);
 
 function toggle(key: string) {

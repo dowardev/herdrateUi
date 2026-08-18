@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 import { mount } from '@vue/test-utils';
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import PropControlArray from '../controls/PropControlArray.vue';
 import PropControlColor from '../controls/PropControlColor.vue';
 import PropControlInput from '../controls/PropControlInput.vue';
@@ -9,6 +9,13 @@ import PropControlSegmented from '../controls/PropControlSegmented.vue';
 import PropControlSlot from '../controls/PropControlSlot.vue';
 import PropControlToggle from '../controls/PropControlToggle.vue';
 import PropControls from '../PropControls.vue';
+
+// Shared vitepress mock: mutable localeIndex (REQ-7).
+const { localeIndex } = vi.hoisted(() => ({ localeIndex: { value: 'root' } }));
+
+vi.mock('vitepress', () => ({
+  useData: () => ({ localeIndex }),
+}));
 
 const meta = {
   props: [
@@ -63,6 +70,10 @@ const globalComponents = {
 };
 
 describe('PropControls', () => {
+  beforeEach(() => {
+    localeIndex.value = 'root';
+  });
+
   it('renders toggle for boolean prop', () => {
     const wrapper = mount(PropControls, {
       props: { modelValue: { divider: false }, slots: {}, meta },
@@ -162,5 +173,63 @@ describe('PropControls', () => {
       global: globalComponents,
     });
     expect(wrapper.findComponent(PropControlArray).exists()).toBe(true);
+  });
+
+  it('localizes the events section header (EN root / ES)', () => {
+    const metaWithEvents = {
+      ...meta,
+      events: [{ name: 'click', description: 'Fired on click' }],
+    };
+
+    const en = mount(PropControls, {
+      props: { modelValue: {}, slots: {}, meta: metaWithEvents },
+      global: globalComponents,
+    });
+    expect(en.find('.events-section .section-title').text()).toContain(
+      'Events',
+    );
+
+    localeIndex.value = 'es';
+    const es = mount(PropControls, {
+      props: { modelValue: {}, slots: {}, meta: metaWithEvents },
+      global: globalComponents,
+    });
+    expect(es.find('.events-section .section-title').text()).toContain(
+      'Eventos',
+    );
+  });
+
+  it('localizes array row controls (EN root / ES)', () => {
+    const metaWithArray = {
+      ...meta,
+      props: [
+        ...meta.props,
+        {
+          name: 'items',
+          type: 'array' as const,
+          label: 'Items',
+          arrayShape: [{ key: 'label' }, { key: 'value' }],
+          default: [],
+        },
+      ],
+    };
+    const modelValue = { items: [{ label: 'a', value: 'b' }] };
+
+    const en = mount(PropControls, {
+      props: { modelValue, slots: {}, meta: metaWithArray },
+      global: globalComponents,
+    });
+    const enArray = en.findComponent(PropControlArray);
+    expect(enArray.find('.row-btn').attributes('title')).toBe('Remove row');
+    expect(enArray.text()).toContain('Add row');
+
+    localeIndex.value = 'es';
+    const es = mount(PropControls, {
+      props: { modelValue, slots: {}, meta: metaWithArray },
+      global: globalComponents,
+    });
+    const esArray = es.findComponent(PropControlArray);
+    expect(esArray.find('.row-btn').attributes('title')).toBe('Eliminar fila');
+    expect(esArray.text()).toContain('Agregar fila');
   });
 });

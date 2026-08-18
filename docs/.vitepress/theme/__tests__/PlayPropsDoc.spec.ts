@@ -2,9 +2,17 @@
 
 import { Panel } from '@dowardev/herdrate-vue';
 import { mount } from '@vue/test-utils';
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { markRaw } from 'vue';
+import CheatsheetPanel from '../CheatsheetPanel.vue';
 import PlayPropsDoc from '../play/PlayPropsDoc.vue';
+
+// Shared vitepress mock: mutable localeIndex (REQ-7).
+const { localeIndex } = vi.hoisted(() => ({ localeIndex: { value: 'root' } }));
+
+vi.mock('vitepress', () => ({
+  useData: () => ({ localeIndex }),
+}));
 
 const meta = {
   component: markRaw(Panel),
@@ -15,6 +23,7 @@ const meta = {
       label: 'Divider',
       default: false,
       description: 'Show vertical divider',
+      required: true,
     },
     {
       name: 'color',
@@ -28,6 +37,10 @@ const meta = {
 };
 
 describe('PlayPropsDoc', () => {
+  beforeEach(() => {
+    localeIndex.value = 'root';
+  });
+
   it('renders component name header', () => {
     const wrapper = mount(PlayPropsDoc, {
       props: { meta, name: 'Panel' },
@@ -52,5 +65,27 @@ describe('PlayPropsDoc', () => {
       .find((b) => b.text().includes('Slots'));
     await slotTab!.trigger('click');
     expect(wrapper.text()).toContain('#default');
+  });
+
+  it('localizes the events tab and required marker (EN root / ES)', () => {
+    const en = mount(PlayPropsDoc, { props: { meta, name: 'Panel' } });
+    expect(en.text()).toContain('Events');
+    expect(en.find('.req-dot').attributes('title')).toBe('Required');
+
+    localeIndex.value = 'es';
+    const es = mount(PlayPropsDoc, { props: { meta, name: 'Panel' } });
+    expect(es.text()).toContain('Eventos');
+    expect(es.find('.req-dot').attributes('title')).toBe('Requerido');
+  });
+
+  it('localizes the empty state when no component is selected', () => {
+    const en = mount(CheatsheetPanel, { props: { meta: null } });
+    expect(en.text()).toContain('Select a component…');
+
+    localeIndex.value = 'es';
+    const es = mount(CheatsheetPanel, { props: { meta: null } });
+    expect(es.text()).toContain(
+      'Selecciona un componente para ver su documentación',
+    );
   });
 });

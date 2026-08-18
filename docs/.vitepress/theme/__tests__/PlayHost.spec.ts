@@ -2,9 +2,16 @@
 
 import { Panel } from '@dowardev/herdrate-vue';
 import { mount, shallowMount } from '@vue/test-utils';
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { markRaw } from 'vue';
 import PlayHost from '../PlayHost.vue';
+
+// Shared vitepress mock: mutable localeIndex (REQ-7).
+const { localeIndex } = vi.hoisted(() => ({ localeIndex: { value: 'root' } }));
+
+vi.mock('vitepress', () => ({
+  useData: () => ({ localeIndex }),
+}));
 
 const meta = {
   component: markRaw(Panel),
@@ -22,6 +29,10 @@ const meta = {
 };
 
 describe('PlayHost', () => {
+  beforeEach(() => {
+    localeIndex.value = 'root';
+  });
+
   it('renders root element always visible', () => {
     const wrapper = shallowMount(PlayHost, { props: { meta } });
     expect(wrapper.find('.play-host').exists()).toBe(true);
@@ -70,5 +81,47 @@ describe('PlayHost', () => {
     expect(document.body.getAttribute('data-play-mode')).toBe('on');
     wrapper.unmount();
     expect(document.body.hasAttribute('data-play-mode')).toBe(false);
+  });
+
+  it('localizes the default slot example content (EN root / ES)', async () => {
+    const en = mount(PlayHost, { props: { meta }, attachTo: document.body });
+    await en.find('.play-toggle-btn').trigger('click');
+    const enModal = document.body.querySelector('.play-modal');
+    expect(enModal).toBeTruthy();
+    expect(enModal!.textContent).toContain('Example content');
+    en.unmount();
+
+    localeIndex.value = 'es';
+    const es = mount(PlayHost, { props: { meta }, attachTo: document.body });
+    await es.find('.play-toggle-btn').trigger('click');
+    const esModal = document.body.querySelector('.play-modal');
+    expect(esModal).toBeTruthy();
+    expect(esModal!.textContent).toContain('Contenido de ejemplo');
+    es.unmount();
+  });
+
+  it('localizes the first named slot default content (EN root / ES)', async () => {
+    const noDefaultMeta = { ...meta, slots: ['header', 'footer'] };
+
+    const en = mount(PlayHost, {
+      props: { meta: noDefaultMeta },
+      attachTo: document.body,
+    });
+    await en.find('.play-toggle-btn').trigger('click');
+    expect(document.body.querySelector('.play-modal')!.textContent).toContain(
+      'Content',
+    );
+    en.unmount();
+
+    localeIndex.value = 'es';
+    const es = mount(PlayHost, {
+      props: { meta: noDefaultMeta },
+      attachTo: document.body,
+    });
+    await es.find('.play-toggle-btn').trigger('click');
+    expect(document.body.querySelector('.play-modal')!.textContent).toContain(
+      'Contenido',
+    );
+    es.unmount();
   });
 });

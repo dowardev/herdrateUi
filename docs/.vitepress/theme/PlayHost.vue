@@ -35,6 +35,9 @@ import PlayControls from './play/PlayControls.vue';
 import PlayHeader from './play/PlayHeader.vue';
 import PlayPreview from './play/PlayPreview.vue';
 import PlayPropsDoc from './play/PlayPropsDoc.vue';
+import { useDocsI18n } from './useDocsI18n';
+
+const { t } = useDocsI18n();
 
 const props = defineProps<{
   meta: { component?: any; props?: any[]; slots?: any[]; events?: any[] };
@@ -44,7 +47,7 @@ const mode = ref<'closed' | 'open'>('closed');
 
 const componentName = computed(() => {
   const c = props.meta?.component;
-  return (c?.__name || c?.name || 'Componente') as string;
+  return (c?.__name || c?.name || t('componentFallback')) as string;
 });
 
 const propDefaults = computed(() => {
@@ -65,8 +68,8 @@ function initSlotDefaults(): Record<string, string> {
     typeof s === 'string' ? s : s.name,
   );
   const hasDefault = names.includes('default');
-  if (hasDefault) map.default = 'Contenido de ejemplo';
-  else if (names.length && !map.default) map[names[0]] = 'Contenido';
+  if (hasDefault) map.default = t('defaultSlotExample');
+  else if (names.length && !map.default) map[names[0]] = t('defaultSlotContent');
   for (const n of names) {
     if (n !== 'default' && !map[n]) map[n] = '';
   }

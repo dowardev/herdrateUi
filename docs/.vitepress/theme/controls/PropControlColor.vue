@@ -12,7 +12,7 @@
       @change="emitUpdate"
       class="prop-select"
     >
-      <option value="">Sin color</option>
+      <option value="">{{ t('noColor') }}</option>
       <option v-for="color in CATPPUCCIN_COLORS" :key="color" :value="color">
         {{ color }}
       </option>
@@ -22,6 +22,9 @@
 
 <script setup lang="ts">
 import { useId } from 'vue';
+import { useDocsI18n } from '../useDocsI18n';
+
+const { t } = useDocsI18n();
 
 const CATPPUCCIN_COLORS = [
   'primary',

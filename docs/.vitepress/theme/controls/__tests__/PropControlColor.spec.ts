@@ -1,8 +1,15 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 import { mount } from '@vue/test-utils';
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import PropControlColor from '../PropControlColor.vue';
+
+// Shared vitepress mock: mutable localeIndex (REQ-7).
+const { localeIndex } = vi.hoisted(() => ({ localeIndex: { value: 'root' } }));
+
+vi.mock('vitepress', () => ({
+  useData: () => ({ localeIndex }),
+}));
 
 const CATPPUCCIN_COLORS = [
   'primary',
@@ -27,6 +34,10 @@ const CATPPUCCIN_COLORS = [
 ];
 
 describe('PropControlColor', () => {
+  beforeEach(() => {
+    localeIndex.value = 'root';
+  });
+
   it('renders select with Catppuccin colors', () => {
     const wrapper = mount(PropControlColor, {
       props: { modelValue: 'primary', label: 'Color' },
@@ -41,7 +52,19 @@ describe('PropControlColor', () => {
       props: { modelValue: '', label: 'Color' },
     });
     expect(wrapper.find('option[value=""]').exists()).toBe(true);
-    expect(wrapper.find('option[value=""]').text()).toBe('Sin color');
+  });
+
+  it('localizes the empty option label (EN root / ES)', () => {
+    const en = mount(PropControlColor, {
+      props: { modelValue: '', label: 'Color' },
+    });
+    expect(en.find('option[value=""]').text()).toBe('No color');
+
+    localeIndex.value = 'es';
+    const es = mount(PropControlColor, {
+      props: { modelValue: '', label: 'Color' },
+    });
+    expect(es.find('option[value=""]').text()).toBe('Sin color');
   });
 
   it('emits update:modelValue on change', async () => {

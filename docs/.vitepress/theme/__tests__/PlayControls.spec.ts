@@ -2,9 +2,16 @@
 
 import { Panel } from '@dowardev/herdrate-vue';
 import { mount } from '@vue/test-utils';
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { markRaw } from 'vue';
 import PlayControls from '../play/PlayControls.vue';
+
+// Shared vitepress mock: mutable localeIndex (REQ-7).
+const { localeIndex } = vi.hoisted(() => ({ localeIndex: { value: 'root' } }));
+
+vi.mock('vitepress', () => ({
+  useData: () => ({ localeIndex }),
+}));
 
 const meta = {
   component: markRaw(Panel),
@@ -22,6 +29,10 @@ const meta = {
 };
 
 describe('PlayControls', () => {
+  beforeEach(() => {
+    localeIndex.value = 'root';
+  });
+
   it('renders without parent width assumptions', () => {
     const wrapper = mount(PlayControls, {
       props: { meta, modelValue: {}, slots: {} },
@@ -47,5 +58,18 @@ describe('PlayControls', () => {
     expect(wrapper.find('.play-controls').exists()).toBe(true);
     wrapper.unmount();
     document.body.removeChild(div);
+  });
+
+  it('localizes the controls header (EN root / ES)', () => {
+    const en = mount(PlayControls, {
+      props: { meta, modelValue: {}, slots: {} },
+    });
+    expect(en.find('.play-controls-header').text()).toContain('Controls');
+
+    localeIndex.value = 'es';
+    const es = mount(PlayControls, {
+      props: { meta, modelValue: {}, slots: {} },
+    });
+    expect(es.find('.play-controls-header').text()).toContain('Controles');
   });
 });

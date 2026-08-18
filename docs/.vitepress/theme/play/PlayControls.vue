@@ -2,7 +2,7 @@
 
 <template>
   <aside class="play-controls">
-    <div class="play-controls-header">Controles</div>
+    <div class="play-controls-header">{{ t('controls') }}</div>
     <div class="play-controls-body">
       <PropControls
         :model-value="modelValue"
@@ -17,6 +17,9 @@
 
 <script setup lang="ts">
 import PropControls from '../PropControls.vue';
+import { useDocsI18n } from '../useDocsI18n';
+
+const { t } = useDocsI18n();
 
 defineProps<{
   meta: any;
