@@ -13,7 +13,7 @@
   "devDependencies": {
     "@catppuccin/vitepress": "^0.1.0",
     "@dowardev/herdrate-vue": "workspace:*",
-    "vitepress": "^2.0.0-alpha.7",
+    "vitepress": "2.0.0-alpha.17",
     "vue": "^3.5.39"
   }
 }

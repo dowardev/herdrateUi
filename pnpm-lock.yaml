@@ -61,7 +61,7 @@ importers:
         specifier: workspace:*
         version: link:../packages/vue
       vitepress:
-        specifier: ^2.0.0-alpha.7
+        specifier: 2.0.0-alpha.17
         version: 2.0.0-alpha.17(postcss@8.5.16)(typescript@7.0.2)
       vue:
         specifier: ^3.5.39
