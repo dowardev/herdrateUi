@@ -4,7 +4,7 @@ import { tableMeta } from './meta/table'
 
 # Table
 
-Tabla con estilo terminal, filas alternadas y modo compacto.
+Terminal-style table, alternating rows and compact mode.
 
 <PlayHost :meta="tableMeta" />
 
@@ -40,10 +40,10 @@ Tabla con estilo terminal, filas alternadas y modo compacto.
 
 ### striped
 
-Alterna el fondo de las filas para mejorar la legibilidad.
+Alternates the row background to improve readability.
 
 <Table
-  :columns="[{ key: 'n', label: '#' }, { key: 'val', label: 'Valor' }]"
+  :columns="[{ key: 'n', label: '#' }, { key: 'val', label: 'Value' }]"
   :rows="[
     { n: '1', val: 'Alpha' },
     { n: '2', val: 'Beta' },
@@ -54,7 +54,7 @@ Alterna el fondo de las filas para mejorar la legibilidad.
 />
 
 <Table
-  :columns="[{ key: 'n', label: '#' }, { key: 'val', label: 'Valor' }]"
+  :columns="[{ key: 'n', label: '#' }, { key: 'val', label: 'Value' }]"
   :rows="[
     { n: '1', val: 'Alpha' },
     { n: '2', val: 'Beta' },
@@ -65,7 +65,7 @@ Alterna el fondo de las filas para mejorar la legibilidad.
 
 ```vue
 <Table
-  :columns="[{ key: 'n', label: '#' }, { key: 'val', label: 'Valor' }]"
+  :columns="[{ key: 'n', label: '#' }, { key: 'val', label: 'Value' }]"
   :rows="[
     { n: '1', val: 'Alpha' },
     { n: '2', val: 'Beta' },
@@ -75,7 +75,7 @@ Alterna el fondo de las filas para mejorar la legibilidad.
   striped
 />
 <Table
-  :columns="[{ key: 'n', label: '#' }, { key: 'val', label: 'Valor' }]"
+  :columns="[{ key: 'n', label: '#' }, { key: 'val', label: 'Value' }]"
   :rows="[
     { n: '1', val: 'Alpha' },
     { n: '2', val: 'Beta' },
@@ -87,7 +87,7 @@ Alterna el fondo de las filas para mejorar la legibilidad.
 
 ### compact
 
-Reduce el padding de las celdas para una vista más densa.
+Reduces the cell padding for a denser view.
 
 <Table
   :columns="[{ key: 'name', label: 'Name' }, { key: 'role', label: 'Role' }]"
@@ -126,7 +126,7 @@ Reduce el padding de las celdas para una vista más densa.
 
 ### color
 
-Color del borde del header.
+Color of the header border.
 
 <Table
   :columns="[{ key: 'name', label: 'Name' }, { key: 'role', label: 'Role' }]"
@@ -165,14 +165,14 @@ Color del borde del header.
 />
 ```
 
-## Tipos
+## Types
 
 ### Column
 
-| Campo | Tipo | Requerido | Descripción |
+| Field | Type | Required | Description |
 |---|---|---|---|
-| `key` | `string` | ✅ | Identificador de la columna |
-| `label` | `string` | ✅ | Encabezado visible |
+| `key` | `string` | ✅ | Column identifier |
+| `label` | `string` | ✅ | Visible header |
 
 ## API
 
@@ -184,6 +184,6 @@ Color del borde del header.
 | `striped` | `boolean` | `false` | Alternating row background |
 | `compact` | `boolean` | `false` | Reduced cell padding |
 
-## Tokens usados
+## Tokens used
 
 `--font-mono`, `--bg`, `--border`, `--text`, `--color-*`

@@ -4,7 +4,7 @@ import { boxMeta } from './meta/box'
 
 # Box
 
-Wrapper decorativo con variantes de borde estilo terminal.
+Decorative wrapper with terminal-style border variants.
 
 <PlayHost :meta="boxMeta" />
 
@@ -12,19 +12,19 @@ Wrapper decorativo con variantes de borde estilo terminal.
 
 <Box borderStyle="single">
   <template #header>Header</template>
-  Contenido del box.
+  Box content.
   <template #footer>Footer</template>
 </Box>
 
 ```vue
 <Box borderStyle="single">
   <template #header>Header</template>
-  Contenido.
+  Content.
   <template #footer>Footer</template>
 </Box>
 
 <Box borderStyle="double" color="success">
-  Borde doble.
+  Double border.
 </Box>
 ```
 
@@ -32,7 +32,7 @@ Wrapper decorativo con variantes de borde estilo terminal.
 
 ### borderStyle
 
-Variante de borde del box.
+Box border variant.
 
 <Box borderStyle="single">Single</Box>
 <Box borderStyle="double">Double</Box>
@@ -50,7 +50,7 @@ Variante de borde del box.
 
 ### color
 
-Color semántico del borde.
+Semantic border color.
 
 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
   <Box borderStyle="single" color="primary">Primary</Box>
@@ -68,37 +68,37 @@ Color semántico del borde.
 
 ### header
 
-Contenido opcional en la cabecera del box.
+Optional content in the box header.
 
 ```vue
 <Box>
-  <template #header>Título</template>
+  <template #header>Title</template>
   ...
 </Box>
 ```
 
 ### default
 
-Contenido principal del box.
+Main content of the box.
 
 ### footer
 
-Contenido opcional en el pie del box.
+Optional content in the box footer.
 
 ```vue
 <Box>
   ...
-  <template #footer>Pie</template>
+  <template #footer>Footer</template>
 </Box>
 ```
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `borderStyle` | `'single' \\| 'double' \\| 'rounded' \\| 'ascii' \\| 'none'` | `'single'` | Variante de borde |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico |
+| `borderStyle` | `'single' \\| 'double' \\| 'rounded' \\| 'ascii' \\| 'none'` | `'single'` | Border variant |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Semantic color |
 
-## Tokens usados
+## Tokens used
 
 `--color-{name}`, `--bg-panel`, `--border`, `--font-mono`, `--bg-*`

@@ -4,7 +4,7 @@ import { spinnerMeta } from './meta/spinner'
 
 # Spinner
 
-Spinner animado estilo terminal con frames braille cíclicos.
+Animated terminal-style spinner with cyclic braille frames.
 
 <PlayHost :meta="spinnerMeta" />
 
@@ -28,7 +28,7 @@ Spinner animado estilo terminal con frames braille cíclicos.
 
 ### color
 
-Color semántico del spinner.
+Semantic color of the spinner.
 
 <div style="display: flex; gap: 1rem; align-items: center;">
   <Spinner color="primary" />
@@ -46,7 +46,7 @@ Color semántico del spinner.
 
 ### size
 
-Tamaño del spinner.
+Size of the spinner.
 
 <div style="display: flex; gap: 1rem; align-items: center;">
   <Spinner size="sm" />
@@ -62,7 +62,7 @@ Tamaño del spinner.
 
 ### speed
 
-Velocidad de la animación.
+Speed of the animation.
 
 <div style="display: flex; gap: 1rem; align-items: center;">
   <Spinner speed="slow" />
@@ -78,12 +78,12 @@ Velocidad de la animación.
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico |
-| `size` | `'sm' \\| 'md' \\| 'lg'` | `'md'` | Tamaño del spinner |
-| `speed` | `'slow' \\| 'normal' \\| 'fast'` | `'normal'` | Velocidad de la animación |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Semantic color |
+| `size` | `'sm' \\| 'md' \\| 'lg'` | `'md'` | Size of the spinner |
+| `speed` | `'slow' \\| 'normal' \\| 'fast'` | `'normal'` | Speed of the animation |
 
-## Tokens usados
+## Tokens used
 
 `--color-{name}`, `--font-mono`

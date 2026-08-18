@@ -4,7 +4,7 @@ import { badgeMeta } from './meta/badge'
 
 # Badge
 
-Etiqueta ligera para mostrar información resaltada con variantes de color.
+Lightweight label for displaying highlighted information with color variants.
 
 <PlayHost :meta="badgeMeta" />
 
@@ -30,7 +30,7 @@ Etiqueta ligera para mostrar información resaltada con variantes de color.
 
 ### color
 
-Define el color semántico del badge.
+Defines the semantic color of the badge.
 
 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
   <Badge color="primary">Primary</Badge>
@@ -46,10 +46,10 @@ Define el color semántico del badge.
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico del badge |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Semantic badge color |
 
-## Tokens usados
+## Tokens used
 
 `--color-{name}`, `--bg`, `--text`, `--border`, `--font-mono`

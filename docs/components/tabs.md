@@ -5,7 +5,7 @@ import TabsDemo from './TabsDemo.vue'
 
 # Tabs
 
-Pestañas con scroll horizontal, flechas de navegación y cierre individual.
+Tabs with horizontal scroll, navigation arrows and individual closing.
 
 <PlayHost :meta="tabsMeta" />
 
@@ -14,48 +14,48 @@ Pestañas con scroll horizontal, flechas de navegación y cierre individual.
 <Tabs defaultValue="tab1">
   <TabsList>
     <Tab value="tab1">General</Tab>
-    <Tab value="tab2">Avanzado</Tab>
+    <Tab value="tab2">Advanced</Tab>
     <Tab value="tab3">Logs</Tab>
   </TabsList>
-  <TabPanel value="tab1">Contenido de la pestaña General.</TabPanel>
-  <TabPanel value="tab2">Contenido de la pestaña Avanzado.</TabPanel>
-  <TabPanel value="tab3">Contenido de la pestaña Logs.</TabPanel>
+  <TabPanel value="tab1">Content of the General tab.</TabPanel>
+  <TabPanel value="tab2">Content of the Advanced tab.</TabPanel>
+  <TabPanel value="tab3">Content of the Logs tab.</TabPanel>
 </Tabs>
 
 ```vue
 <Tabs defaultValue="tab1">
   <TabsList>
     <Tab value="tab1">General</Tab>
-    <Tab value="tab2">Avanzado</Tab>
+    <Tab value="tab2">Advanced</Tab>
     <Tab value="tab3">Logs</Tab>
   </TabsList>
-  <TabPanel value="tab1">Contenido</TabPanel>
-  <TabPanel value="tab2">Contenido</TabPanel>
-  <TabPanel value="tab3">Contenido</TabPanel>
+  <TabPanel value="tab1">Content</TabPanel>
+  <TabPanel value="tab2">Content</TabPanel>
+  <TabPanel value="tab3">Content</TabPanel>
 </Tabs>
 ```
 
-## Demo interactiva
+## Interactive demo
 
 <ClientOnly>
   <TabsDemo />
 </ClientOnly>
 
-Agrega, quita y cierra pestañas en vivo. Esta demo monta el subsistema completo (`<Tabs>` + `<TabsList>` + `<Tab>` + `<TabPanel>`) — patrón faithful para provide/inject.
+Add, remove and close tabs live. This demo mounts the full subsystem (`<Tabs>` + `<TabsList>` + `<Tab>` + `<TabPanel>`) — faithful pattern for provide/inject.
 
 ## Props
 
 ### defaultValue (Tabs)
 
-Valor inicial de la pestaña activa.
+Initial value of the active tab.
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `defaultValue` | `string` | `'0'` | Valor inicial de la pestaña activa |
+| `defaultValue` | `string` | `'0'` | Initial value of the active tab |
 
 ### value (Tab)
 
-Identificador único de la pestaña. Requerido.
+Unique identifier of the tab. Required.
 
 ```vue
 <Tab value="tab1">General</Tab>
@@ -63,7 +63,7 @@ Identificador único de la pestaña. Requerido.
 
 ### closable (Tab)
 
-Muestra botón de cierre (×) en la pestaña.
+Shows a close button (×) on the tab.
 
 <Tabs defaultValue="a">
   <TabsList>
@@ -91,29 +91,29 @@ Muestra botón de cierre (×) en la pestaña.
 
 ### color (Tab)
 
-Color del indicador de pestaña activa.
+Color of the active tab indicator.
 
 <Tabs defaultValue="a">
   <TabsList>
-    <Tab value="a" color="success">Éxito</Tab>
-    <Tab value="b" color="danger">Peligro</Tab>
-    <Tab value="c" color="warning">Advertencia</Tab>
+    <Tab value="a" color="success">Success</Tab>
+    <Tab value="b" color="danger">Danger</Tab>
+    <Tab value="c" color="warning">Warning</Tab>
   </TabsList>
-  <TabPanel value="a">Contenido éxito</TabPanel>
-  <TabPanel value="b">Contenido peligro</TabPanel>
-  <TabPanel value="c">Contenido advertencia</TabPanel>
+  <TabPanel value="a">Success content</TabPanel>
+  <TabPanel value="b">Danger content</TabPanel>
+  <TabPanel value="c">Warning content</TabPanel>
 </Tabs>
 
 ```vue
 <Tabs defaultValue="a">
   <TabsList>
-    <Tab value="a" color="success">Éxito</Tab>
-    <Tab value="b" color="danger">Peligro</Tab>
-    <Tab value="c" color="warning">Advertencia</Tab>
+    <Tab value="a" color="success">Success</Tab>
+    <Tab value="b" color="danger">Danger</Tab>
+    <Tab value="c" color="warning">Warning</Tab>
   </TabsList>
-  <TabPanel value="a">Contenido éxito</TabPanel>
-  <TabPanel value="b">Contenido peligro</TabPanel>
-  <TabPanel value="c">Contenido advertencia</TabPanel>
+  <TabPanel value="a">Success content</TabPanel>
+  <TabPanel value="b">Danger content</TabPanel>
+  <TabPanel value="c">Warning content</TabPanel>
 </Tabs>
 ```
 
@@ -121,10 +121,10 @@ Color del indicador de pestaña activa.
 
 ### TabPanel
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `value` | `string` | — | Valor que vincula al `Tab` |
+| `value` | `string` | — | Value that links to the `Tab` |
 
-## Tokens usados
+## Tokens used
 
 `--font-mono`, `--bg`, `--border`, `--text`, `--color-*`

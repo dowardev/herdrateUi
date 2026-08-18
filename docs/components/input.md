@@ -3,12 +3,12 @@ import { ref } from 'vue'
 import { inputMeta } from './meta/input'
 const text = ref('')
 const password = ref('')
-const multiline = ref('Línea 1\nLínea 2\nLínea 3')
+const multiline = ref('Line 1\nLine 2\nLine 3')
 </script>
 
 # Input
 
-Input de texto estilo terminal, con soporte para textarea, password y readonly.
+Terminal-style text input, with support for textarea, password and readonly.
 
 <PlayHost :meta="inputMeta" />
 
@@ -16,16 +16,16 @@ Input de texto estilo terminal, con soporte para textarea, password y readonly.
 
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.75rem;">
-    <div><label style="font-size:0.8rem;color:var(--text-muted)">Texto</label><Input v-model="text" placeholder="Escribe algo..." /></div>
-    <div><label style="font-size:0.8rem;color:var(--text-muted)">Password</label><Input v-model="password" type="password" placeholder="Contraseña" /></div>
+    <div><label style="font-size:0.8rem;color:var(--text-muted)">Text</label><Input v-model="text" placeholder="Type something..." /></div>
+    <div><label style="font-size:0.8rem;color:var(--text-muted)">Password</label><Input v-model="password" type="password" placeholder="Password" /></div>
     <div><label style="font-size:0.8rem;color:var(--text-muted)">Multiline</label><Input v-model="multiline" :rows="3" /></div>
   </div>
 </ClientOnly>
 
 ```vue
-<Input v-model="text" placeholder="Escribe algo..." />
+<Input v-model="text" placeholder="Type something..." />
 
-<Input v-model="password" type="password" placeholder="Contraseña" />
+<Input v-model="password" type="password" placeholder="Password" />
 
 <Input v-model="multiline" :rows="3" />
 ```
@@ -34,21 +34,21 @@ Input de texto estilo terminal, con soporte para textarea, password y readonly.
 
 ### placeholder
 
-Texto temporal dentro del input mientras está vacío.
+Temporary text inside the input while it is empty.
 
 <div style="display:flex;flex-direction:column;gap:0.5rem;">
-  <Input placeholder="Escribe algo..." />
-  <Input placeholder="ej: usuario@correo.com" />
+  <Input placeholder="Type something..." />
+  <Input placeholder="e.g. user@email.com" />
 </div>
 
 ```vue
-<Input placeholder="Escribe algo..." />
-<Input placeholder="ej: usuario@correo.com" />
+<Input placeholder="Type something..." />
+<Input placeholder="e.g. user@email.com" />
 ```
 
 ### color
 
-Color de foco y borde activo del input.
+Focus and active border color of the input.
 
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
@@ -66,20 +66,20 @@ Color de foco y borde activo del input.
 
 ### disabled
 
-Deshabilita la interacción con el input.
+Disables interaction with the input.
 
-<Input placeholder="No puedes escribir aquí" disabled />
+<Input placeholder="You can't type here" disabled />
 
 ```vue
-<Input placeholder="Deshabilitado" disabled />
+<Input placeholder="Disabled" disabled />
 ```
 
 ### readonly
 
-Input de solo lectura, visible pero no editable.
+Read-only input, visible but not editable.
 
 <ClientOnly>
-  <Input v-model="text" placeholder="Solo lectura" readonly />
+  <Input v-model="text" placeholder="Read only" readonly />
 </ClientOnly>
 
 ```vue
@@ -88,23 +88,23 @@ Input de solo lectura, visible pero no editable.
 
 ### type
 
-Tipo de input: `text`, `password` o `number`.
+Input type: `text`, `password` or `number`.
 
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
-    <Input v-model="text" type="text" placeholder="Texto" />
-    <Input v-model="password" type="password" placeholder="Contraseña" />
+    <Input v-model="text" type="text" placeholder="Text" />
+    <Input v-model="password" type="password" placeholder="Password" />
   </div>
 </ClientOnly>
 
 ```vue
-<Input v-model="text" type="text" placeholder="Texto" />
-<Input v-model="password" type="password" placeholder="Contraseña" />
+<Input v-model="text" type="text" placeholder="Text" />
+<Input v-model="password" type="password" placeholder="Password" />
 ```
 
 ### rows
 
-Número de filas. Cuando es mayor a 1 se comporta como textarea.
+Number of rows. When greater than 1 it behaves as a textarea.
 
 <ClientOnly>
   <Input v-model="multiline" :rows="4" placeholder="Textarea..." />
@@ -116,22 +116,22 @@ Número de filas. Cuando es mayor a 1 se comporta como textarea.
 
 ## Events
 
-| Evento | Payload | Descripción |
+| Event | Payload | Description |
 |---|---|---|
-| `update:modelValue` | `string` | Se emite al escribir en el input |
+| `update:modelValue` | `string` | Emitted when typing in the input |
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `modelValue` | `string` | `''` | Valor del input (v-model) |
-| `placeholder` | `string` | `''` | Texto placeholder |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color de foco |
-| `disabled` | `boolean` | `false` | Deshabilitado |
-| `readonly` | `boolean` | `false` | Solo lectura |
-| `type` | `'text' \\| 'password' \\| 'number'` | `'text'` | Tipo de input |
-| `rows` | `number` | `1` | Número de filas (>1 = textarea) |
+| `modelValue` | `string` | `''` | Input value (v-model) |
+| `placeholder` | `string` | `''` | Placeholder text |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Focus color |
+| `disabled` | `boolean` | `false` | Disabled |
+| `readonly` | `boolean` | `false` | Read only |
+| `type` | `'text' \\| 'password' \\| 'number'` | `'text'` | Input type |
+| `rows` | `number` | `1` | Number of rows (>1 = textarea) |
 
-## Tokens usados
+## Tokens used
 
 `--font-mono`, `--bg`, `--border`, `--text`, `--color-*`

@@ -106,18 +106,18 @@ const formatter = usePrettierFormatter()
 
 The `formatter` receives `(code: string, language: string)` and can return a `string` or `Promise<string>`.
 
-## Auto-formateo con usePrettierFormatter
+## Auto-formatting with usePrettierFormatter
 
-`usePrettierFormatter()` retorna una función formateadora que usa Prettier para formatear código según el lenguaje.
+`usePrettierFormatter()` returns a formatting function that uses Prettier to format code according to the language.
 
-Primero instala Prettier (opcional, necesario solo si usas el formateador):
+First install Prettier (optional, only needed if you use the formatter):
 ```
 npm i -D prettier
 ```
 
-### Lenguajes soportados
+### Supported languages
 
-| Lenguaje (`language`) | Parser Prettier | Plugin requerido | Built-in |
+| Language (`language`) | Prettier parser | Required plugin | Built-in |
 |---|---|---|---|
 | `javascript` / `js` / `jsx` / `mjs` / `cjs` | `babel` | — | ✅ |
 | `typescript` / `ts` / `tsx` / `mts` / `cts` | `typescript` | — | ✅ |
@@ -138,12 +138,12 @@ npm i -D prettier
 | `csharp` / `cs` | — | `prettier-plugin-csharp` | ❌ |
 | `xml` | — | `@prettier/plugin-xml` | ❌ |
 
-Los lenguajes marcados con ❌ requieren instalar el plugin Prettier correspondiente:
+Languages marked with ❌ require installing the corresponding Prettier plugin:
 ```
 npm i -D prettier-plugin-sql prettier-plugin-java prettier-plugin-rust
 ```
 
-El composable detecta automáticamente los plugins instalados. Si un parser no está disponible, devuelve el código original sin formatear.
+The composable automatically detects installed plugins. If a parser is unavailable, it returns the original code unformatted.
 
 ## API
 
@@ -163,6 +163,6 @@ El composable detecta automáticamente los plugins instalados. Si un parser no e
 |---|---|
 | `default` | Alternative to `code` prop |
 
-## Tokens usados
+## Tokens used
 
 `--font-mono`, `--bg`, `--bg-panel`, `--border`, `--text`, `--text-muted`, `--color-*`

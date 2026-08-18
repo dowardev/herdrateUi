@@ -4,51 +4,51 @@ import { selectMeta } from './meta/select'
 const selected = ref('')
 const selectedColor = ref('')
 const options = [
-  { label: 'Opción 1', value: '1' },
-  { label: 'Opción 2', value: '2' },
-  { label: 'Opción 3', value: '3' },
+  { label: 'Option 1', value: '1' },
+  { label: 'Option 2', value: '2' },
+  { label: 'Option 3', value: '3' },
 ]
 </script>
 
 # Select
 
-Dropdown select estilo terminal.
+Terminal-style dropdown select.
 
 <PlayHost :meta="selectMeta" />
 
 ## Demo
 
 <ClientOnly>
-  <Select v-model="selected" :options="options" placeholder="Elige una opción" />
-  <p style="color:var(--text-muted);font-size:0.8rem;">Seleccionado: {{ selected || '—' }}</p>
+  <Select v-model="selected" :options="options" placeholder="Choose an option" />
+  <p style="color:var(--text-muted);font-size:0.8rem;">Selected: {{ selected || '—' }}</p>
 </ClientOnly>
 
 ```vue
-<Select v-model="selected" :options="options" placeholder="Elige una opción" />
+<Select v-model="selected" :options="options" placeholder="Choose an option" />
 ```
 
 ## Props
 
 ### placeholder
 
-Texto mostrado cuando no hay opción seleccionada.
+Text shown when no option is selected.
 
 <ClientOnly>
-  <Select v-model="selected" :options="options" placeholder="Selecciona..." />
+  <Select v-model="selected" :options="options" placeholder="Select..." />
 </ClientOnly>
 
 ```vue
-<Select v-model="selected" :options="options" placeholder="Selecciona..." />
+<Select v-model="selected" :options="options" placeholder="Select..." />
 ```
 
 ### options
 
-Array de opciones con `label` y `value`.
+Array of options with `label` and `value`.
 
 ```ts
 const options = [
-  { label: 'Opción 1', value: '1' },
-  { label: 'Opción 2', value: '2' },
+  { label: 'Option 1', value: '1' },
+  { label: 'Option 2', value: '2' },
 ]
 ```
 
@@ -58,7 +58,7 @@ const options = [
 
 ### color
 
-Color de foco al abrir el dropdown.
+Focus color when opening the dropdown.
 
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
@@ -76,9 +76,9 @@ Color de foco al abrir el dropdown.
 
 ### disabled
 
-Deshabilita la interacción.
+Disables interaction.
 
-<Select v-model="selected" :options="options" disabled placeholder="Deshabilitado" />
+<Select v-model="selected" :options="options" disabled placeholder="Disabled" />
 
 ```vue
 <Select v-model="selected" :options="options" disabled />
@@ -86,29 +86,29 @@ Deshabilita la interacción.
 
 ## Events
 
-| Evento | Payload | Descripción |
+| Event | Payload | Description |
 |---|---|---|
-| `update:modelValue` | `string` | Se emite al seleccionar una opción |
+| `update:modelValue` | `string` | Emitted when an option is selected |
 
-## Tipos
+## Types
 
 ### SelectOption
 
-| Campo | Tipo | Requerido | Descripción |
+| Field | Type | Required | Description |
 |---|---|---|---|
-| `label` | `string` | ✅ | Texto visible |
-| `value` | `string` | ✅ | Valor interno |
+| `label` | `string` | ✅ | Visible text |
+| `value` | `string` | ✅ | Internal value |
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `modelValue` | `string` | `''` | Valor seleccionado (v-model) |
-| `options` | `SelectOption[]` | `[]` | Opciones del dropdown |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color de foco |
-| `disabled` | `boolean` | `false` | Deshabilitado |
+| `modelValue` | `string` | `''` | Selected value (v-model) |
+| `options` | `SelectOption[]` | `[]` | Dropdown options |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Focus color |
+| `disabled` | `boolean` | `false` | Disabled |
 | `placeholder` | `string` | `'Select...'` | Placeholder |
 
-## Tokens usados
+## Tokens used
 
 `--font-mono`, `--bg`, `--border`, `--text`, `--color-*`

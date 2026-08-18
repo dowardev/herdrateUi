@@ -4,7 +4,7 @@ import { gutterMeta } from './meta/gutter'
 
 # Gutter
 
-Columna de números de línea con marcadores opcionales estilo terminal.
+Column of line numbers with optional terminal-style markers.
 
 <PlayHost :meta="gutterMeta" />
 
@@ -20,7 +20,7 @@ Columna de números de línea con marcadores opcionales estilo terminal.
 
 ### lines
 
-Cantidad de líneas a mostrar.
+Number of lines to display.
 
 <Gutter :lines="5" :start="1" />
 <Gutter :lines="10" :start="1" />
@@ -32,7 +32,7 @@ Cantidad de líneas a mostrar.
 
 ### start
 
-Número inicial de la numeración.
+Starting number of the numbering.
 
 <Gutter :lines="5" :start="10" />
 
@@ -42,7 +42,7 @@ Número inicial de la numeración.
 
 ### highlight
 
-Array de números de línea que reciben el marcador `>`.
+Array of line numbers that receive the `>` marker.
 
 <Gutter :lines="8" :start="1" :highlight="[2, 5, 7]" />
 
@@ -55,7 +55,7 @@ Array de números de línea que reciben el marcador `>`.
 
 ### color
 
-Color del marcador de línea resaltada.
+Color of the highlighted line marker.
 
 <Gutter :lines="5" :start="1" :highlight="[2, 4]" color="primary" />
 <Gutter :lines="5" :start="1" :highlight="[2, 4]" color="success" />
@@ -69,7 +69,7 @@ Color del marcador de línea resaltada.
 
 ### width
 
-Ancho de la columna de gutter.
+Width of the gutter column.
 
 <Gutter :lines="5" :start="1" width="4ch" />
 <Gutter :lines="5" :start="100" width="5ch" />
@@ -81,14 +81,14 @@ Ancho de la columna de gutter.
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `lines` | `number` | `1` | Cantidad de líneas |
-| `start` | `number` | `1` | Número inicial |
-| `highlight` | `number[]` | `[]` | Líneas con marcador `>` |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del marcador |
-| `width` | `string` | `'3ch'` | Ancho de la columna |
+| `lines` | `number` | `1` | Number of lines |
+| `start` | `number` | `1` | Starting number |
+| `highlight` | `number[]` | `[]` | Lines with `>` marker |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Marker color |
+| `width` | `string` | `'3ch'` | Column width |
 
-## Tokens usados
+## Tokens used
 
 `--font-mono`, `--text`, `--text-muted`, `--color-*`

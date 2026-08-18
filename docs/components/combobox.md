@@ -13,29 +13,29 @@ const frutas = [
 
 # ComboBox
 
-Input con dropdown de opciones filtrables. Soporta navegación por teclado (↑↓, Enter, Escape).
+Input with a filterable dropdown of options. Supports keyboard navigation (↑↓, Enter, Escape).
 
 <PlayHost :meta="comboBoxMeta" />
 
 ## Demo
 
 <ClientOnly>
-  <ComboBox v-model="fruta" :items="frutas" placeholder="Escribe para buscar..." />
-  <p style="color:var(--text-muted);font-size:0.8rem;">Seleccionado: {{ fruta || '—' }}</p>
+  <ComboBox v-model="fruta" :items="frutas" placeholder="Type to search..." />
+  <p style="color:var(--text-muted);font-size:0.8rem;">Selected: {{ fruta || '—' }}</p>
 </ClientOnly>
 
 ```vue
-<ComboBox v-model="fruta" :items="frutas" placeholder="Escribe para buscar..." />
+<ComboBox v-model="fruta" :items="frutas" placeholder="Type to search..." />
 ```
 
 ## Props
 
 ### modelValue
 
-Valor seleccionado (v-model).
+Selected value (v-model).
 
 <ClientOnly>
-  <ComboBox v-model="fruta" :items="frutas" placeholder="Selecciona fruta..." />
+  <ComboBox v-model="fruta" :items="frutas" placeholder="Select fruit..." />
 </ClientOnly>
 
 ```vue
@@ -44,7 +44,7 @@ Valor seleccionado (v-model).
 
 ### items
 
-Array de opciones filtrables.
+Array of filterable options.
 
 ```ts
 const items = [
@@ -59,7 +59,7 @@ const items = [
 
 ### color
 
-Color de foco y highlight del dropdown.
+Focus and highlight color of the dropdown.
 
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
@@ -77,21 +77,21 @@ Color de foco y highlight del dropdown.
 
 ### placeholder
 
-Texto dentro del input mientras está vacío.
+Text inside the input while it is empty.
 
 <ClientOnly>
-  <ComboBox v-model="fruta" :items="frutas" placeholder="Buscar fruta..." />
+  <ComboBox v-model="fruta" :items="frutas" placeholder="Search fruit..." />
 </ClientOnly>
 
 ```vue
-<ComboBox v-model="fruta" :items="frutas" placeholder="Buscar fruta..." />
+<ComboBox v-model="fruta" :items="frutas" placeholder="Search fruit..." />
 ```
 
 ### disabled
 
-Deshabilita la interacción.
+Disables interaction.
 
-<ComboBox v-model="fruta" :items="frutas" disabled placeholder="Deshabilitado" />
+<ComboBox v-model="fruta" :items="frutas" disabled placeholder="Disabled" />
 
 ```vue
 <ComboBox v-model="fruta" :items="frutas" disabled />
@@ -99,29 +99,29 @@ Deshabilita la interacción.
 
 ## Events
 
-| Evento | Payload | Descripción |
+| Event | Payload | Description |
 |---|---|---|
-| `update:modelValue` | `string` | Se emite al seleccionar un ítem |
+| `update:modelValue` | `string` | Emitted when an item is selected |
 
-## Tipos
+## Types
 
 ### ComboOption
 
-| Campo | Tipo | Requerido | Descripción |
+| Field | Type | Required | Description |
 |---|---|---|---|
-| `label` | `string` | ✅ | Texto visible |
-| `value` | `string` | ✅ | Valor interno |
+| `label` | `string` | ✅ | Visible text |
+| `value` | `string` | ✅ | Internal value |
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `items` | `ComboOption[]` | `[]` | Opciones del dropdown |
-| `modelValue` | `string` | `''` | Valor seleccionado (v-model) |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color de foco y highlight |
-| `placeholder` | `string` | `'Search...'` | Placeholder del input |
-| `disabled` | `boolean` | `false` | Deshabilitar interacción |
+| `items` | `ComboOption[]` | `[]` | Dropdown options |
+| `modelValue` | `string` | `''` | Selected value (v-model) |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Focus and highlight color |
+| `placeholder` | `string` | `'Search...'` | Input placeholder |
+| `disabled` | `boolean` | `false` | Disable interaction |
 
-## Tokens usados
+## Tokens used
 
 `--bg`, `--bg-elevated`, `--border`, `--text`, `--font-mono`, `--color-*`

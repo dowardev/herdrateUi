@@ -4,7 +4,7 @@ import { dividerMeta } from './meta/divider'
 
 # Divider
 
-Divisor horizontal o vertical con estética de terminal.
+Horizontal or vertical divider with terminal aesthetics.
 
 <PlayHost :meta="dividerMeta" />
 
@@ -12,7 +12,7 @@ Divisor horizontal o vertical con estética de terminal.
 
 <Divider orientation="horizontal" />
 
-Texto separado por divisor horizontal.
+Text separated by a horizontal divider.
 
 <Divider orientation="horizontal" />
 
@@ -25,12 +25,12 @@ Texto separado por divisor horizontal.
 
 ### orientation
 
-Dirección del divisor.
+Direction of the divider.
 
 <Divider orientation="horizontal" />
 
 <div style="display: inline-flex; align-items: center; gap: 0.5rem;">
-  Izquierda <Divider orientation="vertical" /> Derecha
+  Left <Divider orientation="vertical" /> Right
 </div>
 
 ```vue
@@ -40,10 +40,10 @@ Dirección del divisor.
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Dirección del divisor |
+| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Direction of the divider |
 
-## Tokens usados
+## Tokens used
 
 `--border`, `--font-mono`

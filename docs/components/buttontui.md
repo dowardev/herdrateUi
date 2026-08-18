@@ -4,7 +4,7 @@ import { buttonTuiMeta } from './meta/buttontui'
 
 # ButtonTui
 
-Botones con estilo terminal (TUI), minimales, diseñados para Catppuccin Mocha.
+Terminal-style (TUI) minimal buttons, designed for Catppuccin Mocha.
 
 <PlayHost :meta="buttonTuiMeta" />
 
@@ -26,23 +26,23 @@ Botones con estilo terminal (TUI), minimales, diseñados para Catppuccin Mocha.
 
 ### icon
 
-Icono o emoji opcional dentro del botón.
+Optional icon or emoji inside the button.
 
 <div style="display: flex; gap: 0.75rem;">
   <ButtonTui icon="⌨" color="primary">Key</ButtonTui>
   <ButtonTui icon="⚙" color="success">Config</ButtonTui>
-  <ButtonTui color="medium">Sin icono</ButtonTui>
+  <ButtonTui color="medium">No icon</ButtonTui>
 </div>
 
 ```vue
 <ButtonTui icon="⌨" color="primary">Key</ButtonTui>
 <ButtonTui icon="⚙" color="success">Config</ButtonTui>
-<ButtonTui color="medium">Sin icono</ButtonTui>
+<ButtonTui color="medium">No icon</ButtonTui>
 ```
 
 ### fill
 
-Modo de relleno del botón: `solid`, `outline` o `clear`.
+Button fill mode: `solid`, `outline` or `clear`.
 
 <div style="display: flex; gap: 0.75rem;">
   <ButtonTui fill="solid" color="primary">solid</ButtonTui>
@@ -58,7 +58,7 @@ Modo de relleno del botón: `solid`, `outline` o `clear`.
 
 ### color
 
-Color semántico del botón.
+Semantic color of the button.
 
 <div style="display: flex; gap: 0.75rem;">
   <ButtonTui color="primary">primary</ButtonTui>
@@ -76,16 +76,16 @@ Color semántico del botón.
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `icon` | `string` | — | Icono o emoji (opcional) |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico |
-| `fill` | `'solid' \| 'outline' \| 'clear'` | `'solid'` | Modo de relleno |
+| `icon` | `string` | — | Icon or emoji (optional) |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Semantic color |
+| `fill` | `'solid' \| 'outline' \| 'clear'` | `'solid'` | Fill mode |
 
-| Evento | Tipo | Descripción |
+| Event | Type | Description |
 |---|---|---|
-| `click` | — | Se dispara al hacer clic |
+| `click` | — | Emitted on click |
 
-## Tokens usados
+## Tokens used
 
 `--font-mono`, `--color-*`, `--fill-*`

@@ -9,7 +9,7 @@ const t3 = ref(false)
 
 # Todo
 
-Lista de tareas checkable con estilo TUI minimal. Click para alternar entre `[ ]` y `[x]`.
+Checkable task list with minimal TUI style. Click to toggle between `[ ]` and `[x]`.
 
 <PlayHost :meta="todoMeta" />
 
@@ -17,48 +17,48 @@ Lista de tareas checkable con estilo TUI minimal. Click para alternar entre `[ ]
 
 <ClientOnly>
   <div style="display: flex; flex-direction: column; gap: 0.25rem;">
-    <Todo v-model:done="t1">Rediseñar Toast para que coincida con la estética esperada</Todo>
-    <Todo v-model:done="t2">Mejorar documentación del componente</Todo>
-    <Todo v-model:done="t3">Agregar tests para todos los componentes</Todo>
+    <Todo v-model:done="t1">Redesign Toast to match the expected aesthetics</Todo>
+    <Todo v-model:done="t2">Improve component documentation</Todo>
+    <Todo v-model:done="t3">Add tests for all components</Todo>
   </div>
 </ClientOnly>
 
 ```vue
-<Todo v-model:done="t1">Rediseñar Toast para que coincida con la estética esperada</Todo>
-<Todo v-model:done="t2">Mejorar documentación del componente</Todo>
-<Todo v-model:done="t3">Agregar tests para todos los componentes</Todo>
+<Todo v-model:done="t1">Redesign Toast to match the expected aesthetics</Todo>
+<Todo v-model:done="t2">Improve component documentation</Todo>
+<Todo v-model:done="t3">Add tests for all components</Todo>
 ```
 
 ## Props
 
 ### done
 
-Estado completado del item.
+Completed state of the item.
 
 ```vue
-<Todo v-model:done="task.done">Hacer algo</Todo>
+<Todo v-model:done="task.done">Do something</Todo>
 ```
 
 ### text
 
-Texto de la tarea como prop (alternativa al slot default).
+Task text as a prop (alternative to the default slot).
 
 ```vue
-<Todo v-model:done="done" text="Hacer algo" />
+<Todo v-model:done="done" text="Do something" />
 ```
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `text` | `string` | — | Texto de la tarea (alternativa a slot) |
-| `done` | `boolean` | `false` | Estado completado |
+| `text` | `string` | — | Task text (alternative to slot) |
+| `done` | `boolean` | `false` | Completed state |
 
-| Evento | Tipo | Descripción |
+| Event | Type | Description |
 |---|---|---|
-| `update:done` | `boolean` | Toggle de estado (v-model) |
-| `toggle` | `boolean` | Versión sin prefijo `update:` |
+| `update:done` | `boolean` | State toggle (v-model) |
+| `toggle` | `boolean` | Version without the `update:` prefix |
 
-## Tokens usados
+## Tokens used
 
 `--font-mono`, `--text`, `--color-*`, `--border`

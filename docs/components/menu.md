@@ -4,7 +4,7 @@ import { menuMeta } from './meta/menu'
 
 # Menu
 
-Menú vertical estilo terminal con items, divisores, disabled y slot personalizado.
+Terminal-style vertical menu with items, dividers, disabled and custom slot.
 
 <PlayHost :meta="menuMeta" />
 
@@ -40,7 +40,7 @@ function handleSelect(index: number) {
 
 ### items
 
-Array de items del menú. Cada item soporta `label`, `icon`, `disabled` y `divider`.
+Array of menu items. Each item supports `label`, `icon`, `disabled` and `divider`.
 
 ```vue
 <Menu :items="[
@@ -54,7 +54,7 @@ Array de items del menú. Cada item soporta `label`, `icon`, `disabled` y `divid
 
 ### color
 
-Color del item activo (resaltado con `>`).
+Color of the active item (highlighted with `>`).
 
 <ClientOnly>
   <div style="display: flex; gap: 1rem;">
@@ -72,52 +72,52 @@ Color del item activo (resaltado con `>`).
 
 ### activeIndex
 
-Índice del item resaltado con el marcador `>`.
+Index of the item highlighted with the `>` marker.
 
 <ClientOnly>
   <div style="display: flex; gap: 1rem;">
-    <Menu :items="[{ label: 'Uno' }, { label: 'Dos' }, { label: 'Tres' }]" :activeIndex="1" />
-    <Menu :items="[{ label: 'Uno' }, { label: 'Dos' }, { label: 'Tres' }]" :activeIndex="2" />
+    <Menu :items="[{ label: 'One' }, { label: 'Two' }, { label: 'Three' }]" :activeIndex="1" />
+    <Menu :items="[{ label: 'One' }, { label: 'Two' }, { label: 'Three' }]" :activeIndex="2" />
   </div>
 </ClientOnly>
 
 ```vue
-<Menu :items="[{ label: 'Uno' }, { label: 'Dos' }, { label: 'Tres' }]" :activeIndex="1" />
-<Menu :items="[{ label: 'Uno' }, { label: 'Dos' }, { label: 'Tres' }]" :activeIndex="2" />
+<Menu :items="[{ label: 'One' }, { label: 'Two' }, { label: 'Three' }]" :activeIndex="1" />
+<Menu :items="[{ label: 'One' }, { label: 'Two' }, { label: 'Three' }]" :activeIndex="2" />
 ```
 
-## Tipos
+## Types
 
 ### MenuItem
 
-| Campo | Tipo | Requerido | Descripción |
+| Field | Type | Required | Description |
 |---|---|---|---|
-| `label` | `string` | ✅ | Texto del item |
-| `icon` | `string` | ❌ | Icono o emoji opcional |
-| `disabled` | `boolean` | ❌ | Item deshabilitado |
-| `divider` | `boolean` | ❌ | Línea separadora |
+| `label` | `string` | ✅ | Item text |
+| `icon` | `string` | ❌ | Optional icon or emoji |
+| `disabled` | `boolean` | ❌ | Disabled item |
+| `divider` | `boolean` | ❌ | Separator line |
 
 ## API
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `items` | `MenuItem[]` | `[]` | Items del menú |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del item activo |
-| `activeIndex` | `number` | `-1` | Índice del item resaltado |
+| `items` | `MenuItem[]` | `[]` | Menu items |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Active item color |
+| `activeIndex` | `number` | `-1` | Highlighted item index |
 
 ## Events
 
-| Evento | Payload | Descripción |
+| Event | Payload | Description |
 |---|---|---|
-| `select` | `index: number` | Se emite al hacer clic en un item |
+| `select` | `index: number` | Emitted when clicking an item |
 
 ## Slots
 
-| Slot | Props | Descripción |
+| Slot | Props | Description |
 |---|---|---|
-| `default` | — | Alternativa a `items` |
-| `item` | `{ item, index, active }` | Render personalizado por item |
+| `default` | — | Alternative to `items` |
+| `item` | `{ item, index, active }` | Custom per-item rendering |
 
-## Tokens usados
+## Tokens used
 
 `--font-mono`, `--bg`, `--bg-panel`, `--text`, `--border`, `--color-*`

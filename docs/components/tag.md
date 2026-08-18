@@ -4,7 +4,7 @@ import { tagMeta } from './meta/tag'
 
 # Tag
 
-Etiqueta inline para labels y tokens.
+Inline label for labels and tokens.
 
 <PlayHost :meta="tagMeta" />
 
@@ -32,7 +32,7 @@ Etiqueta inline para labels y tokens.
 
 ### color
 
-Color semántico del tag.
+Semantic color of the tag.
 
 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
   <Tag color="primary">primary</Tag>
@@ -50,7 +50,7 @@ Color semántico del tag.
 
 ### variant
 
-Estilo de relleno del tag.
+Fill style of the tag.
 
 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
   <Tag color="primary">solid</Tag>
@@ -64,7 +64,7 @@ Estilo de relleno del tag.
 
 ### removable
 
-Muestra botón de cierre (×) para eliminar el tag.
+Shows a close button (×) to remove the tag.
 
 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
   <Tag color="primary" removable>remove me</Tag>
@@ -96,6 +96,6 @@ Muestra botón de cierre (×) para eliminar el tag.
 |---|---|
 | `default` | Tag content |
 
-## Tokens usados
+## Tokens used
 
 `--font-mono`, `--bg`, `--border`, `--text`, `--color-*`

@@ -4,33 +4,33 @@ import { buttonTuiGroupMeta } from './meta/buttontui-group'
 
 # ButtonTuiGroup
 
-Agrupa botones TUI horizontalmente con gap y estilos consistentes.
+Groups TUI buttons horizontally with a gap and consistent styles.
 
 <PlayHost :meta="buttonTuiGroupMeta" />
 
 ## Demo
 
 <ButtonTuiGroup fill="solid" color="secondary" :buttons="[
-  { icon: '↖', label: 'Izquierda', onClick: () => {} },
-  { icon: '⬆', label: 'Centro', onClick: () => {} },
-  { icon: '↗', label: 'Derecha', onClick: () => {} },
+  { icon: '↖', label: 'Left', onClick: () => {} },
+  { icon: '⬆', label: 'Center', onClick: () => {} },
+  { icon: '↗', label: 'Right', onClick: () => {} },
 ]" />
 
 <ButtonTuiGroup fill="outline" color="primary" :gap="0.8" :buttons="[
-  { icon: '✕', label: 'Cancelar', onClick: () => {} },
-  { icon: '✓', label: 'Aceptar', onClick: () => {} },
+  { icon: '✕', label: 'Cancel', onClick: () => {} },
+  { icon: '✓', label: 'Accept', onClick: () => {} },
 ]" />
 
 ```vue
 <ButtonTuiGroup fill="solid" color="secondary" :buttons="[
-  { icon: '↖', label: 'Izquierda', onClick: () => {} },
-  { icon: '⬆', label: 'Centro', onClick: () => {} },
-  { icon: '↗', label: 'Derecha', onClick: () => {} },
+  { icon: '↖', label: 'Left', onClick: () => {} },
+  { icon: '⬆', label: 'Center', onClick: () => {} },
+  { icon: '↗', label: 'Right', onClick: () => {} },
 ]" />
 
 <ButtonTuiGroup fill="outline" color="primary" :gap="0.8" :buttons="[
-  { icon: '✕', label: 'Cancelar', onClick: () => {} },
-  { icon: '✓', label: 'Aceptar', onClick: () => {} },
+  { icon: '✕', label: 'Cancel', onClick: () => {} },
+  { icon: '✓', label: 'Accept', onClick: () => {} },
 ]" />
 ```
 
@@ -38,18 +38,18 @@ Agrupa botones TUI horizontalmente con gap y estilos consistentes.
 
 ### buttons
 
-Array de botones con `label`, `icon`, `onClick`, `color` y `fill` opcionales.
+Array of buttons with optional `label`, `icon`, `onClick`, `color` and `fill`.
 
 ```vue
 <ButtonTuiGroup :buttons="[
-  { icon: '↖', label: 'Izq', onClick: () => {} },
-  { icon: '↗', label: 'Der', onClick: () => {} },
+  { icon: '↖', label: 'L', onClick: () => {} },
+  { icon: '↗', label: 'R', onClick: () => {} },
 ]" />
 ```
 
 ### fill
 
-Fill global para todos los botones. Puede sobrescribirse por ítem.
+Global fill for all buttons. Can be overridden per item.
 
 <ButtonTuiGroup fill="solid" color="primary" :buttons="[
   { label: 'A', onClick: () => {} },
@@ -74,7 +74,7 @@ Fill global para todos los botones. Puede sobrescribirse por ítem.
 
 ### color
 
-Color global para todos los botones. Puede sobrescribirse por ítem.
+Global color for all buttons. Can be overridden per item.
 
 <ButtonTuiGroup fill="solid" color="success" :buttons="[
   { label: 'A', onClick: () => {} },
@@ -90,7 +90,7 @@ Color global para todos los botones. Puede sobrescribirse por ítem.
 
 ### gap
 
-Espaciado entre botones (en rem).
+Spacing between buttons (in rem).
 
 <ButtonTuiGroup fill="solid" color="primary" :gap="0.2" :buttons="[
   { label: 'A', onClick: () => {} },
@@ -117,37 +117,37 @@ Espaciado entre botones (en rem).
 ]" />
 ```
 
-## Tipos
+## Types
 
 ### ButtonTuiItem
 
-| Campo | Tipo | Requerido | Descripción |
+| Field | Type | Required | Description |
 |---|---|---|---|
-| `label` | `string` | ✅ | Texto del botón |
-| `icon` | `string` | ❌ | Icono o emoji |
-| `onClick` | `() => void` | ✅ | Callback al hacer clic |
-| `fill` | `Fill` | ❌ | Estilo de relleno |
-| `color` | `Color` | ❌ | Color semántico |
+| `label` | `string` | ✅ | Button text |
+| `icon` | `string` | ❌ | Icon or emoji |
+| `onClick` | `() => void` | ✅ | Click callback |
+| `fill` | `Fill` | ❌ | Fill style |
+| `color` | `Color` | ❌ | Semantic color |
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `buttons` | `ButtonTuiItem[]` | — | Array de botones |
-| `fill` | `'solid' \| 'outline' \| 'clear'` | `'solid'` | Fill global (override por ítem) |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color global (override por ítem) |
-| `gap` | `number` | `0.4` | Espaciado entre botones (rem) |
+| `buttons` | `ButtonTuiItem[]` | — | Array of buttons |
+| `fill` | `'solid' \| 'outline' \| 'clear'` | `'solid'` | Global fill (override per item) |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Global color (override per item) |
+| `gap` | `number` | `0.4` | Spacing between buttons (rem) |
 
 ### ButtonTuiItem
 
-| Prop | Tipo | Descripción |
+| Prop | Type | Description |
 |---|---|---|
-| `label` | `string` | Texto del botón |
-| `icon` | `string` | Icono opcional |
-| `onClick` | `() => void` | Callback al hacer clic |
-| `fill` | `'solid' \| 'outline' \| 'clear'` | Fill individual (opcional) |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | Color individual (opcional) |
+| `label` | `string` | Button text |
+| `icon` | `string` | Optional icon |
+| `onClick` | `() => void` | Click callback |
+| `fill` | `'solid' \| 'outline' \| 'clear'` | Individual fill (optional) |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | Individual color (optional) |
 
-## Tokens usados
+## Tokens used
 
 `--font-mono`, `--color-*`, `--fill-*`
