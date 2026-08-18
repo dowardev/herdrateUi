@@ -8,7 +8,7 @@ const checked3 = ref(false)
 
 # Checkbox
 
-Checkbox estilo terminal con `[x]` / `[ ]`.
+Terminal-style checkbox with `[x]` / `[ ]`.
 
 <PlayHost :meta="checkboxMeta" />
 
@@ -16,36 +16,36 @@ Checkbox estilo terminal con `[x]` / `[ ]`.
 
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
-    <Checkbox v-model="checked" label="Opción A" />
-    <Checkbox v-model="checked2" color="success" label="Opción B (success)" />
-    <Checkbox v-model="checked3" disabled label="Deshabilitado" />
+    <Checkbox v-model="checked" label="Option A" />
+    <Checkbox v-model="checked2" color="success" label="Option B (success)" />
+    <Checkbox v-model="checked3" disabled label="Disabled" />
   </div>
   <p style="color:var(--text-muted);font-size:0.8rem;">checked: {{ checked }}, checked2: {{ checked2 }}</p>
 </ClientOnly>
 
 ```vue
-<Checkbox v-model="checked" label="Opción A" />
-<Checkbox v-model="checked" color="success" label="Opción B" />
-<Checkbox v-model="checked" disabled label="Deshabilitado" />
+<Checkbox v-model="checked" label="Option A" />
+<Checkbox v-model="checked" color="success" label="Option B" />
+<Checkbox v-model="checked" disabled label="Disabled" />
 ```
 
 ## Props
 
 ### label
 
-Texto que se muestra junto al checkbox.
+Text displayed next to the checkbox.
 
 <ClientOnly>
-  <Checkbox v-model="checked" label="Aceptar términos" />
+  <Checkbox v-model="checked" label="Accept terms" />
 </ClientOnly>
 
 ```vue
-<Checkbox v-model="checked" label="Aceptar términos" />
+<Checkbox v-model="checked" label="Accept terms" />
 ```
 
 ### color
 
-Color del bracket `[ ]` cuando está marcado.
+Color of the `[ ]` bracket when checked.
 
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
@@ -65,31 +65,31 @@ Color del bracket `[ ]` cuando está marcado.
 
 ### disabled
 
-Deshabilita la interacción.
+Disables interaction.
 
 <ClientOnly>
-  <Checkbox v-model="checked3" disabled label="No editable" />
+  <Checkbox v-model="checked3" disabled label="Not editable" />
 </ClientOnly>
 
 ```vue
-<Checkbox v-model="checked" disabled label="Deshabilitado" />
+<Checkbox v-model="checked" disabled label="Disabled" />
 ```
 
 ## Events
 
-| Evento | Payload | Descripción |
+| Event | Payload | Description |
 |---|---|---|
-| `update:modelValue` | `boolean` | Se emite al hacer toggle |
+| `update:modelValue` | `boolean` | Emitted on toggle |
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `modelValue` | `boolean` | `false` | Estado del checkbox (v-model) |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del bracket |
-| `disabled` | `boolean` | `false` | Deshabilitar interacción |
-| `label` | `string` | `''` | Texto junto al checkbox |
+| `modelValue` | `boolean` | `false` | Checkbox state (v-model) |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Bracket color |
+| `disabled` | `boolean` | `false` | Disable interaction |
+| `label` | `string` | `''` | Text next to the checkbox |
 
-## Tokens usados
+## Tokens used
 
 `--font-mono`, `--color-*`

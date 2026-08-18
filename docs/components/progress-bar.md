@@ -4,7 +4,7 @@ import { progressBarMeta } from './meta/progress-bar'
 
 # ProgressBar
 
-Barra de progreso estilo terminal con porcentaje.
+Terminal-style progress bar with percentage.
 
 <PlayHost :meta="progressBarMeta" />
 
@@ -29,7 +29,7 @@ Barra de progreso estilo terminal con porcentaje.
 
 ### value
 
-Progreso numérico de 0 a 100.
+Numeric progress from 0 to 100.
 
 <ProgressBar value="25" />
 <ProgressBar value="50" />
@@ -43,7 +43,7 @@ Progreso numérico de 0 a 100.
 
 ### color
 
-Color semántico de la barra de progreso.
+Semantic color of the progress bar.
 
 <ProgressBar value="60" color="primary" />
 <ProgressBar value="60" color="success" />
@@ -59,7 +59,7 @@ Color semántico de la barra de progreso.
 
 ### size
 
-Alto de la barra de progreso.
+Height of the progress bar.
 
 <ProgressBar value="50" size="sm" />
 <ProgressBar value="50" size="md" />
@@ -73,7 +73,7 @@ Alto de la barra de progreso.
 
 ### showLabel
 
-Muestra u oculta el porcentaje al final de la barra.
+Shows or hides the percentage at the end of the bar.
 
 <ProgressBar value="75" showLabel />
 
@@ -86,13 +86,13 @@ Muestra u oculta el porcentaje al final de la barra.
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `value` | `number` | `0` | Progreso (0-100) |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico |
-| `showLabel` | `boolean` | `true` | Muestra el % al final |
-| `size` | `'sm' \\| 'md' \\| 'lg'` | `'md'` | Alto de la barra |
+| `value` | `number` | `0` | Progress (0-100) |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Semantic color |
+| `showLabel` | `boolean` | `true` | Show the % at the end |
+| `size` | `'sm' \\| 'md' \\| 'lg'` | `'md'` | Height of the bar |
 
-## Tokens usados
+## Tokens used
 
 `--color-{name}`, `--bg-elevated`, `--border`, `--font-mono`

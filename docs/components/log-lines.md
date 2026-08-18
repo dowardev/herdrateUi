@@ -4,7 +4,7 @@ import { logLinesMeta } from './meta/log-lines'
 
 # LogLines
 
-Visor de logs con coloreado por nivel estilo terminal.
+Log viewer with per-level coloring, terminal style.
 
 <PlayHost :meta="logLinesMeta" />
 
@@ -36,7 +36,7 @@ Visor de logs con coloreado por nivel estilo terminal.
 
 ### lines
 
-Array de líneas de log con `text` y `level` opcional.
+Array of log lines with `text` and optional `level`.
 
 ```vue
 <LogLines :lines="[
@@ -47,7 +47,7 @@ Array de líneas de log con `text` y `level` opcional.
 
 ### max
 
-Máximo de líneas visibles (las más recientes). Excedentes se descartan.
+Maximum number of visible lines (the most recent). Extra lines are discarded.
 
 <LogLines
   :lines="[
@@ -75,7 +75,7 @@ Máximo de líneas visibles (las más recientes). Excedentes se descartan.
 
 ### timestamps
 
-Agrega prefijo `[HH:MM:SS]` a cada línea.
+Adds a `[HH:MM:SS]` prefix to each line.
 
 <LogLines
   :lines="[
@@ -97,7 +97,7 @@ Agrega prefijo `[HH:MM:SS]` a cada línea.
 
 ### color
 
-Color del componente (se aplica al borde).
+Color of the component (applied to the border).
 
 <LogLines
   :lines="[
@@ -117,24 +117,24 @@ Color del componente (se aplica al borde).
 />
 ```
 
-## Tipos
+## Types
 
 ### LogLine
 
-| Campo | Tipo | Requerido | Descripción |
+| Field | Type | Required | Description |
 |---|---|---|---|
-| `text` | `string` | ✅ | Contenido de la línea |
-| `level` | `'info' \\| 'warn' \\| 'error' \\| 'debug'` | ❌ | Nivel de log |
+| `text` | `string` | ✅ | Line content |
+| `level` | `'info' \\| 'warn' \\| 'error' \\| 'debug'` | ❌ | Log level |
 
 ## API
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `lines` | `Array<{text, level?}>` | `[]` | Líneas de log |
-| `max` | `number` | `100` | Máximo de líneas visibles |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del componente |
-| `timestamps` | `boolean` | `false` | Prefijo `[HH:MM:SS]` |
+| `lines` | `Array<{text, level?}>` | `[]` | Log lines |
+| `max` | `number` | `100` | Maximum visible lines |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Component color |
+| `timestamps` | `boolean` | `false` | `[HH:MM:SS]` prefix |
 
-## Tokens usados
+## Tokens used
 
 `--font-mono`, `--text`, `--text-muted`, `--color-*`

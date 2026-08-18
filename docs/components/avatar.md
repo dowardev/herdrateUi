@@ -4,7 +4,7 @@ import { avatarMeta } from './meta/avatar'
 
 # Avatar
 
-Avatar circular con inicial y color determinístico basado en hash FNV-1a del nombre.
+Circular avatar with initial and deterministic color based on the FNV-1a hash of the name.
 
 <PlayHost :meta="avatarMeta" />
 
@@ -30,7 +30,7 @@ Avatar circular con inicial y color determinístico basado en hash FNV-1a del no
 
 ### name
 
-Nombre para extraer la inicial y generar el color por hash.
+Name used to extract the initial and generate the color from the hash.
 
 ```vue
 <Avatar name="Alice" />
@@ -39,7 +39,7 @@ Nombre para extraer la inicial y generar el color por hash.
 
 ### size
 
-Tamaño del avatar.
+Avatar size.
 
 <div style="display: flex; gap: 0.75rem; align-items: center;">
   <Avatar name="A" size="sm" />
@@ -55,11 +55,11 @@ Tamaño del avatar.
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `name` | `string` | — | Nombre para extraer inicial y hash |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Tamaño del avatar |
+| `name` | `string` | — | Name used to extract initial and hash |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Avatar size |
 
-## Tokens usados
+## Tokens used
 
 `--font-mono`, `--color-*`

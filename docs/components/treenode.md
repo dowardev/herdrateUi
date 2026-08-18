@@ -4,7 +4,7 @@ import { treeNodeMeta } from './meta/treenode'
 
 # TreeNode
 
-Nodo de árbol colapsable con expansión instantánea.
+Collapsible tree node with instant expansion.
 
 <PlayHost :meta="treeNodeMeta" />
 
@@ -42,7 +42,7 @@ Nodo de árbol colapsable con expansión instantánea.
 
 ### label
 
-Contenido del nodo (texto o HTML).
+Content of the node (text or HTML).
 
 <TreeNode>
   <template #label>src</template>
@@ -60,7 +60,7 @@ Contenido del nodo (texto o HTML).
 
 ### default
 
-Nodos hijos anidados (otros `TreeNode`).
+Nested child nodes (other `TreeNode`).
 
 ```vue
 <TreeNode>
@@ -72,11 +72,11 @@ Nodos hijos anidados (otros `TreeNode`).
 
 ## API
 
-| Slot | Descripción |
+| Slot | Description |
 |---|---|
-| `label` | Contenido del nodo (texto o HTML) |
-| `default` | Nodos hijos (otros `TreeNode`) |
+| `label` | Node content (text or HTML) |
+| `default` | Child nodes (other `TreeNode`) |
 
-## Tokens usados
+## Tokens used
 
 `--font-mono`, `--text`, `--border`, `--color-*`

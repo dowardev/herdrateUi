@@ -4,7 +4,7 @@ import { snakeloaderMeta } from './meta/snakeloader'
 
 # SnakeLoader
 
-Animación de carga inspirada en terminales con caracteres bloque Unicode.
+Loading animation inspired by terminals with Unicode block characters.
 
 <PlayHost :meta="snakeloaderMeta" />
 
@@ -17,7 +17,7 @@ Animación de carga inspirada en terminales con caracteres bloque Unicode.
 <SnakeLoader speed="1.4s" color="success">Success</SnakeLoader>
 
 ```vue
-<SnakeLoader speed="1.2s" color="primary">Cargando...</SnakeLoader>
+<SnakeLoader speed="1.2s" color="primary">Loading...</SnakeLoader>
 <SnakeLoader speed="0.8s" color="secondary">Secondary</SnakeLoader>
 <SnakeLoader speed="1.4s" color="success">Success</SnakeLoader>
 ```
@@ -26,7 +26,7 @@ Animación de carga inspirada en terminales con caracteres bloque Unicode.
 
 ### speed
 
-Duración de la animación CSS.
+Duration of the CSS animation.
 
 <SnakeLoader speed="0.6s" color="primary">Fast</SnakeLoader>
 <SnakeLoader speed="1.2s" color="primary">Normal</SnakeLoader>
@@ -40,7 +40,7 @@ Duración de la animación CSS.
 
 ### color
 
-Color del bloque animado.
+Color of the animated block.
 
 <div style="display: flex; gap: 1rem; align-items: center;">
   <SnakeLoader color="primary">P</SnakeLoader>
@@ -58,17 +58,17 @@ Color del bloque animado.
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `speed` | `string` | `'1.2s'` | Duración de la animación CSS |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del bloque animado |
+| `speed` | `string` | `'1.2s'` | Duration of the CSS animation |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color of the animated block |
 
 ## Slot
 
-| Slot | Descripción |
+| Slot | Description |
 |---|---|
-| `default` | Texto a mostrar junto a la animación |
+| `default` | Text to show next to the animation |
 
-## Tokens usados
+## Tokens used
 
 `--color-{name}`, `--text-muted`, `--bg-panel`, `--border`, `--font-mono`, `--loader-speed`

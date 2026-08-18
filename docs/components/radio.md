@@ -4,15 +4,15 @@ import { radioMeta } from './meta/radio'
 const selected = ref('a')
 const selectedColor = ref('a')
 const options = [
-  { value: 'a', label: 'Opción A' },
-  { value: 'b', label: 'Opción B' },
-  { value: 'c', label: 'Opción C' },
+  { value: 'a', label: 'Option A' },
+  { value: 'b', label: 'Option B' },
+  { value: 'c', label: 'Option C' },
 ]
 </script>
 
 # Radio
 
-Radio button estilo terminal con `(o)` / `( )`.
+Terminal-style radio button with `(o)` / `( )`.
 
 <PlayHost :meta="radioMeta" />
 
@@ -22,7 +22,7 @@ Radio button estilo terminal con `(o)` / `( )`.
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
     <Radio v-for="opt in options" :key="opt.value" v-model="selected" :value="opt.value" :label="opt.label" />
   </div>
-  <p style="color:var(--text-muted);font-size:0.8rem;">Seleccionado: {{ selected }}</p>
+  <p style="color:var(--text-muted);font-size:0.8rem;">Selected: {{ selected }}</p>
 </ClientOnly>
 
 ```vue
@@ -34,19 +34,19 @@ Radio button estilo terminal con `(o)` / `( )`.
 
 ### label
 
-Texto que se muestra junto al radio button.
+Text shown next to the radio button.
 
 <ClientOnly>
-  <Radio v-model="selected" value="x" label="Opción extra" />
+  <Radio v-model="selected" value="x" label="Extra option" />
 </ClientOnly>
 
 ```vue
-<Radio v-model="selected" value="x" label="Opción extra" />
+<Radio v-model="selected" value="x" label="Extra option" />
 ```
 
 ### color
 
-Color del indicador `(o)` cuando está seleccionado.
+Color of the `(o)` indicator when selected.
 
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
@@ -60,30 +60,30 @@ Color del indicador `(o)` cuando está seleccionado.
 
 ### disabled
 
-Deshabilita la interacción.
+Disables interaction.
 
-<Radio value="x" label="No disponible" disabled />
+<Radio value="x" label="Not available" disabled />
 
 ```vue
-<Radio value="x" label="No disponible" disabled />
+<Radio value="x" label="Not available" disabled />
 ```
 
 ## Events
 
-| Evento | Payload | Descripción |
+| Event | Payload | Description |
 |---|---|---|
-| `update:modelValue` | `string` | Se emite al seleccionar |
+| `update:modelValue` | `string` | Emitted on selection |
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `modelValue` | `string` | `''` | Valor seleccionado (v-model) |
-| `value` | `string` | — | Valor de este radio (requerido) |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del indicador |
-| `disabled` | `boolean` | `false` | Deshabilitar |
-| `label` | `string` | `''` | Texto junto al radio |
+| `modelValue` | `string` | `''` | Selected value (v-model) |
+| `value` | `string` | — | Value of this radio (required) |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Indicator color |
+| `disabled` | `boolean` | `false` | Disabled |
+| `label` | `string` | `''` | Text next to the radio |
 
-## Tokens usados
+## Tokens used
 
 `--font-mono`, `--color-*`

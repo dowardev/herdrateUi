@@ -4,7 +4,7 @@ import { commandPaletteMeta } from './meta/commandpalette'
 
 # CommandPalette
 
-Paleta de comandos con overlay, filtrado en vivo y navegación por teclado, ideal para atajos tipo Cmd+K / Ctrl+K.
+Command palette with overlay, live filtering and keyboard navigation, ideal for Cmd+K / Ctrl+K shortcuts.
 
 <PlayHost :meta="commandPaletteMeta" />
 
@@ -21,9 +21,9 @@ import { CommandPalette } from '@dowardev/herdrate-vue'
 
 const open = ref(false)
 const commands = [
-  { id: 'open', label: 'Open File', description: 'Abrir un archivo' },
-  { id: 'save', label: 'Save File', description: 'Guardar cambios' },
-  { id: 'close', label: 'Close', description: 'Cerrar pestaña' },
+  { id: 'open', label: 'Open File', description: 'Open a file' },
+  { id: 'save', label: 'Save File', description: 'Save changes' },
+  { id: 'close', label: 'Close', description: 'Close tab' },
 ]
 
 function onSelect(id: string) {
@@ -32,11 +32,11 @@ function onSelect(id: string) {
 </script>
 
 <template>
-  <button @click="open = true">Abrir paleta</button>
+  <button @click="open = true">Open palette</button>
   <CommandPalette
     v-model="open"
     :commands="commands"
-    placeholder="Escribe un comando..."
+    placeholder="Type a command..."
     @select="onSelect"
   />
 </template>
@@ -46,20 +46,20 @@ function onSelect(id: string) {
 
 ### commands
 
-Lista de comandos disponibles para filtrar y seleccionar.
+List of available commands to filter and select.
 
 ```vue
 <CommandPalette
   :commands="[
-    { id: 'open', label: 'Open File', description: 'Abrir un archivo' },
-    { id: 'save', label: 'Save File', description: 'Guardar cambios' },
+    { id: 'open', label: 'Open File', description: 'Open a file' },
+    { id: 'save', label: 'Save File', description: 'Save changes' },
   ]"
 />
 ```
 
 ### modelValue
 
-Controla apertura (`true`) y cierre (`false`) de la paleta.
+Controls opening (`true`) and closing (`false`) of the palette.
 
 ```vue
 <CommandPalette v-model="open" :commands="commands" />
@@ -67,12 +67,12 @@ Controla apertura (`true`) y cierre (`false`) de la paleta.
 
 ### color
 
-Color del prompt (`>`) y del item resaltado.
+Color of the prompt (`>`) and of the highlighted item.
 
 <ClientOnly>
   <div style="display: flex; gap: 1rem;">
-    <button @click="() => {}" style="background:var(--bg-panel);border:1px solid var(--border);color:var(--text);font-family:var(--font-mono);padding:0.5rem 1rem;cursor:pointer;">Abrir primary</button>
-    <button @click="() => {}" style="background:var(--bg-panel);border:1px solid var(--border);color:var(--text);font-family:var(--font-mono);padding:0.5rem 1rem;cursor:pointer;">Abrir success</button>
+    <button @click="() => {}" style="background:var(--bg-panel);border:1px solid var(--border);color:var(--text);font-family:var(--font-mono);padding:0.5rem 1rem;cursor:pointer;">Open primary</button>
+    <button @click="() => {}" style="background:var(--bg-panel);border:1px solid var(--border);color:var(--text);font-family:var(--font-mono);padding:0.5rem 1rem;cursor:pointer;">Open success</button>
   </div>
 </ClientOnly>
 
@@ -82,39 +82,39 @@ Color del prompt (`>`) y del item resaltado.
 
 ### placeholder
 
-Placeholder del input de búsqueda.
+Placeholder of the search input.
 
 ```vue
-<CommandPalette v-model="open" :commands="commands" placeholder="Buscar..." />
+<CommandPalette v-model="open" :commands="commands" placeholder="Search..." />
 ```
 
-## Tipos
+## Types
 
 ### Command
 
-| Campo | Tipo | Requerido | Descripción |
+| Field | Type | Required | Description |
 |---|---|---|---|
-| `id` | `string` | ✅ | Identificador único |
-| `label` | `string` | ✅ | Texto visible |
-| `description` | `string` | ❌ | Descripción opcional |
-| `icon` | `string` | ❌ | Icono o emoji |
+| `id` | `string` | ✅ | Unique identifier |
+| `label` | `string` | ✅ | Visible text |
+| `description` | `string` | ❌ | Optional description |
+| `icon` | `string` | ❌ | Icon or emoji |
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `commands` | `Command[]` | `[]` | Lista de comandos |
-| `modelValue` | `boolean` | `false` | Controla apertura/cierre |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del prompt y highlight |
-| `placeholder` | `string` | `'Type a command...'` | Placeholder del input |
+| `commands` | `Command[]` | `[]` | List of commands |
+| `modelValue` | `boolean` | `false` | Controls open/close |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Prompt and highlight color |
+| `placeholder` | `string` | `'Type a command...'` | Input placeholder |
 
 ## Events
 
-| Evento | Payload | Descripción |
+| Event | Payload | Description |
 |---|---|---|
-| `update:modelValue` | `boolean` | Se emite al abrir/cerrar |
-| `select` | `string` | Se emite al seleccionar un comando (retorna `id`) |
+| `update:modelValue` | `boolean` | Emitted on open/close |
+| `select` | `string` | Emitted when a command is selected (returns `id`) |
 
-## Tokens usados
+## Tokens used
 
 `--font-mono`, `--bg`, `--bg-panel`, `--border`, `--text`, `--text-muted`, `--color-*`

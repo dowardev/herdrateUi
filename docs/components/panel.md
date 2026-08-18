@@ -4,7 +4,7 @@ import { panelMeta } from './meta/panel'
 
 # Panel
 
-Contenedor versátil con header, body y footer, más divisor vertical opcional.
+Versatile container with header, body and footer, plus optional vertical divider.
 
 <PlayHost :meta="panelMeta" />
 
@@ -12,26 +12,26 @@ Contenedor versátil con header, body y footer, más divisor vertical opcional.
 
 <Panel divider>
   <template #header>&#x1f4cb; Panel</template>
-  Contenido principal del panel.
-  <template #footer>&#x26a1; Footer con informaci&#xf3;n</template>
+  Main panel content.
+  <template #footer>&#x26a1; Footer with information</template>
 </Panel>
 
 <Panel>
-  <template #header>&#x1f4cb; Sin divisor</template>
-  Panel sin el divider vertical.
+  <template #header>&#x1f4cb; No divider</template>
+  Panel without the vertical divider.
   <template #footer>Footer</template>
 </Panel>
 
 ```vue
 <Panel divider>
   <template #header>📋 Panel</template>
-  Contenido principal del panel.
-  <template #footer>⚡ Footer con información</template>
+  Main panel content.
+  <template #footer>⚡ Footer with information</template>
 </Panel>
 
 <Panel>
-  <template #header>📋 Sin divisor</template>
-  Panel sin el divider vertical.
+  <template #header>📋 No divider</template>
+  Panel without the vertical divider.
   <template #footer>Footer</template>
 </Panel>
 ```
@@ -40,17 +40,17 @@ Contenedor versátil con header, body y footer, más divisor vertical opcional.
 
 ### divider
 
-Muestra un divisor vertical (`│`) a la izquierda del contenido.
+Shows a vertical divider (`│`) to the left of the content.
 
 <Panel divider>
-  <template #header>Con divisor</template>
-  Contenido con línea vertical.
+  <template #header>With divider</template>
+  Content with vertical line.
   <template #footer>Footer</template>
 </Panel>
 
 <Panel>
-  <template #header>Sin divisor</template>
-  Contenido sin línea vertical.
+  <template #header>No divider</template>
+  Content without vertical line.
   <template #footer>Footer</template>
 </Panel>
 
@@ -63,36 +63,36 @@ Muestra un divisor vertical (`│`) a la izquierda del contenido.
 
 ### header
 
-Cabecera del panel.
+Panel header.
 
 ```vue
 <Panel>
-  <template #header>Cabecera</template>
+  <template #header>Header</template>
   ...
 </Panel>
 ```
 
 ### default
 
-Contenido principal del panel.
+Main panel content.
 
 ### footer
 
-Pie del panel.
+Panel footer.
 
 ```vue
 <Panel>
   ...
-  <template #footer>Pie</template>
+  <template #footer>Footer</template>
 </Panel>
 ```
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `divider` | `boolean` | `false` | Muestra divisor vertical (`│`) |
+| `divider` | `boolean` | `false` | Show vertical divider (`│`) |
 
-## Tokens usados
+## Tokens used
 
 `--bg-panel`, `--bg`, `--text`, `--border`, `--font-mono`

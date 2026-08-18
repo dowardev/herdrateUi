@@ -4,74 +4,74 @@ import { tipBoxMeta } from './meta/tipbox'
 
 # TipBox
 
-Componente de notificación con icono, título y mensaje.
+Notification component with icon, title and message.
 
 <PlayHost :meta="tipBoxMeta" />
 
 ## Demo
 
-<TipBox color="primary" title="Información" message="Operación completada exitosamente." />
+<TipBox color="primary" title="Information" message="Operation completed successfully." />
 
-<TipBox color="warning" title="Advertencia" message="Revisa los permisos antes de continuar." />
+<TipBox color="warning" title="Warning" message="Check the permissions before continuing." />
 
-<TipBox color="danger" title="Error crítico" message="No se pudo conectar al servidor." />
+<TipBox color="danger" title="Critical error" message="Could not connect to the server." />
 
 ```vue
-<TipBox color="primary" title="Información" message="Operación completada exitosamente." />
-<TipBox color="warning" title="Advertencia" message="Revisa los permisos antes de continuar." />
-<TipBox color="danger" title="Error crítico" message="No se pudo conectar al servidor." />
+<TipBox color="primary" title="Information" message="Operation completed successfully." />
+<TipBox color="warning" title="Warning" message="Check the permissions before continuing." />
+<TipBox color="danger" title="Critical error" message="Could not connect to the server." />
 ```
 
 ## Props
 
 ### color
 
-Color semántico del borde e icono.
+Semantic color of the border and icon.
 
 <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-  <TipBox color="primary" title="Info" message="Mensaje informativo" />
-  <TipBox color="success" title="Éxito" message="Operación exitosa" />
-  <TipBox color="warning" title="Aviso" message="Revisa esto" />
-  <TipBox color="danger" title="Error" message="Algo salió mal" />
+  <TipBox color="primary" title="Info" message="Informational message" />
+  <TipBox color="success" title="Success" message="Operation successful" />
+  <TipBox color="warning" title="Notice" message="Check this" />
+  <TipBox color="danger" title="Error" message="Something went wrong" />
 </div>
 
 ```vue
-<TipBox color="primary" title="Info" message="Mensaje informativo" />
-<TipBox color="success" title="Éxito" message="Operación exitosa" />
-<TipBox color="warning" title="Aviso" message="Revisa esto" />
-<TipBox color="danger" title="Error" message="Algo salió mal" />
+<TipBox color="primary" title="Info" message="Informational message" />
+<TipBox color="success" title="Success" message="Operation successful" />
+<TipBox color="warning" title="Notice" message="Check this" />
+<TipBox color="danger" title="Error" message="Something went wrong" />
 ```
 
 ### title
 
-Título opcional en negrita.
+Optional bold title.
 
 ```vue
-<TipBox title="Importante" message="Lee esto" />
+<TipBox title="Important" message="Read this" />
 ```
 
 ### message
 
-Mensaje descriptivo opcional.
+Optional descriptive message.
 
 ```vue
-<TipBox title="Info" message="Este es el mensaje" />
+<TipBox title="Info" message="This is the message" />
 ```
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico del borde e icono |
-| `title` | `string` | `''` | Título opcional |
-| `message` | `string` | `''` | Mensaje opcional |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Semantic color of the border and icon |
+| `title` | `string` | `''` | Optional title |
+| `message` | `string` | `''` | Optional message |
 
 ## Slots
 
-| Slot | Descripción |
+| Slot | Description |
 |---|---|
-| `default` | Contenido personalizado (reemplaza title/message) |
+| `default` | Custom content (replaces title/message) |
 
-## Tokens usados
+## Tokens used
 
 `--color-{name}`, `--bg-elevated`, `--bg`, `--text`, `--border`, `--font-mono`

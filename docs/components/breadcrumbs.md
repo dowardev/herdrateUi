@@ -2,12 +2,12 @@
 import { breadcrumbsMeta } from './meta/breadcrumbs'
 const simpleItems = [
   { label: 'Home' },
-  { label: 'Documentos', href: '/docs' },
-  { label: 'Reporte' },
+  { label: 'Documents', href: '/docs' },
+  { label: 'Report' },
 ]
 const projectItems = [
-  { label: 'Inicio' },
-  { label: 'Proyectos' },
+  { label: 'Home' },
+  { label: 'Projects' },
   { label: 'Dashboard' },
 ]
 const deployItems = [
@@ -19,7 +19,7 @@ const deployItems = [
 
 # Breadcrumbs
 
-Navegación breadcrumb con estilo terminal, colores semánticos y slot para contenido personalizado.
+Terminal-style breadcrumb navigation with semantic colors and a slot for custom content.
 
 <PlayHost :meta="breadcrumbsMeta" />
 
@@ -39,8 +39,8 @@ import { Breadcrumbs } from '@dowardev/herdrate-vue'
 
 const items = [
   { label: 'Home' },
-  { label: 'Documentos', href: '/docs' },
-  { label: 'Reporte' },
+  { label: 'Documents', href: '/docs' },
+  { label: 'Report' },
 ]
 </script>
 
@@ -48,8 +48,8 @@ const items = [
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
     <Breadcrumbs :items="items" />
     <Breadcrumbs separator="›" :items="[
-      { label: 'Inicio' },
-      { label: 'Proyectos' },
+      { label: 'Home' },
+      { label: 'Projects' },
       { label: 'Dashboard' },
     ]" />
     <Breadcrumbs color="success" :items="[
@@ -65,23 +65,23 @@ const items = [
 
 ### items
 
-Array de migas con `label` y `href` opcional.
+Array of crumbs with optional `label` and `href`.
 
 <ClientOnly>
-  <Breadcrumbs :items="[{ label: 'Home' }, { label: 'Docs', href: '/docs' }, { label: 'Actual' }]" />
+  <Breadcrumbs :items="[{ label: 'Home' }, { label: 'Docs', href: '/docs' }, { label: 'Current' }]" />
 </ClientOnly>
 
 ```vue
 <Breadcrumbs :items="[
   { label: 'Home' },
   { label: 'Docs', href: '/docs' },
-  { label: 'Actual' },
+  { label: 'Current' },
 ]" />
 ```
 
 ### separator
 
-Carácter entre los ítems del breadcrumb.
+Character between breadcrumb items.
 
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.25rem;">
@@ -99,7 +99,7 @@ Carácter entre los ítems del breadcrumb.
 
 ### color
 
-Color del último ítem y del hover de links.
+Color of the last item and link hover.
 
 <ClientOnly>
   <Breadcrumbs color="success" :items="[{ label: 'Root' }, { label: 'Deploy' }, { label: 'Live' }]" />
@@ -111,27 +111,27 @@ Color del último ítem y del hover de links.
 
 ## Slots
 
-| Slot | Descripción |
+| Slot | Description |
 |---|---|
-| `default` | Alternativa a `items`, permite markup personalizado |
+| `default` | Alternative to `items`, allows custom markup |
 
-## Tipos
+## Types
 
 ### BreadcrumbItem
 
-| Campo | Tipo | Requerido | Descripción |
+| Field | Type | Required | Description |
 |---|---|---|---|
-| `label` | `string` | ✅ | Texto visible |
-| `href` | `string` | ❌ | Enlace opcional |
+| `label` | `string` | ✅ | Visible text |
+| `href` | `string` | ❌ | Optional link |
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `items` | `Array<{label, href?}>` | `[]` | Array de migas |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del último ítem y hover de links |
-| `separator` | `string` | `'/'` | Carácter entre ítems |
+| `items` | `Array<{label, href?}>` | `[]` | Array of crumbs |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color of the last item and link hover |
+| `separator` | `string` | `'/'` | Character between items |
 
-## Tokens usados
+## Tokens used
 
 `--font-mono`, `--text`, `--color-*`

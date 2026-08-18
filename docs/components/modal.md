@@ -24,7 +24,7 @@ Terminal-style modal dialog with overlay, header, body, footer, and keyboard sup
 ## Demo
 
 <ClientOnly>
-  <ButtonTui @click="isOpen = true" color="primary">Abrir modal</ButtonTui>
+  <ButtonTui @click="isOpen = true" color="primary">Open modal</ButtonTui>
   <Modal v-model:open="isOpen" title="Example Modal" closable>
     This is the modal body content.
     <template #footer>
@@ -42,7 +42,7 @@ const open = ref(false)
 </script>
 
 <template>
-  <ButtonTui @click="open = true" color="primary">Abrir modal</ButtonTui>
+  <ButtonTui @click="open = true" color="primary">Open modal</ButtonTui>
   <Modal v-model:open="open" title="Example Modal" closable>
     This is the modal body content.
     <template #footer>
@@ -57,14 +57,14 @@ const open = ref(false)
 
 ### title
 
-Título mostrado en la cabecera del modal. Cuando está vacío, no se muestra espacio reservado.
+Title shown in the modal header. When empty, no reserved space is shown.
 
 <ClientOnly>
-  <ButtonTui @click="openTitle = true" color="primary">Abrir modal</ButtonTui>
-  <Modal v-model:open="openTitle" title="Modal con título" closable>
-    Contenido del modal.
+  <ButtonTui @click="openTitle = true" color="primary">Open modal</ButtonTui>
+  <Modal v-model:open="openTitle" title="Modal with title" closable>
+    Modal content.
     <template #footer>
-      <ButtonTui @click="openTitle = false">Cerrar</ButtonTui>
+      <ButtonTui @click="openTitle = false">Close</ButtonTui>
     </template>
   </Modal>
 </ClientOnly>
@@ -77,11 +77,11 @@ const open = ref(false)
 </script>
 
 <template>
-  <ButtonTui @click="open = true" color="primary">Abrir modal</ButtonTui>
-  <Modal v-model:open="open" title="Modal con título" closable>
-    Contenido del modal.
+  <ButtonTui @click="open = true" color="primary">Open modal</ButtonTui>
+  <Modal v-model:open="open" title="Modal with title" closable>
+    Modal content.
     <template #footer>
-      <ButtonTui @click="open = false">Cerrar</ButtonTui>
+      <ButtonTui @click="open = false">Close</ButtonTui>
     </template>
   </Modal>
 </template>
@@ -89,7 +89,7 @@ const open = ref(false)
 
 ### color
 
-Color semántico del título en el header.
+Semantic color of the title in the header.
 
 <ClientOnly>
   <div style="display: flex; gap: 0.5rem;">
@@ -98,21 +98,21 @@ Color semántico del título en el header.
     <ButtonTui @click="openColorD = true" color="danger">Danger</ButtonTui>
   </div>
   <Modal v-model:open="openColorP" title="Primary" color="primary" closable>
-    Modal con color primary.
+    Modal with primary color.
     <template #footer>
-      <ButtonTui @click="openColorP = false" color="primary">Cerrar</ButtonTui>
+      <ButtonTui @click="openColorP = false" color="primary">Close</ButtonTui>
     </template>
   </Modal>
   <Modal v-model:open="openColorS" title="Success" color="success" closable>
-    Modal con color success.
+    Modal with success color.
     <template #footer>
-      <ButtonTui @click="openColorS = false" color="success">Cerrar</ButtonTui>
+      <ButtonTui @click="openColorS = false" color="success">Close</ButtonTui>
     </template>
   </Modal>
   <Modal v-model:open="openColorD" title="Danger" color="danger" closable>
-    Modal con color danger.
+    Modal with danger color.
     <template #footer>
-      <ButtonTui @click="openColorD = false" color="danger">Cerrar</ButtonTui>
+      <ButtonTui @click="openColorD = false" color="danger">Close</ButtonTui>
     </template>
   </Modal>
 </ClientOnly>
@@ -133,21 +133,21 @@ const openDanger = ref(false)
     <ButtonTui @click="openDanger = true" color="danger">Danger</ButtonTui>
   </div>
   <Modal v-model:open="openPrimary" title="Primary" color="primary" closable>
-    Modal con color primary.
+    Modal with primary color.
     <template #footer>
-      <ButtonTui @click="openPrimary = false" color="primary">Cerrar</ButtonTui>
+      <ButtonTui @click="openPrimary = false" color="primary">Close</ButtonTui>
     </template>
   </Modal>
   <Modal v-model:open="openSuccess" title="Success" color="success" closable>
-    Modal con color success.
+    Modal with success color.
     <template #footer>
-      <ButtonTui @click="openSuccess = false" color="success">Cerrar</ButtonTui>
+      <ButtonTui @click="openSuccess = false" color="success">Close</ButtonTui>
     </template>
   </Modal>
   <Modal v-model:open="openDanger" title="Danger" color="danger" closable>
-    Modal con color danger.
+    Modal with danger color.
     <template #footer>
-      <ButtonTui @click="openDanger = false" color="danger">Cerrar</ButtonTui>
+      <ButtonTui @click="openDanger = false" color="danger">Close</ButtonTui>
     </template>
   </Modal>
 </template>
@@ -155,23 +155,23 @@ const openDanger = ref(false)
 
 ### width
 
-Ancho del modal. Acepta cualquier valor CSS: `ch`, `px`, `rem`, `%`.
+Width of the modal. Accepts any CSS value: `ch`, `px`, `rem`, `%`.
 
 <ClientOnly>
   <div style="display: flex; gap: 0.5rem;">
     <ButtonTui @click="openWidthNarrow = true" color="primary">40ch</ButtonTui>
     <ButtonTui @click="openWidthWide = true" color="primary">80ch</ButtonTui>
   </div>
-  <Modal v-model:open="openWidthNarrow" title="Estrecho (40ch)" width="40ch" closable>
-    Contenido del modal con ancho 40ch.
+  <Modal v-model:open="openWidthNarrow" title="Narrow (40ch)" width="40ch" closable>
+    Modal content with 40ch width.
     <template #footer>
-      <ButtonTui @click="openWidthNarrow = false" color="primary">Cerrar</ButtonTui>
+      <ButtonTui @click="openWidthNarrow = false" color="primary">Close</ButtonTui>
     </template>
   </Modal>
-  <Modal v-model:open="openWidthWide" title="Ancho (80ch)" width="80ch" closable>
-    Contenido del modal con ancho 80ch.
+  <Modal v-model:open="openWidthWide" title="Wide (80ch)" width="80ch" closable>
+    Modal content with 80ch width.
     <template #footer>
-      <ButtonTui @click="openWidthWide = false" color="primary">Cerrar</ButtonTui>
+      <ButtonTui @click="openWidthWide = false" color="primary">Close</ButtonTui>
     </template>
   </Modal>
 </ClientOnly>
@@ -189,16 +189,16 @@ const openWide = ref(false)
     <ButtonTui @click="openNarrow = true" color="primary">40ch</ButtonTui>
     <ButtonTui @click="openWide = true" color="primary">80ch</ButtonTui>
   </div>
-  <Modal v-model:open="openNarrow" title="Estrecho (40ch)" width="40ch" closable>
-    Contenido del modal con ancho 40ch.
+  <Modal v-model:open="openNarrow" title="Narrow (40ch)" width="40ch" closable>
+    Modal content with 40ch width.
     <template #footer>
-      <ButtonTui @click="openNarrow = false" color="primary">Cerrar</ButtonTui>
+      <ButtonTui @click="openNarrow = false" color="primary">Close</ButtonTui>
     </template>
   </Modal>
-  <Modal v-model:open="openWide" title="Ancho (80ch)" width="80ch" closable>
-    Contenido del modal con ancho 80ch.
+  <Modal v-model:open="openWide" title="Wide (80ch)" width="80ch" closable>
+    Modal content with 80ch width.
     <template #footer>
-      <ButtonTui @click="openWide = false" color="primary">Cerrar</ButtonTui>
+      <ButtonTui @click="openWide = false" color="primary">Close</ButtonTui>
     </template>
   </Modal>
 </template>
@@ -206,23 +206,23 @@ const openWide = ref(false)
 
 ### closable
 
-Muestra u oculta el botón de cierre (×) en la cabecera.
+Shows or hides the close button (×) in the header.
 
 <ClientOnly>
   <div style="display: flex; gap: 0.5rem;">
-    <ButtonTui @click="openClosableOn = true" color="primary">Con cierre</ButtonTui>
-    <ButtonTui @click="openClosableOff = true" color="primary">Sin cierre</ButtonTui>
+    <ButtonTui @click="openClosableOn = true" color="primary">With close</ButtonTui>
+    <ButtonTui @click="openClosableOff = true" color="primary">Without close</ButtonTui>
   </div>
-  <Modal v-model:open="openClosableOn" title="Cerrable" closable>
-    Puedes cerrar con ×, Escape o el botón de abajo.
+  <Modal v-model:open="openClosableOn" title="Closable" closable>
+    You can close with ×, Escape or the button below.
     <template #footer>
-      <ButtonTui @click="openClosableOn = false" color="primary">Cerrar</ButtonTui>
+      <ButtonTui @click="openClosableOn = false" color="primary">Close</ButtonTui>
     </template>
   </Modal>
-  <Modal v-model:open="openClosableOff" title="No cerrable" :closable="false">
-    Solo puedes cerrar con Escape o el botón de abajo.
+  <Modal v-model:open="openClosableOff" title="Not closable" :closable="false">
+    You can only close with Escape or the button below.
     <template #footer>
-      <ButtonTui @click="openClosableOff = false" color="primary">Cerrar</ButtonTui>
+      <ButtonTui @click="openClosableOff = false" color="primary">Close</ButtonTui>
     </template>
   </Modal>
 </ClientOnly>
@@ -237,19 +237,19 @@ const openWithoutClose = ref(false)
 
 <template>
   <div style="display: flex; gap: 0.5rem;">
-    <ButtonTui @click="openWithClose = true" color="primary">Con cierre</ButtonTui>
-    <ButtonTui @click="openWithoutClose = true" color="primary">Sin cierre</ButtonTui>
+    <ButtonTui @click="openWithClose = true" color="primary">With close</ButtonTui>
+    <ButtonTui @click="openWithoutClose = true" color="primary">Without close</ButtonTui>
   </div>
-  <Modal v-model:open="openWithClose" title="Cerrable" closable>
-    Puedes cerrar con ×, Escape o el botón de abajo.
+  <Modal v-model:open="openWithClose" title="Closable" closable>
+    You can close with ×, Escape or the button below.
     <template #footer>
-      <ButtonTui @click="openWithClose = false" color="primary">Cerrar</ButtonTui>
+      <ButtonTui @click="openWithClose = false" color="primary">Close</ButtonTui>
     </template>
   </Modal>
-  <Modal v-model:open="openWithoutClose" title="No cerrable" :closable="false">
-    Solo puedes cerrar con Escape o el botón de abajo.
+  <Modal v-model:open="openWithoutClose" title="Not closable" :closable="false">
+    You can only close with Escape or the button below.
     <template #footer>
-      <ButtonTui @click="openWithoutClose = false" color="primary">Cerrar</ButtonTui>
+      <ButtonTui @click="openWithoutClose = false" color="primary">Close</ButtonTui>
     </template>
   </Modal>
 </template>
@@ -257,18 +257,18 @@ const openWithoutClose = ref(false)
 
 ## Slots
 
-### default (cuerpo)
+### default (body)
 
-Contenido principal del modal. Puede incluir cualquier HTML o componente Vue.
+Main content of the modal. Can include any HTML or Vue component.
 
 <ClientOnly>
-  <ButtonTui @click="openContent = true" color="primary">Abrir modal</ButtonTui>
-  <Modal v-model:open="openContent" title="Contenido variado" closable>
-    <p>Este es el cuerpo del modal.</p>
+  <ButtonTui @click="openContent = true" color="primary">Open modal</ButtonTui>
+  <Modal v-model:open="openContent" title="Varied content" closable>
+    <p>This is the modal body.</p>
     <ul>
-      <li>Elemento 1</li>
-      <li>Elemento 2</li>
-      <li>Elemento 3</li>
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
     </ul>
     <template #footer>
       <ButtonTui @click="openContent = false" color="primary">OK</ButtonTui>
@@ -284,13 +284,13 @@ const open = ref(false)
 </script>
 
 <template>
-  <ButtonTui @click="open = true" color="primary">Abrir modal</ButtonTui>
-  <Modal v-model:open="open" title="Contenido variado" closable>
-    <p>Este es el cuerpo del modal.</p>
+  <ButtonTui @click="open = true" color="primary">Open modal</ButtonTui>
+  <Modal v-model:open="open" title="Varied content" closable>
+    <p>This is the modal body.</p>
     <ul>
-      <li>Elemento 1</li>
-      <li>Elemento 2</li>
-      <li>Elemento 3</li>
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
     </ul>
     <template #footer>
       <ButtonTui @click="open = false" color="primary">OK</ButtonTui>
@@ -301,15 +301,15 @@ const open = ref(false)
 
 ### footer
 
-Área de acciones del modal. Típicamente contiene botones de confirmación o cancelación.
+Action area of the modal. Typically contains confirmation or cancellation buttons.
 
 <ClientOnly>
-  <ButtonTui @click="openFooter = true" color="primary">Abrir modal</ButtonTui>
-  <Modal v-model:open="openFooter" title="Confirmación" closable>
-    ¿Estás seguro de realizar esta acción?
+  <ButtonTui @click="openFooter = true" color="primary">Open modal</ButtonTui>
+  <Modal v-model:open="openFooter" title="Confirmation" closable>
+    Are you sure you want to perform this action?
     <template #footer>
-      <ButtonTui @click="openFooter = false" color="primary">Cancelar</ButtonTui>
-      <ButtonTui @click="openFooter = false" color="primary">Confirmar</ButtonTui>
+      <ButtonTui @click="openFooter = false" color="primary">Cancel</ButtonTui>
+      <ButtonTui @click="openFooter = false" color="primary">Confirm</ButtonTui>
     </template>
   </Modal>
 </ClientOnly>
@@ -322,12 +322,12 @@ const open = ref(false)
 </script>
 
 <template>
-  <ButtonTui @click="open = true" color="primary">Abrir modal</ButtonTui>
-  <Modal v-model:open="open" title="Confirmación" closable>
-    ¿Estás seguro de realizar esta acción?
+  <ButtonTui @click="open = true" color="primary">Open modal</ButtonTui>
+  <Modal v-model:open="open" title="Confirmation" closable>
+    Are you sure you want to perform this action?
     <template #footer>
-      <ButtonTui @click="open = false" color="primary">Cancelar</ButtonTui>
-      <ButtonTui @click="open = false" color="primary">Confirmar</ButtonTui>
+      <ButtonTui @click="open = false" color="primary">Cancel</ButtonTui>
+      <ButtonTui @click="open = false" color="primary">Confirm</ButtonTui>
     </template>
   </Modal>
 </template>
@@ -335,24 +335,24 @@ const open = ref(false)
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `open` | `boolean` | `false` | Control de visibilidad |
-| `title` | `string` | `''` | Título del modal |
-| `color` | [`Color`](/color) | `'primary'` | Color del título |
-| `closable` | `boolean` | `true` | Muestra botón de cierre (×) |
-| `width` | `string` | `'60ch'` | Ancho del modal |
+| `open` | `boolean` | `false` | Visibility control |
+| `title` | `string` | `''` | Modal title |
+| `color` | [`Color`](/color) | `'primary'` | Title color |
+| `closable` | `boolean` | `true` | Show close button (×) |
+| `width` | `string` | `'60ch'` | Modal width |
 
-| Evento | Descripción |
+| Event | Description |
 |---|---|
-| `close` | Se emite al cerrar el modal |
-| `update:open` | Se emite con `false` al cerrar (soporta `v-model:open`) |
+| `close` | Emitted when the modal closes |
+| `update:open` | Emitted with `false` when closing (supports `v-model:open`) |
 
-| Slot | Descripción |
+| Slot | Description |
 |---|---|
-| `default` | Cuerpo del modal |
-| `footer` | Pie del modal (área de acciones) |
+| `default` | Modal body |
+| `footer` | Modal footer (action area) |
 
-## Tokens usados
+## Tokens used
 
 `--bg`, `--bg-panel`, `--border`, `--text`, `--font-mono`, `--color-{color}`

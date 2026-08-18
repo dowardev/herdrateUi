@@ -4,7 +4,7 @@ import { kbdMeta } from './meta/kbd'
 
 # Kbd
 
-Keyboard key display element estilo terminal.
+Keyboard key display element with terminal style.
 
 <PlayHost :meta="kbdMeta" />
 
@@ -24,7 +24,7 @@ Keyboard key display element estilo terminal.
 
 ### color
 
-Color semántico del keycap.
+Semantic color of the keycap.
 
 <Kbd color="primary">Primary</Kbd>
 <Kbd color="success">Success</Kbd>
@@ -42,7 +42,7 @@ Color semántico del keycap.
 
 ### default
 
-Contenido del key (etiqueta del atajo).
+Content of the key (shortcut label).
 
 ```vue
 <Kbd>Ctrl</Kbd>
@@ -50,10 +50,10 @@ Contenido del key (etiqueta del atajo).
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Semantic color |
 
-## Tokens usados
+## Tokens used
 
 `--color-{name}`, `--bg-elevated`, `--border`, `--font-mono`

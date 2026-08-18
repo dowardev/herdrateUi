@@ -1,24 +1,24 @@
 # Herdrate Vue UI Library
 
-Librería de componentes Vue 3 con tema **Catppuccin** y estética CLI/terminal.
+A Vue 3 component library with a **Catppuccin** theme and CLI/terminal aesthetics.
 
-Incluye un [sistema de colores semántico](./color) estilo Ionic con 9 colores (`primary` → `dark`) y 3 modos de relleno (`solid`, `outline`, `clear`), todos adaptados automáticamente al tema oscuro/claro.
+It includes a [semantic color system](/color) in the style of Ionic with 9 colors (`primary` → `dark`) and 3 fill modes (`solid`, `outline`, `clear`), all automatically adapted to dark/light themes.
 
-## Componentes
+## Components
 
-| Componente | Descripción |
+| Component | Description |
 |---|---|
-| [Panel](./components/panel) | Contenedor con header, body, footer y divisor vertical |
-| [Divider](./components/divider) | Divisor horizontal/vertical estilo terminal |
-| [Badge](./components/badge) | Etiqueta con variantes de color |
-| [TipBox](./components/tipbox) | Notificación con icono, título y mensaje |
-| [SnakeLoader](./components/snakeloader) | Animación de carga tipo serpiente |
+| [Panel](/components/panel) | Container with header, body, footer and vertical divider |
+| [Divider](/components/divider) | Horizontal/vertical terminal-style divider |
+| [Badge](/components/badge) | Label with color variants |
+| [TipBox](/components/tipbox) | Notification with icon, title and message |
+| [SnakeLoader](/components/snakeloader) | Snake-style loading animation |
 
-## Demo rápida
+## Quick demo
 
 <Panel divider>
   <template #header>📦 Panel Demo</template>
-  Este es un Panel renderizado en vivo desde el markdown.
+  This is a Panel rendered live from markdown.
   <template #footer>⚡ Footer</template>
 </Panel>
 
@@ -33,12 +33,12 @@ Incluye un [sistema de colores semántico](./color) estilo Ionic con 9 colores (
 
 <Divider orientation="horizontal" />
 
-<TipBox color="primary" title="Info" message="Componentes funcionando en vivo." />
+<TipBox color="primary" title="Info" message="Components working live." />
 
-<TipBox color="warning" title="Advertencia" message="Revisa los tokens de color." />
+<TipBox color="warning" title="Warning" message="Check the color tokens." />
 
-<TipBox color="danger" title="Error" message="Esto es solo un demo." />
+<TipBox color="danger" title="Error" message="This is just a demo." />
 
 <Divider orientation="horizontal" />
 
-<SnakeLoader speed="1.2s" color="primary">Cargando...</SnakeLoader>
+<SnakeLoader speed="1.2s" color="primary">Loading...</SnakeLoader>

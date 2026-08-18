@@ -4,33 +4,33 @@ import { tooltipMeta } from './meta/tooltip'
 
 # Tooltip
 
-Tooltip informativo que aparece al hacer hover sobre un elemento, con retardo configurable y flecha direccional.
+Informational tooltip that appears on hover over an element, with configurable delay and directional arrow.
 
 <PlayHost :meta="tooltipMeta" />
 
 ## Demo
 
 <div style="display: flex; gap: 1rem; align-items: center; padding: 2rem 0;">
-  <Tooltip text="Mensaje informativo">
-    <span>Hover sobre mí</span>
+  <Tooltip text="Informational message">
+    <span>Hover over me</span>
   </Tooltip>
-  <Tooltip text="Éxito" color="success">
-    <span>Tooltip éxito</span>
+  <Tooltip text="Success" color="success">
+    <span>Success tooltip</span>
   </Tooltip>
-  <Tooltip text="Peligro" color="danger" position="bottom">
-    <span>Tooltip abajo</span>
+  <Tooltip text="Danger" color="danger" position="bottom">
+    <span>Tooltip below</span>
   </Tooltip>
 </div>
 
 ```vue
-<Tooltip text="Mensaje informativo">
-  <span>Hover sobre mí</span>
+<Tooltip text="Informational message">
+  <span>Hover over me</span>
 </Tooltip>
-<Tooltip text="Éxito" color="success">
-  <span>Tooltip éxito</span>
+<Tooltip text="Success" color="success">
+  <span>Success tooltip</span>
 </Tooltip>
-<Tooltip text="Peligro" color="danger" position="bottom">
-  <span>Tooltip abajo</span>
+<Tooltip text="Danger" color="danger" position="bottom">
+  <span>Tooltip below</span>
 </Tooltip>
 ```
 
@@ -38,23 +38,23 @@ Tooltip informativo que aparece al hacer hover sobre un elemento, con retardo co
 
 ### text
 
-Contenido del tooltip.
+Content of the tooltip.
 
 <div style="padding: 2rem 0;">
-  <Tooltip text="Mensaje de ayuda">
-    <span>Hover para ver tooltip</span>
+  <Tooltip text="Help message">
+    <span>Hover to see tooltip</span>
   </Tooltip>
 </div>
 
 ```vue
-<Tooltip text="Mensaje de ayuda">
-  <span>Hover sobre mí</span>
+<Tooltip text="Help message">
+  <span>Hover over me</span>
 </Tooltip>
 ```
 
 ### position
 
-Posición del tooltip relativa al elemento trigger.
+Position of the tooltip relative to the trigger element.
 
 <div style="display: flex; gap: 2rem; align-items: center; padding: 2rem 0;">
   <Tooltip text="Top" position="top">
@@ -88,7 +88,7 @@ Posición del tooltip relativa al elemento trigger.
 
 ### color
 
-Color del borde y flecha del tooltip.
+Color of the tooltip border and arrow.
 
 <div style="display: flex; gap: 1rem; align-items: center; padding: 2rem 0;">
   <Tooltip text="Primary" color="primary">
@@ -116,23 +116,23 @@ Color del borde y flecha del tooltip.
 
 ### delay
 
-Milisegundos de retardo antes de mostrar el tooltip.
+Milliseconds of delay before showing the tooltip.
 
 ```vue
-<Tooltip text="Aparece tras 1s" :delay="1000">
+<Tooltip text="Appears after 1s" :delay="1000">
   <span>Hover</span>
 </Tooltip>
 ```
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `text` | `string` | `''` | Contenido del tooltip |
-| `position` | `'top' \\| 'bottom' \\| 'left' \\| 'right'` | `'top'` | Posición relativa al trigger |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del borde y flecha |
-| `delay` | `number` | `300` | Milisegundos antes de mostrar |
+| `text` | `string` | `''` | Tooltip content |
+| `position` | `'top' \\| 'bottom' \\| 'left' \\| 'right'` | `'top'` | Position relative to the trigger |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Border and arrow color |
+| `delay` | `number` | `300` | Milliseconds before showing |
 
-## Tokens usados
+## Tokens used
 
 `--bg-elevated`, `--border`, `--font-mono`, `--color-{name}`

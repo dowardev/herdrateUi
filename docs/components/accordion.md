@@ -2,16 +2,16 @@
 import { ref } from 'vue'
 import { accordionMeta } from './meta/accordion'
 const items = [
-  { title: 'Configuración', content: 'Ajustes de red y preferencias del sistema.' },
-  { title: 'Usuarios', content: 'Gestión de usuarios y permisos.' },
-  { title: 'Logs', content: 'Visualización de logs del sistema.' },
+  { title: 'Settings', content: 'Network settings and system preferences.' },
+  { title: 'Users', content: 'User management and permissions.' },
+  { title: 'Logs', content: 'System log viewer.' },
 ]
 const opened = ref<number[]>([])
 </script>
 
 # Accordion
 
-Panel plegable estilo terminal con soporte para múltiples secciones y slots personalizados.
+Terminal-style collapsible panel with support for multiple sections and custom slots.
 
 <PlayHost :meta="accordionMeta" />
 
@@ -19,7 +19,7 @@ Panel plegable estilo terminal con soporte para múltiples secciones y slots per
 
 <ClientOnly>
   <Accordion :items="items" @update:opened="opened = $event" />
-  <p v-if="opened.length" style="color:var(--text-muted);font-size:0.8rem;">Abiertos: {{ opened }}</p>
+  <p v-if="opened.length" style="color:var(--text-muted);font-size:0.8rem;">Opened: {{ opened }}</p>
 </ClientOnly>
 
 ```vue
@@ -28,9 +28,9 @@ import { ref } from 'vue'
 import { Accordion } from '@dowardev/herdrate-vue'
 
 const items = [
-  { title: 'Configuración', content: 'Ajustes de red y preferencias del sistema.' },
-  { title: 'Usuarios', content: 'Gestión de usuarios y permisos.' },
-  { title: 'Logs', content: 'Visualización de logs del sistema.' },
+  { title: 'Settings', content: 'Network settings and system preferences.' },
+  { title: 'Users', content: 'User management and permissions.' },
+  { title: 'Logs', content: 'System log viewer.' },
 ]
 const opened = ref<number[]>([])
 </script>
@@ -38,7 +38,7 @@ const opened = ref<number[]>([])
 <template>
   <Accordion :items="items" @update:opened="opened = $event" />
   <p v-if="opened.length" style="color:var(--text-muted);font-size:0.8rem;">
-    Abiertos: {{ opened }}
+    Opened: {{ opened }}
   </p>
 </template>
 ```
@@ -47,22 +47,22 @@ const opened = ref<number[]>([])
 
 ### items
 
-Array de paneles del acordeón. Cada item puede tener `title` y `content`.
+Array of accordion panels. Each item can have a `title` and `content`.
 
 <ClientOnly>
-  <Accordion :items="[{ title: 'Sección 1', content: 'Contenido' }, { title: 'Sección 2', content: 'Contenido' }]" />
+  <Accordion :items="[{ title: 'Section 1', content: 'Content' }, { title: 'Section 2', content: 'Content' }]" />
 </ClientOnly>
 
 ```vue
 <Accordion :items="[
-  { title: 'Sección 1', content: 'Contenido' },
-  { title: 'Sección 2', content: 'Contenido' },
+  { title: 'Section 1', content: 'Content' },
+  { title: 'Section 2', content: 'Content' },
 ]" />
 ```
 
 ### multiple
 
-Permite abrir varios paneles simultáneamente.
+Allows opening several panels simultaneously.
 
 <ClientOnly>
   <Accordion :items="items" multiple />
@@ -74,7 +74,7 @@ Permite abrir varios paneles simultáneamente.
 
 ### color
 
-Color del indicador de apertura (▶/▼).
+Color of the opening indicator (▶/▼).
 
 <ClientOnly>
   <Accordion :items="[{ title: 'Primary', content: 'Color primary' }]" color="primary" />
@@ -92,25 +92,25 @@ Color del indicador de apertura (▶/▼).
 
 | Event | Payload | Description |
 |---|---|---|
-| `update:opened` | `indices: number[]` | Se emite al cambiar paneles abiertos |
+| `update:opened` | `indices: number[]` | Emitted when the open panels change |
 
-## Tipos
+## Types
 
 ### AccordionItem
 
-| Campo | Tipo | Requerido | Descripción |
+| Field | Type | Required | Description |
 |---|---|---|---|
-| `title` | `string` | ✅ | Título del panel |
-| `content` | `string` | ❌ | Contenido del panel |
+| `title` | `string` | ✅ | Panel title |
+| `content` | `string` | ❌ | Panel content |
 
 ## API
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `items` | `AccordionItem[]` | `[]` | Paneles del acordeón |
-| `multiple` | `boolean` | `false` | Permitir múltiples abiertos |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del indicador |
+| `items` | `AccordionItem[]` | `[]` | Accordion panels |
+| `multiple` | `boolean` | `false` | Allow multiple open panels |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Indicator color |
 
-## Tokens usados
+## Tokens used
 
 `--font-mono`, `--bg`, `--border`, `--text`, `--color-*`

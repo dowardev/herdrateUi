@@ -4,7 +4,7 @@ import { stepperMeta } from './meta/stepper'
 
 # Stepper
 
-Indicador de pasos horizontal con estilo terminal. Muestra progreso con formato `[1]──[2]──[3]`.
+Horizontal step indicator with terminal style. Shows progress with `[1]──[2]──[3]` format.
 
 <PlayHost :meta="stepperMeta" />
 
@@ -26,7 +26,7 @@ Indicador de pasos horizontal con estilo terminal. Muestra progreso con formato 
 
 ### steps
 
-Lista de pasos con su etiqueta.
+List of steps with their label.
 
 ```vue
 <Stepper :steps="[
@@ -38,9 +38,9 @@ Lista de pasos con su etiqueta.
 
 ### current
 
-Paso actual (1-based). Determina qué paso está activo.
+Current step (1-based). Determines which step is active.
 
-<Stepper :current="2" :steps="[{ label: 'Uno' }, { label: 'Dos' }, { label: 'Tres' }]" />
+<Stepper :current="2" :steps="[{ label: 'One' }, { label: 'Two' }, { label: 'Three' }]" />
 
 ```vue
 <Stepper :current="2" :steps="steps" />
@@ -48,7 +48,7 @@ Paso actual (1-based). Determina qué paso está activo.
 
 ### color
 
-Color del paso activo.
+Color of the active step.
 
 <Stepper color="primary" :current="2" :steps="[{ label: 'A' }, { label: 'B' }, { label: 'C' }]" />
 <Stepper color="success" :current="2" :steps="[{ label: 'A' }, { label: 'B' }, { label: 'C' }]" />
@@ -60,22 +60,22 @@ Color del paso activo.
 <Stepper color="danger" :current="2" :steps="[{ label: 'A' }, { label: 'B' }, { label: 'C' }]" />
 ```
 
-## Tipos
+## Types
 
 ### StepItem
 
-| Campo | Tipo | Requerido | Descripción |
+| Field | Type | Required | Description |
 |---|---|---|---|
-| `label` | `string` | ✅ | Texto del paso |
+| `label` | `string` | ✅ | Step text |
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `steps` | `StepItem[]` | `[]` | Lista de pasos |
-| `current` | `number` | `1` | Paso actual (1-based) |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del paso actual |
+| `steps` | `StepItem[]` | `[]` | List of steps |
+| `current` | `number` | `1` | Current step (1-based) |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Current step color |
 
-## Tokens usados
+## Tokens used
 
 `--font-mono`, `--text`, `--text-muted`, `--border`, `--color-*`

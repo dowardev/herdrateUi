@@ -4,7 +4,7 @@ import { statusBarMeta } from './meta/status-bar'
 
 # StatusBar
 
-Barra de estado estilo terminal con modo, posición e info.
+Terminal-style status bar with mode, position and info.
 
 <PlayHost :meta="statusBarMeta" />
 
@@ -20,7 +20,7 @@ Barra de estado estilo terminal con modo, posición e info.
 
 ### mode
 
-Texto del modo que se muestra a la izquierda en negrita y mayúsculas.
+Mode text shown on the left, bold and uppercase.
 
 <StatusBar mode="NORMAL" />
 <StatusBar mode="INSERT" color="success" />
@@ -34,7 +34,7 @@ Texto del modo que se muestra a la izquierda en negrita y mayúsculas.
 
 ### position
 
-Texto de posición que se muestra a la derecha (ej. `1,1`).
+Position text shown on the right (e.g. `1,1`).
 
 <StatusBar mode="NORMAL" position="1,1" />
 <StatusBar mode="NORMAL" position="22,4" />
@@ -46,7 +46,7 @@ Texto de posición que se muestra a la derecha (ej. `1,1`).
 
 ### color
 
-Color aplicado al texto del modo.
+Color applied to the mode text.
 
 <StatusBar mode="NORMAL" color="primary" />
 <StatusBar mode="NORMAL" color="success" />
@@ -62,7 +62,7 @@ Color aplicado al texto del modo.
 
 ### info
 
-Texto informativo que se muestra en el centro.
+Informational text shown in the center.
 
 <StatusBar mode="NORMAL" info="main.ts" />
 <StatusBar mode="NORMAL" info="types.ts" position="10,5" />
@@ -74,15 +74,15 @@ Texto informativo que se muestra en el centro.
 
 ### default slot
 
-Reemplaza el área de `info` con contenido personalizado.
+Replaces the `info` area with custom content.
 
 <StatusBar mode="NORMAL" position="1,1">
-  <span style="color: var(--color-success);">✔ Listo</span>
+  <span style="color: var(--color-success);">✔ Ready</span>
 </StatusBar>
 
 ```vue
 <StatusBar mode="NORMAL" position="1,1">
-  <span style="color: var(--color-success);">✔ Listo</span>
+  <span style="color: var(--color-success);">✔ Ready</span>
 </StatusBar>
 ```
 
@@ -95,6 +95,6 @@ Reemplaza el área de `info` con contenido personalizado.
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color applied to mode text |
 | `info` | `string` | `''` | Info text shown in center |
 
-## Tokens usados
+## Tokens used
 
 `--font-mono`, `--bg`, `--bg-panel`, `--border`, `--text`, `--color-*`

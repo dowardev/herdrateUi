@@ -1,37 +1,37 @@
-# Sistema de colores
+# Color system
 
 <script setup lang="ts">
 const colors = ['primary', 'secondary', 'tertiary', 'success', 'warning', 'danger', 'light', 'medium', 'dark'] as const
 </script>
 
-La librería implementa un sistema de colores semánticos estilo **Ionic**: cada color tiene un nombre (`primary`, `secondary`, etc.) y se asigna automáticamente al token Catppuccin correspondiente según el tema activo (oscuro/claro).
+The library implements a semantic color system in the style of **Ionic**: each color has a name (`primary`, `secondary`, etc.) and is automatically assigned to the corresponding Catppuccin token according to the active theme (dark/light).
 
 ---
 
-## Tipos
+## Types
 
 ```ts
 type Color =
-  | 'primary'   // acento principal
-  | 'secondary' // acento secundario
-  | 'tertiary'  // acento terciario
-  | 'success'   // operación exitosa
-  | 'warning'   // advertencia
-  | 'danger'    // error o peligro
-  | 'light'     // tono claro (fondo)
-  | 'medium'    // tono medio (bordes/texto secundario)
-  | 'dark';     // tono oscuro (texto principal)
+  | 'primary'   // main accent
+  | 'secondary' // secondary accent
+  | 'tertiary'  // tertiary accent
+  | 'success'   // successful operation
+  | 'warning'   // warning
+  | 'danger'    // error or danger
+  | 'light'     // light shade (background)
+  | 'medium'    // medium shade (borders/secondary text)
+  | 'dark';     // dark shade (main text)
 
 type Fill = 'solid' | 'outline' | 'clear';
 ```
 
-`Fill` solo aplica a `ButtonTui` y `ButtonTuiGroup`.
+`Fill` only applies to `ButtonTui` and `ButtonTuiGroup`.
 
 ---
 
-## Demo — paleta completa
+## Demo — full palette
 
-### Fondo (.bg-color-{name})
+### Background (.bg-color-{name})
 
 <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
   <span v-for="c in colors" :key="c" :class="`bg-color-${c}`" style="padding: 0.5rem 1rem; font-family: var(--font-mono); font-size: 0.75rem; border-radius: 2px;">
@@ -39,7 +39,7 @@ type Fill = 'solid' | 'outline' | 'clear';
   </span>
 </div>
 
-### Texto (.color-{name})
+### Text (.color-{name})
 
 <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
   <span v-for="c in colors" :key="c" :class="`color-${c}`" style="font-family: var(--font-mono); font-size: 0.8rem; padding: 0.3rem 0.6rem;">
@@ -47,7 +47,7 @@ type Fill = 'solid' | 'outline' | 'clear';
   </span>
 </div>
 
-### Borde (.bd-color-{name})
+### Border (.bd-color-{name})
 
 <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
   <span v-for="c in colors" :key="c" :class="`bd-color-${c}`" style="border-width: 2px; border-style: solid; font-family: var(--font-mono); font-size: 0.75rem; padding: 0.3rem 0.6rem;">
@@ -57,11 +57,11 @@ type Fill = 'solid' | 'outline' | 'clear';
 
 ---
 
-## Variables CSS
+## CSS variables
 
-Cada color semántico expone una variable `--color-{name}` que se redefine automáticamente según el tema activo.
+Each semantic color exposes a `--color-{name}` variable that is automatically redefined according to the active theme.
 
-| Variable | Tema oscuro (Mocha) | Tema claro (Latte) |
+| Variable | Dark theme (Mocha) | Light theme (Latte) |
 |---|---|---|
 | `--color-primary` | `--ctp-mocha-mauve` | `--ctp-latte-mauve` |
 | `--color-secondary` | `--ctp-mocha-lavender` | `--ctp-latte-lavender` |
@@ -73,9 +73,9 @@ Cada color semántico expone una variable `--color-{name}` que se redefine autom
 | `--color-medium` | `--ctp-mocha-overlay2` | `--ctp-latte-overlay0` |
 | `--color-dark` | `--ctp-mocha-subtext1` | `--ctp-latte-text` |
 
-## Modificar colores
+## Customizing colors
 
-Puedes sobrescribir cualquier variable de color para personalizar el tema:
+You can override any color variable to customize the theme:
 
 ```css
 :root {
@@ -84,7 +84,7 @@ Puedes sobrescribir cualquier variable de color para personalizar el tema:
 }
 ```
 
-También puedes redefinir solo para tema oscuro o claro usando `.theme-dark` o `.theme-light`:
+You can also redefine it only for dark or light theme using `.theme-dark` or `.theme-light`:
 
 ```css
 .theme-dark {
@@ -94,9 +94,9 @@ También puedes redefinir solo para tema oscuro o claro usando `.theme-dark` o `
 
 ---
 
-## Agregar un color
+## Adding a color
 
-Puedes extender el sistema con colores personalizados. Define las variables en `:root` y crea una clase utilitaria:
+You can extend the system with custom colors. Define the variables in `:root` and create a utility class:
 
 ```css
 :root {
@@ -108,19 +108,19 @@ Puedes extender el sistema con colores personalizados. Define las variables en `
 .bd-color-favorite { border-color: var(--color-favorite); }
 ```
 
-Luego usa el color en cualquier componente mediante clases:
+Then use the color in any component via classes:
 
 ```html
-<span class="color-favorite">Texto favorito</span>
+<span class="color-favorite">Favorite text</span>
 ```
 
 ---
 
-## Clases utilitarias
+## Utility classes
 
-Disponibles para usar fuera de los componentes:
+Available for use outside of components:
 
-| Clase | Efecto |
+| Class | Effect |
 |---|---|
 | `.color-{name}` | `color` |
 | `.bg-color-{name}` | `background` |
@@ -128,8 +128,7 @@ Disponibles para usar fuera de los componentes:
 
 ```html
 <span class="bg-color-danger color-dark bd-color-warning">
-  Alerta
+  Alert
 </span>
 ```
-
 

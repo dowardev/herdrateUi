@@ -4,7 +4,7 @@ import { keyhintMeta } from './meta/keyhint'
 
 # KeyHint
 
-Tecla o atajo de teclado con estilo inline.
+Key or keyboard shortcut with inline style.
 
 <PlayHost :meta="keyhintMeta" />
 
@@ -28,7 +28,7 @@ Tecla o atajo de teclado con estilo inline.
 
 ### size
 
-Tamaño del hint.
+Size of the hint.
 
 <div style="display: flex; gap: 0.5rem; align-items: center;">
   <KeyHint size="sm">sm</KeyHint>
@@ -42,10 +42,10 @@ Tamaño del hint.
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `size` | `'sm' \| 'md'` | `'md'` | Tamaño del hint |
+| `size` | `'sm' \| 'md'` | `'md'` | Size of the hint |
 
-## Tokens usados
+## Tokens used
 
 `--bg-elevated`, `--border`, `--font-mono`, `--text`

@@ -2,13 +2,13 @@
 import { ref } from 'vue'
 import { tagInputMeta } from './meta/tag-input'
 const tags = ref<string[]>(['vue', 'typescript'])
-const tagsColor = ref<string[]>(['uno', 'dos'])
+const tagsColor = ref<string[]>(['one', 'two'])
 const tagsLimited = ref<string[]>(['a', 'b', 'c'])
 </script>
 
 # TagInput
 
-Input que crea tags al presionar Enter, con soporte para límite máximo, eliminación y prevención de duplicados.
+Input that creates tags on Enter, with support for a maximum limit, removal and duplicate prevention.
 
 <PlayHost :meta="tagInputMeta" />
 
@@ -27,10 +27,10 @@ Input que crea tags al presionar Enter, con soporte para límite máximo, elimin
 
 ### modelValue
 
-Lista actual de tags (v-model con array de strings).
+Current list of tags (v-model with string array).
 
 <ClientOnly>
-  <TagInput v-model="tags" placeholder="Escribe y presiona Enter..." />
+  <TagInput v-model="tags" placeholder="Type and press Enter..." />
 </ClientOnly>
 
 ```vue
@@ -39,7 +39,7 @@ Lista actual de tags (v-model con array de strings).
 
 ### color
 
-Color semántico de los tags.
+Semantic color of the tags.
 
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
@@ -59,7 +59,7 @@ Color semántico de los tags.
 
 ### disabled
 
-Deshabilita el input y la interacción con los tags.
+Disables the input and interaction with the tags.
 
 <TagInput v-model="tags" disabled />
 
@@ -69,22 +69,22 @@ Deshabilita el input y la interacción con los tags.
 
 ### placeholder
 
-Placeholder del campo de texto.
+Placeholder of the text field.
 
 <ClientOnly>
-  <TagInput v-model="tags" placeholder="Añade un skill..." />
+  <TagInput v-model="tags" placeholder="Add a skill..." />
 </ClientOnly>
 
 ```vue
-<TagInput v-model="tags" placeholder="Añade un skill..." />
+<TagInput v-model="tags" placeholder="Add a skill..." />
 ```
 
 ### max
 
-Número máximo de tags permitidos (0 = sin límite).
+Maximum number of allowed tags (0 = no limit).
 
 <ClientOnly>
-  <TagInput v-model="tagsLimited" :max="5" placeholder="Máx 5 tags" />
+  <TagInput v-model="tagsLimited" :max="5" placeholder="Max 5 tags" />
 </ClientOnly>
 
 ```vue
@@ -93,20 +93,20 @@ Número máximo de tags permitidos (0 = sin límite).
 
 ## Events
 
-| Evento | Payload | Descripción |
+| Event | Payload | Description |
 |---|---|---|
-| `update:modelValue` | `string[]` | Se emite al añadir o eliminar un tag |
+| `update:modelValue` | `string[]` | Emitted when a tag is added or removed |
 
 ## API
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `modelValue` | `string[]` | `[]` | Lista de tags (v-model) |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico de los tags |
-| `disabled` | `boolean` | `false` | Deshabilita el input |
-| `placeholder` | `string` | `'Add tag...'` | Placeholder del input |
-| `max` | `number` | `0` | Máximo de tags (0 = sin límite) |
+| `modelValue` | `string[]` | `[]` | List of tags (v-model) |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Semantic color of the tags |
+| `disabled` | `boolean` | `false` | Disables the input |
+| `placeholder` | `string` | `'Add tag...'` | Input placeholder |
+| `max` | `number` | `0` | Maximum tags (0 = no limit) |
 
-## Tokens usados
+## Tokens used
 
 `--bg`, `--border`, `--font-mono`, `--text`, `--color-{name}`
