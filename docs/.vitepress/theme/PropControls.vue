@@ -54,7 +54,7 @@
     </section>
 
     <section v-if="eventsMeta.length" class="events-section">
-      <h3 class="section-title">Eventos</h3>
+      <h3 class="section-title">{{ t('eventsSection') }}</h3>
       <ul class="events-list">
         <li v-for="event in eventsMeta" :key="event.name">
           <code>@{{ event.name }}</code>
@@ -77,6 +77,9 @@ import PropControlSegmented from './controls/PropControlSegmented.vue';
 import PropControlSelect from './controls/PropControlSelect.vue';
 import PropControlSlot from './controls/PropControlSlot.vue';
 import PropControlToggle from './controls/PropControlToggle.vue';
+import { useDocsI18n } from './useDocsI18n';
+
+const { t } = useDocsI18n();
 
 export interface PropMeta {
   name: string;

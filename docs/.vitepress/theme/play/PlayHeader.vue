@@ -7,13 +7,16 @@
       <p v-if="meta.description" class="play-description">{{ meta.description }}</p>
     </div>
     <button class="play-toggle-btn" @click="toggle">
-      {{ modelValue === 'closed' ? 'Playground' : 'Cerrar' }}
+      {{ modelValue === 'closed' ? 'Playground' : t('close') }}
     </button>
   </header>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import { useDocsI18n } from '../useDocsI18n';
+
+const { t } = useDocsI18n();
 
 const props = withDefaults(
   defineProps<{
@@ -35,7 +38,7 @@ const emit =
 
 const componentName = computed(() => {
   const c = props.meta?.component;
-  return (c?.__name || c?.name || 'Componente') as string;
+  return (c?.__name || c?.name || t('componentFallback')) as string;
 });
 
 function toggle() {

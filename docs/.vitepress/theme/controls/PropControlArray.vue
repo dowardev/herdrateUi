@@ -24,14 +24,14 @@
         <button
           type="button"
           class="row-btn"
-          title="Eliminar fila"
+          :title="t('removeRow')"
           @click="removeRow(idx)"
         >
           &times;
         </button>
       </div>
       <button type="button" class="add-btn" @click="addRow">
-        + Agregar fila
+        + {{ t('addRow') }}
       </button>
     </div>
   </div>
@@ -39,6 +39,9 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue';
+import { useDocsI18n } from '../useDocsI18n';
+
+const { t } = useDocsI18n();
 
 interface ArrayField {
   key: string;

@@ -7,11 +7,11 @@
         <button
           :class="['play-tab', { active: activeTab === 'preview' }]"
           @click="activeTab = 'preview'"
-        >Vista Previa</button>
+        >{{ t('previewTab') }}</button>
         <button
           :class="['play-tab', { active: activeTab === 'code' }]"
           @click="activeTab = 'code'"
-        >Código</button>
+        >{{ t('codeTab') }}</button>
       </div>
       <span class="play-preview-name">{{ componentName }}</span>
     </div>
@@ -47,6 +47,9 @@
 <script setup lang="ts">
 import { CodeBlock, usePrettierFormatter } from '@dowardev/herdrate-vue';
 import { computed, ref } from 'vue';
+import { useDocsI18n } from '../useDocsI18n';
+
+const { t } = useDocsI18n();
 
 const props = defineProps<{
   meta: { component?: any; props?: any[]; slots?: any[]; events?: any[] };
@@ -60,7 +63,7 @@ const formatter = usePrettierFormatter();
 const componentInstance = computed(() => props.meta?.component);
 const componentName = computed(() => {
   const c = props.meta?.component;
-  return (c?.__name || c?.name || 'Componente') as string;
+  return (c?.__name || c?.name || t('componentFallback')) as string;
 });
 
 const liveProps = computed(() => props.props);
@@ -133,7 +136,7 @@ const snippet = computed(() => {
       const sigla = scoped ? `="{ ${slot.scopedProps?.join(', ')} }"` : '';
       lines.push(`    <template #${slot.name}${sigla}>`);
       if (txt) lines.push(`      ${txt}`);
-      else lines.push(`      <!-- contenido de #${slot.name} -->`);
+      else lines.push(`      <!-- ${t('slotContentComment')} #${slot.name} -->`);
       lines.push(`    </template>`);
     }
     lines.push(`  </${name}>`);
