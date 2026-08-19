@@ -119,7 +119,6 @@ packages/vue/        — Component library
   src/types/          — Shared types
   src/styles/         — CSS tokens and themes
 docs/                 — VitePress documentation
-apps/demo/            — Demo app (optional)
 ```
 
 ## Documentation

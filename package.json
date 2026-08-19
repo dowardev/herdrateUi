@@ -8,7 +8,7 @@
     "build": "turbo run build",
     "lint": "turbo run lint",
     "format": "biome format .",
-    "check": "biome check packages/ apps/ docs/ biome.json .gitlab-ci.yml"
+    "check": "biome check packages/ docs/ biome.json .gitlab-ci.yml"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.5",
