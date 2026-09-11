@@ -37,4 +37,51 @@ describe('ScrollView', () => {
     });
     expect(wrapper.classes()).toContain('color-success');
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(ScrollView);
+    expect(wrapper.find('.scroll-view').classes()).not.toContain(
+      'scroll-view--rubik',
+    );
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(ScrollView, { props: { design: 'rubik' } });
+    const el = wrapper.find('.scroll-view');
+    expect(el.classes()).toContain('scroll-view--rubik');
+    expect(el.attributes('data-design')).toBe('rubik');
+  });
+
+  it('rubik is a bracket viewport without the tuix box (tuix has no corners)', () => {
+    const rubik = mount(ScrollView, {
+      props: { design: 'rubik' },
+      slots: { default: '<p>hello</p>' },
+    });
+    for (const corner of ['tl', 'tr', 'br', 'bl']) {
+      expect(
+        rubik.find(`.scroll-view__corner--${corner}`).exists(),
+        `missing corner ${corner}`,
+      ).toBe(true);
+    }
+    expect(rubik.find('.scroll-view__content').exists()).toBe(true);
+
+    const tuix = mount(ScrollView, {
+      slots: { default: '<p>hello</p>' },
+    });
+    expect(tuix.find('.scroll-view__corner').exists()).toBe(false);
+    expect(tuix.find('.scroll-view__content').exists()).toBe(true);
+  });
+
+  it('corners live on the fixed frame, not inside the scrolling viewport', () => {
+    const rubik = mount(ScrollView, {
+      props: { design: 'rubik' },
+      slots: { default: '<p>hello</p>' },
+    });
+    const viewport = rubik.find('.scroll-view__viewport');
+    expect(viewport.exists()).toBe(true);
+    expect(viewport.find('.scroll-view__content').exists()).toBe(true);
+    // frame decorations must not scroll away with the content
+    expect(viewport.find('.scroll-view__corner').exists()).toBe(false);
+    expect(rubik.find('.scroll-view__corner').exists()).toBe(true);
+  });
 });

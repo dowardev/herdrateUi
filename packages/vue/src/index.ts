@@ -5,6 +5,7 @@ import './styles/theme.css';
 import './styles/reset.css';
 import './styles/color.css';
 import './themes/highlight-tui.css';
+import './themes/rubik.css';
 
 export { default as Accordion } from './components/accordion/Accordion.vue';
 export { default as Avatar } from './components/avatar/Avatar.vue';
@@ -13,6 +14,7 @@ export { default as Box } from './components/box/Box.vue';
 export { default as Breadcrumbs } from './components/breadcrumbs/Breadcrumbs.vue';
 export { default as ButtonTui } from './components/button-tui/ButtonTui.vue';
 export { default as ButtonTuiGroup } from './components/button-tui/ButtonTuiGroup.vue';
+export { default as Card } from './components/card/Card.vue';
 export { default as Checkbox } from './components/checkbox/Checkbox.vue';
 export { default as CodeBlock } from './components/code-block/CodeBlock.vue';
 export { default as ComboBox } from './components/combo-box/ComboBox.vue';
@@ -52,6 +54,13 @@ export { default as Todo } from './components/todo/Todo.vue';
 export { default as Toggle } from './components/toggle/Toggle.vue';
 export { default as Tooltip } from './components/tooltip/Tooltip.vue';
 export { default as TreeNode } from './components/tree-node/TreeNode.vue';
+export type { DesignLine } from './composables/useDesign';
+export {
+  DESIGN_LINES,
+  getDesign,
+  setDesign,
+  useDesign,
+} from './composables/useDesign';
 export type { Formatter } from './composables/usePrettierFormatter';
 export { usePrettierFormatter } from './composables/usePrettierFormatter';
 export { useToast } from './composables/useToast';

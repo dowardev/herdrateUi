@@ -8,17 +8,21 @@
       :message="t.message"
       :color="t.color"
       :icon="t.icon"
+      :design="design"
       @close="remove(t.id)"
     />
   </div>
 </template>
 
 <script setup lang="ts">
+import type { DesignLine } from '../../composables/useDesign';
 import type { ToastItem } from '../../composables/useToast';
 import Toast from './Toast.vue';
 
 defineProps<{
   toasts: ToastItem[];
+  /** Design line passed through to each toast. */
+  design?: DesignLine;
   position?:
     | 'top-right'
     | 'top-left'

@@ -1,5 +1,9 @@
 <script setup>
 import { dividerMeta } from './meta/divider'
+import { useDesign } from '@dowardev/herdrate-vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # Divider
@@ -7,6 +11,44 @@ import { dividerMeta } from './meta/divider'
 Horizontal or vertical divider with terminal aesthetics.
 
 <PlayHost :meta="dividerMeta" />
+
+## Design lines
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Divider design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Divider design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Divider design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Divider design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

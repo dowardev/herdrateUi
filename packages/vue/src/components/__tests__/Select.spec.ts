@@ -86,4 +86,52 @@ describe('Select', () => {
     });
     expect(wrapper.classes()).toContain('color-success');
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(Select);
+    expect(wrapper.classes()).not.toContain('select--rubik');
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(Select, { props: { design: 'rubik' } });
+    expect(wrapper.classes()).toContain('select--rubik');
+    expect(wrapper.attributes('data-design')).toBe('rubik');
+  });
+
+  it('rubik trigger exposes open state and hides the terminal arrow glyph', async () => {
+    const wrapper = mount(Select, { props: { options, design: 'rubik' } });
+    const trigger = wrapper.find('.select-trigger');
+    expect(trigger.attributes('aria-expanded')).toBe('false');
+    expect(wrapper.classes()).not.toContain('is-open');
+    await trigger.trigger('click');
+    expect(trigger.attributes('aria-expanded')).toBe('true');
+    expect(wrapper.classes()).toContain('is-open');
+    expect(wrapper.find('.select-arrow').text()).not.toContain('▼');
+  });
+
+  it('rubik dropdown is an indexed HUD list, not the tuix pointer list', async () => {
+    const wrapper = mount(Select, {
+      props: { options, modelValue: '2', design: 'rubik' },
+    });
+    await wrapper.find('.select-trigger').trigger('click');
+    const opts = wrapper.findAll('.select-option');
+    expect(opts).toHaveLength(3);
+    expect(opts[0].find('.select-index').text()).toBe('01');
+    expect(opts[1].find('.select-index').text()).toBe('02');
+    expect(opts[1].find('.select-diamond').exists()).toBe(true);
+    expect(opts[1].find('.select-pointer').exists()).toBe(false);
+    expect(opts[1].text()).not.toContain('>');
+    expect(opts[1].classes()).toContain('selected');
+    expect(opts[0].classes()).not.toContain('selected');
+  });
+
+  it('tuix dropdown keeps the legacy pointer list (no HUD index)', async () => {
+    const wrapper = mount(Select, {
+      props: { options, modelValue: '2' },
+    });
+    await wrapper.find('.select-trigger').trigger('click');
+    const opts = wrapper.findAll('.select-option');
+    expect(opts[0].find('.select-index').exists()).toBe(false);
+    expect(opts[0].find('.select-pointer').exists()).toBe(true);
+  });
 });

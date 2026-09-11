@@ -2,7 +2,8 @@
 
 <template>
   <span
-    :class="['toggle', `color-${color}`, { disabled, on: modelValue, off: !modelValue }]"
+    :class="['toggle', `color-${color}`, { disabled, on: modelValue, off: !modelValue, 'toggle--rubik': design === 'rubik' }]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
     :role="'switch'"
     :aria-checked="modelValue"
     :aria-disabled="disabled || undefined"
@@ -16,6 +17,8 @@
 </template>
 
 <script setup lang="ts">
+import { computed, toRef } from 'vue';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
 
@@ -24,12 +27,14 @@ interface Labels {
   off: string;
 }
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     modelValue?: boolean;
     color?: Color;
     disabled?: boolean;
     labels?: Labels;
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     modelValue: false,
@@ -40,6 +45,8 @@ withDefaults(
 );
 
 defineEmits<(e: 'update:modelValue', value: boolean) => void>();
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 </script>
 
 <style scoped>
@@ -75,4 +82,50 @@ defineEmits<(e: 'update:modelValue', value: boolean) => void>();
 .toggle.color-light { color: var(--color-light); }
 .toggle.color-medium { color: var(--color-medium); }
 .toggle.color-dark { color: var(--color-dark); }
+
+/* --------------------- RUBIK variant (accent-ping on state) --------------------- */
+.toggle--rubik {
+  border-radius: 0;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition:
+    box-shadow 200ms var(--cp-ease, ease),
+    transform 120ms ease,
+    color 160ms ease;
+}
+.toggle--rubik.on {
+  font-weight: 700;
+  /* tuix fills .on with currentColor which matches its own text color
+     (invisible); rubik keeps the hollow box so the semantic hue stays
+     readable on the canvas */
+  background: transparent;
+  border: 1px solid currentColor;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 1px;
+}
+.toggle--rubik {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.toggle--rubik::before {
+  content: '';
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--text-muted);
+  transform: rotate(45deg) scale(0.9);
+}
+.toggle--rubik.on::before {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.toggle--rubik:hover {
+  transform: translateY(-1px);
+}
+.toggle--rubik:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
 </style>

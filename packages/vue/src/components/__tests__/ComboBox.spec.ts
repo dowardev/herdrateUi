@@ -63,4 +63,20 @@ describe('ComboBox', () => {
     expect(emitted).toBeTruthy();
     expect(emitted?.[emitted?.length - 1][0]).toBe('cherry');
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(ComboBox, { props: {} });
+    expect(wrapper.find('.combo-box').classes()).not.toContain(
+      'combo-box--rubik',
+    );
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(ComboBox, {
+      props: { design: 'rubik' },
+    });
+    const el = wrapper.find('.combo-box');
+    expect(el.classes()).toContain('combo-box--rubik');
+    expect(el.attributes('data-design')).toBe('rubik');
+  });
 });

@@ -52,4 +52,17 @@ describe('Radio', () => {
     });
     expect(wrapper.classes()).toContain('color-success');
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(Radio, { props: { value: 'a' } });
+    expect(wrapper.classes()).not.toContain('radio--rubik');
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(Radio, {
+      props: { value: 'a', design: 'rubik' },
+    });
+    expect(wrapper.classes()).toContain('radio--rubik');
+    expect(wrapper.attributes('data-design')).toBe('rubik');
+  });
 });

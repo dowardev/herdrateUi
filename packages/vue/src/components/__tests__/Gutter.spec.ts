@@ -37,4 +37,17 @@ describe('Gutter', () => {
     expect(lines[2].find('.gutter-marker').exists()).toBe(false);
     expect(lines[3].find('.gutter-marker').exists()).toBe(true);
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(Gutter, { props: { lines: 3 } });
+    expect(wrapper.classes()).not.toContain('gutter--rubik');
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(Gutter, {
+      props: { lines: 3, design: 'rubik' },
+    });
+    expect(wrapper.classes()).toContain('gutter--rubik');
+    expect(wrapper.attributes('data-design')).toBe('rubik');
+  });
 });

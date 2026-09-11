@@ -53,6 +53,17 @@ describe('ButtonTuiGroup', () => {
     expect(wrapper.findAll('.btn-tui').length).toBe(2);
   });
 
+  it('forwards the native click event to onClick', async () => {
+    let received: unknown;
+    const wrapper = mount(ButtonTuiGroup, {
+      props: {
+        buttons: [{ label: 'Go', onClick: (e: unknown) => (received = e) }],
+      },
+    });
+    await wrapper.find('.btn-tui').trigger('click');
+    expect(received).toBeInstanceOf(MouseEvent);
+  });
+
   it('calls onClick when button is clicked', async () => {
     const calls: string[] = [];
     const buttons = [{ label: 'A', onClick: () => calls.push('A') }];
@@ -99,5 +110,38 @@ describe('ButtonTuiGroup', () => {
     expect(btns[0].attributes('data-color')).toBe('success');
     expect(btns[1].attributes('data-fill')).toBe('outline');
     expect(btns[1].attributes('data-color')).toBe('danger');
+  });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(ButtonTui, { props: {} });
+    expect(wrapper.find('.btn-tui').classes()).not.toContain('btn-tui--rubik');
+  });
+
+  it('group stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(ButtonTuiGroup, {
+      props: { buttons: [{ label: 'A', onClick: () => {} }] },
+    });
+    expect(wrapper.classes()).not.toContain('btn-tui-group--rubik');
+    expect(wrapper.find('.btn-tui').classes()).not.toContain('btn-tui--rubik');
+  });
+
+  it('group passes design through to inner buttons', () => {
+    const wrapper = mount(ButtonTuiGroup, {
+      props: { buttons: [{ label: 'A', onClick: () => {} }], design: 'rubik' },
+    });
+    expect(wrapper.classes()).toContain('btn-tui-group--rubik');
+    expect(wrapper.attributes('data-design')).toBe('rubik');
+    const btn = wrapper.find('.btn-tui');
+    expect(btn.classes()).toContain('btn-tui--rubik');
+    expect(btn.attributes('data-design')).toBe('rubik');
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(ButtonTui, {
+      props: { design: 'rubik' },
+    });
+    const el = wrapper.find('.btn-tui');
+    expect(el.classes()).toContain('btn-tui--rubik');
+    expect(el.attributes('data-design')).toBe('rubik');
   });
 });

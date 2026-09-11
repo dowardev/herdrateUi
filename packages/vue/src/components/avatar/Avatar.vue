@@ -2,7 +2,8 @@
 
 <template>
   <div
-    :class="['avatar', `avatar--${size}`]"
+    :class="['avatar', `avatar--${size}`, { 'avatar--rubik': design === 'rubik' }]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
     :style="{ background: _bg }"
     :title="name"
     v-text="_initial"
@@ -10,18 +11,23 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, toRef } from 'vue';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import { COLORS, fnv1a } from './hash';
 
 const props = withDefaults(
   defineProps<{
     name: string;
     size?: 'sm' | 'md' | 'lg';
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     size: 'md',
   },
 );
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 
 const _initial = computed(() => props.name.charAt(0).toUpperCase());
 const _bg = computed(() => {
@@ -45,4 +51,9 @@ const _bg = computed(() => {
 .avatar--sm { width: 1.5rem; height: 1.5rem; font-size: 0.75rem; }
 .avatar--md { width: 2.25rem; height: 2.25rem; font-size: 1rem; }
 .avatar--lg { width: 3rem; height: 3rem; font-size: 1.25rem; }
+
+/* --------------------- RUBIK variant --------------------- */
+.avatar--rubik {
+  border-radius: 0;
+}
 </style>

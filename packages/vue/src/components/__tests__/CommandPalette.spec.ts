@@ -78,4 +78,19 @@ describe('CommandPalette', () => {
     expect(wrapper.emitted('update:modelValue')).toBeTruthy();
     expect(wrapper.emitted('update:modelValue')?.[0][0]).toBe(false);
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    mount(CommandPalette, { props: { modelValue: true, commands: [] } });
+    const el = document.body.querySelector('.cp-palette');
+    expect(el?.classList.contains('cp-palette--rubik')).toBe(false);
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    mount(CommandPalette, {
+      props: { modelValue: true, commands: [], design: 'rubik' },
+    });
+    const el = document.body.querySelector('.cp-palette');
+    expect(el?.classList.contains('cp-palette--rubik')).toBe(true);
+    expect(el?.getAttribute('data-design')).toBe('rubik');
+  });
 });

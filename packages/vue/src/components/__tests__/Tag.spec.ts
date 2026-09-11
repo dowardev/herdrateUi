@@ -76,4 +76,18 @@ describe('Tag', () => {
     await wrapper.trigger('click');
     expect(wrapper.emitted('remove')).toBeUndefined();
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(Tag, { slots: { default: 'item' } });
+    expect(wrapper.classes()).not.toContain('tag--rubik');
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(Tag, {
+      props: { design: 'rubik' },
+      slots: { default: 'item' },
+    });
+    expect(wrapper.classes()).toContain('tag--rubik');
+    expect(wrapper.attributes('data-design')).toBe('rubik');
+  });
 });

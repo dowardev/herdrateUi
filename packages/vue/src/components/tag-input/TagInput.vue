@@ -1,11 +1,14 @@
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
 
 <template>
-  <div :class="['tag-input', `color-${color}`, disabled && 'tag-input--disabled']">
+  <div :class="['tag-input', `color-${color}`, disabled && 'tag-input--disabled', { 'tag-input--rubik': design === 'rubik' }]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
+  >
     <Tag
       v-for="(tag, i) in modelValue"
       :key="i"
       :color="color"
+      :design="design"
       removable
       @remove="removeTag(i)"
     >
@@ -24,7 +27,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, toRef } from 'vue';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
 import Tag from '../tag/Tag.vue';
@@ -36,6 +40,8 @@ const props = withDefaults(
     disabled?: boolean;
     placeholder?: string;
     max?: number;
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     modelValue: () => [],
@@ -45,6 +51,8 @@ const props = withDefaults(
     max: 0,
   },
 );
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 
 const emit = defineEmits<{
   'update:modelValue': [value: string[]];
@@ -112,5 +120,21 @@ function onKeydown(e: KeyboardEvent) {
   font-size: 0.875rem;
   color: var(--text);
   padding: 0.05rem 0.2rem;
+}
+
+/* --------------------- RUBIK variant (install-box language) --------------------- */
+.tag-input--rubik {
+  border-radius: 0;
+  border: 1px solid var(--border);
+  border-bottom: 3px solid var(--text);
+  padding: 0.375rem 0.5rem;
+  transition:
+    border-color 200ms var(--cp-ease, ease),
+    box-shadow 200ms var(--cp-ease, ease);
+}
+.tag-input--rubik:focus-within {
+  border-color: var(--accent);
+  box-shadow:
+    0 0 0 1px var(--accent);
 }
 </style>

@@ -40,4 +40,33 @@ describe('TipBox', () => {
     });
     expect(wrapper.text()).toContain('Some tip');
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(TipBox, { slots: { default: 'Some tip' } });
+    expect(wrapper.classes()).not.toContain('tip-box--rubik');
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(TipBox, {
+      props: { design: 'rubik' },
+      slots: { default: 'Some tip' },
+    });
+    expect(wrapper.classes()).toContain('tip-box--rubik');
+    expect(wrapper.attributes('data-design')).toBe('rubik');
+  });
+
+  it('rubik keeps the same content as tuix (design-only change)', () => {
+    const props = {
+      color: 'warning' as const,
+      title: 'Heads up',
+      message: 'Disk at 90%.',
+    };
+    const tuix = mount(TipBox, { props });
+    const rubik = mount(TipBox, {
+      props: { ...props, design: 'rubik' as const },
+    });
+    expect(rubik.text()).toBe(tuix.text());
+    expect(rubik.find('.tip-box-header').exists()).toBe(true);
+    expect(rubik.find('.tip-box-body').exists()).toBe(true);
+  });
 });

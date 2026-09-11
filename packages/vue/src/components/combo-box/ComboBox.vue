@@ -3,7 +3,8 @@
 <template>
   <div
     ref="containerRef"
-    :class="['combo-box', `color-${color}`, { disabled }]"
+    :class="['combo-box', `color-${color}`, { disabled, 'combo-box--rubik': design === 'rubik' }]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
     tabindex="0"
     @keydown="handleKeydown"
   >
@@ -31,7 +32,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, toRef } from 'vue';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
 
@@ -42,6 +44,8 @@ const props = withDefaults(
     color?: Color;
     placeholder?: string;
     disabled?: boolean;
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     items: () => [],
@@ -53,6 +57,8 @@ const props = withDefaults(
 );
 
 const emit = defineEmits<(e: 'update:modelValue', value: string) => void>();
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 
 const open = ref(false);
 const hoveredIndex = ref(0);
@@ -174,5 +180,38 @@ function handleKeydown(event: KeyboardEvent) {
 .combo-box__option.highlighted {
   background: color-mix(in srgb, var(--color-primary) 20%, transparent);
   color: var(--color-primary);
+}
+
+/* --------------------- RUBIK variant (install-box language) --------------------- */
+.combo-box--rubik .combo-box__input {
+  border-radius: 0;
+  border: 1px solid var(--border);
+  border-bottom: 3px solid var(--text);
+  padding: 0.5rem 0.75rem;
+}
+.combo-box--rubik:focus-within .combo-box__input {
+  border-color: var(--accent);
+  box-shadow:
+    0 0 0 1px var(--accent);
+}
+.combo-box--rubik .combo-box__dropdown {
+  border-radius: 0;
+  border: 1px solid var(--accent);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  margin-top: 4px;
+  padding: 4px;
+}
+.combo-box--rubik .combo-box__option {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+  padding: 0.45rem 0.6rem;
+  border-left: 2px solid transparent;
+}
+.combo-box--rubik .combo-box__option.highlighted {
+  background: var(--text);
+  color: var(--bg);
 }
 </style>

@@ -2,23 +2,33 @@
 
 <template>
   <div
-    :class="['select', `color-${color}`, { disabled }]"
+    :class="['select', `color-${color}`, { disabled, 'select--rubik': design === 'rubik', 'is-open': open }]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
     tabindex="0"
     @keydown="handleKeydown"
   >
-    <div class="select-trigger" @click="toggle">
+    <div class="select-trigger" :aria-expanded="open ? 'true' : 'false'" @click="toggle">
       <span>{{ selectedLabel || placeholder }}</span>
-      <span class="select-arrow">&#9660;</span>
+
+      <span class="select-arrow" aria-hidden="true"><template v-if="design !== 'rubik'">&#9660;</template></span>
     </div>
-    <div v-if="open" class="select-dropdown">
+
+    <div v-if="open" class="select-dropdown" role="listbox">
       <div
         v-for="(option, index) in options"
         :key="option.value"
-        :class="['select-option', { highlighted: index === hoveredIndex }]"
+        :class="['select-option', { highlighted: index === hoveredIndex, selected: option.value === modelValue }]"
+        role="option"
+        :aria-selected="option.value === modelValue ? 'true' : 'false'"
         @click="select(option)"
         @mouseenter="hoveredIndex = index"
       >
-        <span class="select-pointer">{{ index === hoveredIndex ? '>' : ' ' }}</span>
+        <span v-if="design === 'rubik'" class="select-index">{{ String(index + 1).padStart(2, '0') }}</span>
+
+        <span v-if="design === 'rubik'" class="select-diamond" aria-hidden="true" />
+
+        <span v-else class="select-pointer">{{ index === hoveredIndex ? '>' : ' ' }}</span>
+
         <span>{{ option.label }}</span>
       </div>
     </div>
@@ -26,7 +36,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, toRef } from 'vue';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
 
@@ -37,6 +48,8 @@ const props = withDefaults(
     color?: Color;
     disabled?: boolean;
     placeholder?: string;
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     modelValue: '',
@@ -48,6 +61,8 @@ const props = withDefaults(
 );
 
 const emit = defineEmits<(e: 'update:modelValue', value: string) => void>();
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 
 const open = ref(false);
 const hoveredIndex = ref(0);
@@ -185,5 +200,149 @@ function handleKeydown(event: KeyboardEvent) {
 .select-pointer {
   width: 1rem;
   flex-shrink: 0;
+}
+
+/* --------------------- RUBIK variant: HUD instrument ---------------------
+   Trigger: cut corner, bottom beam, CSS diamond instead of the ▼ glyph —
+   the diamond fills while open. Dropdown: detached floating readout panel
+   with hazard rail, indexed rows and diamond markers — no `>` glyphs.
+   Selected and hovered are two distinct states (rail vs ink fill). Flat,
+   no shadow, no glow. */
+.select--rubik {
+  border-radius: 0;
+}
+.select--rubik .select-trigger::before {
+  content: '';
+  flex: none;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  clip-path: polygon(0 0, calc(100% - 3px) 0, 100% 3px, 100% 100%, 0 100%);
+  margin-right: 0.6em;
+}
+.select--rubik .select-trigger > span:first-child {
+  flex: 1;
+}
+.select--rubik .select-arrow {
+  flex: none;
+  width: 9px;
+  height: 9px;
+  margin-left: 0.6rem;
+  padding: 0;
+  opacity: 1;
+  border: 1px solid var(--accent);
+  transform: rotate(45deg);
+  transition:
+    background 160ms ease,
+    transform 200ms var(--cp-ease, ease);
+}
+.select--rubik.is-open .select-arrow {
+  background: var(--accent);
+}
+.select--rubik .select-trigger {
+  border-radius: 0;
+  border: 1px solid var(--border);
+  border-bottom: 3px solid var(--text);
+  background: var(--bg);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition:
+    border-color 200ms var(--cp-ease, ease),
+    box-shadow 200ms var(--cp-ease, ease);
+}
+.select--rubik:focus .select-trigger,
+.select--rubik.is-open .select-trigger {
+  border-color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+.select--rubik .select-dropdown {
+  border-radius: 0;
+  border: 1px solid var(--accent);
+  background: var(--bg-elevated, var(--bg));
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  margin-top: 6px;
+  padding: 4px;
+  animation: select-rubik-in 260ms var(--cp-ease-snap, ease) backwards;
+}
+.select--rubik .select-dropdown::before {
+  content: '';
+  display: block;
+  height: 2px;
+  margin: 2px 2px 4px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--accent) 0 6px,
+    transparent 6px 12px
+  );
+  opacity: 0.85;
+}
+.select--rubik .select-option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+  padding: 0.45rem 0.6rem;
+  border-left: 2px solid transparent;
+}
+.select--rubik .select-index {
+  flex: none;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+.select--rubik .select-diamond {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  transform: rotate(45deg);
+  border: 1px solid var(--border);
+  transition:
+    background 120ms ease,
+    border-color 120ms ease;
+}
+.select--rubik .select-option.highlighted {
+  background: var(--text);
+  color: var(--bg);
+}
+.select--rubik .select-option.highlighted .select-index {
+  color: inherit;
+  opacity: 0.7;
+}
+.select--rubik .select-option.highlighted .select-diamond {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.select--rubik .select-option.selected:not(.highlighted) {
+  border-left-color: var(--accent);
+  background: var(--bg-alt);
+}
+.select--rubik .select-option.selected:not(.highlighted) .select-diamond {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+@keyframes select-rubik-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .select--rubik .select-arrow,
+  .select--rubik .select-diamond {
+    transition: none;
+  }
+  .select--rubik .select-dropdown {
+    animation: none;
+  }
 }
 </style>

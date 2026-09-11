@@ -69,4 +69,22 @@ describe('Input', () => {
     const input = wrapper.find('input');
     expect(input.attributes('type')).toBe('password');
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(Input);
+    expect(wrapper.find('.input').classes()).not.toContain('input--rubik');
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(Input, { props: { design: 'rubik' } });
+    const el = wrapper.find('.input');
+    expect(el.classes()).toContain('input--rubik');
+    expect(el.attributes('data-design')).toBe('rubik');
+  });
+
+  it('activates rubik on the textarea variant', () => {
+    const wrapper = mount(Input, { props: { design: 'rubik', rows: 3 } });
+    const el = wrapper.find('textarea.input');
+    expect(el.classes()).toContain('input--rubik');
+  });
 });

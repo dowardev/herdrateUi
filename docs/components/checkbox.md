@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useDesign } from '@dowardev/herdrate-vue'
 import { checkboxMeta } from './meta/checkbox'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 const checked = ref(false)
 const checked2 = ref(true)
 const checked3 = ref(false)
@@ -11,6 +15,44 @@ const checked3 = ref(false)
 Terminal-style checkbox with `[x]` / `[ ]`.
 
 <PlayHost :meta="checkboxMeta" />
+
+## Design lines
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Checkbox :model-value="true" label="CI" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Checkbox :model-value="true" label="CI" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Checkbox :model-value="true" label="CI" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Checkbox :model-value="true" label="CI" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

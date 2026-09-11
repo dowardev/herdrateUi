@@ -52,4 +52,40 @@ describe('TreeNode', () => {
     // expanded shows ▼
     expect(arrow.text()).toBe('\u25BC');
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(TreeNode, { slots: { label: 'src' } });
+    expect(wrapper.classes()).not.toContain('tree-node--rubik');
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(TreeNode, {
+      props: { design: 'rubik' },
+      slots: { label: 'src' },
+    });
+    expect(wrapper.classes()).toContain('tree-node--rubik');
+    expect(wrapper.attributes('data-design')).toBe('rubik');
+  });
+
+  it('exposes expansion state on the row for state styling', async () => {
+    const wrapper = mount(TreeNode, {
+      slots: { label: 'src', default: 'child' },
+    });
+    const row = wrapper.find('.tree-node__row');
+    expect(row.classes()).not.toContain('tree-node__row--expanded');
+    await row.trigger('click');
+    expect(row.classes()).toContain('tree-node__row--expanded');
+  });
+
+  it('rubik keeps the same label text as tuix (design-only change)', () => {
+    const slots = { label: 'src' };
+    const tuix = mount(TreeNode, { slots });
+    const rubik = mount(TreeNode, {
+      props: { design: 'rubik' },
+      slots,
+    });
+    expect(rubik.find('.tree-node__label').text()).toBe(
+      tuix.find('.tree-node__label').text(),
+    );
+  });
 });

@@ -22,4 +22,20 @@ describe('KeyHint', () => {
     });
     expect(wrapper.classes()).toContain('key-hint--sm');
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(KeyHint, { props: {} });
+    expect(wrapper.find('.key-hint').classes()).not.toContain(
+      'key-hint--rubik',
+    );
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(KeyHint, {
+      props: { design: 'rubik' },
+    });
+    const el = wrapper.find('.key-hint');
+    expect(el.classes()).toContain('key-hint--rubik');
+    expect(el.attributes('data-design')).toBe('rubik');
+  });
 });

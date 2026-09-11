@@ -55,4 +55,18 @@ describe('Spinner', () => {
     expect(wrapper.classes()).toContain('size-md');
     expect(wrapper.classes()).toContain('speed-normal');
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(Spinner, { props: {} });
+    expect(wrapper.find('.spinner').classes()).not.toContain('spinner--rubik');
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(Spinner, {
+      props: { design: 'rubik' },
+    });
+    const el = wrapper.find('.spinner');
+    expect(el.classes()).toContain('spinner--rubik');
+    expect(el.attributes('data-design')).toBe('rubik');
+  });
 });

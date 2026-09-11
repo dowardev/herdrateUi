@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useDesign } from '@dowardev/herdrate-vue'
 import { accordionMeta } from './meta/accordion'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 const items = [
   { title: 'Settings', content: 'Network settings and system preferences.' },
   { title: 'Users', content: 'User management and permissions.' },
@@ -14,6 +18,44 @@ const opened = ref<number[]>([])
 Terminal-style collapsible panel with support for multiple sections and custom slots.
 
 <PlayHost :meta="accordionMeta" />
+
+## Design lines
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Accordion :items="[{ title: 'Section 1', content: 'Content 1' }]" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Accordion :items="[{ title: 'Section 1', content: 'Content 1' }]" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Accordion :items="[{ title: 'Section 1', content: 'Content 1' }]" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Accordion :items="[{ title: 'Section 1', content: 'Content 1' }]" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

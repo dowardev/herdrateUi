@@ -1,5 +1,9 @@
 <script setup>
 import { progressBarMeta } from './meta/progress-bar'
+import { useDesign } from '@dowardev/herdrate-vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # ProgressBar
@@ -7,6 +11,44 @@ import { progressBarMeta } from './meta/progress-bar'
 Terminal-style progress bar with percentage.
 
 <PlayHost :meta="progressBarMeta" />
+
+## Design lines
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <ProgressBar :value="62" show-label design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <ProgressBar :value="62" show-label design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <ProgressBar :value="62" show-label design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <ProgressBar :value="62" show-label design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

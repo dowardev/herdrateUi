@@ -54,4 +54,15 @@ describe('Accordion', () => {
     expect(wrapper.text()).not.toContain('Content 1');
     expect(wrapper.text()).toContain('Content 2');
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(Accordion, { props: { items } });
+    expect(wrapper.classes()).not.toContain('accordion--rubik');
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(Accordion, { props: { items, design: 'rubik' } });
+    expect(wrapper.classes()).toContain('accordion--rubik');
+    expect(wrapper.attributes('data-design')).toBe('rubik');
+  });
 });

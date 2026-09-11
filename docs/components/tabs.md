@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { tabsMeta } from './meta/tabs'
+import { useDesign } from '@dowardev/herdrate-vue'
 import TabsDemo from './TabsDemo.vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # Tabs
@@ -8,6 +12,44 @@ import TabsDemo from './TabsDemo.vue'
 Tabs with horizontal scroll, navigation arrows and individual closing.
 
 <PlayHost :meta="tabsMeta" />
+
+## Design lines
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Tabs default-value="a" design="tuix"><TabsList><Tab value="a">Tab A</Tab><Tab value="b">Tab B</Tab></TabsList><TabPanel value="a">Content A</TabPanel><TabPanel value="b">Content B</TabPanel></Tabs>
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Tabs default-value="a" design="rubik"><TabsList><Tab value="a">Tab A</Tab><Tab value="b">Tab B</Tab></TabsList><TabPanel value="a">Content A</TabPanel><TabPanel value="b">Content B</TabPanel></Tabs>
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Tabs default-value="a" design="tuix"><TabsList><Tab value="a">Tab A</Tab><Tab value="b">Tab B</Tab></TabsList><TabPanel value="a">Content A</TabPanel><TabPanel value="b">Content B</TabPanel></Tabs>
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Tabs default-value="a" design="rubik"><TabsList><Tab value="a">Tab A</Tab><Tab value="b">Tab B</Tab></TabsList><TabPanel value="a">Content A</TabPanel><TabPanel value="b">Content B</TabPanel></Tabs>
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

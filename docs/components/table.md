@@ -1,5 +1,9 @@
 <script setup>
 import { tableMeta } from './meta/table'
+import { useDesign } from '@dowardev/herdrate-vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # Table
@@ -7,6 +11,44 @@ import { tableMeta } from './meta/table'
 Terminal-style table, alternating rows and compact mode.
 
 <PlayHost :meta="tableMeta" />
+
+## Design lines
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Table :columns="[{ key: 'n', label: 'Name' }]" :rows="[{ n: 'Ada' }]" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Table :columns="[{ key: 'n', label: 'Name' }]" :rows="[{ n: 'Ada' }]" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Table :columns="[{ key: 'n', label: 'Name' }]" :rows="[{ n: 'Ada' }]" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Table :columns="[{ key: 'n', label: 'Name' }]" :rows="[{ n: 'Ada' }]" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 
@@ -124,6 +166,30 @@ Reduces the cell padding for a denser view.
 />
 ```
 
+### indexed
+
+Shows a numbered index column (`#` / `01`). Off by default, available in both design lines.
+
+<Table
+  :columns="[{ key: 'name', label: 'Name' }, { key: 'role', label: 'Role' }]"
+  :rows="[
+    { name: 'Alice', role: 'Developer' },
+    { name: 'Bob', role: 'Designer' },
+  ]"
+  indexed
+/>
+
+```vue
+<Table
+  :columns="[{ key: 'name', label: 'Name' }, { key: 'role', label: 'Role' }]"
+  :rows="[
+    { name: 'Alice', role: 'Developer' },
+    { name: 'Bob', role: 'Designer' },
+  ]"
+  indexed
+/>
+```
+
 ### color
 
 Color of the header border.
@@ -183,6 +249,7 @@ Color of the header border.
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Header border color |
 | `striped` | `boolean` | `false` | Alternating row background |
 | `compact` | `boolean` | `false` | Reduced cell padding |
+| `indexed` | `boolean` | `false` | Numbered index column in both lines |
 
 ## Tokens used
 

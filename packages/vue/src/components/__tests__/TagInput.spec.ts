@@ -94,4 +94,25 @@ describe('TagInput', () => {
     });
     expect(wrapper.classes()).toContain('color-success');
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(TagInput);
+    expect(wrapper.find('.tag-input').classes()).not.toContain(
+      'tag-input--rubik',
+    );
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(TagInput, { props: { design: 'rubik' } });
+    const root = wrapper.find('.tag-input');
+    expect(root.classes()).toContain('tag-input--rubik');
+    expect(root.attributes('data-design')).toBe('rubik');
+  });
+
+  it('passes design through to child tags', () => {
+    const wrapper = mount(TagInput, {
+      props: { modelValue: ['vue'], design: 'rubik' },
+    });
+    expect(wrapper.find('.tag').classes()).toContain('tag--rubik');
+  });
 });

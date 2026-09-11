@@ -1,7 +1,10 @@
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
 
 <template>
-  <div :class="['status-bar', `color-${color}`]">
+  <div
+  :class="['status-bar', `color-${color}`, { 'status-bar--rubik': design === 'rubik' }]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
+    >
     <span class="status-bar__mode">
       {{ mode }}
     </span>
@@ -15,15 +18,19 @@
 </template>
 
 <script setup lang="ts">
+import { computed, toRef } from 'vue';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     mode?: string;
     position?: string;
     color?: Color;
     info?: string;
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     mode: 'NORMAL',
@@ -32,6 +39,8 @@ withDefaults(
     info: '',
   },
 );
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 </script>
 
 <style scoped>
@@ -70,4 +79,12 @@ withDefaults(
 .status-bar.color-light .status-bar__mode { color: var(--color-light); }
 .status-bar.color-medium .status-bar__mode { color: var(--color-medium); }
 .status-bar.color-dark .status-bar__mode { color: var(--color-dark); }
+
+/* --------------------- RUBIK variant (neon top rail) --------------------- */
+.status-bar--rubik {
+  border-top: 3px solid var(--accent);
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
 </style>

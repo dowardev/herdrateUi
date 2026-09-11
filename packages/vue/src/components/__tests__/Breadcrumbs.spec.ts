@@ -42,4 +42,19 @@ describe('Breadcrumbs', () => {
     const lastItem = items[items.length - 1];
     expect(lastItem?.classes()).toContain('breadcrumb-item--last');
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(Breadcrumbs, {
+      props: { items: [{ label: 'Home', href: '/' }] },
+    });
+    expect(wrapper.classes()).not.toContain('breadcrumbs--rubik');
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(Breadcrumbs, {
+      props: { items: [{ label: 'Home', href: '/' }], design: 'rubik' },
+    });
+    expect(wrapper.classes()).toContain('breadcrumbs--rubik');
+    expect(wrapper.attributes('data-design')).toBe('rubik');
+  });
 });

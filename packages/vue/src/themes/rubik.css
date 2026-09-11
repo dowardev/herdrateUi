@@ -1,0 +1,120 @@
+/* ============================================
+   Herdrate — "rubik" design line (LBDS-214)
+
+   A real presentation variant: morphology, motion and structure — not a
+   palette override. Every rule is scoped under `[data-design="rubik"]`
+   so the tuix line stays untouched. Semantics (color tokens) are owned
+   by the consumer's theme — this line does NOT touch them; it changes
+   geometry (corner cuts, brackets, rails), motion (easing + keyframes) and
+   hierarchy (uppercase labels + accent rails), translated from the
+   portafolio rubik-light into pure herdrate tokens (no Ionic CSS).
+
+   Activation:
+     <html data-design="rubik">   (whole app)
+     <div data-design="rubik">    (scoped area)
+   or via the exported helper: setDesign("rubik").
+   ============================================ */
+
+[data-design="rubik"] {
+  /* elevation tokens for the line (tuix base is flat: none) */
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.45);
+  /* structural tokens for the line */
+  --cp-angle: 12px; /* chamfer size for corner cuts */
+  --cp-bracket: 10px; /* corner-bracket offset */
+  --cp-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --cp-ease-snap: cubic-bezier(0.3, 1.4, 0.5, 1);
+  --cp-glow: rgba(0, 240, 255, 0.45);
+  --cp-rail: var(--accent);
+  --cp-dur-1: 120ms; /* micro (press) */
+  --cp-dur-2: 260ms; /* hover */
+  --cp-dur-3: 420ms; /* entrances */
+}
+
+/* ============================================
+   Typographic / hierarchy shifts
+   ============================================ */
+[data-design="rubik"] .panel-header,
+[data-design="rubik"] .panel-footer,
+[data-design="rubik"] .status-bar,
+[data-design="rubik"] .table th,
+[data-design="rubik"] .accordion-header,
+[data-design="rubik"] .tabs-list,
+[data-design="rubik"] .breadcrumbs,
+[data-design="rubik"] .menu-label {
+  letter-spacing: 0.07em;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-family: var(--font-display, var(--font-sans));
+}
+
+/* Panels, Buttons and Inputs moved to scoped `.x--rubik` variants (Fase 2):
+   the variant class is the source of truth so prop-only usage
+   (`<Panel design="rubik">`) renders the full delta — global descendant
+   selectors do not match same-element hooks. This sheet keeps tokens,
+   keyframes and ancestor-scoped enhancements only. */
+
+/* ============================================
+   Inputs — focus ring that pulses forward
+   ============================================ */
+[data-design="rubik"] .select-trigger,
+[data-design="rubik"] .combo-box {
+  transition:
+    box-shadow var(--cp-dur-2) var(--cp-ease),
+    border-color var(--cp-dur-2) var(--cp-ease),
+    transform var(--cp-dur-2) var(--cp-ease);
+}
+
+/* ============================================
+   Modal / select / tooltip / command-palette — entrance
+   ============================================ */
+[data-design="rubik"] .modal,
+[data-design="rubik"] .select-trigger,
+[data-design="rubik"] .combo-box,
+[data-design="rubik"] .tooltip-wrapper,
+[data-design="rubik"] .cp-palette {
+  animation: cp-pop-in var(--cp-dur-3) var(--cp-ease-snap) backwards;
+}
+@keyframes cp-pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============================================
+   Accordion — indicator turns, content rises
+   ============================================ */
+[data-design="rubik"] .accordion-indicator {
+  transition: transform var(--cp-dur-2) var(--cp-ease);
+}
+[data-design="rubik"] .accordion-content {
+  transition:
+    opacity var(--cp-dur-2) var(--cp-ease),
+    transform var(--cp-dur-2) var(--cp-ease);
+}
+
+/* ============================================
+   Breadcrumbs / stepper / menu hover
+   ============================================ */
+[data-design="rubik"] .breadcrumbs a,
+[data-design="rubik"] .stepper__step,
+[data-design="rubik"] .menu-item {
+  transition: color var(--cp-dur-2) var(--cp-ease);
+}
+[data-design="rubik"] .breadcrumbs a:hover,
+[data-design="rubik"] .stepper__step:hover,
+[data-design="rubik"] .menu .menu-item:hover {
+  color: var(--accent);
+}
+
+/* ============================================
+   Tooltip — pop with slight overshoot
+   ============================================ */
+[data-design="rubik"] .tooltip-wrapper {
+  animation: cp-pop-in 240ms var(--cp-ease-snap) backwards;
+}

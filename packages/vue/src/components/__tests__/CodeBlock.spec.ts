@@ -169,4 +169,20 @@ describe('usePrettierFormatter', () => {
     const result = await format('type Query { hello: String }', 'graphql');
     expect(result).toBe('type Query {\n  hello: String\n}\n');
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(CodeBlock, { props: { code: 'const x = 1;' } });
+    expect(wrapper.find('.code-block').classes()).not.toContain(
+      'code-block--rubik',
+    );
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(CodeBlock, {
+      props: { code: 'const x = 1;', design: 'rubik' },
+    });
+    const el = wrapper.find('.code-block');
+    expect(el.classes()).toContain('code-block--rubik');
+    expect(el.attributes('data-design')).toBe('rubik');
+  });
 });

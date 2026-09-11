@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useDesign } from '@dowardev/herdrate-vue'
 import { inputMeta } from './meta/input'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 const text = ref('')
 const password = ref('')
 const multiline = ref('Line 1\nLine 2\nLine 3')
@@ -11,6 +15,44 @@ const multiline = ref('Line 1\nLine 2\nLine 3')
 Terminal-style text input, with support for textarea, password and readonly.
 
 <PlayHost :meta="inputMeta" />
+
+## Design lines
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Input model-value="demo" placeholder="Search…" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Input model-value="demo" placeholder="Search…" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Input model-value="demo" placeholder="Search…" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Input model-value="demo" placeholder="Search…" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

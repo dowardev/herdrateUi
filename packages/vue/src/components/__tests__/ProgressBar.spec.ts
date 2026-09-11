@@ -46,4 +46,20 @@ describe('ProgressBar', () => {
     expect(fill.exists()).toBe(true);
     expect(fill.attributes('style')).toContain('width: 75%');
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(ProgressBar, { props: {} });
+    expect(wrapper.find('.progress-bar').classes()).not.toContain(
+      'progress-bar--rubik',
+    );
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(ProgressBar, {
+      props: { design: 'rubik' },
+    });
+    const el = wrapper.find('.progress-bar');
+    expect(el.classes()).toContain('progress-bar--rubik');
+    expect(el.attributes('data-design')).toBe('rubik');
+  });
 });

@@ -33,4 +33,18 @@ describe('Badge', () => {
     });
     expect(wrapper.text()).toBe('CMD+K');
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(Badge, { props: {} });
+    expect(wrapper.find('.badge').classes()).not.toContain('badge--rubik');
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(Badge, {
+      props: { design: 'rubik' },
+    });
+    const el = wrapper.find('.badge');
+    expect(el.classes()).toContain('badge--rubik');
+    expect(el.attributes('data-design')).toBe('rubik');
+  });
 });

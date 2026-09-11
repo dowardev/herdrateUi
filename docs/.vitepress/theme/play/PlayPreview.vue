@@ -197,6 +197,6 @@ const snippet = computed(() => {
 .play-preview-body {
   flex: 1;
   overflow: auto;
-  padding: 0;
+  padding: 1.5rem;
 }
 </style>

@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useDesign } from '@dowardev/herdrate-vue'
 import { toggleMeta } from './meta/toggle'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 const enabled = ref(false)
 const custom = ref(true)
 </script>
@@ -10,6 +14,44 @@ const custom = ref(true)
 Terminal-style toggle switch with `[ON]` / `[OFF]`.
 
 <PlayHost :meta="toggleMeta" />
+
+## Design lines
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Toggle :model-value="true" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Toggle :model-value="true" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Toggle :model-value="true" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Toggle :model-value="true" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

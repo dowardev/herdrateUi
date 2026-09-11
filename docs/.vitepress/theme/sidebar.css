@@ -1,0 +1,36 @@
+/* SPDX-License-Identifier: GPL-3.0-or-later */
+
+/* Sidebar: the header area (design select + first groups such as Color
+   system) stays fixed; only the last nav group (Components) scrolls. */
+/* Triple class: beats the default theme's scoped `.VPSidebar[data-v-…]`
+   (overflow-y: auto) regardless of stylesheet order. */
+.VPSidebar.VPSidebar.VPSidebar {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.VPSidebar .nav {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.VPSidebar .nav > .design-line-select {
+  flex-shrink: 0;
+}
+
+/* First group (Color system) fixed; last group (Components) takes the
+   remaining height and scrolls. Relies on config sidebar order. */
+.VPSidebar .nav > div.group:first-of-type {
+  flex-shrink: 0;
+}
+
+.VPSidebar .nav > div.group:last-child {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}

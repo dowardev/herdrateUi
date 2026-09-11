@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useDesign } from '@dowardev/herdrate-vue'
 import { comboBoxMeta } from './meta/combobox'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 const fruta = ref('')
 const frutas = [
   { label: 'Apple', value: 'apple' },
@@ -16,6 +20,44 @@ const frutas = [
 Input with a filterable dropdown of options. Supports keyboard navigation (↑↓, Enter, Escape).
 
 <PlayHost :meta="comboBoxMeta" />
+
+## Design lines
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <ComboBox model-value="" placeholder="Type…" :items="[{ label: 'One', value: '1' }]" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <ComboBox model-value="" placeholder="Type…" :items="[{ label: 'One', value: '1' }]" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <ComboBox model-value="" placeholder="Type…" :items="[{ label: 'One', value: '1' }]" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <ComboBox model-value="" placeholder="Type…" :items="[{ label: 'One', value: '1' }]" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

@@ -54,4 +54,15 @@ describe('Menu', () => {
     });
     expect(wrapper.find('.menu-divider').exists()).toBe(true);
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(Menu, { props: { items } });
+    expect(wrapper.classes()).not.toContain('menu--rubik');
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(Menu, { props: { items, design: 'rubik' } });
+    expect(wrapper.classes()).toContain('menu--rubik');
+    expect(wrapper.attributes('data-design')).toBe('rubik');
+  });
 });

@@ -124,6 +124,30 @@ Reduce el padding de las celdas para una vista más densa.
 />
 ```
 
+### indexed
+
+Muestra una columna de índice numerada (`#` / `01`). Apagada por defecto, disponible en ambas líneas de diseño.
+
+<Table
+  :columns="[{ key: 'name', label: 'Name' }, { key: 'role', label: 'Role' }]"
+  :rows="[
+    { name: 'Alice', role: 'Developer' },
+    { name: 'Bob', role: 'Designer' },
+  ]"
+  indexed
+/>
+
+```vue
+<Table
+  :columns="[{ key: 'name', label: 'Name' }, { key: 'role', label: 'Role' }]"
+  :rows="[
+    { name: 'Alice', role: 'Developer' },
+    { name: 'Bob', role: 'Designer' },
+  ]"
+  indexed
+/>
+```
+
 ### color
 
 Color del borde del header.
@@ -183,6 +207,7 @@ Color del borde del header.
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Header border color |
 | `striped` | `boolean` | `false` | Alternating row background |
 | `compact` | `boolean` | `false` | Reduced cell padding |
+| `indexed` | `boolean` | `false` | Columna de índice numerada en ambas líneas |
 
 ## Tokens usados
 
