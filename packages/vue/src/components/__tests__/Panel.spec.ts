@@ -25,4 +25,18 @@ describe('Panel Suite', () => {
     });
     expect(wrapper.classes()).toContain('panel--with-divider');
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(Panel, { slots: { default: 'Body' } });
+    expect(wrapper.classes()).not.toContain('panel--rubik');
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(Panel, {
+      props: { design: 'rubik' },
+      slots: { default: 'Body' },
+    });
+    expect(wrapper.classes()).toContain('panel--rubik');
+    expect(wrapper.attributes('data-design')).toBe('rubik');
+  });
 });

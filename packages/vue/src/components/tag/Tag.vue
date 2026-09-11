@@ -2,7 +2,8 @@
 
 <template>
   <span
-    :class="['tag', variant === 'outline' ? 'outline' : 'solid', removable && 'removable']"
+    :class="['tag', variant === 'outline' ? 'outline' : 'solid', removable && 'removable', { 'tag--rubik': design === 'rubik' }]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
     :data-color="color"
   >
     <slot />
@@ -11,14 +12,18 @@
 </template>
 
 <script setup lang="ts">
+import { computed, toRef } from 'vue';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     color?: Color;
     variant?: 'solid' | 'outline';
     removable?: boolean;
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     color: DEFAULT_COLOR,
@@ -30,6 +35,8 @@ withDefaults(
 defineEmits<{
   remove: [];
 }>();
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 </script>
 
 <style scoped>
@@ -86,4 +93,28 @@ defineEmits<{
 .tag[data-color="light"] { --tag-color: var(--color-light); }
 .tag[data-color="medium"] { --tag-color: var(--color-medium); }
 .tag[data-color="dark"] { --tag-color: var(--color-dark); }
+
+/* --------------------- RUBIK variant (cut-corner chip, template3 tech-tag language) --------------------- */
+.tag--rubik {
+  border-radius: 0;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 6px) 0,
+    100% 6px,
+    100% 100%,
+    6px 100%,
+    0 calc(100% - 6px)
+  );
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    box-shadow 160ms ease,
+    filter 160ms ease;
+}
+.tag--rubik:hover {
+  box-shadow: 0 0 0 1px var(--accent);
+  filter: brightness(1.1);
+}
 </style>

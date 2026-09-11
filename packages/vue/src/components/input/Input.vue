@@ -3,7 +3,8 @@
 <template>
   <input
     v-if="rows <= 1"
-    :class="['input', `color-${color}`]"
+    :class="['input', `color-${color}`, { 'input--rubik': design === 'rubik' }]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
     :value="modelValue"
     :placeholder="placeholder"
     :disabled="disabled"
@@ -13,7 +14,8 @@
   />
   <textarea
     v-else
-    :class="['input', `color-${color}`]"
+    :class="['input', `color-${color}`, { 'input--rubik': design === 'rubik' }]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
     :value="modelValue"
     :placeholder="placeholder"
     :disabled="disabled"
@@ -24,10 +26,12 @@
 </template>
 
 <script setup lang="ts">
+import { computed, toRef } from 'vue';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     modelValue?: string;
     placeholder?: string;
@@ -36,6 +40,8 @@ withDefaults(
     readonly?: boolean;
     type?: 'text' | 'password' | 'number';
     rows?: number;
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     modelValue: '',
@@ -49,6 +55,9 @@ withDefaults(
 );
 
 defineEmits<(e: 'update:modelValue', value: string) => void>();
+
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 </script>
 
 <style scoped>
@@ -82,5 +91,51 @@ defineEmits<(e: 'update:modelValue', value: string) => void>();
 textarea.input {
   resize: vertical;
   min-height: 2.5rem;
+}
+
+/* --------------------- RUBIK variant (pi.dev install-box language) ---------------------
+   Square instrument field: hairline border with a heavier 2px bottom edge;
+   focus drives an accent beam (border + underline glow); readonly reads
+   dashed. Self-sufficient with prop-only usage. */
+.input--rubik {
+  border-radius: 0;
+  border: 1px solid var(--border);
+  border-bottom: 3px solid var(--text);
+  background: var(--bg);
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%);
+  background: var(--bg);
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+  padding: 0.5rem 0.75rem;
+  outline: none;
+  transition:
+    border-color 200ms var(--cp-ease, ease),
+    box-shadow 200ms var(--cp-ease, ease);
+}
+.input--rubik::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+.input--rubik:focus {
+  border-color: var(--accent);
+  border-bottom: 3px solid var(--accent);
+  outline: none;
+}
+.input--rubik:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+.input--rubik:read-only {
+  border-style: dashed;
+}
+textarea.input--rubik {
+  resize: vertical;
+  min-height: 2.5rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  .input--rubik {
+    transition: none;
+  }
 }
 </style>

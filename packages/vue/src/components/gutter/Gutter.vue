@@ -2,7 +2,8 @@
 
 <template>
   <div
-    :class="['gutter', `color-${color}`]"
+    :class="['gutter', `color-${color}`, { 'gutter--rubik': design === 'rubik' }]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
     :style="{ width }"
   >
     <div
@@ -18,16 +19,20 @@
 </template>
 
 <script setup lang="ts">
+import { computed, toRef } from 'vue';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     lines?: number;
     start?: number;
     highlight?: number[];
     color?: Color;
     width?: string;
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     lines: 1,
@@ -37,6 +42,8 @@ withDefaults(
     width: '3ch',
   },
 );
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 </script>
 
 <style scoped>
@@ -75,5 +82,13 @@ withDefaults(
   color: var(--text-muted);
   text-align: right;
   flex: 1;
+}
+
+/* --------------------- RUBIK variant (margin rail) --------------------- */
+.gutter--rubik {
+  border-right: 2px solid var(--border);
+}
+.gutter--rubik .gutter-number {
+  letter-spacing: 0.04em;
 }
 </style>

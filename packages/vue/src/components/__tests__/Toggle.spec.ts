@@ -60,4 +60,15 @@ describe('Toggle', () => {
     });
     expect(wrapper.text()).toContain('[YES]');
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(Toggle);
+    expect(wrapper.classes()).not.toContain('toggle--rubik');
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(Toggle, { props: { design: 'rubik' } });
+    expect(wrapper.classes()).toContain('toggle--rubik');
+    expect(wrapper.attributes('data-design')).toBe('rubik');
+  });
 });

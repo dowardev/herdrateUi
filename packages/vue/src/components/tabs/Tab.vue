@@ -2,7 +2,8 @@
 
 <template>
   <button
-    :class="['tab', { 'tab--active': _isActive }, _isActive && `color-${color} bd-color-${color}`]"
+    :class="['tab', { 'tab--active': _isActive, 'tab--rubik': design === 'rubik' }, _isActive && `color-${color} bd-color-${color}`]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
     @click="_setActive(value)"
   >
     <span class="tab-label"><slot /></span>
@@ -15,8 +16,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, type Ref } from 'vue';
+import { computed, type Ref, toRef } from 'vue';
 import { requiredInject } from '../../composables/requiredInject';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 
 const props = withDefaults(
@@ -24,11 +26,15 @@ const props = withDefaults(
     value: string;
     closable?: boolean;
     color?: Color;
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     color: 'primary',
   },
 );
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 
 const activeValue = requiredInject<Ref<string>>('tabs-active', '<Tab>');
 const _setActive = requiredInject<(value: string) => void>(
@@ -92,5 +98,55 @@ const _isActive = computed(() => activeValue.value === props.value);
 .tab-close:hover {
   background: var(--bg-elevated);
   color: var(--color-danger, var(--error));
+}
+
+/* --------------------- RUBIK variant: segmented channel switcher ---------------------
+   Tabs are bordered cells with gaps (no shared bar); the active channel
+   is an ink chip with an accent diamond. Flat, no glow. */
+.tab--rubik {
+  border-radius: 0;
+  border: 1px solid var(--border);
+  padding: 0.45rem 0.8rem;
+  background: transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+.tab--rubik:hover {
+  background: var(--bg-alt);
+  color: var(--text);
+  border-color: var(--text-muted);
+}
+.tab--rubik.tab--active {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+  box-shadow: none;
+  margin-bottom: 0;
+}
+.tab--rubik.tab--active::before {
+  content: '';
+  flex: none;
+  width: 7px;
+  height: 7px;
+  transform: rotate(45deg);
+  background: var(--accent);
+}
+.tab--rubik.tab--active .tab-close {
+  color: inherit;
+  opacity: 0.7;
+}
+.tab--rubik .tab-close:hover {
+  color: var(--accent);
+  opacity: 1;
+}
+/* Ink chip stays legible regardless of the semantic color prop. */
+.tab--rubik.tab--active[class*='color-'] {
+  color: var(--bg);
+}
+.tab--rubik.tab--active[class*='bd-color-'] {
+  border-color: var(--text);
 }
 </style>

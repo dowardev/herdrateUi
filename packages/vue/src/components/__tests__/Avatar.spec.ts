@@ -35,4 +35,17 @@ describe('Avatar', () => {
   it('fnv1a returns deterministic values', () => {
     expect(fnv1a('Alice')).toBe(fnv1a('Alice'));
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(Avatar, { props: { name: 'Alice' } });
+    expect(wrapper.classes()).not.toContain('avatar--rubik');
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(Avatar, {
+      props: { name: 'Alice', design: 'rubik' },
+    });
+    expect(wrapper.classes()).toContain('avatar--rubik');
+    expect(wrapper.attributes('data-design')).toBe('rubik');
+  });
 });

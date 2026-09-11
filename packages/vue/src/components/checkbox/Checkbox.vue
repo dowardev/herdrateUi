@@ -2,7 +2,8 @@
 
 <template>
   <span
-    :class="['checkbox', `color-${color}`, { disabled }]"
+    :class="['checkbox', `color-${color}`, { disabled,  'checkbox--rubik': design === 'rubik' }]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
     :role="'checkbox'"
     :aria-checked="modelValue"
     :aria-disabled="disabled || undefined"
@@ -16,15 +17,19 @@
 </template>
 
 <script setup lang="ts">
+import { computed, toRef } from 'vue';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     modelValue?: boolean;
     color?: Color;
     disabled?: boolean;
     label?: string;
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     modelValue: false,
@@ -35,6 +40,8 @@ withDefaults(
 );
 
 defineEmits<(e: 'update:modelValue', value: boolean) => void>();
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 </script>
 
 <style scoped>
@@ -58,4 +65,49 @@ defineEmits<(e: 'update:modelValue', value: boolean) => void>();
 .checkbox.color-light { color: var(--color-light); }
 .checkbox.color-medium { color: var(--color-medium); }
 .checkbox.color-dark { color: var(--color-dark); }
+
+/* --------------------- RUBIK variant (accent-ping on state) --------------------- */
+.checkbox--rubik {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  cursor: pointer;
+}
+/* hide the terminal [x]/[ ] glyph */
+.checkbox--rubik {
+  color: transparent;
+}
+/* HUD box */
+.checkbox--rubik::before {
+  content: '';
+  flex: none;
+  width: 13px;
+  height: 13px;
+  border: 1px solid var(--text-muted);
+  background: transparent;
+  clip-path: polygon(0 0, calc(100% - 3px) 0, 100% 3px, 100% 100%, 0 100%);
+  transition:
+    background 160ms ease,
+    border-color 160ms ease;
+}
+/* label keeps its size and color */
+.checkbox--rubik > span {
+  font-size: 0.875rem;
+  color: var(--text);
+}
+.checkbox--rubik[aria-checked='true']::before {
+  background: var(--text);
+  border-color: var(--text);
+  box-shadow: inset 0 0 0 2px var(--bg);
+}
+.checkbox--rubik:hover::before {
+  border-color: var(--text);
+}
+.checkbox--rubik:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
 </style>

@@ -1,5 +1,9 @@
 <script setup>
 import { tagMeta } from './meta/tag'
+import { useDesign } from '@dowardev/herdrate-vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # Tag
@@ -7,6 +11,44 @@ import { tagMeta } from './meta/tag'
 Inline label for labels and tokens.
 
 <PlayHost :meta="tagMeta" />
+
+## Design lines
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Tag design="tuix">vue</Tag>
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Tag design="rubik">vue</Tag>
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Tag design="tuix">vue</Tag>
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Tag design="rubik">vue</Tag>
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

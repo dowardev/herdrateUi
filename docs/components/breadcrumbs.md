@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { breadcrumbsMeta } from './meta/breadcrumbs'
+import { useDesign } from '@dowardev/herdrate-vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 const simpleItems = [
   { label: 'Home' },
   { label: 'Documents', href: '/docs' },
@@ -22,6 +26,44 @@ const deployItems = [
 Terminal-style breadcrumb navigation with semantic colors and a slot for custom content.
 
 <PlayHost :meta="breadcrumbsMeta" />
+
+## Design lines
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Breadcrumbs :items="[{ label: 'Home', href: '/' }, { label: 'Docs' }]" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Breadcrumbs :items="[{ label: 'Home', href: '/' }, { label: 'Docs' }]" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Breadcrumbs :items="[{ label: 'Home', href: '/' }, { label: 'Docs' }]" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Breadcrumbs :items="[{ label: 'Home', href: '/' }, { label: 'Docs' }]" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

@@ -3,7 +3,12 @@
 <template>
   <Teleport to="body">
     <div v-if="open" class="modal-overlay" @click.self="close">
-      <div class="modal" :style="{ width }">
+      <div
+            class="modal"
+            :class="{ 'modal--rubik': design === 'rubik' }"
+            :data-design="design === 'rubik' ? 'rubik' : undefined"
+            :style="{ width }"
+          >
         <div class="modal-header" :class="`color-${color}`">
           <span class="modal-title">{{ title }}</span>
           <button
@@ -27,7 +32,8 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue';
+import { computed, onMounted, onUnmounted, toRef } from 'vue';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 
 const props = withDefaults(
@@ -37,6 +43,8 @@ const props = withDefaults(
     color?: Color;
     closable?: boolean;
     width?: string;
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     open: false,
@@ -46,6 +54,9 @@ const props = withDefaults(
     width: '60ch',
   },
 );
+
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 
 const emit = defineEmits<{
   close: [];
@@ -92,7 +103,91 @@ onUnmounted(() => {
   max-height: 85vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--shadow, 0 8px 32px rgba(0, 0, 0, 0.4));
+}
+
+/* --------------------- RUBIK variant (HomeTemplate3 project-card language) --------------------- */
+.modal--rubik {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  background: var(--bg);
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+  transition:
+    transform 200ms var(--cp-ease, ease),
+    border-color 200ms ease;
+}
+.modal--rubik::before,
+.modal--rubik::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--accent);
+  border-style: solid;
+  border-width: 0;
+  pointer-events: none;
+}
+.modal--rubik::before,
+.modal--rubik::after {
+  display: none;
+}
+.modal--rubik:hover::before {
+  transform: translate(-4px, -4px);
+}
+.modal--rubik:hover::after {
+  transform: translate(4px, 4px);
+}
+.modal--rubik .modal-header {
+  font-family: "Archivo Black", "Arial Black", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 800;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  color: var(--bg);
+  background: var(--text);
+  border-bottom: 3px solid var(--accent);
+  border-left: none;
+  padding: 0.6rem 0.9rem;
+}
+/* Header always carries color-* (template default), so later tuix
+   .modal-header.color-* rules would win ties: outrank them here to
+   keep the ink title legible. */
+.modal--rubik .modal-header.color-primary .modal-title,
+.modal--rubik .modal-header.color-secondary .modal-title,
+.modal--rubik .modal-header.color-tertiary .modal-title,
+.modal--rubik .modal-header.color-success .modal-title,
+.modal--rubik .modal-header.color-warning .modal-title,
+.modal--rubik .modal-header.color-danger .modal-title,
+.modal--rubik .modal-header.color-light .modal-title,
+.modal--rubik .modal-header.color-medium .modal-title,
+.modal--rubik .modal-header.color-dark .modal-title {
+  color: var(--bg);
+}
+.modal--rubik .modal-close {
+  color: inherit;
+}
+.modal--rubik .modal-close:hover {
+  color: var(--accent);
+  opacity: 1;
+}
+.modal--rubik .modal-footer {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+@media (prefers-reduced-motion: reduce) {
+  .modal--rubik,
+  .modal--rubik::before,
+  .modal--rubik::after {
+    transition: none;
+  }
+  .modal--rubik:hover::before,
+  .modal--rubik:hover::after {
+    transform: none;
+  }
 }
 
 .modal-header {

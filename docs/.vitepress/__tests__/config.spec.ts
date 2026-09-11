@@ -13,6 +13,7 @@ const componentNames = [
   'Breadcrumbs',
   'ButtonTui',
   'ButtonTuiGroup',
+  'Card',
   'Checkbox',
   'CodeBlock',
   'ComboBox',
@@ -78,6 +79,7 @@ describe('per-locale navigation (REQ-1)', () => {
       { text: 'Home', link: '/' },
       { text: 'Colors', link: '/color' },
       { text: 'Components', link: '/components/panel' },
+      { text: 'Design lines', link: '/design-lines' },
     ]);
   });
 
@@ -86,6 +88,7 @@ describe('per-locale navigation (REQ-1)', () => {
       { text: 'Inicio', link: '/es/' },
       { text: 'Colores', link: '/es/color' },
       { text: 'Componentes', link: '/es/components/panel' },
+      { text: 'Líneas de diseño', link: '/es/design-lines' },
     ]);
   });
 });

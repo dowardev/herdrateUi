@@ -2,7 +2,8 @@
 
 <template>
   <span
-    :class="['radio', `color-${color}`, { disabled }]"
+    :class="['radio', `color-${color}`, { disabled,  'radio--rubik': design === 'rubik' }]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
     :role="'radio'"
     :aria-checked="checked"
     :aria-disabled="disabled || undefined"
@@ -16,7 +17,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, toRef } from 'vue';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
 
@@ -27,6 +29,8 @@ const props = withDefaults(
     color?: Color;
     disabled?: boolean;
     label?: string;
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     modelValue: '',
@@ -39,6 +43,8 @@ const props = withDefaults(
 const checked = computed(() => props.modelValue === props.value);
 
 defineEmits<(e: 'update:modelValue', value: string) => void>();
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 </script>
 
 <style scoped>
@@ -62,4 +68,47 @@ defineEmits<(e: 'update:modelValue', value: string) => void>();
 .radio.color-light { color: var(--color-light); }
 .radio.color-medium { color: var(--color-medium); }
 .radio.color-dark { color: var(--color-dark); }
+
+/* --------------------- RUBIK variant (accent-ping on state) --------------------- */
+.radio--rubik {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  cursor: pointer;
+}
+/* hide the terminal (o)/( ) glyph */
+.radio--rubik {
+  color: transparent;
+}
+/* HUD diamond */
+.radio--rubik::before {
+  content: '';
+  flex: none;
+  width: 11px;
+  height: 11px;
+  border: 1px solid var(--text-muted);
+  background: transparent;
+  transform: rotate(45deg) scale(0.9);
+  transition:
+    background 160ms ease,
+    border-color 160ms ease;
+}
+.radio--rubik > span {
+  font-size: 0.875rem;
+  color: var(--text);
+}
+.radio--rubik[aria-checked='true']::before {
+  background: var(--text);
+  border-color: var(--text);
+}
+.radio--rubik:hover::before {
+  border-color: var(--text);
+}
+.radio--rubik:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
 </style>

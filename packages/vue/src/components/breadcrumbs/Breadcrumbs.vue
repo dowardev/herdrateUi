@@ -2,7 +2,8 @@
 
 <template>
   <nav
-    class="breadcrumbs"
+    :class="['breadcrumbs', { 'breadcrumbs--rubik': design === 'rubik' }]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
     :style="{ '--breadcrumb-color': `var(--color-${color})` }"
   >
     <slot v-if="$slots.default" />
@@ -33,6 +34,8 @@
 </template>
 
 <script setup lang="ts">
+import { computed, toRef } from 'vue';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
 
@@ -41,6 +44,8 @@ const props = withDefaults(
     items: Array<{ label: string; href?: string }>;
     color?: Color;
     separator?: string;
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     items: () => [],
@@ -48,6 +53,8 @@ const props = withDefaults(
     separator: '/',
   },
 );
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 
 function isLast(index: number): boolean {
   return index === props.items.length - 1;
@@ -83,5 +90,23 @@ function isLast(index: number): boolean {
 
 .breadcrumb-separator {
   margin: 0 0.25rem;
+}
+
+/* --------------------- RUBIK variant (trail language) --------------------- */
+.breadcrumbs--rubik {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.breadcrumbs--rubik .breadcrumb-separator {
+  color: var(--accent);
+  margin: 0 0.5rem;
+}
+.breadcrumbs--rubik .breadcrumb-link:hover {
+  color: var(--accent);
+}
+.breadcrumbs--rubik .breadcrumb-item--last {
+  color: var(--accent);
 }
 </style>

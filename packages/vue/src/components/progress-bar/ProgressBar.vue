@@ -1,7 +1,10 @@
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
 
 <template>
-  <div :class="['progress-bar', `color-${color}`, `size-${size}`]">
+  <div
+  :class="['progress-bar', `color-${color}`, `size-${size}`, { 'progress-bar--rubik': design === 'rubik' }]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
+    >
     <div class="progress-bar-track">
       <div class="progress-bar-fill" :style="{ width: `${value}%`, background: `var(--color-${color})` }" />
     </div>
@@ -10,15 +13,19 @@
 </template>
 
 <script setup lang="ts">
+import { computed, toRef } from 'vue';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     value?: number;
     color?: Color;
     showLabel?: boolean;
     size?: 'sm' | 'md' | 'lg';
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     value: 0,
@@ -27,6 +34,8 @@ withDefaults(
     size: 'md' as const,
   },
 );
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 </script>
 
 <style scoped>
@@ -55,5 +64,29 @@ withDefaults(
 
 .progress-bar-label {
   flex-shrink: 0;
+}
+
+/* --------------------- RUBIK variant (beam fill) --------------------- */
+.progress-bar--rubik .progress-bar-track {
+  border-radius: 0;
+  background: var(--bg-alt);
+}
+.progress-bar--rubik .progress-bar-fill {
+  position: relative;
+}
+/* segmented beam: overlay survives the inline background the template sets */
+.progress-bar--rubik .progress-bar-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent 0 7px,
+    rgba(0, 0, 0, 0.45) 7px 9px
+  );
+}
+.progress-bar--rubik .progress-bar-label {
+  font-weight: 700;
 }
 </style>

@@ -35,4 +35,18 @@ describe('Kbd', () => {
     });
     expect(wrapper.classes()).toContain('color-primary');
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(Kbd, { props: {} });
+    expect(wrapper.find('.kbd').classes()).not.toContain('kbd--rubik');
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(Kbd, {
+      props: { design: 'rubik' },
+    });
+    const el = wrapper.find('.kbd');
+    expect(el.classes()).toContain('kbd--rubik');
+    expect(el.attributes('data-design')).toBe('rubik');
+  });
 });

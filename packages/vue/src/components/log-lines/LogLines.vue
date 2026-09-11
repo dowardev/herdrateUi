@@ -1,7 +1,10 @@
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
 
 <template>
-  <div :class="['log-lines', `color-${color}`]">
+  <div
+    :class="['log-lines', `color-${color}`, { 'log-lines--rubik': design === 'rubik' }]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
+  >
     <div
       v-for="(line, index) in displayLines"
       :key="index"
@@ -15,7 +18,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, toRef } from 'vue';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
 
@@ -44,6 +48,8 @@ const props = withDefaults(
     max?: number;
     color?: Color;
     timestamps?: boolean;
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     lines: () => [],
@@ -52,6 +58,8 @@ const props = withDefaults(
     timestamps: false,
   },
 );
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 
 const displayLines = computed<DisplayLine[]>(() => {
   const now = new Date();
@@ -106,5 +114,19 @@ const displayLines = computed<DisplayLine[]>(() => {
 
 .log-prefix {
   margin-right: 4px;
+}
+
+/* --------------------- RUBIK variant (console feed) --------------------- */
+.log-lines--rubik {
+  border: 1px solid var(--border);
+}
+.log-lines--rubik .log-line {
+  transition: background 120ms ease;
+}
+.log-lines--rubik .log-line:hover {
+  background: var(--bg-alt);
+}
+.log-lines--rubik .log-timestamp {
+  letter-spacing: 0.04em;
 }
 </style>

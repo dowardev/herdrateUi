@@ -4,6 +4,7 @@ import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vitest';
 import type { ToastItem } from '../../composables/useToast';
 import { useToast } from '../../composables/useToast';
+import Toast from '../toast/Toast.vue';
 import ToastContainer from '../toast/ToastContainer.vue';
 
 describe('Toast', () => {
@@ -46,5 +47,35 @@ describe('Toast', () => {
     expect(toasts.value.length).toBe(1);
     add({ message: 'dupe', replace: true, filter: 'dupe' });
     expect(toasts.value.length).toBe(1);
+  });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(Toast, { props: { message: 'Hi' } });
+    expect(wrapper.classes()).not.toContain('toast--rubik');
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(Toast, {
+      props: { message: 'Hi', design: 'rubik' },
+    });
+    expect(wrapper.classes()).toContain('toast--rubik');
+    expect(wrapper.attributes('data-design')).toBe('rubik');
+  });
+
+  it('passes design through the container', () => {
+    const remove = () => {};
+    const toasts = [
+      {
+        id: '1',
+        message: 'Hi',
+        color: 'primary',
+        icon: '\u25BC',
+        timestamp: 0,
+      },
+    ] as ToastItem[];
+    const wrapper = mount(ToastContainer, {
+      props: { toasts, remove, design: 'rubik' },
+    });
+    expect(wrapper.find('.toast').classes()).toContain('toast--rubik');
   });
 });

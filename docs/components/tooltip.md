@@ -1,5 +1,9 @@
 <script setup>
 import { tooltipMeta } from './meta/tooltip'
+import { useDesign } from '@dowardev/herdrate-vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # Tooltip
@@ -7,6 +11,55 @@ import { tooltipMeta } from './meta/tooltip'
 Informational tooltip that appears on hover over an element, with configurable delay and directional arrow.
 
 <PlayHost :meta="tooltipMeta" />
+
+## Design lines
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+.design-lines-demo .tooltip-demo {
+  margin-top: 2.5rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <div class="tooltip-demo">
+      <Tooltip text="Hint" design="tuix"><span>Hover over me</span></Tooltip>
+    </div>
+  </TabPanel>
+  <TabPanel value="rubik">
+    <div class="tooltip-demo">
+      <Tooltip text="Hint" design="rubik"><span>Hover over me</span></Tooltip>
+    </div>
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <div class="tooltip-demo">
+      <Tooltip text="Hint" design="tuix"><span>Hover over me</span></Tooltip>
+    </div>
+  </TabPanel>
+  <TabPanel value="rubik">
+    <div class="tooltip-demo">
+      <Tooltip text="Hint" design="rubik"><span>Hover over me</span></Tooltip>
+    </div>
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

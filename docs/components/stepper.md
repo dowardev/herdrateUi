@@ -1,5 +1,9 @@
 <script setup>
 import { stepperMeta } from './meta/stepper'
+import { useDesign } from '@dowardev/herdrate-vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # Stepper
@@ -7,6 +11,44 @@ import { stepperMeta } from './meta/stepper'
 Horizontal step indicator with terminal style. Shows progress with `[1]──[2]──[3]` format.
 
 <PlayHost :meta="stepperMeta" />
+
+## Design lines
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Stepper :steps="[{ label: 'Build' }, { label: 'Ship' }]" :current="1" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Stepper :steps="[{ label: 'Build' }, { label: 'Ship' }]" :current="1" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Stepper :steps="[{ label: 'Build' }, { label: 'Ship' }]" :current="1" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Stepper :steps="[{ label: 'Build' }, { label: 'Ship' }]" :current="1" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

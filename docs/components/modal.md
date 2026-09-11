@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { modalMeta } from './meta/modal'
-import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
+import { ButtonTui, Modal, useDesign } from '@dowardev/herdrate-vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 const isOpen = ref(false)
 const openTitle = ref(false)
 const openColorP = ref(false)
 const openColorS = ref(false)
+const openTuix = ref(false)
+const openRubik = ref(false)
 const openColorD = ref(false)
 const openWidthNarrow = ref(false)
 const openWidthWide = ref(false)
@@ -20,6 +25,48 @@ const openFooter = ref(false)
 Terminal-style modal dialog with overlay, header, body, footer, and keyboard support.
 
 <PlayHost :meta="modalMeta" />
+
+## Design lines
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <ButtonTui @click="openTuix = true" color="primary">Open tuix modal</ButtonTui>
+    <Modal v-model:open="openTuix" title="Tuix modal" design="tuix">
+      Sharp corners, monospace, flat surfaces.
+    </Modal>
+  </TabPanel>
+  <TabPanel value="rubik">
+    <ButtonTui @click="openRubik = true" color="primary">Open rubik modal</ButtonTui>
+    <Modal v-model:open="openRubik" title="Rubik modal" design="rubik">
+      Cut corners, ink bars, HUD restraint.
+    </Modal>
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<script setup>
+import { ref } from 'vue'
+
+const openRubik = ref(false)
+</script>
+
+<ButtonTui @click="openRubik = true" color="primary">Open rubik modal</ButtonTui>
+<Modal v-model:open="openRubik" title="Rubik modal" design="rubik">
+  Cut corners, ink bars, HUD restraint.
+</Modal>
+```
+
 
 ## Demo
 

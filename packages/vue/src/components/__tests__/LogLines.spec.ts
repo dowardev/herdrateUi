@@ -55,4 +55,17 @@ describe('LogLines', () => {
     expect(wrapper.text()).toContain('line 5');
     expect(wrapper.findAll('.log-line')).toHaveLength(2);
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(LogLines, { props: { lines: [] } });
+    expect(wrapper.classes()).not.toContain('log-lines--rubik');
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(LogLines, {
+      props: { lines: [], design: 'rubik' },
+    });
+    expect(wrapper.classes()).toContain('log-lines--rubik');
+    expect(wrapper.attributes('data-design')).toBe('rubik');
+  });
 });

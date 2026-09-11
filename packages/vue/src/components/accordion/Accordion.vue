@@ -1,7 +1,10 @@
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
 
 <template>
-  <div :class="['accordion', `color-${color}`]">
+  <div
+    :class="['accordion', `color-${color}`, { 'accordion--rubik': design === 'rubik' }]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
+  >
     <div
       v-for="(item, index) in items"
       :key="index"
@@ -37,7 +40,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref, toRef } from 'vue';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
 
@@ -51,6 +55,8 @@ const props = withDefaults(
     items?: AccordionItem[];
     multiple?: boolean;
     color?: Color;
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     items: () => [],
@@ -62,6 +68,8 @@ const props = withDefaults(
 const emit = defineEmits<{
   'update:opened': [indices: number[]];
 }>();
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 
 const opened = ref<number[]>([]);
 
@@ -136,4 +144,55 @@ function toggle(index: number) {
 .color-light .accordion-indicator { color: var(--color-light); }
 .color-medium .accordion-indicator { color: var(--color-medium); }
 .color-dark .accordion-indicator { color: var(--color-dark); }
+
+/* --------------------- RUBIK variant (menu-item3 language) --------------------- */
+.accordion--rubik .accordion-header {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  border-left: 2px solid transparent;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+.accordion--rubik .accordion-header:hover {
+  background: var(--bg-alt);
+  color: var(--text);
+}
+.accordion--rubik .accordion-header:has(+ .accordion-content) {
+  background: var(--text);
+  color: var(--bg);
+  border-left-color: var(--accent);
+}
+.accordion--rubik .accordion-header:has(+ .accordion-content) .accordion-indicator {
+  font-weight: 700;
+}
+.accordion--rubik .accordion-indicator {
+  font-size: 0;
+  line-height: 0;
+}
+.accordion--rubik .accordion-indicator::before {
+  content: '';
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--text-muted);
+  transform: rotate(45deg) scale(0.9);
+  vertical-align: baseline;
+}
+.accordion--rubik .accordion-header:has(+ .accordion-content) .accordion-indicator::before {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.accordion--rubik .accordion-content {
+  border-left: 2px solid var(--border);
+  margin-left: 0.5rem;
+  padding-left: 0.75rem;
+}
 </style>

@@ -44,4 +44,19 @@ describe('Box', () => {
     });
     expect(wrapper.classes()).toContain('color-success');
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(Box, { slots: { default: 'Hello' } });
+    expect(wrapper.find('.box').classes()).not.toContain('box--rubik');
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(Box, {
+      props: { design: 'rubik' },
+      slots: { default: 'Hello' },
+    });
+    const box = wrapper.find('.box');
+    expect(box.classes()).toContain('box--rubik');
+    expect(box.attributes('data-design')).toBe('rubik');
+  });
 });

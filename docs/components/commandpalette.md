@@ -1,5 +1,20 @@
 <script setup>
+import { ref } from 'vue'
 import { commandPaletteMeta } from './meta/commandpalette'
+import { ButtonTui, CommandPalette, useDesign } from '@dowardev/herdrate-vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
+
+const paletteCommands = [
+  { id: 'open', label: 'Open File', description: 'Open a file' },
+  { id: 'save', label: 'Save File', description: 'Save changes' },
+]
+const openTuix = ref(false)
+const openRubik = ref(false)
+function onSelect(id) {
+  console.log('selected', id)
+}
 </script>
 
 # CommandPalette
@@ -7,6 +22,49 @@ import { commandPaletteMeta } from './meta/commandpalette'
 Command palette with overlay, live filtering and keyboard navigation, ideal for Cmd+K / Ctrl+K shortcuts.
 
 <PlayHost :meta="commandPaletteMeta" />
+
+## Design lines
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <ButtonTui @click="openTuix = true">Open palette (tuix)</ButtonTui>
+    <CommandPalette v-model="openTuix" :commands="paletteCommands" design="tuix" @select="onSelect" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <ButtonTui @click="openRubik = true">Open palette (rubik)</ButtonTui>
+    <CommandPalette v-model="openRubik" :commands="paletteCommands" design="rubik" @select="onSelect" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<script setup>
+import { ref } from 'vue'
+
+const openRubik = ref(false)
+const paletteCommands = [
+  { id: 'open', label: 'Open File', description: 'Open a file' },
+  { id: 'save', label: 'Save File', description: 'Save changes' },
+]
+function onSelect(id) {
+  console.log('selected', id)
+}
+</script>
+
+<ButtonTui @click="openRubik = true">Open palette (rubik)</ButtonTui>
+<CommandPalette v-model="openRubik" :commands="paletteCommands" design="rubik" @select="onSelect" />
+```
+
 
 ## Demo
 

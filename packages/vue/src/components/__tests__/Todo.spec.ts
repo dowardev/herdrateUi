@@ -44,4 +44,23 @@ describe('Todo', () => {
     await wrapper.trigger('click');
     expect(wrapper.emitted()).toHaveProperty('toggle');
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(Todo, { props: { text: 'A' } });
+    expect(wrapper.classes()).not.toContain('todo--rubik');
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(Todo, { props: { text: 'A', design: 'rubik' } });
+    expect(wrapper.classes()).toContain('todo--rubik');
+    expect(wrapper.attributes('data-design')).toBe('rubik');
+  });
+
+  it('exposes done state to assistive tech in both lines', async () => {
+    const wrapper = mount(Todo, { props: { text: 'A', design: 'rubik' } });
+    expect(wrapper.attributes('role')).toBe('checkbox');
+    expect(wrapper.attributes('aria-checked')).toBe('false');
+    await wrapper.trigger('click');
+    expect(wrapper.attributes('aria-checked')).toBe('true');
+  });
 });

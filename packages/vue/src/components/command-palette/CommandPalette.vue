@@ -3,7 +3,9 @@
 <template>
   <Teleport to="body">
     <div v-if="modelValue" class="cp-overlay" @click.self="close">
-      <div class="cp-palette" :class="`color-${color}`">
+          <div class="cp-palette" :class="[`color-${color}`, { 'cp-palette--rubik': design === 'rubik' }]"
+            :data-design="design === 'rubik' ? 'rubik' : undefined"
+          >
         <div class="cp-input-wrapper">
           <span class="cp-prompt">&gt;</span>
           <input
@@ -35,7 +37,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, ref, watch } from 'vue';
+import { computed, nextTick, ref, toRef, watch } from 'vue';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
 
@@ -50,6 +53,8 @@ const props = withDefaults(
     modelValue?: boolean;
     color?: Color;
     placeholder?: string;
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     commands: () => [],
@@ -63,6 +68,8 @@ const emit = defineEmits<{
   (e: 'update:modelValue', value: boolean): void;
   (e: 'select', commandId: string): void;
 }>();
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 
 const query = ref('');
 const highlightedIndex = ref(0);
@@ -146,7 +153,7 @@ function handleKeydown(e: KeyboardEvent) {
   border: 1px solid var(--border);
   font-family: var(--font-mono);
   font-size: 0.875rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--shadow, 0 8px 32px rgba(0, 0, 0, 0.4));
 }
 
 .cp-input-wrapper {
@@ -228,4 +235,36 @@ function handleKeydown(e: KeyboardEvent) {
 .color-medium .cp-result.highlighted { background: color-mix(in srgb, var(--color-medium) 20%, transparent); color: var(--color-medium); }
 .color-dark .cp-prompt { color: var(--color-dark); }
 .color-dark .cp-result.highlighted { background: color-mix(in srgb, var(--color-dark) 20%, transparent); color: var(--color-dark); }
+
+/* --------------------- RUBIK variant (spotlight) --------------------- */
+.cp-palette--rubik {
+  position: relative;
+  border-radius: 0;
+  border: 1px solid var(--accent);
+  box-shadow: var(--shadow-hover, var(--shadow, none));
+  animation: cp-pop-in 420ms cubic-bezier(0.3, 1.4, 0.5, 1) backwards;
+}
+@keyframes cp-pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.cp-palette--rubik .cp-input {
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+.cp-palette--rubik .cp-result.highlighted {
+  background: var(--bg-alt);
+  color: var(--accent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cp-palette--rubik {
+    animation: none;
+  }
+}
 </style>

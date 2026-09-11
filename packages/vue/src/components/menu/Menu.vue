@@ -1,7 +1,10 @@
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
 
 <template>
-  <div :class="['menu', `color-${color}`]">
+  <div
+    :class="['menu', `color-${color}`, { 'menu--rubik': design === 'rubik' }]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
+  >
     <template v-if="$slots.default">
       <slot />
     </template>
@@ -27,6 +30,8 @@
 </template>
 
 <script setup lang="ts">
+import { computed, toRef } from 'vue';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
 
@@ -37,11 +42,13 @@ interface MenuItem {
   divider?: boolean;
 }
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     items?: MenuItem[];
     color?: Color;
     activeIndex?: number;
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     items: () => [],
@@ -53,6 +60,8 @@ withDefaults(
 const emit = defineEmits<{
   select: [index: number];
 }>();
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 
 function handleSelect(index: number, item: MenuItem) {
   if (item.disabled) return;
@@ -114,5 +123,40 @@ function handleSelect(index: number, item: MenuItem) {
   height: 1px;
   background: var(--border);
   margin: 0.25rem 0;
+}
+
+/* --------------------- RUBIK variant (menu-item3 language) --------------------- */
+.menu--rubik {
+  border-radius: 0;
+  border: 1px solid var(--border);
+  background: var(--bg);
+}
+.menu--rubik .menu-item {
+  min-height: 48px;
+  padding: 0.85rem 1.25rem;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-left: 2px solid transparent;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+.menu--rubik .menu-item:hover {
+  background: var(--bg-alt);
+}
+.menu--rubik .menu-item.active {
+  border-left-color: var(--accent);
+  background: var(--bg-alt);
+}
+.menu--rubik .menu-divider {
+  border-top: 1px dashed var(--border);
+  background: none;
+  height: 0;
+  margin: 0 1.25rem;
 }
 </style>

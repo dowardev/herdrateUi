@@ -2,7 +2,8 @@
 
 <template>
   <div
-    :class="['code-block', `color-${color}`, { 'code-block-border-none': !border }]"
+    :class="['code-block', `color-${color}`, { 'code-block-border-none': !border, 'code-block--rubik': design === 'rubik' }]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
     :style="scrollStyle"
   >
     <div class="code-block-header">
@@ -16,7 +17,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { computed, ref, toRef, watch } from 'vue';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Formatter } from '../../composables/usePrettierFormatter';
 import { highlight } from '../../lib/highlight';
 import type { Color } from '../../types/color';
@@ -31,6 +33,8 @@ const props = withDefaults(
     showLines?: boolean;
     maxHeight?: string;
     formatter?: Formatter;
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     code: '',
@@ -41,6 +45,8 @@ const props = withDefaults(
     maxHeight: 'none',
   },
 );
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 
 const copied = ref(false);
 const formattedCode = ref(props.code);
@@ -139,6 +145,26 @@ function handleCopy() {
   color: var(--text-muted);
 }
 
+/* --------------------- RUBIK variant (terminal figure) --------------------- */
+.code-block--rubik {
+  border-radius: 0;
+  box-shadow: var(--shadow, none);
+}
+.code-block--rubik .code-block-header {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border-bottom: 1px solid var(--border);
+}
+.code-block--rubik .code-block-lang {
+  color: var(--accent);
+}
+.code-block--rubik .code-block-copy:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
 .code-block-copy {
   font-family: var(--font-mono);
   font-size: 0.7rem;
@@ -177,6 +203,11 @@ function handleCopy() {
 .code-block.color-light { border-color: var(--color-light); }
 .code-block.color-medium { border-color: var(--color-medium); }
 .code-block.color-dark { border-color: var(--color-dark); }
+
+/* --------------------- RUBIK variant --------------------- */
+.code-block--rubik {
+  border-radius: 0;
+}
 </style>
 
 <style>

@@ -27,6 +27,9 @@
   --color-light: var(--ctp-mocha-rosewater);
   --color-medium: var(--ctp-mocha-overlay2);
   --color-dark: var(--ctp-mocha-subtext1);
+  /* tuix line: flat, no shadows */
+  --shadow: none;
+  --shadow-hover: none;
 }
 
 @media (prefers-color-scheme: light) {
@@ -60,6 +63,9 @@
     --color-light: var(--ctp-latte-surface1);
     --color-medium: var(--ctp-latte-overlay0);
     --color-dark: var(--ctp-latte-text);
+    /* tuix line: flat, no shadows */
+    --shadow: none;
+    --shadow-hover: none;
   }
 }
 
@@ -92,6 +98,9 @@
   --color-light: var(--ctp-latte-surface1);
   --color-medium: var(--ctp-latte-overlay0);
   --color-dark: var(--ctp-latte-text);
+  /* tuix line: flat, no shadows */
+  --shadow: none;
+  --shadow-hover: none;
 }
 
 .theme-dark {
@@ -123,6 +132,9 @@
   --color-light: var(--ctp-mocha-rosewater);
   --color-medium: var(--ctp-mocha-overlay2);
   --color-dark: var(--ctp-mocha-subtext1);
+  /* tuix line: flat, no shadows */
+  --shadow: none;
+  --shadow-hover: none;
 }
 
 .btn-tui-group {

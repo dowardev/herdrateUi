@@ -1,5 +1,9 @@
 <script setup>
 import { menuMeta } from './meta/menu'
+import { useDesign } from '@dowardev/herdrate-vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # Menu
@@ -7,6 +11,44 @@ import { menuMeta } from './meta/menu'
 Terminal-style vertical menu with items, dividers, disabled and custom slot.
 
 <PlayHost :meta="menuMeta" />
+
+## Design lines
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Menu :items="[{ label: 'New File' }, { label: 'Quit' }]" :active-index="0" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Menu :items="[{ label: 'New File' }, { label: 'Quit' }]" :active-index="0" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Menu :items="[{ label: 'New File' }, { label: 'Quit' }]" :active-index="0" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Menu :items="[{ label: 'New File' }, { label: 'Quit' }]" :active-index="0" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

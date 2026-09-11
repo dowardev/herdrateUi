@@ -117,4 +117,17 @@ describe('Modal', () => {
     pressEscape();
     expect(wrapper.emitted('close')).toBeFalsy();
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    mountModal();
+    const modal = document.body.querySelector('.modal');
+    expect(modal?.classList.contains('modal--rubik')).toBe(false);
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    mountModal({ design: 'rubik' });
+    const modal = document.body.querySelector('.modal');
+    expect(modal?.classList.contains('modal--rubik')).toBe(true);
+    expect(modal?.getAttribute('data-design')).toBe('rubik');
+  });
 });

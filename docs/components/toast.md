@@ -4,11 +4,53 @@ Temporary notifications inspired by noice.nvim, with configurable positioning an
 
 <PlayHost :meta="toastMeta" />
 
+## Design lines
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Toast message="Deployed ok" color="success" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Toast message="Deployed ok" color="success" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Toast message="Deployed ok" color="success" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Toast message="Deployed ok" color="success" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
+
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { useDesign } from '@dowardev/herdrate-vue'
 import { ButtonTui, ButtonTuiGroup } from '@dowardev/herdrate-vue'
 import { toastMeta } from './meta/toast'
 import ToastDemo from './ToastDemo.vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 
 type Position = 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'top-center' | 'bottom-center'
 type Item = {

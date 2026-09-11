@@ -46,4 +46,20 @@ describe('StatusBar', () => {
     const wrapper = mount(StatusBar);
     expect(wrapper.find('.status-bar__position').exists()).toBe(false);
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(StatusBar, { props: {} });
+    expect(wrapper.find('.status-bar').classes()).not.toContain(
+      'status-bar--rubik',
+    );
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(StatusBar, {
+      props: { design: 'rubik' },
+    });
+    const el = wrapper.find('.status-bar');
+    expect(el.classes()).toContain('status-bar--rubik');
+    expect(el.attributes('data-design')).toBe('rubik');
+  });
 });

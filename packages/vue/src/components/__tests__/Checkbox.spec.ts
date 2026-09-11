@@ -57,4 +57,15 @@ describe('Checkbox', () => {
     });
     expect(wrapper.classes()).toContain('color-success');
   });
+
+  it('stays tuix by default (no rubik class)', () => {
+    const wrapper = mount(Checkbox);
+    expect(wrapper.classes()).not.toContain('checkbox--rubik');
+  });
+
+  it('activates the rubik design line via design prop', () => {
+    const wrapper = mount(Checkbox, { props: { design: 'rubik' } });
+    expect(wrapper.classes()).toContain('checkbox--rubik');
+    expect(wrapper.attributes('data-design')).toBe('rubik');
+  });
 });

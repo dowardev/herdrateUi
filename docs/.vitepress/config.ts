@@ -11,6 +11,7 @@ const componentSidebarItems = [
   { text: 'Breadcrumbs', link: '/components/breadcrumbs' },
   { text: 'ButtonTui', link: '/components/buttontui' },
   { text: 'ButtonTuiGroup', link: '/components/buttontui-group' },
+  { text: 'Card', link: '/components/card' },
   { text: 'Checkbox', link: '/components/checkbox' },
   { text: 'CodeBlock', link: '/components/code-block' },
   { text: 'ComboBox', link: '/components/combobox' },
@@ -68,6 +69,7 @@ export default defineConfig({
           { text: 'Home', link: '/' },
           { text: 'Colors', link: '/color' },
           { text: 'Components', link: '/components/panel' },
+          { text: 'Design lines', link: '/design-lines' },
         ],
         sidebar: [
           {
@@ -93,6 +95,7 @@ export default defineConfig({
           { text: 'Inicio', link: '/es/' },
           { text: 'Colores', link: '/es/color' },
           { text: 'Componentes', link: '/es/components/panel' },
+          { text: 'Líneas de diseño', link: '/es/design-lines' },
         ],
         sidebar: [
           {

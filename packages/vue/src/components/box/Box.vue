@@ -1,7 +1,10 @@
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
 
 <template>
-  <div :class="['box', `box-border-${borderStyle}`, `color-${color}`]">
+  <div
+    :class="['box', `box-border-${borderStyle}`, `color-${color}`, { 'box--rubik': design === 'rubik' }]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
+  >
     <div v-if="$slots.header" class="box-header">
       <slot name="header" />
     </div>
@@ -15,19 +18,26 @@
 </template>
 
 <script setup lang="ts">
+import { computed, toRef } from 'vue';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     borderStyle?: 'single' | 'double' | 'rounded' | 'ascii' | 'none';
     color?: Color;
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     borderStyle: 'single' as const,
     color: DEFAULT_COLOR,
   },
 );
+
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 </script>
 
 <style scoped>
@@ -57,5 +67,57 @@ withDefaults(
 
 .box-body {
   padding: 0.25rem 0;
+}
+
+/* --------------------- RUBIK variant --------------------- */
+.box--rubik {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  background: var(--bg);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+}
+/* HUD tick riding inside the cut */
+.box--rubik::before {
+  content: '+';
+  position: absolute;
+  top: 4px;
+  right: 14px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text-muted);
+  opacity: 0.7;
+  pointer-events: none;
+}
+.box--rubik {
+  transition:
+    transform 200ms var(--cp-ease, ease),
+    background 200ms ease;
+}
+.box--rubik:hover {
+  background: var(--bg-alt);
+  transform: translateY(-1px);
+}
+.box--rubik:hover::before {
+  transform: translate(-4px, -4px);
+}
+.box--rubik:hover::after {
+  transform: translate(4px, 4px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .box--rubik,
+  .box--rubik::before,
+  .box--rubik::after {
+    transition: none;
+  }
+  .box--rubik:hover {
+    transform: none;
+  }
+  .box--rubik:hover::before,
+  .box--rubik:hover::after {
+    transform: none;
+  }
 }
 </style>

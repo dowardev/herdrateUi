@@ -1,7 +1,10 @@
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
 
 <template>
-  <div class="tabs-list">
+  <div
+    :class="['tabs-list', { 'tabs-list--rubik': design === 'rubik' }]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
+  >
     <button
       v-if="showLeftChevron"
       class="tabs-chevron tabs-chevron--left"
@@ -19,8 +22,20 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref, toRef } from 'vue';
 import { requiredInject } from '../../composables/requiredInject';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
+
+const props = withDefaults(
+  defineProps<{
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
+  }>(),
+  {},
+);
+
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 
 const scrollRef = ref<HTMLElement | null>(null);
 const showLeftChevron = ref(false);
@@ -111,5 +126,31 @@ onUnmounted(() => {
 .tabs-chevron:hover {
   color: var(--text);
   background: var(--bg-panel);
+}
+
+/* --------------------- RUBIK variant: open channel rail ---------------------
+   No shared bar: transparent rail with a hairline, cells float with gaps. */
+.tabs-list--rubik {
+  background: transparent;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.tabs-list--rubik .tabs-scroll {
+  gap: 6px;
+}
+.tabs-list--rubik .tabs-chevron {
+  align-self: stretch;
+  width: 1.75rem;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+}
+.tabs-list--rubik .tabs-chevron:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: transparent;
 }
 </style>

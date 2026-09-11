@@ -2,7 +2,8 @@
 
 <template>
   <span
-    :class="['spinner', `color-${color}`, `size-${size}`, `speed-${speed}`]"
+    :class="['spinner', `color-${color}`, `size-${size}`, `speed-${speed}`, { 'spinner--rubik': design === 'rubik' }]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
     :style="{ '--speed': speedDuration + 's' }"
   >
     <span
@@ -15,7 +16,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, toRef } from 'vue';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
 
@@ -26,6 +28,8 @@ const props = withDefaults(
     color?: Color;
     size?: 'sm' | 'md' | 'lg';
     speed?: 'slow' | 'normal' | 'fast';
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     color: DEFAULT_COLOR,
@@ -33,6 +37,8 @@ const props = withDefaults(
     speed: 'normal' as const,
   },
 );
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 
 const speedDuration = computed(() => {
   switch (props.speed) {
@@ -75,5 +81,38 @@ const speedDuration = computed(() => {
 @keyframes spinner-frame {
   0%, 10% { opacity: 1; }
   10.01%, 100% { opacity: 0; }
+}
+/* --------------------- RUBIK variant (twin neon ring, not braille) --------------------- */
+.spinner--rubik .spinner-frame {
+  display: none;
+}
+.spinner--rubik::before,
+.spinner--rubik::after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+}
+.spinner--rubik::before {
+  border-top-color: var(--accent);
+  animation: cp-spin 900ms linear infinite;
+}
+.spinner--rubik::after {
+  inset: 3px;
+  border-top-color: var(--color-secondary, var(--accent));
+  animation: cp-spin 1400ms linear infinite reverse;
+}
+@keyframes cp-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .spinner--rubik::before,
+  .spinner--rubik::after {
+    animation: none;
+  }
 }
 </style>

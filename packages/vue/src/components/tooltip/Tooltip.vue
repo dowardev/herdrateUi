@@ -2,7 +2,8 @@
 
 <template>
   <div
-    class="tooltip-wrapper"
+    :class="['tooltip-wrapper', { 'tooltip-wrapper--rubik': design === 'rubik' }]"
+    :data-design="design === 'rubik' ? 'rubik' : undefined"
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
   >
@@ -20,7 +21,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref, toRef } from 'vue';
+import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
 
@@ -30,6 +32,8 @@ const props = withDefaults(
     position?: 'top' | 'bottom' | 'left' | 'right';
     color?: Color;
     delay?: number;
+    /** Design line (or inherit from `data-design`). */
+    design?: DesignLine;
   }>(),
   {
     text: '',
@@ -38,6 +42,8 @@ const props = withDefaults(
     delay: 300,
   },
 );
+const line = useDesign(toRef(props, 'design'));
+const design = computed<DesignLine>(() => line.value);
 
 const visible = ref(false);
 let timer: ReturnType<typeof setTimeout> | null = null;
@@ -142,5 +148,52 @@ function onMouseLeave() {
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
   border-right: 5px solid;
+}
+
+/* --------------------- RUBIK variant: instrument readout tag ---------------------
+   No bubble with a triangle pointer: an ink readout chip with a cut corner,
+   uppercase mono text, and an accent diamond connector aimed at the trigger.
+   Flat, no shadow, no glow. */
+.tooltip-wrapper--rubik .tooltip {
+  border: none;
+  border-radius: 0;
+  background: var(--text);
+  color: var(--bg);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  padding: 0.35rem 0.6rem;
+  box-shadow: none;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+  animation: tooltip-rubik-in 200ms var(--cp-ease-snap, ease) backwards;
+}
+.tooltip-wrapper--rubik .tooltip-arrow {
+  display: none;
+}
+/* Leading diamond inside the chip: the previous outside ::after connector
+   was clipped away by the chip's own clip-path, so it never painted. */
+.tooltip-wrapper--rubik .tooltip::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 0.5em;
+  vertical-align: baseline;
+  transform: rotate(45deg);
+  background: var(--accent);
+}
+@keyframes tooltip-rubik-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tooltip-wrapper--rubik .tooltip {
+    animation: none;
+  }
 }
 </style>

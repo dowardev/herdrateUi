@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 import './play-mode.css';
+import './sidebar.css';
 import DefaultTheme from 'vitepress/theme';
+import { h } from 'vue';
 import '@catppuccin/vitepress/theme/mocha/mauve.css';
 import {
   Accordion,
@@ -11,6 +13,7 @@ import {
   Breadcrumbs,
   ButtonTui,
   ButtonTuiGroup,
+  Card,
   Checkbox,
   CodeBlock,
   ComboBox,
@@ -60,6 +63,7 @@ import PropControlSegmented from './controls/PropControlSegmented.vue';
 import PropControlSelect from './controls/PropControlSelect.vue';
 import PropControlSlot from './controls/PropControlSlot.vue';
 import PropControlToggle from './controls/PropControlToggle.vue';
+import DesignLineSelect from './DesignLineSelect.vue';
 import PlayHost from './PlayHost.vue';
 import PropControls from './PropControls.vue';
 
@@ -68,6 +72,7 @@ const components = {
   Avatar,
   Badge,
   Box,
+  Card,
   Breadcrumbs,
   ButtonTui,
   ButtonTuiGroup,
@@ -124,6 +129,9 @@ const components = {
 
 export default {
   extends: DefaultTheme,
+  Layout: h(DefaultTheme.Layout, null, {
+    'sidebar-nav-before': () => h(DesignLineSelect),
+  }),
   enhanceApp({ app }) {
     for (const [name, component] of Object.entries(components)) {
       app.component(name, component);
