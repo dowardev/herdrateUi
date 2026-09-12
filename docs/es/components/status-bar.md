@@ -1,5 +1,9 @@
 <script setup>
 import { statusBarMeta } from './meta/status-bar'
+import { useDesign } from '@dowardev/herdrate-vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # StatusBar
@@ -7,6 +11,44 @@ import { statusBarMeta } from './meta/status-bar'
 Barra de estado estilo terminal con modo, posición e info.
 
 <PlayHost :meta="statusBarMeta" />
+
+## Líneas de diseño
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <StatusBar mode="NORMAL" info="main*" position="1:1" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <StatusBar mode="NORMAL" info="main*" position="1:1" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <StatusBar mode="NORMAL" info="main*" position="1:1" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <StatusBar mode="NORMAL" info="main*" position="1:1" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

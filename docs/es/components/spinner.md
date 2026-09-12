@@ -1,5 +1,9 @@
 <script setup>
 import { spinnerMeta } from './meta/spinner'
+import { useDesign } from '@dowardev/herdrate-vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # Spinner
@@ -7,6 +11,44 @@ import { spinnerMeta } from './meta/spinner'
 Spinner animado estilo terminal con frames braille cíclicos.
 
 <PlayHost :meta="spinnerMeta" />
+
+## Líneas de diseño
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Spinner design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Spinner design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Spinner design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Spinner design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

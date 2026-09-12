@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { selectMeta } from './meta/select'
+import { useDesign } from '@dowardev/herdrate-vue'
 const selected = ref('')
 const selectedColor = ref('')
 const options = [
@@ -8,6 +9,9 @@ const options = [
   { label: 'Opción 2', value: '2' },
   { label: 'Opción 3', value: '3' },
 ]
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # Select
@@ -15,6 +19,44 @@ const options = [
 Dropdown select estilo terminal.
 
 <PlayHost :meta="selectMeta" />
+
+## Líneas de diseño
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Select model-value="a" :options="[{ label: 'Alpha', value: 'a' }, { label: 'Beta', value: 'b' }]" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Select model-value="a" :options="[{ label: 'Alpha', value: 'a' }, { label: 'Beta', value: 'b' }]" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Select model-value="a" :options="[{ label: 'Alpha', value: 'a' }, { label: 'Beta', value: 'b' }]" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Select model-value="a" :options="[{ label: 'Alpha', value: 'a' }, { label: 'Beta', value: 'b' }]" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 
@@ -84,7 +126,7 @@ Deshabilita la interacción.
 <Select v-model="selected" :options="options" disabled />
 ```
 
-## Events
+## Eventos
 
 | Evento | Payload | Descripción |
 |---|---|---|

@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { checkboxMeta } from './meta/checkbox'
+import { useDesign } from '@dowardev/herdrate-vue'
 const checked = ref(false)
 const checked2 = ref(true)
 const checked3 = ref(false)
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # Checkbox
@@ -11,6 +15,44 @@ const checked3 = ref(false)
 Checkbox estilo terminal con `[x]` / `[ ]`.
 
 <PlayHost :meta="checkboxMeta" />
+
+## Líneas de diseño
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Checkbox :model-value="true" label="CI" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Checkbox :model-value="true" label="CI" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Checkbox :model-value="true" label="CI" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Checkbox :model-value="true" label="CI" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 
@@ -75,7 +117,7 @@ Deshabilita la interacción.
 <Checkbox v-model="checked" disabled label="Deshabilitado" />
 ```
 
-## Events
+## Eventos
 
 | Evento | Payload | Descripción |
 |---|---|---|

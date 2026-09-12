@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { comboBoxMeta } from './meta/combobox'
+import { useDesign } from '@dowardev/herdrate-vue'
 const fruta = ref('')
 const frutas = [
   { label: 'Apple', value: 'apple' },
@@ -9,6 +10,9 @@ const frutas = [
   { label: 'Date', value: 'date' },
   { label: 'Elderberry', value: 'elderberry' },
 ]
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # ComboBox
@@ -16,6 +20,44 @@ const frutas = [
 Input con dropdown de opciones filtrables. Soporta navegación por teclado (↑↓, Enter, Escape).
 
 <PlayHost :meta="comboBoxMeta" />
+
+## Líneas de diseño
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <ComboBox model-value="" placeholder="Type…" :items="[{ label: 'One', value: '1' }]" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <ComboBox model-value="" placeholder="Type…" :items="[{ label: 'One', value: '1' }]" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <ComboBox model-value="" placeholder="Type…" :items="[{ label: 'One', value: '1' }]" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <ComboBox model-value="" placeholder="Type…" :items="[{ label: 'One', value: '1' }]" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 
@@ -97,7 +139,7 @@ Deshabilita la interacción.
 <ComboBox v-model="fruta" :items="frutas" disabled />
 ```
 
-## Events
+## Eventos
 
 | Evento | Payload | Descripción |
 |---|---|---|

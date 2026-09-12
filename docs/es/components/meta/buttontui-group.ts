@@ -1,49 +1,63 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-import { ButtonTuiGroup } from '@dowardev/herdrate-vue';
-import type { ComponentMeta } from '../../../.vitepress/theme/PropControls.vue';
+import type {
+  ComponentMeta,
+  EventMeta,
+  PropMeta,
+  SlotMeta,
+} from '../../../.vitepress/theme/PropControls.vue';
+// LBDS-238: the English meta is the single source of truth. This file
+// is a thin locale wrapper — structure (names, types, defaults, options,
+// order) is inherited from the source; only translatable display strings
+// (label, description, placeholder) are overridden here. Any structural drift
+// is caught by docs/.vitepress/__tests__/docs-i18n-parity.spec.ts.
+import { buttonTuiGroupMeta as buttonTuiGroupMetaEn } from '../../../components/meta/buttontui-group';
+
+type PropText = Pick<PropMeta, 'label' | 'description'> &
+  Partial<Pick<PropMeta, 'placeholder'>>;
+
+const propText: Record<string, PropText> = {
+  buttons: {
+    label: 'Botones',
+    description: 'Lista de botones del grupo',
+  },
+  fill: {
+    label: 'Relleno',
+    description: 'Fill global para todos los botones',
+  },
+  color: {
+    label: 'Color',
+    description: 'Color global para todos los botones',
+  },
+  gap: {
+    label: 'Espaciado',
+    description: 'Espaciado entre botones (en rem)',
+  },
+};
+
+const slotText: Record<string, Pick<SlotMeta, 'label' | 'description'>> = {};
+
+const eventText: Record<string, Pick<EventMeta, 'description'>> = {};
+
+function isSlotObject(slot: string | SlotMeta): slot is SlotMeta {
+  return typeof slot !== 'string';
+}
 
 export const buttonTuiGroupMeta: ComponentMeta = {
-  component: ButtonTuiGroup,
-  props: [
-    {
-      name: 'buttons',
-      type: 'array',
-      control: 'array',
-      required: true,
-      label: 'Botones',
-      description: 'Lista de botones del grupo',
-      default: [{ label: 'Aceptar' }, { label: 'Cancelar', fill: 'outline' }],
-      arrayShape: [
-        { key: 'label', label: 'Label' },
-        { key: 'icon', label: 'Icon (opcional)' },
-        { key: 'fill', label: 'Fill (opcional)' },
-        { key: 'color', label: 'Color (opcional)' },
-      ],
-    },
-    {
-      name: 'fill',
-      type: 'enum',
-      label: 'Relleno',
-      description: 'Fill global para todos los botones',
-      default: 'solid',
-      options: ['solid', 'outline', 'clear'],
-    },
-    {
-      name: 'color',
-      type: 'color',
-      label: 'Color',
-      description: 'Color global para todos los botones',
-      default: 'primary',
-    },
-    {
-      name: 'gap',
-      type: 'number',
-      label: 'Espaciado',
-      description: 'Espaciado entre botones (en rem)',
-      default: 0.4,
-    },
-  ],
-  slots: [],
-  events: [],
+  ...buttonTuiGroupMetaEn,
+  props: buttonTuiGroupMetaEn.props.map((prop) => ({
+    ...prop,
+    ...(propText[prop.name] ?? {}),
+  })),
+  slots: buttonTuiGroupMetaEn.slots?.map((slot) =>
+    isSlotObject(slot)
+      ? { ...slot, ...(slotText[slot.name] ?? {}) }
+      : slotText[slot]
+        ? { name: slot, ...slotText[slot] }
+        : slot,
+  ),
+  events: buttonTuiGroupMetaEn.events?.map((event) => ({
+    ...event,
+    ...(eventText[event.name] ?? {}),
+  })),
 };

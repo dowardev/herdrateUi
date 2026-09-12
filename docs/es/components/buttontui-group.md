@@ -1,5 +1,9 @@
 <script setup>
 import { buttonTuiGroupMeta } from './meta/buttontui-group'
+import { useDesign } from '@dowardev/herdrate-vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # ButtonTuiGroup
@@ -7,6 +11,44 @@ import { buttonTuiGroupMeta } from './meta/buttontui-group'
 Agrupa botones TUI horizontalmente con gap y estilos consistentes.
 
 <PlayHost :meta="buttonTuiGroupMeta" />
+
+## Líneas de diseño
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <ButtonTuiGroup fill="solid" color="primary" :buttons="[{ label: 'A', onClick: () => {} }, { label: 'B', onClick: () => {} }]" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <ButtonTuiGroup fill="solid" color="primary" :buttons="[{ label: 'A', onClick: () => {} }, { label: 'B', onClick: () => {} }]" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <ButtonTuiGroup fill="solid" color="primary" :buttons="[{ label: 'A', onClick: () => {} }, { label: 'B', onClick: () => {} }]" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <ButtonTuiGroup fill="solid" color="primary" :buttons="[{ label: 'A', onClick: () => {} }, { label: 'B', onClick: () => {} }]" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

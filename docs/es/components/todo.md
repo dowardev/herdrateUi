@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { todoMeta } from './meta/todo'
+import { useDesign } from '@dowardev/herdrate-vue'
 
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 const t1 = ref(false)
 const t2 = ref(true)
 const t3 = ref(false)
@@ -12,6 +15,44 @@ const t3 = ref(false)
 Lista de tareas checkable con estilo TUI minimal. Click para alternar entre `[ ]` y `[x]`.
 
 <PlayHost :meta="todoMeta" />
+
+## Líneas de diseño
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Todo text="Write docs" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Todo text="Write docs" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Todo text="Write docs" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Todo text="Write docs" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

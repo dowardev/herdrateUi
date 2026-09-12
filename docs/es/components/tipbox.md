@@ -1,5 +1,9 @@
 <script setup>
 import { tipBoxMeta } from './meta/tipbox'
+import { useDesign } from '@dowardev/herdrate-vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # TipBox
@@ -7,6 +11,44 @@ import { tipBoxMeta } from './meta/tipbox'
 Componente de notificación con icono, título y mensaje.
 
 <PlayHost :meta="tipBoxMeta" />
+
+## Líneas de diseño
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <TipBox title="Heads up" design="tuix">Disk at 90%.</TipBox>
+  </TabPanel>
+  <TabPanel value="rubik">
+    <TipBox title="Heads up" design="rubik">Disk at 90%.</TipBox>
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <TipBox title="Heads up" design="tuix">Disk at 90%.</TipBox>
+  </TabPanel>
+  <TabPanel value="rubik">
+    <TipBox title="Heads up" design="rubik">Disk at 90%.</TipBox>
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

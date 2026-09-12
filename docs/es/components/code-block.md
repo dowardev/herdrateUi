@@ -1,5 +1,9 @@
 <script setup>
 import { codeBlockMeta } from './meta/code-block'
+import { useDesign } from '@dowardev/herdrate-vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # CodeBlock
@@ -7,6 +11,44 @@ import { codeBlockMeta } from './meta/code-block'
 A terminal-style code block with syntax-friendly display, line numbers, a copy button, and horizontal scroll for long lines.
 
 <PlayHost :meta="codeBlockMeta" />
+
+## Líneas de diseño
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <CodeBlock code="const x = 1;" language="ts" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <CodeBlock code="const x = 1;" language="ts" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <CodeBlock code="const x = 1;" language="ts" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <CodeBlock code="const x = 1;" language="ts" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

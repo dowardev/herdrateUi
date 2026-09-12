@@ -1,6 +1,21 @@
 <script setup>
+import { ref } from 'vue'
 import { commandPaletteMeta } from './meta/commandpalette'
+import { ButtonTui, CommandPalette, useDesign } from '@dowardev/herdrate-vue'
 import CommandPaletteDemo from './CommandPaletteDemo.vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
+
+const paletteCommands = [
+  { id: 'open', label: 'Open File', description: 'Open a file' },
+  { id: 'save', label: 'Save File', description: 'Save changes' },
+]
+const openTuix = ref(false)
+const openRubik = ref(false)
+function onSelect(id) {
+  console.log('selected', id)
+}
 </script>
 
 # CommandPalette
@@ -8,6 +23,49 @@ import CommandPaletteDemo from './CommandPaletteDemo.vue'
 Paleta de comandos con overlay, filtrado en vivo y navegación por teclado, ideal para atajos tipo Cmd+K / Ctrl+K.
 
 <PlayHost :meta="commandPaletteMeta" />
+
+## Líneas de diseño
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <ButtonTui @click="openTuix = true">Open palette (tuix)</ButtonTui>
+    <CommandPalette v-model="openTuix" :commands="paletteCommands" design="tuix" @select="onSelect" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <ButtonTui @click="openRubik = true">Open palette (rubik)</ButtonTui>
+    <CommandPalette v-model="openRubik" :commands="paletteCommands" design="rubik" @select="onSelect" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<script setup>
+import { ref } from 'vue'
+
+const openRubik = ref(false)
+const paletteCommands = [
+  { id: 'open', label: 'Open File', description: 'Open a file' },
+  { id: 'save', label: 'Save File', description: 'Save changes' },
+]
+function onSelect(id) {
+  console.log('selected', id)
+}
+</script>
+
+<ButtonTui @click="openRubik = true">Open palette (rubik)</ButtonTui>
+<CommandPalette v-model="openRubik" :commands="paletteCommands" design="rubik" @select="onSelect" />
+```
+
 
 ## Demo
 
@@ -109,7 +167,7 @@ Placeholder del input de búsqueda.
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del prompt y highlight |
 | `placeholder` | `string` | `'Type a command...'` | Placeholder del input |
 
-## Events
+## Eventos
 
 | Evento | Payload | Descripción |
 |---|---|---|

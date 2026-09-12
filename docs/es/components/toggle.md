@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { toggleMeta } from './meta/toggle'
+import { useDesign } from '@dowardev/herdrate-vue'
 const enabled = ref(false)
 const custom = ref(true)
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # Toggle
@@ -10,6 +14,44 @@ const custom = ref(true)
 Toggle switch estilo terminal con `[ON]` / `[OFF]`.
 
 <PlayHost :meta="toggleMeta" />
+
+## Líneas de diseño
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Toggle :model-value="true" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Toggle :model-value="true" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Toggle :model-value="true" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Toggle :model-value="true" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 
@@ -82,7 +124,7 @@ Texto personalizado para los estados on/off.
 <Toggle v-model="enabled" :labels="{ on: 'SI', off: 'NO' }" />
 ```
 
-## Events
+## Eventos
 
 | Evento | Payload | Descripción |
 |---|---|---|

@@ -1,0 +1,15 @@
+{
+  "designLines": "Líneas de diseño",
+  "props": "Props",
+  "slots": "Slots",
+  "events": "Eventos",
+  "api": "API",
+  "demo": "Demo",
+  "tokens": "Tokens usados",
+  "types": "Tipos",
+  "type": "Tipo",
+  "description": "Descripción",
+  "default": "Default",
+  "both": "Ambos",
+  "none": "ninguno"
+}

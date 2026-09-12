@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { accordionMeta } from './meta/accordion'
+import { useDesign } from '@dowardev/herdrate-vue'
 const items = [
   { title: 'Configuración', content: 'Ajustes de red y preferencias del sistema.' },
   { title: 'Usuarios', content: 'Gestión de usuarios y permisos.' },
   { title: 'Logs', content: 'Visualización de logs del sistema.' },
 ]
 const opened = ref<number[]>([])
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # Accordion
@@ -14,6 +18,44 @@ const opened = ref<number[]>([])
 Panel plegable estilo terminal con soporte para múltiples secciones y slots personalizados.
 
 <PlayHost :meta="accordionMeta" />
+
+## Líneas de diseño
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Accordion :items="[{ title: 'Section 1', content: 'Content 1' }]" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Accordion :items="[{ title: 'Section 1', content: 'Content 1' }]" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Accordion :items="[{ title: 'Section 1', content: 'Content 1' }]" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Accordion :items="[{ title: 'Section 1', content: 'Content 1' }]" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 
@@ -88,7 +130,7 @@ Color del indicador de apertura (▶/▼).
 <Accordion :items="[{ title: 'Danger', content: 'Color danger' }]" color="danger" />
 ```
 
-## Events
+## Eventos
 
 | Event | Payload | Description |
 |---|---|---|
