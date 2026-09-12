@@ -1,5 +1,9 @@
 <script setup>
 import { scrollViewMeta } from './meta/scroll-view'
+import { useDesign } from '@dowardev/herdrate-vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # ScrollView
@@ -7,6 +11,44 @@ import { scrollViewMeta } from './meta/scroll-view'
 Contenedor con scroll y barra personalizada estilo terminal.
 
 <PlayHost :meta="scrollViewMeta" />
+
+## Líneas de diseño
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <ScrollView max-height="80px" design="tuix">line1<br />line2<br />line3<br />line4<br />line5</ScrollView>
+  </TabPanel>
+  <TabPanel value="rubik">
+    <ScrollView max-height="80px" design="rubik">line1<br />line2<br />line3<br />line4<br />line5</ScrollView>
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <ScrollView max-height="80px" design="tuix">line1<br />line2<br />line3<br />line4<br />line5</ScrollView>
+  </TabPanel>
+  <TabPanel value="rubik">
+    <ScrollView max-height="80px" design="rubik">line1<br />line2<br />line3<br />line4<br />line5</ScrollView>
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

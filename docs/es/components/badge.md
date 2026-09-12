@@ -1,5 +1,9 @@
 <script setup>
 import { badgeMeta } from './meta/badge'
+import { useDesign } from '@dowardev/herdrate-vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # Badge
@@ -7,6 +11,44 @@ import { badgeMeta } from './meta/badge'
 Etiqueta ligera para mostrar información resaltada con variantes de color.
 
 <PlayHost :meta="badgeMeta" />
+
+## Líneas de diseño
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Badge design="tuix">NEW</Badge>
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Badge design="rubik">NEW</Badge>
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Badge design="tuix">NEW</Badge>
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Badge design="rubik">NEW</Badge>
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

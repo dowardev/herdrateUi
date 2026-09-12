@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 import { useData } from 'vitepress';
+import enPageChrome from '../locales/en.json';
+import esPageChrome from '../locales/es.json';
 
 /**
  * Catalog keys for the theme UI strings (REQ-7). `Playground`, `Props` and
@@ -70,5 +72,45 @@ export function useDocsI18n() {
   const { localeIndex } = useData();
   return {
     t: (k: DocsI18nKey): string => (localeIndex.value === 'es' ? es : en)[k],
+  };
+}
+
+/**
+ * Page-chrome catalog keys (LBDS-238): section headings, table headers and
+ * misc cells shared by the component pages. `Props`, `Slots`, `API`, `Demo`
+ * and `Default` are language-neutral and stay literal in Spanish, matching
+ * the convention already used by the theme strings above.
+ */
+export const pageChromeKeys = [
+  'designLines',
+  'props',
+  'slots',
+  'events',
+  'api',
+  'demo',
+  'tokens',
+  'type',
+  'description',
+  'default',
+  'both',
+  'none',
+  'types',
+] as const;
+
+export type PageChromeKey = (typeof pageChromeKeys)[number];
+
+const enChrome: Record<PageChromeKey, string> = enPageChrome;
+const esChrome: Partial<Record<PageChromeKey, string>> = esPageChrome;
+
+/**
+ * Locale-aware page-chrome strings with fallback to English: when a key is
+ * missing from the Spanish catalog, the English value is returned instead
+ * of an empty string or a missing-key error.
+ */
+export function usePageChromeI18n() {
+  const { localeIndex } = useData();
+  return {
+    t: (k: PageChromeKey): string =>
+      localeIndex.value === 'es' ? (esChrome[k] ?? enChrome[k]) : enChrome[k],
   };
 }

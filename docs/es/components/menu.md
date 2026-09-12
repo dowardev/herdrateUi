@@ -1,6 +1,10 @@
 <script setup>
 import { menuMeta } from './meta/menu'
 import MenuDemo from './MenuDemo.vue'
+import { useDesign } from '@dowardev/herdrate-vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # Menu
@@ -8,6 +12,44 @@ import MenuDemo from './MenuDemo.vue'
 Menú vertical estilo terminal con items, divisores, disabled y slot personalizado.
 
 <PlayHost :meta="menuMeta" />
+
+## Líneas de diseño
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Menu :items="[{ label: 'New File' }, { label: 'Quit' }]" :active-index="0" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Menu :items="[{ label: 'New File' }, { label: 'Quit' }]" :active-index="0" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Menu :items="[{ label: 'New File' }, { label: 'Quit' }]" :active-index="0" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Menu :items="[{ label: 'New File' }, { label: 'Quit' }]" :active-index="0" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 
@@ -106,7 +148,7 @@ Color del item activo (resaltado con `>`).
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del item activo |
 | `activeIndex` | `number` | `-1` | Índice del item resaltado |
 
-## Events
+## Eventos
 
 | Evento | Payload | Descripción |
 |---|---|---|

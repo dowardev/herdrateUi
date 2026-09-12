@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { tagInputMeta } from './meta/tag-input'
+import { useDesign } from '@dowardev/herdrate-vue'
 const tags = ref<string[]>(['vue', 'typescript'])
 const tagsColor = ref<string[]>(['uno', 'dos'])
 const tagsLimited = ref<string[]>(['a', 'b', 'c'])
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # TagInput
@@ -11,6 +15,44 @@ const tagsLimited = ref<string[]>(['a', 'b', 'c'])
 Input que crea tags al presionar Enter, con soporte para límite máximo, eliminación y prevención de duplicados.
 
 <PlayHost :meta="tagInputMeta" />
+
+## Líneas de diseño
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <TagInput :model-value="['vue']" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <TagInput :model-value="['vue']" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <TagInput :model-value="['vue']" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <TagInput :model-value="['vue']" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 
@@ -91,7 +133,7 @@ Número máximo de tags permitidos (0 = sin límite).
 <TagInput v-model="tags" :max="5" />
 ```
 
-## Events
+## Eventos
 
 | Evento | Payload | Descripción |
 |---|---|---|

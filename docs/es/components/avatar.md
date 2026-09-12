@@ -1,5 +1,9 @@
 <script setup>
 import { avatarMeta } from './meta/avatar'
+import { useDesign } from '@dowardev/herdrate-vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # Avatar
@@ -7,6 +11,44 @@ import { avatarMeta } from './meta/avatar'
 Avatar circular con inicial y color determinístico basado en hash FNV-1a del nombre.
 
 <PlayHost :meta="avatarMeta" />
+
+## Líneas de diseño
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Avatar name="Ada" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Avatar name="Ada" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Avatar name="Ada" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Avatar name="Ada" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

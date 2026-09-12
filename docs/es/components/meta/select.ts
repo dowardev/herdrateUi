@@ -1,27 +1,59 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-import { Select } from '@dowardev/herdrate-vue';
-import type { ComponentMeta } from '../../../.vitepress/theme/PropControls.vue';
+import type {
+  ComponentMeta,
+  EventMeta,
+  PropMeta,
+  SlotMeta,
+} from '../../../.vitepress/theme/PropControls.vue';
+// LBDS-238: the English meta is the single source of truth. This file
+// is a thin locale wrapper — structure (names, types, defaults, options,
+// order) is inherited from the source; only translatable display strings
+// (label, description, placeholder) are overridden here. Any structural drift
+// is caught by docs/.vitepress/__tests__/docs-i18n-parity.spec.ts.
+import { selectMeta as selectMetaEn } from '../../../components/meta/select';
+
+type PropText = Pick<PropMeta, 'label' | 'description'> &
+  Partial<Pick<PropMeta, 'placeholder'>>;
+
+const propText: Record<string, PropText> = {
+  modelValue: {
+    label: 'Valor seleccionado',
+  },
+  placeholder: {
+    label: 'Placeholder',
+  },
+  disabled: {
+    label: 'Disabled',
+  },
+  color: {
+    label: 'Color',
+  },
+};
+
+const slotText: Record<string, Pick<SlotMeta, 'label' | 'description'>> = {};
+
+const eventText: Record<string, Pick<EventMeta, 'description'>> = {};
+
+function isSlotObject(slot: string | SlotMeta): slot is SlotMeta {
+  return typeof slot !== 'string';
+}
 
 export const selectMeta: ComponentMeta = {
-  component: Select,
-  name: 'Select',
-  props: [
-    {
-      name: 'modelValue',
-      type: 'string',
-      label: 'Valor seleccionado',
-      default: '',
-    },
-    {
-      name: 'placeholder',
-      type: 'string',
-      label: 'Placeholder',
-      default: 'Select...',
-    },
-    { name: 'disabled', type: 'boolean', label: 'Disabled', default: false },
-    { name: 'color', type: 'color', label: 'Color', default: 'primary' },
-  ],
-  slots: [],
-  events: [{ name: 'update:modelValue', payload: 'value: string' }],
+  ...selectMetaEn,
+  props: selectMetaEn.props.map((prop) => ({
+    ...prop,
+    ...(propText[prop.name] ?? {}),
+  })),
+  slots: selectMetaEn.slots?.map((slot) =>
+    isSlotObject(slot)
+      ? { ...slot, ...(slotText[slot.name] ?? {}) }
+      : slotText[slot]
+        ? { name: slot, ...slotText[slot] }
+        : slot,
+  ),
+  events: selectMetaEn.events?.map((event) => ({
+    ...event,
+    ...(eventText[event.name] ?? {}),
+  })),
 };

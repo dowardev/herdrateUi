@@ -16,6 +16,12 @@ Three changelogs, no duplication:
 
 ## [Unreleased]
 
+### Fixed
+
+- Spanish documentation: every component page now shows its design comparison
+  tabs and section headings in Spanish, and an automated check prevents future
+  English/Spanish drift between the two versions of each page
+
 ## [0.3.0] - 2026-09-11
 
 ### Added

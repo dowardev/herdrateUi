@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { radioMeta } from './meta/radio'
+import { useDesign } from '@dowardev/herdrate-vue'
 const selected = ref('a')
 const selectedColor = ref('a')
 const options = [
@@ -8,6 +9,9 @@ const options = [
   { value: 'b', label: 'Opción B' },
   { value: 'c', label: 'Opción C' },
 ]
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # Radio
@@ -15,6 +19,44 @@ const options = [
 Radio button estilo terminal con `(o)` / `( )`.
 
 <PlayHost :meta="radioMeta" />
+
+## Líneas de diseño
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Radio value="a" model-value="a" label="A" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Radio value="a" model-value="a" label="A" design="rubik" />
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <Radio value="a" model-value="a" label="A" design="tuix" />
+  </TabPanel>
+  <TabPanel value="rubik">
+    <Radio value="a" model-value="a" label="A" design="rubik" />
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 
@@ -68,7 +110,7 @@ Deshabilita la interacción.
 <Radio value="x" label="No disponible" disabled />
 ```
 
-## Events
+## Eventos
 
 | Evento | Payload | Descripción |
 |---|---|---|

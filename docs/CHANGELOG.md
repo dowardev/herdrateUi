@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- **Docs i18n single-source foundation (LBDS-238)**: new `locales/en.json` + `es.json` page-chrome catalogs (12 keys, Spanish falls back to English per key) exposed via `usePageChromeI18n` in the theme
+- **Spanish Design lines sections**: all 39 `es/components/*.md` pages now render their `Líneas de diseño` TUIX/Rubik tabs (ported verbatim from EN, heading translated)
+- **Thin ES meta wrappers**: all 39 `es/components/meta/*.ts` inherit structure from their EN twin and override only translatable strings (`label`, `description`, `placeholder`)
+- **Parity spec** (`.vitepress/__tests__/docs-i18n-parity.spec.ts`): 239 tests guarding locale key parity, section headings, residual English chrome, and meta shape across all 39 pages
+
+### Fixed
+
+- **ES Card/Modal drift**: translated `Design lines`/`Events` headings, `Both` cells, and `(none)` markers in Spanish pages
+- **`es/components/meta/card.ts`**: fixed type import pointing at nonexistent `docs/es/.vitepress`
+- **`es/components/toast.md`**: removed duplicated top-level `<script setup>` (build-breaking)
+
 ## [0.3.0] - 2026-09-11
 
 ### Added

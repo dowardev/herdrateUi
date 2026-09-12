@@ -1,5 +1,9 @@
 <script setup>
 import { buttonTuiMeta } from './meta/buttontui'
+import { useDesign } from '@dowardev/herdrate-vue'
+
+// Global design line (sidebar select) drives which tab loads.
+const line = useDesign()
 </script>
 
 # ButtonTui
@@ -7,6 +11,60 @@ import { buttonTuiMeta } from './meta/buttontui'
 Botones con estilo terminal (TUI), minimales, diseñados para Catppuccin Mocha.
 
 <PlayHost :meta="buttonTuiMeta" />
+
+## Líneas de diseño
+
+<style scoped>
+.design-lines-demo .tabs-list {
+  margin-bottom: 1rem;
+}
+</style>
+<div class="design-lines-demo">
+<Tabs :defaultValue="line" :key="line">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+  <ButtonTui fill="solid" color="primary" design="tuix">solid</ButtonTui>
+  <ButtonTui fill="outline" color="primary" design="tuix">outline</ButtonTui>
+  <ButtonTui fill="clear" color="primary" design="tuix">clear</ButtonTui>
+</div>
+  </TabPanel>
+  <TabPanel value="rubik">
+    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+  <ButtonTui fill="solid" color="primary" design="rubik">solid</ButtonTui>
+  <ButtonTui fill="outline" color="primary" design="rubik">outline</ButtonTui>
+  <ButtonTui fill="clear" color="primary" design="rubik">clear</ButtonTui>
+</div>
+  </TabPanel>
+</Tabs>
+</div>
+
+```vue
+<Tabs defaultValue="tuix">
+  <TabsList>
+    <Tab value="tuix">TUIX</Tab>
+    <Tab value="rubik">Rubik</Tab>
+  </TabsList>
+  <TabPanel value="tuix">
+    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+  <ButtonTui fill="solid" color="primary" design="tuix">solid</ButtonTui>
+  <ButtonTui fill="outline" color="primary" design="tuix">outline</ButtonTui>
+  <ButtonTui fill="clear" color="primary" design="tuix">clear</ButtonTui>
+</div>
+  </TabPanel>
+  <TabPanel value="rubik">
+    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+  <ButtonTui fill="solid" color="primary" design="rubik">solid</ButtonTui>
+  <ButtonTui fill="outline" color="primary" design="rubik">outline</ButtonTui>
+  <ButtonTui fill="clear" color="primary" design="rubik">clear</ButtonTui>
+</div>
+  </TabPanel>
+</Tabs>
+```
+
 
 ## Demo
 

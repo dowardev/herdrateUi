@@ -12,7 +12,7 @@ Una tarjeta de contenido flexible con **dos líneas de diseño**:
 
 <PlayHost :meta="cardMeta" />
 
-## Design lines
+## Líneas de diseño
 
 <style scoped>
 .design-lines-demo .tabs-list {
@@ -82,15 +82,15 @@ Una tarjeta de contenido flexible con **dos líneas de diseño**:
 
 | Prop | Type | Default | Description | Designs |
 |---|---|---|---|---|
-| `arrow` | `boolean` | `true` | muestra la flecha decorativa | Both |
-| `border` | `boolean` | `true` | muestra/oculta el borde | Both |
-| `category` | `string` | — | etiqueta en mayúsculas | Both |
-| `description` | `string` | — | texto del cuerpo | Both |
-| `design` | `'tuix' \| 'rubik'` | inherit | la línea de diseño | Both |
-| `number` | `string` | — | índice monospace (p. ej. `// 03`) | Both |
-| `shadow` | `boolean` | `false` | sombra de elevación — plana (`none`) en tuix, flotante en rubik | Both |
-| `tags` | `string[]` | — | chips de tecnologías | Both |
-| `title` | `string` | — | título de la tarjeta (requerido) | Both |
+| `arrow` | `boolean` | `true` | muestra la flecha decorativa | Ambos |
+| `border` | `boolean` | `true` | muestra/oculta el borde | Ambos |
+| `category` | `string` | — | etiqueta en mayúsculas | Ambos |
+| `description` | `string` | — | texto del cuerpo | Ambos |
+| `design` | `'tuix' \| 'rubik'` | inherit | la línea de diseño | Ambos |
+| `number` | `string` | — | índice monospace (p. ej. `// 03`) | Ambos |
+| `shadow` | `boolean` | `false` | sombra de elevación — plana (`ninguno`) en tuix, flotante en rubik | Ambos |
+| `tags` | `string[]` | — | chips de tecnologías | Ambos |
+| `title` | `string` | — | título de la tarjeta (requerido) | Ambos |
 
 El comportamiento al hover (p. ej. mostrar el `border` al pasar el puntero) queda en manos del **consumidor** vía el evento `@hover` — el componente no lo incluye.
 
@@ -101,6 +101,6 @@ El comportamiento al hover (p. ej. mostrar el `border` al pasar el puntero) qued
 - `default` — reemplaza la descripción
 - `footer` — contenido extra del footer
 
-## Events
+## Eventos
 
 - `hover` — emitido al entrar el puntero en la tarjeta (`mouseenter`). El consumidor decide qué hacer (p. ej. mostrar el borde).
