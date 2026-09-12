@@ -6,11 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-09-11
+
 ### Added
 
 - **ES Card page** (`es/components/card.md` + `es/components/meta/card.ts`): fixes dead sidebar link to 404
 - **Design lines pages**: new `design-lines.md` plus Spanish `es/design-lines.md`, both linked in the navbar
 - **Sidebar layout** (`theme/sidebar.css`): header block stays fixed, only the Components group scrolls
+- **Rubik v2 comparison demos**: live TUIX/Rubik tabs with identical content per line across the component pages
 - **Modal Playground** (`PlayHost.vue`, `play/PlayPreview.vue`, `play/PlayControls.vue`, `play/PlayHeader.vue`, `play/PlayPropsDoc.vue`): New interactive modal-based component playground with live preview, code generation, and props documentation
 - **Code Snippet Generator** (`PlayPreview.vue`): Automatic Vue SFC snippet generation from live prop/slot values with Prettier formatting
 - **Prop Control Components**: `PropControlArray.vue` (array input), `PropControlSegmented.vue` (segmented enum control)
