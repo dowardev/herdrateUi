@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-09-11
+
 ### Added
 
 - **Rubik v2 HUD morphology**: real second-line variants for Select (indexed dropdown with diamond markers), ScrollView (borderless bracket viewport with inner scroll frame), SnakeLoader (segmented chase meter), Stepper (HUD phase readout), Table (borderless ledger), Tabs (segmented channel switcher), TipBox (signal strip), Tooltip (instrument readout) and TreeNode (diamond state markers)
@@ -16,6 +18,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Fixed
 
+- Tuix `box-shadow` fallback restored in Modal and CommandPalette
+- Modal rubik header title legibility across semantic colors
+- Tooltip rubik connector (was clipped away by `clip-path`)
+- Table rubik row hover wash invisible on non-striped tables
+- ButtonTuiGroup click handlers receiving `undefined` instead of the event
+- Divider vertical rubik collapsing to zero height when standalone
 - **Spinner**: Remove orphaned `loader/Spinner.vue` duplicate that broke `vue-tsc` typechecking (`TS2339: Property 'frame' does not exist`). The component lives at `spinner/Spinner.vue` and is unchanged.
 
 ## [0.1.1] - 2026-08-17

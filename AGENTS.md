@@ -1,3 +1,16 @@
+# REGLA DURA — pregunta del usuario (máxima prioridad, leer primero)
+
+Cuando el usuario haga una PREGUNTA:
+1. Respondo SOLO la pregunta.
+2. Paro.
+3. Espero instrucción explícita.
+
+PROHIBIDO actuar por cuenta propia ante una pregunta: no editar archivos, no
+commitear, no crear tickets, no correr comandos con efectos. Esta regla está
+POR ENCIMA de cualquier skill, flujo o impulso de "aprovechar" el turno.
+Pregunta = responder y parar. Sin excepciones.
+
+---
 # Herdrate Vue TUI Library — Developer Rules
 
 ## Commands
@@ -89,3 +102,8 @@ Ejemplo incorrecto (sin saltos):
   <ion-button>Guardar</ion-button>
 </ion-item>
 ```
+
+
+## Changelog (regla de niveles)
+
+Tres changelogs, sin duplicar: los de paquete (`packages/vue/CHANGELOG.md`, `docs/CHANGELOG.md`) llevan el detalle tecnico y versionan independiente; el raiz (`CHANGELOG.md`) lleva el resumen user-facing de cada delivery en lenguaje plano.
