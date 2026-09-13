@@ -10,15 +10,15 @@ export const radioMeta: ComponentMeta = {
     {
       name: 'modelValue',
       type: 'string',
-      label: 'Valor seleccionado',
+      label: 'Selected value',
       default: '',
     },
     {
       name: 'value',
       type: 'string',
-      label: 'Value (identificador)',
+      label: 'Value (identifier)',
       default: 'opcion',
-      placeholder: 'Valor único de esta opción',
+      placeholder: 'Unique value for this option',
       required: true,
     },
     {
@@ -26,7 +26,7 @@ export const radioMeta: ComponentMeta = {
       type: 'string',
       label: 'Label',
       default: '',
-      placeholder: 'Texto visible',
+      placeholder: 'Visible text',
     },
     { name: 'disabled', type: 'boolean', label: 'Disabled', default: false },
     { name: 'color', type: 'color', label: 'Color', default: 'primary' },

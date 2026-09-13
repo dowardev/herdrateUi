@@ -9,22 +9,22 @@ export const tabsMeta: ComponentMeta = {
     {
       name: 'defaultValue',
       type: 'string',
-      label: 'Valor por defecto',
+      label: 'Default value',
       description:
-        'Valor de la pestaña activa por defecto. Sin default declarado en el componente (undefined).',
+        'Value of the active tab by default. No default declared in component (undefined).',
     },
   ],
   slots: [
     {
       name: 'default',
-      label: 'Contenido',
-      description: 'Pestañas (Tab, TabsList, TabPanel)',
+      label: 'Content',
+      description: 'Tabs (Tab, TabsList, TabPanel)',
     },
   ],
   events: [
     {
       name: 'close',
-      description: 'Se emite al cerrar un Tab con closable',
+      description: 'Emitted when a closable Tab is closed',
       payload: 'value: string',
     },
   ],

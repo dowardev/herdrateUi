@@ -30,7 +30,7 @@ export const gutterMeta: ComponentMeta = {
       type: 'string',
       label: 'Highlight (comma-separated)',
       default: [],
-      description: 'Lista de números de línea a resaltar, separados por coma',
+      description: 'Comma-separated list of line numbers to highlight',
     },
     { name: 'color', type: 'color', label: 'Color', default: 'primary' },
     { name: 'width', type: 'string', label: 'Width', default: '3ch' },
