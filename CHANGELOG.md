@@ -18,6 +18,10 @@ Three changelogs, no duplication:
 
 ### Fixed
 
+- English documentation source now fully in English: all component property labels, descriptions, and placeholders translated from Spanish, making the English locale the true source of truth for the i18n system
+
+### Fixed
+
 - Spanish documentation: every component page now shows its design comparison
   tabs and section headings in Spanish, and an automated check prevents future
   English/Spanish drift between the two versions of each page

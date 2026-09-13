@@ -9,22 +9,22 @@ export const toggleMeta: ComponentMeta = {
     {
       name: 'modelValue',
       type: 'boolean',
-      label: 'Activado',
-      description: 'Estado del toggle (v-model)',
+      label: 'Activated',
+      description: 'Toggle state (v-model)',
       default: false,
     },
     {
       name: 'color',
       type: 'color',
       label: 'Color',
-      description: 'Color del toggle',
+      description: 'Toggle color',
       default: 'primary',
     },
     {
       name: 'disabled',
       type: 'boolean',
-      label: 'Deshabilitado',
-      description: 'Deshabilita la interacción',
+      label: 'Disabled',
+      description: 'Disables interaction',
       default: false,
     },
     {
@@ -33,14 +33,14 @@ export const toggleMeta: ComponentMeta = {
       control: 'none',
       label: 'Labels',
       description:
-        "Objeto { on, off } para el texto del toggle. Default: { on: 'ON', off: 'OFF' }.",
+        "Object { on, off } for toggle text. Default: { on: 'ON', off: 'OFF' }.",
     },
   ],
   slots: [],
   events: [
     {
       name: 'update:modelValue',
-      description: 'Se emite al cambiar el estado del toggle',
+      description: 'Emitted when the toggle state changes',
     },
   ],
 };

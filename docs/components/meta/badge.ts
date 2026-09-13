@@ -10,12 +10,10 @@ export const badgeMeta: ComponentMeta = {
       name: 'color',
       type: 'color',
       label: 'Color',
-      description: 'Color semántico del badge',
+      description: 'Semantic color of the badge',
       default: 'primary',
     },
   ],
-  slots: [
-    { name: 'default', label: 'Contenido', description: 'Contenido del badge' },
-  ],
+  slots: [{ name: 'default', label: 'Content', description: 'Badge content' }],
   events: [],
 };

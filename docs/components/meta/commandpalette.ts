@@ -10,8 +10,8 @@ export const commandPaletteMeta: ComponentMeta = {
       name: 'commands',
       type: 'array',
       control: 'array',
-      label: 'Comandos',
-      description: 'Lista de comandos disponibles en la paleta',
+      label: 'Commands',
+      description: 'List of available commands in the palette',
       default: [
         { id: 'open', label: 'Abrir archivo', description: 'Abre un archivo' },
         { id: 'save', label: 'Guardar', description: 'Guarda el documento' },
@@ -27,22 +27,22 @@ export const commandPaletteMeta: ComponentMeta = {
     {
       name: 'modelValue',
       type: 'boolean',
-      label: 'Abierto',
-      description: 'Controla apertura/cierre de la paleta',
+      label: 'Open',
+      description: 'Controls palette open/close',
       default: false,
     },
     {
       name: 'color',
       type: 'color',
       label: 'Color',
-      description: 'Color del prompt y del item resaltado',
+      description: 'Prompt and highlighted item color',
       default: 'primary',
     },
     {
       name: 'placeholder',
       type: 'string',
       label: 'Placeholder',
-      description: 'Placeholder del input de búsqueda',
+      description: 'Search input placeholder',
       default: 'Type a command...',
     },
   ],
@@ -50,12 +50,12 @@ export const commandPaletteMeta: ComponentMeta = {
   events: [
     {
       name: 'update:modelValue',
-      description: 'Se emite al abrir/cerrar',
+      description: 'Emitted on open/close',
       payload: 'value: boolean',
     },
     {
       name: 'select',
-      description: 'Se emite al seleccionar un comando',
+      description: 'Emitted when a command is selected',
       payload: 'commandId: string',
     },
   ],
