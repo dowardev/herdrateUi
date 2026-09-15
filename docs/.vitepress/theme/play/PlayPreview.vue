@@ -14,6 +14,16 @@
         >{{ t('codeTab') }}</button>
       </div>
       <span class="play-preview-name">{{ componentName }}</span>
+      <div class="play-preview-actions">
+        <button
+          v-if="activeTab === 'code'"
+          class="play-action-btn"
+          @click="copySnippet"
+          :title="t('copyCode')"
+        >
+          {{ copied ? t('copied') : t('copy') }}
+        </button>
+      </div>
     </div>
     <div class="play-preview-body">
       <component
@@ -59,6 +69,7 @@ const props = defineProps<{
 
 const activeTab = ref<'preview' | 'code'>('preview');
 const formatter = usePrettierFormatter();
+const copied = ref(false);
 
 const componentInstance = computed(() => props.meta?.component);
 const componentName = computed(() => {
@@ -86,6 +97,12 @@ const hasDefaultSlot = computed(() => {
     (s: any) => (typeof s === 'string' ? s : s.name) === 'default',
   );
 });
+
+function copySnippet() {
+  navigator.clipboard.writeText(snippet.value);
+  copied.value = true;
+  setTimeout(() => { copied.value = false; }, 2000);
+}
 
 const snippet = computed(() => {
   const name = componentName.value;
@@ -193,6 +210,25 @@ const snippet = computed(() => {
   font-size: 0.65rem;
   color: var(--vp-c-text-2, #a6adc8);
   font-family: var(--font-mono);
+}
+.play-preview-actions {
+  display: flex;
+  gap: 0.25rem;
+  margin-left: 0.5rem;
+}
+.play-action-btn {
+  background: var(--vp-c-bg-alt, #313244);
+  border: 1px solid var(--border-hairline, rgba(255,255,255,0.08));
+  color: var(--vp-c-text-1, #cdd6f4);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+  border-radius: var(--radius-input, 8px);
+  transition: all 0.15s var(--easing-spring, ease);
+}
+.play-action-btn:hover {
+  background: var(--vp-c-bg-mute, #45475a);
 }
 .play-preview-body {
   flex: 1;

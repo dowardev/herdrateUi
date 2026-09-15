@@ -23,13 +23,16 @@ Terminal-style status bar with mode, position and info.
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
     <Tab value="tuix">TUIX</Tab>
+
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
+
   <TabPanel value="tuix">
-    <StatusBar mode="NORMAL" info="main*" position="1:1" design="tuix" />
+    <StatusBar mode="INSERT" info="src/components/table/Table.vue" position="128, 12" design="tuix" />
   </TabPanel>
+
   <TabPanel value="rubik">
-    <StatusBar mode="NORMAL" info="main*" position="1:1" design="rubik" />
+    <StatusBar mode="INSERT" info="src/components/table/Table.vue" position="128, 12" design="rubik" />
   </TabPanel>
 </Tabs>
 </div>
@@ -38,19 +41,24 @@ Terminal-style status bar with mode, position and info.
 <Tabs defaultValue="tuix">
   <TabsList>
     <Tab value="tuix">TUIX</Tab>
+
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
+
   <TabPanel value="tuix">
-    <StatusBar mode="NORMAL" info="main*" position="1:1" design="tuix" />
+    <StatusBar mode="INSERT" info="src/components/table/Table.vue" position="128, 12" design="tuix" />
   </TabPanel>
+
   <TabPanel value="rubik">
-    <StatusBar mode="NORMAL" info="main*" position="1:1" design="rubik" />
+    <StatusBar mode="INSERT" info="src/components/table/Table.vue" position="128, 12" design="rubik" />
   </TabPanel>
 </Tabs>
 ```
 
 
 ## Demo
+
+### Básico (`items`)
 
 <StatusBar mode="NORMAL" color="primary" position="22,4" info="main.ts" />
 

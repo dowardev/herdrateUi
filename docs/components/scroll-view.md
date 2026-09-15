@@ -52,6 +52,8 @@ Scroll container with a custom terminal-style bar.
 
 ## Demo
 
+### Básico (`items`)
+
 <ScrollView maxHeight="120px">
   <div v-for="i in 20" :key="i">Line {{ i }}: scrollable content</div>
 </ScrollView>

@@ -3,15 +3,17 @@ import { ref } from 'vue'
 import { useDesign } from '@dowardev/herdrate-vue'
 import { comboBoxMeta } from './meta/combobox'
 
-// Global design line (sidebar select) drives which tab loads.
 const line = useDesign()
-const fruta = ref('')
-const frutas = [
+const fruit = ref('')
+const fruits = [
   { label: 'Apple', value: 'apple' },
   { label: 'Banana', value: 'banana' },
   { label: 'Cherry', value: 'cherry' },
   { label: 'Date', value: 'date' },
   { label: 'Elderberry', value: 'elderberry' },
+  { label: 'Fig', value: 'fig' },
+  { label: 'Grape', value: 'grape' },
+  { label: 'Honeydew', value: 'honeydew' },
 ]
 </script>
 
@@ -28,6 +30,7 @@ Input with a filterable dropdown of options. Supports keyboard navigation (↑�
   margin-bottom: 1rem;
 }
 </style>
+
 <div class="design-lines-demo">
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
@@ -35,10 +38,20 @@ Input with a filterable dropdown of options. Supports keyboard navigation (↑�
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
   <TabPanel value="tuix">
-    <ComboBox model-value="" placeholder="Type…" :items="[{ label: 'One', value: '1' }]" design="tuix" />
+    <ComboBox
+      model-value="apple"
+      placeholder="Type to search..."
+      :items="[{ label: 'Apple', value: 'apple' }, { label: 'Banana', value: 'banana' }, { label: 'Cherry', value: 'cherry' }]"
+      design="tuix"
+    />
   </TabPanel>
   <TabPanel value="rubik">
-    <ComboBox model-value="" placeholder="Type…" :items="[{ label: 'One', value: '1' }]" design="rubik" />
+    <ComboBox
+      model-value="apple"
+      placeholder="Type to search..."
+      :items="[{ label: 'Apple', value: 'apple' }, { label: 'Banana', value: 'banana' }, { label: 'Cherry', value: 'cherry' }]"
+      design="rubik"
+    />
   </TabPanel>
 </Tabs>
 </div>
@@ -50,93 +63,80 @@ Input with a filterable dropdown of options. Supports keyboard navigation (↑�
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
   <TabPanel value="tuix">
-    <ComboBox model-value="" placeholder="Type…" :items="[{ label: 'One', value: '1' }]" design="tuix" />
+    <ComboBox
+      model-value="apple"
+      placeholder="Type to search..."
+      :items="[{ label: 'Apple', value: 'apple' }, { label: 'Banana', value: 'banana' }, { label: 'Cherry', value: 'cherry' }]"
+      design="tuix"
+    />
   </TabPanel>
   <TabPanel value="rubik">
-    <ComboBox model-value="" placeholder="Type…" :items="[{ label: 'One', value: '1' }]" design="rubik" />
+    <ComboBox
+      model-value="apple"
+      placeholder="Type to search..."
+      :items="[{ label: 'Apple', value: 'apple' }, { label: 'Banana', value: 'banana' }, { label: 'Cherry', value: 'cherry' }]"
+      design="rubik"
+    />
   </TabPanel>
 </Tabs>
 ```
 
-
 ## Demo
 
+### Filtrado (`items` + `modelValue`)
+
+Escribe para filtrar las opciones.
+
 <ClientOnly>
-  <ComboBox v-model="fruta" :items="frutas" placeholder="Type to search..." />
-  <p style="color:var(--text-muted);font-size:0.8rem;">Selected: {{ fruta || '—' }}</p>
+  <ComboBox v-model="fruit" :items="fruits" placeholder="Type to search..." />
+  <p style="color:var(--text-muted);font-size:0.8rem;">Selected: {{ fruit || '—' }}</p>
 </ClientOnly>
 
 ```vue
-<ComboBox v-model="fruta" :items="frutas" placeholder="Type to search..." />
+<ComboBox v-model="fruit" :items="fruits" placeholder="Type to search..." />
 ```
 
-## Props
+### Placeholder (`placeholder`)
 
-### modelValue
-
-Selected value (v-model).
+Texto de ayuda cuando no hay valor.
 
 <ClientOnly>
-  <ComboBox v-model="fruta" :items="frutas" placeholder="Select fruit..." />
+  <ComboBox v-model="fruit" :items="fruits" placeholder="Search fruit..." />
+  <ComboBox v-model="fruit" :items="fruits" placeholder="Select framework..." />
 </ClientOnly>
 
 ```vue
-<ComboBox v-model="fruta" :items="frutas" />
+<ComboBox v-model="fruit" :items="fruits" placeholder="Search fruit..." />
 ```
 
-### items
+### Color (`color`)
 
-Array of filterable options.
-
-```ts
-const items = [
-  { label: 'Apple', value: 'apple' },
-  { label: 'Banana', value: 'banana' },
-]
-```
-
-```vue
-<ComboBox v-model="fruta" :items="frutas" />
-```
-
-### color
-
-Focus and highlight color of the dropdown.
+Color del borde y del resaltado.
 
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
-    <ComboBox v-model="fruta" :items="frutas" color="primary" placeholder="Primary" />
-    <ComboBox v-model="fruta" :items="frutas" color="success" placeholder="Success" />
-    <ComboBox v-model="fruta" :items="frutas" color="danger" placeholder="Danger" />
+    <ComboBox v-model="fruit" :items="fruits" color="primary" placeholder="Primary" />
+    <ComboBox v-model="fruit" :items="fruits" color="success" placeholder="Success" />
+    <ComboBox v-model="fruit" :items="fruits" color="warning" placeholder="Warning" />
+    <ComboBox v-model="fruit" :items="fruits" color="danger" placeholder="Danger" />
   </div>
 </ClientOnly>
 
 ```vue
-<ComboBox v-model="fruta" :items="frutas" color="primary" placeholder="Primary" />
-<ComboBox v-model="fruta" :items="frutas" color="success" placeholder="Success" />
-<ComboBox v-model="fruta" :items="frutas" color="danger" placeholder="Danger" />
+<ComboBox v-model="fruit" :items="fruits" color="primary" placeholder="Primary" />
+<ComboBox v-model="fruit" :items="fruits" color="success" placeholder="Success" />
+<ComboBox v-model="fruit" :items="fruits" color="warning" placeholder="Warning" />
+<ComboBox v-model="fruit" :items="fruits" color="danger" placeholder="Danger" />
 ```
 
-### placeholder
+### Deshabilitado (`disabled`)
 
-Text inside the input while it is empty.
+Bloquea la interacción; el valor sigue visible.
 
-<ClientOnly>
-  <ComboBox v-model="fruta" :items="frutas" placeholder="Search fruit..." />
-</ClientOnly>
+<ComboBox v-model="fruit" :items="fruits" disabled placeholder="Disabled" />
 
 ```vue
-<ComboBox v-model="fruta" :items="frutas" placeholder="Search fruit..." />
-```
-
-### disabled
-
-Disables interaction.
-
-<ComboBox v-model="fruta" :items="frutas" disabled placeholder="Disabled" />
-
-```vue
-<ComboBox v-model="fruta" :items="frutas" disabled />
+<ComboBox v-model="fruit" :items="fruits" disabled />
 ```
 
 ## Events

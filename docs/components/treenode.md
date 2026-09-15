@@ -52,6 +52,8 @@ Collapsible tree node with instant expansion.
 
 ## Demo
 
+### Básico (`label` + slots)
+
 <TreeNode>
   <template #label>src</template>
   <TreeNode>

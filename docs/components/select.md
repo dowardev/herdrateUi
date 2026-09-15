@@ -3,14 +3,13 @@ import { ref } from 'vue'
 import { useDesign } from '@dowardev/herdrate-vue'
 import { selectMeta } from './meta/select'
 
-// Global design line (sidebar select) drives which tab loads.
 const line = useDesign()
-const selected = ref('')
-const selectedColor = ref('')
+const selected = ref('1')
 const options = [
   { label: 'Option 1', value: '1' },
   { label: 'Option 2', value: '2' },
   { label: 'Option 3', value: '3' },
+  { label: 'Option 4', value: '4' },
 ]
 </script>
 
@@ -27,6 +26,7 @@ Terminal-style dropdown select.
   margin-bottom: 1rem;
 }
 </style>
+
 <div class="design-lines-demo">
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
@@ -34,10 +34,20 @@ Terminal-style dropdown select.
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
   <TabPanel value="tuix">
-    <Select model-value="a" :options="[{ label: 'Alpha', value: 'a' }, { label: 'Beta', value: 'b' }]" design="tuix" />
+    <Select
+      model-value="2"
+      :options="[{ label: 'Option A', value: '1' }, { label: 'Option B', value: '2' }, { label: 'Option C', value: '3' }]"
+      placeholder="Select an option..."
+      design="tuix"
+    />
   </TabPanel>
   <TabPanel value="rubik">
-    <Select model-value="a" :options="[{ label: 'Alpha', value: 'a' }, { label: 'Beta', value: 'b' }]" design="rubik" />
+    <Select
+      model-value="2"
+      :options="[{ label: 'Option A', value: '1' }, { label: 'Option B', value: '2' }, { label: 'Option C', value: '3' }]"
+      placeholder="Select an option..."
+      design="rubik"
+    />
   </TabPanel>
 </Tabs>
 </div>
@@ -49,16 +59,29 @@ Terminal-style dropdown select.
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
   <TabPanel value="tuix">
-    <Select model-value="a" :options="[{ label: 'Alpha', value: 'a' }, { label: 'Beta', value: 'b' }]" design="tuix" />
+    <Select
+      model-value="2"
+      :options="[{ label: 'Option A', value: '1' }, { label: 'Option B', value: '2' }, { label: 'Option C', value: '3' }]"
+      placeholder="Select an option..."
+      design="tuix"
+    />
   </TabPanel>
   <TabPanel value="rubik">
-    <Select model-value="a" :options="[{ label: 'Alpha', value: 'a' }, { label: 'Beta', value: 'b' }]" design="rubik" />
+    <Select
+      model-value="2"
+      :options="[{ label: 'Option A', value: '1' }, { label: 'Option B', value: '2' }, { label: 'Option C', value: '3' }]"
+      placeholder="Select an option..."
+      design="rubik"
+    />
   </TabPanel>
 </Tabs>
 ```
 
-
 ## Demo
+
+### Valor seleccionado (`modelValue` / `v-model`)
+
+Lee la selección con `v-model`.
 
 <ClientOnly>
   <Select v-model="selected" :options="options" placeholder="Choose an option" />
@@ -69,28 +92,27 @@ Terminal-style dropdown select.
 <Select v-model="selected" :options="options" placeholder="Choose an option" />
 ```
 
-## Props
+### Placeholder (`placeholder`)
 
-### placeholder
-
-Text shown when no option is selected.
+Texto cuando no hay selección.
 
 <ClientOnly>
   <Select v-model="selected" :options="options" placeholder="Select..." />
+  <Select v-model="selected" :options="options" placeholder="Choose a framework..." />
 </ClientOnly>
 
 ```vue
 <Select v-model="selected" :options="options" placeholder="Select..." />
 ```
 
-### options
+### Opciones (`options`)
 
-Array of options with `label` and `value`.
+Array de objetos `{ label, value }`.
 
 ```ts
 const options = [
-  { label: 'Option 1', value: '1' },
-  { label: 'Option 2', value: '2' },
+  { label: 'Vue', value: 'vue' },
+  { label: 'React', value: 'react' },
 ]
 ```
 
@@ -98,27 +120,29 @@ const options = [
 <Select v-model="selected" :options="options" />
 ```
 
-### color
+### Color (`color`)
 
-Focus color when opening the dropdown.
+Color del foco y borde al abrir.
 
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
-    <Select v-model="selectedColor" :options="options" color="primary" placeholder="Primary" />
-    <Select v-model="selectedColor" :options="options" color="success" placeholder="Success" />
-    <Select v-model="selectedColor" :options="options" color="danger" placeholder="Danger" />
+    <Select v-model="selected" :options="options" color="primary" placeholder="Primary" />
+    <Select v-model="selected" :options="options" color="success" placeholder="Success" />
+    <Select v-model="selected" :options="options" color="warning" placeholder="Warning" />
+    <Select v-model="selected" :options="options" color="danger" placeholder="Danger" />
   </div>
 </ClientOnly>
 
 ```vue
-<Select v-model="selectedColor" :options="options" color="primary" placeholder="Primary" />
-<Select v-model="selectedColor" :options="options" color="success" placeholder="Success" />
-<Select v-model="selectedColor" :options="options" color="danger" placeholder="Danger" />
+<Select v-model="selected" :options="options" color="primary" placeholder="Primary" />
+<Select v-model="selected" :options="options" color="success" placeholder="Success" />
+<Select v-model="selected" :options="options" color="warning" placeholder="Warning" />
+<Select v-model="selected" :options="options" color="danger" placeholder="Danger" />
 ```
 
-### disabled
+### Deshabilitado (`disabled`)
 
-Disables interaction.
+Bloquea la interacción; el valor sigue visible.
 
 <Select v-model="selected" :options="options" disabled placeholder="Disabled" />
 

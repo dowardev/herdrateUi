@@ -52,6 +52,8 @@ Contenedor con scroll y barra personalizada estilo terminal.
 
 ## Demo
 
+### Básico (`items`)
+
 <ScrollView maxHeight="120px">
   <div v-for="i in 20" :key="i">Línea {{ i }}: contenido desplazable</div>
 </ScrollView>

@@ -52,6 +52,8 @@ Contenedor versátil con header, body y footer, más divisor vertical opcional.
 
 ## Demo
 
+### Básico (`title`)
+
 <Panel divider>
   <template #header>&#x1f4cb; Panel</template>
   Contenido principal del panel.

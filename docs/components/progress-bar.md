@@ -2,7 +2,6 @@
 import { progressBarMeta } from './meta/progress-bar'
 import { useDesign } from '@dowardev/herdrate-vue'
 
-// Global design line (sidebar select) drives which tab loads.
 const line = useDesign()
 </script>
 
@@ -19,6 +18,7 @@ Terminal-style progress bar with percentage.
   margin-bottom: 1rem;
 }
 </style>
+
 <div class="design-lines-demo">
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
@@ -49,91 +49,78 @@ Terminal-style progress bar with percentage.
 </Tabs>
 ```
 
-
 ## Demo
 
-<ProgressBar value="45" />
+### Valor (`value`)
 
-<ProgressBar value="75" color="success" />
+Progreso numérico 0-100.
 
-<ProgressBar value="30" size="sm" />
-
-<ProgressBar value="90" :showLabel="false" />
+<ProgressBar value="25" />
+<ProgressBar value="50" />
+<ProgressBar value="75" />
+<ProgressBar value="100" color="success" />
 
 ```vue
-<ProgressBar value="45" />
-<ProgressBar value="75" color="success" />
-<ProgressBar value="30" size="sm" />
-<ProgressBar value="90" :showLabel="false" />
+<ProgressBar value="25" />
+<ProgressBar value="50" />
+<ProgressBar value="75" />
+<ProgressBar value="100" color="success" />
+```
+
+### Color (`color`)
+
+Color semántico de la barra.
+
+<ProgressBar value="60" color="primary" />
+<ProgressBar value="60" color="success" />
+<ProgressBar value="60" color="warning" />
+<ProgressBar value="60" color="danger" />
+<ProgressBar value="60" color="secondary" />
+<ProgressBar value="60" color="tertiary" />
+
+```vue
+<ProgressBar value="60" color="primary" />
+<ProgressBar value="60" color="success" />
+<ProgressBar value="60" color="warning" />
+<ProgressBar value="60" color="danger" />
+<ProgressBar value="60" color="secondary" />
+<ProgressBar value="60" color="tertiary" />
+```
+
+### Tamaño (`size`)
+
+Altura de la barra.
+
+<ProgressBar value="50" size="sm" />
+<ProgressBar value="50" size="md" />
+<ProgressBar value="50" size="lg" />
+
+```vue
+<ProgressBar value="50" size="sm" />
+<ProgressBar value="50" size="md" />
+<ProgressBar value="50" size="lg" />
+```
+
+### Etiqueta (`showLabel`)
+
+Muestra u oculta el porcentaje.
+
+<ProgressBar value="75" show-label />
+<ProgressBar value="75" :show-label="false" />
+
+```vue
+<ProgressBar value="75" show-label />
+<ProgressBar value="75" :show-label="false" />
 ```
 
 ## Props
-
-### value
-
-Numeric progress from 0 to 100.
-
-<ProgressBar value="25" />
-<ProgressBar value="50" />
-<ProgressBar value="100" color="success" />
-
-```vue
-<ProgressBar value="25" />
-<ProgressBar value="50" />
-<ProgressBar value="100" color="success" />
-```
-
-### color
-
-Semantic color of the progress bar.
-
-<ProgressBar value="60" color="primary" />
-<ProgressBar value="60" color="success" />
-<ProgressBar value="60" color="warning" />
-<ProgressBar value="60" color="danger" />
-
-```vue
-<ProgressBar value="60" color="primary" />
-<ProgressBar value="60" color="success" />
-<ProgressBar value="60" color="warning" />
-<ProgressBar value="60" color="danger" />
-```
-
-### size
-
-Height of the progress bar.
-
-<ProgressBar value="50" size="sm" />
-<ProgressBar value="50" size="md" />
-<ProgressBar value="50" size="lg" />
-
-```vue
-<ProgressBar value="50" size="sm" />
-<ProgressBar value="50" size="md" />
-<ProgressBar value="50" size="lg" />
-```
-
-### showLabel
-
-Shows or hides the percentage at the end of the bar.
-
-<ProgressBar value="75" showLabel />
-
-<ProgressBar value="75" :showLabel="false" />
-
-```vue
-<ProgressBar value="75" showLabel />
-<ProgressBar value="75" :showLabel="false" />
-```
-
-## API
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `value` | `number` | `0` | Progress (0-100) |
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Semantic color |
 | `showLabel` | `boolean` | `true` | Show the % at the end |
-| `size` | `'sm' \\| 'md' \\| 'lg'` | `'md'` | Height of the bar |
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Height of the bar |
 
 ## Tokens used
 

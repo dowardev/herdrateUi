@@ -52,6 +52,8 @@ Nodo de árbol colapsable con expansión instantánea.
 
 ## Demo
 
+### Básico (`label` + slots)
+
 <TreeNode>
   <template #label>src</template>
   <TreeNode>

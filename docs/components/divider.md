@@ -52,6 +52,8 @@ Horizontal or vertical divider with terminal aesthetics.
 
 ## Demo
 
+### Orientación (`orientation`)
+
 <Divider orientation="horizontal" />
 
 Text separated by a horizontal divider.

@@ -52,6 +52,8 @@ Loading animation inspired by terminals with Unicode block characters.
 
 ## Demo
 
+### Básico (`progress`)
+
 <SnakeLoader speed="1.2s" color="primary">Primary</SnakeLoader>
 
 <SnakeLoader speed="0.8s" color="secondary">Secondary</SnakeLoader>

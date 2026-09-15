@@ -70,6 +70,8 @@ const openRubik = ref(false)
 
 ## Demo
 
+### Básico (`open` + `title`)
+
 <ClientOnly>
   <ButtonTui @click="isOpen = true" color="primary">Open modal</ButtonTui>
   <Modal v-model:open="isOpen" title="Example Modal" closable>

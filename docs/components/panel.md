@@ -52,6 +52,8 @@ Versatile container with header, body and footer, plus optional vertical divider
 
 ## Demo
 
+### Básico (`title`)
+
 <Panel divider>
   <template #header>&#x1f4cb; Panel</template>
   Main panel content.

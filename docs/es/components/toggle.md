@@ -55,6 +55,8 @@ Toggle switch estilo terminal con `[ON]` / `[OFF]`.
 
 ## Demo
 
+### Básico (`modelValue`)
+
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
     <Toggle v-model="enabled" />

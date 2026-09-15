@@ -52,6 +52,8 @@ Columna de números de línea con marcadores opcionales estilo terminal.
 
 ## Demo
 
+### Básico (`items`)
+
 <Gutter :lines="15" :start="1" :highlight="[3, 7, 11]" />
 
 ```vue

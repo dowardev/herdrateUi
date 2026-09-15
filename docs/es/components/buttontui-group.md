@@ -52,6 +52,8 @@ Agrupa botones TUI horizontalmente con gap y estilos consistentes.
 
 ## Demo
 
+### Grupo (`buttons`)
+
 <ButtonTuiGroup fill="solid" color="secondary" :buttons="[
   { icon: '↖', label: 'Izquierda', onClick: () => {} },
   { icon: '⬆', label: 'Centro', onClick: () => {} },

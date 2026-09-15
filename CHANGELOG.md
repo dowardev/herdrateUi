@@ -16,6 +16,15 @@ Three changelogs, no duplication:
 
 ## [Unreleased]
 
+### Changed
+
+- Component documentation is now more realistic: every component page shows demos grouped by prop/functionality with the same content in TUIX and Rubik, so both design lines can be compared side-by-side
+
+### Fixed
+
+- Theme control labels (reset/copy) now show correctly in both languages, and Spanish component pages no longer show English mixed into headings or API tables
+- Accordion documentation no longer references a non-existent `v-model:opened` binding or `#default` slot
+
 ### Fixed
 
 - English documentation source now fully in English: all component property labels, descriptions, and placeholders translated from Spanish, making the English locale the true source of truth for the i18n system

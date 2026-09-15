@@ -52,6 +52,8 @@ Animated terminal-style spinner with cyclic braille frames.
 
 ## Demo
 
+### Básico (`color` / `size` / `speed`)
+
 <div style="display: flex; gap: 1rem; align-items: center;">
   <Spinner />
   <Spinner color="success" />
