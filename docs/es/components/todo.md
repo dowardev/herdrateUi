@@ -56,6 +56,8 @@ Lista de tareas checkable con estilo TUI minimal. Click para alternar entre `[ ]
 
 ## Demo
 
+### Básico (`items`)
+
 <ClientOnly>
   <div style="display: flex; flex-direction: column; gap: 0.25rem;">
     <Todo v-model:done="t1">Rediseñar Toast para que coincida con la estética esperada</Todo>

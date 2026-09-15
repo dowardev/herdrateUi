@@ -3,7 +3,17 @@
 <template>
   <div class="prop-controls">
     <section v-if="propMetas.length" class="props-section">
-      <h3 class="section-title">Props</h3>
+      <header class="section-header">
+        <h3 class="section-title">Props</h3>
+        <button
+          v-if="hasDefaults()"
+          class="reset-btn"
+          @click="resetToDefaults"
+          :title="t('resetToDefaults')"
+        >
+          {{ t('reset') }}
+        </button>
+      </header>
       <div class="controls-grid">
         <PropControlArray
           v-for="prop in arrayProps"
@@ -126,6 +136,7 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'update:modelValue', value: Record<string, any>): void;
   (e: 'update:slots', value: Record<string, string>): void;
+  (e: 'reset'): void;
 }>();
 
 const propMetas = computed(() => props.meta.props || []);
@@ -178,6 +189,21 @@ function onPropUpdate(key: string, value: any) {
 function onSlotUpdate(key: string, value: string) {
   emit('update:slots', { ...props.slots, [key]: value });
 }
+
+function resetToDefaults() {
+  const defaults: Record<string, any> = {};
+  for (const prop of propMetas.value) {
+    if (prop.default !== undefined) {
+      defaults[prop.name] = prop.default;
+    }
+  }
+  emit('update:modelValue', defaults);
+  emit('reset');
+}
+
+function hasDefaults() {
+  return propMetas.value.some((p) => p.default !== undefined);
+}
 </script>
 
 <style scoped>
@@ -185,6 +211,13 @@ function onSlotUpdate(key: string, value: string) {
   display: flex;
   flex-direction: column;
   gap: 0;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.625rem 0.75rem;
+  border-bottom: 1px solid var(--border-hairline, rgba(255,255,255,0.08));
 }
 .section-title {
   font-family: var(--font-mono);
@@ -194,8 +227,6 @@ function onSlotUpdate(key: string, value: string) {
   letter-spacing: 0.06em;
   font-weight: 600;
   margin: 0;
-  padding: 0.625rem 0.75rem;
-  border-bottom: 1px solid var(--border-hairline, rgba(255,255,255,0.08));
   display: flex;
   align-items: center;
   gap: 0.375rem;
@@ -233,5 +264,20 @@ function onSlotUpdate(key: string, value: string) {
   color: var(--danger);
   font-weight: 700;
   margin-left: 0.125rem;
+}
+.reset-btn {
+  background: transparent;
+  border: 1px dashed var(--border-hairline, rgba(255,255,255,0.08));
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.15s var(--easing-spring, ease);
+}
+.reset-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
 }
 </style>

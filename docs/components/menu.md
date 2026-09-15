@@ -2,8 +2,18 @@
 import { menuMeta } from './meta/menu'
 import { useDesign } from '@dowardev/herdrate-vue'
 
-// Global design line (sidebar select) drives which tab loads.
 const line = useDesign()
+
+const items = [
+  { label: 'New File', icon: '+' },
+  { label: 'Open File...', icon: '↗' },
+  { label: 'Save', icon: '⌘S' },
+  { label: 'Save As...', icon: '⇧⌘S' },
+  { label: '', divider: true },
+  { label: 'Preferences', icon: '⌘,' },
+  { label: '', divider: true },
+  { label: 'Quit', icon: '⌘Q' },
+]
 </script>
 
 # Menu
@@ -19,6 +29,7 @@ Terminal-style vertical menu with items, dividers, disabled and custom slot.
   margin-bottom: 1rem;
 }
 </style>
+
 <div class="design-lines-demo">
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
@@ -26,10 +37,10 @@ Terminal-style vertical menu with items, dividers, disabled and custom slot.
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
   <TabPanel value="tuix">
-    <Menu :items="[{ label: 'New File' }, { label: 'Quit' }]" :active-index="0" design="tuix" />
+    <Menu :items="items" :active-index="0" design="tuix" />
   </TabPanel>
   <TabPanel value="rubik">
-    <Menu :items="[{ label: 'New File' }, { label: 'Quit' }]" :active-index="0" design="rubik" />
+    <Menu :items="items" :active-index="0" design="rubik" />
   </TabPanel>
 </Tabs>
 </div>
@@ -41,91 +52,102 @@ Terminal-style vertical menu with items, dividers, disabled and custom slot.
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
   <TabPanel value="tuix">
-    <Menu :items="[{ label: 'New File' }, { label: 'Quit' }]" :active-index="0" design="tuix" />
+    <Menu :items="items" :active-index="0" design="tuix" />
   </TabPanel>
   <TabPanel value="rubik">
-    <Menu :items="[{ label: 'New File' }, { label: 'Quit' }]" :active-index="0" design="rubik" />
+    <Menu :items="items" :active-index="0" design="rubik" />
   </TabPanel>
 </Tabs>
 ```
 
-
 ## Demo
 
+### Items (`items`)
+
+Array de objetos con `label`, `icon`, `disabled`, `divider`.
+
 <ClientOnly>
-  <MenuDemo />
+  <Menu :items="items" :active-index="0" />
 </ClientOnly>
-
-```vue
-<template>
-  <Menu :items="items" @select="handleSelect" />
-</template>
-
-<script setup lang="ts">
-import { Menu } from '@dowardev/herdrate-vue'
-
-const items = [
-  { label: 'New File' },
-  { label: 'Open File', icon: '>' },
-  { label: 'Save', disabled: true },
-  { label: '', divider: true },
-  { label: 'Quit' },
-]
-
-function handleSelect(index: number) {
-  console.log('Selected:', index)
-}
-</script>
-```
-
-## Props
-
-### items
-
-Array of menu items. Each item supports `label`, `icon`, `disabled` and `divider`.
 
 ```vue
 <Menu :items="[
-  { label: 'New File' },
-  { label: 'Open File', icon: '>' },
+  { label: 'New File', icon: '+' },
+  { label: 'Open File...', icon: '↗' },
   { label: 'Save', disabled: true },
   { label: '', divider: true },
-  { label: 'Quit' },
-]" />
+  { label: 'Preferences' },
+]" :active-index="0" />
 ```
 
-### color
+### Índice activo (`activeIndex`)
 
-Color of the active item (highlighted with `>`).
+Resalta un item con el marcador `>`.
 
 <ClientOnly>
   <div style="display: flex; gap: 1rem;">
-    <Menu :items="[{ label: 'Primary', icon: '>' }, { label: 'Active', disabled: true }]" color="primary" :activeIndex="0" />
-    <Menu :items="[{ label: 'Success', icon: '>' }, { label: 'Active' }]" color="success" :activeIndex="0" />
-    <Menu :items="[{ label: 'Danger', icon: '>' }, { label: 'Active' }]" color="danger" :activeIndex="0" />
-  </div>
-</ClientOnly>
-
-```vue
-<Menu :items="[{ label: 'Primary', icon: '>' }, { label: 'Active', disabled: true }]" color="primary" :activeIndex="0" />
-<Menu :items="[{ label: 'Success', icon: '>' }, { label: 'Active' }]" color="success" :activeIndex="0" />
-<Menu :items="[{ label: 'Danger', icon: '>' }, { label: 'Active' }]" color="danger" :activeIndex="0" />
-```
-
-### activeIndex
-
-Index of the item highlighted with the `>` marker.
-
-<ClientOnly>
-  <div style="display: flex; gap: 1rem;">
+    <Menu :items="[{ label: 'One' }, { label: 'Two' }, { label: 'Three' }]" :activeIndex="0" />
     <Menu :items="[{ label: 'One' }, { label: 'Two' }, { label: 'Three' }]" :activeIndex="1" />
     <Menu :items="[{ label: 'One' }, { label: 'Two' }, { label: 'Three' }]" :activeIndex="2" />
   </div>
 </ClientOnly>
 
 ```vue
+<Menu :items="[{ label: 'One' }, { label: 'Two' }, { label: 'Three' }]" :activeIndex="0" />
 <Menu :items="[{ label: 'One' }, { label: 'Two' }, { label: 'Three' }]" :activeIndex="1" />
 <Menu :items="[{ label: 'One' }, { label: 'Two' }, { label: 'Three' }]" :activeIndex="2" />
+```
+
+### Color (`color`)
+
+Color del item activo.
+
+<ClientOnly>
+  <div style="display: flex; gap: 1rem;">
+    <Menu :items="[{ label: 'Primary' }, { label: 'Item 2' }]" color="primary" :activeIndex="0" />
+    <Menu :items="[{ label: 'Success' }, { label: 'Item 2' }]" color="success" :activeIndex="0" />
+    <Menu :items="[{ label: 'Danger' }, { label: 'Item 2' }]" color="danger" :activeIndex="0" />
+  </div>
+</ClientOnly>
+
+```vue
+<Menu :items="[{ label: 'Primary' }, { label: 'Item 2' }]" color="primary" :activeIndex="0" />
+<Menu :items="[{ label: 'Success' }, { label: 'Item 2' }]" color="success" :activeIndex="0" />
+<Menu :items="[{ label: 'Danger' }, { label: 'Item 2' }]" color="danger" :activeIndex="0" />
+```
+
+### Divider y disabled
+
+Separadores visuales e items no interactivos.
+
+<ClientOnly>
+  <Menu
+    :items="[
+      { label: 'New File' },
+      { label: 'Open File', icon: '>' },
+      { label: 'Save', disabled: true },
+      { label: '', divider: true },
+      { label: 'Preferences' },
+      { label: '', divider: true },
+      { label: 'Quit' },
+    ]"
+    :activeIndex="0"
+  />
+</ClientOnly>
+
+```vue
+<Menu
+  :items="[
+    { label: 'New File' },
+    { label: 'Open File', icon: '>' },
+    { label: 'Save', disabled: true },
+    { label: '', divider: true },
+    { label: 'Preferences' },
+    { label: '', divider: true },
+    { label: 'Quit' },
+  ]"
+  :activeIndex="0"
+/>
 ```
 
 ## Types

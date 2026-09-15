@@ -67,6 +67,8 @@ Terminal-style breadcrumb navigation with semantic colors and a slot for custom 
 
 ## Demo
 
+### Items (`items`)
+
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
     <Breadcrumbs :items="simpleItems" />

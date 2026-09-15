@@ -52,6 +52,8 @@ A terminal-style code block with syntax-friendly display, line numbers, a copy b
 
 ## Demo
 
+### Básico (`code` / `language`)
+
 <CodeBlock code="const x = 1;" language="typescript" />
 <CodeBlock code="function greet(name: string) {\n  return `Hello ${name}`;\n}" language="typescript" color="success" />
 <CodeBlock code="docker compose up -d" language="bash" color="secondary" :showLines="false" />

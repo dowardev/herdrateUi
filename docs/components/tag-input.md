@@ -56,6 +56,8 @@ Input that creates tags on Enter, with support for a maximum limit, removal and 
 
 ## Demo
 
+### Básico (`modelValue`)
+
 <ClientOnly>
   <TagInput v-model="tags" color="success" :max="5" placeholder="Add tag..." />
   <p style="color:var(--text-muted);font-size:0.8rem;">Tags: {{ tags }}</p>

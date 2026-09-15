@@ -1,23 +1,25 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { comboBoxMeta } from './meta/combobox'
 import { useDesign } from '@dowardev/herdrate-vue'
-const fruta = ref('')
-const frutas = [
-  { label: 'Apple', value: 'apple' },
-  { label: 'Banana', value: 'banana' },
-  { label: 'Cherry', value: 'cherry' },
-  { label: 'Date', value: 'date' },
-  { label: 'Elderberry', value: 'elderberry' },
-]
+import { comboBoxMeta } from './meta/combobox'
 
-// Global design line (sidebar select) drives which tab loads.
 const line = useDesign()
+const fruit = ref('')
+const fruits = [
+  { label: 'Manzana', value: 'apple' },
+  { label: 'Banana', value: 'banana' },
+  { label: 'Cereza', value: 'cherry' },
+  { label: 'Dátil', value: 'date' },
+  { label: 'Sauco', value: 'elderberry' },
+  { label: 'Higo', value: 'fig' },
+  { label: 'Uva', value: 'grape' },
+  { label: 'Melón', value: 'honeydew' },
+]
 </script>
 
 # ComboBox
 
-Input con dropdown de opciones filtrables. Soporta navegación por teclado (↑↓, Enter, Escape).
+Input con un dropdown filtrable de opciones. Soporta navegación por teclado (↑↓, Enter, Escape).
 
 <PlayHost :meta="comboBoxMeta" />
 
@@ -28,6 +30,7 @@ Input con dropdown de opciones filtrables. Soporta navegación por teclado (↑�
   margin-bottom: 1rem;
 }
 </style>
+
 <div class="design-lines-demo">
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
@@ -35,10 +38,20 @@ Input con dropdown de opciones filtrables. Soporta navegación por teclado (↑�
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
   <TabPanel value="tuix">
-    <ComboBox model-value="" placeholder="Type…" :items="[{ label: 'One', value: '1' }]" design="tuix" />
+    <ComboBox
+      model-value="apple"
+      placeholder="Escribe para buscar..."
+      :items="[{ label: 'Manzana', value: 'apple' }, { label: 'Banana', value: 'banana' }, { label: 'Cereza', value: 'cherry' }]"
+      design="tuix"
+    />
   </TabPanel>
   <TabPanel value="rubik">
-    <ComboBox model-value="" placeholder="Type…" :items="[{ label: 'One', value: '1' }]" design="rubik" />
+    <ComboBox
+      model-value="apple"
+      placeholder="Escribe para buscar..."
+      :items="[{ label: 'Manzana', value: 'apple' }, { label: 'Banana', value: 'banana' }, { label: 'Cereza', value: 'cherry' }]"
+      design="rubik"
+    />
   </TabPanel>
 </Tabs>
 </div>
@@ -50,100 +63,87 @@ Input con dropdown de opciones filtrables. Soporta navegación por teclado (↑�
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
   <TabPanel value="tuix">
-    <ComboBox model-value="" placeholder="Type…" :items="[{ label: 'One', value: '1' }]" design="tuix" />
+    <ComboBox
+      model-value="apple"
+      placeholder="Escribe para buscar..."
+      :items="[{ label: 'Manzana', value: 'apple' }, { label: 'Banana', value: 'banana' }, { label: 'Cereza', value: 'cherry' }]"
+      design="tuix"
+    />
   </TabPanel>
   <TabPanel value="rubik">
-    <ComboBox model-value="" placeholder="Type…" :items="[{ label: 'One', value: '1' }]" design="rubik" />
+    <ComboBox
+      model-value="apple"
+      placeholder="Escribe para buscar..."
+      :items="[{ label: 'Manzana', value: 'apple' }, { label: 'Banana', value: 'banana' }, { label: 'Cereza', value: 'cherry' }]"
+      design="rubik"
+    />
   </TabPanel>
 </Tabs>
 ```
 
-
 ## Demo
 
+### Filtrado (`items` + `modelValue`)
+
+Escribe para filtrar las opciones.
+
 <ClientOnly>
-  <ComboBox v-model="fruta" :items="frutas" placeholder="Escribe para buscar..." />
-  <p style="color:var(--text-muted);font-size:0.8rem;">Seleccionado: {{ fruta || '—' }}</p>
+  <ComboBox v-model="fruit" :items="fruits" placeholder="Escribe para buscar..." />
+  <p style="color:var(--text-muted);font-size:0.8rem;">Seleccionado: {{ fruit || '—' }}</p>
 </ClientOnly>
 
 ```vue
-<ComboBox v-model="fruta" :items="frutas" placeholder="Escribe para buscar..." />
+<ComboBox v-model="fruit" :items="fruits" placeholder="Escribe para buscar..." />
 ```
 
-## Props
+### Placeholder (`placeholder`)
 
-### modelValue
-
-Valor seleccionado (v-model).
+Texto de ayuda cuando no hay valor.
 
 <ClientOnly>
-  <ComboBox v-model="fruta" :items="frutas" placeholder="Selecciona fruta..." />
+  <ComboBox v-model="fruit" :items="fruits" placeholder="Buscar fruta..." />
+  <ComboBox v-model="fruit" :items="fruits" placeholder="Selecciona framework..." />
 </ClientOnly>
 
 ```vue
-<ComboBox v-model="fruta" :items="frutas" />
+<ComboBox v-model="fruit" :items="fruits" placeholder="Buscar fruta..." />
 ```
 
-### items
+### Color (`color`)
 
-Array de opciones filtrables.
-
-```ts
-const items = [
-  { label: 'Apple', value: 'apple' },
-  { label: 'Banana', value: 'banana' },
-]
-```
-
-```vue
-<ComboBox v-model="fruta" :items="frutas" />
-```
-
-### color
-
-Color de foco y highlight del dropdown.
+Color del borde y del resaltado.
 
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
-    <ComboBox v-model="fruta" :items="frutas" color="primary" placeholder="Primary" />
-    <ComboBox v-model="fruta" :items="frutas" color="success" placeholder="Success" />
-    <ComboBox v-model="fruta" :items="frutas" color="danger" placeholder="Danger" />
+    <ComboBox v-model="fruit" :items="fruits" color="primary" placeholder="Primary" />
+    <ComboBox v-model="fruit" :items="fruits" color="success" placeholder="Success" />
+    <ComboBox v-model="fruit" :items="fruits" color="warning" placeholder="Warning" />
+    <ComboBox v-model="fruit" :items="fruits" color="danger" placeholder="Danger" />
   </div>
 </ClientOnly>
 
 ```vue
-<ComboBox v-model="fruta" :items="frutas" color="primary" placeholder="Primary" />
-<ComboBox v-model="fruta" :items="frutas" color="success" placeholder="Success" />
-<ComboBox v-model="fruta" :items="frutas" color="danger" placeholder="Danger" />
+<ComboBox v-model="fruit" :items="fruits" color="primary" placeholder="Primary" />
+<ComboBox v-model="fruit" :items="fruits" color="success" placeholder="Success" />
+<ComboBox v-model="fruit" :items="fruits" color="warning" placeholder="Warning" />
+<ComboBox v-model="fruit" :items="fruits" color="danger" placeholder="Danger" />
 ```
 
-### placeholder
+### Deshabilitado (`disabled`)
 
-Texto dentro del input mientras está vacío.
+Bloquea la interacción; el valor sigue visible.
 
-<ClientOnly>
-  <ComboBox v-model="fruta" :items="frutas" placeholder="Buscar fruta..." />
-</ClientOnly>
+<ComboBox v-model="fruit" :items="fruits" disabled placeholder="Deshabilitado" />
 
 ```vue
-<ComboBox v-model="fruta" :items="frutas" placeholder="Buscar fruta..." />
-```
-
-### disabled
-
-Deshabilita la interacción.
-
-<ComboBox v-model="fruta" :items="frutas" disabled placeholder="Deshabilitado" />
-
-```vue
-<ComboBox v-model="fruta" :items="frutas" disabled />
+<ComboBox v-model="fruit" :items="fruits" disabled />
 ```
 
 ## Eventos
 
 | Evento | Payload | Descripción |
 |---|---|---|
-| `update:modelValue` | `string` | Se emite al seleccionar un ítem |
+| `update:modelValue` | `string` | Se emite al seleccionar un item |
 
 ## Tipos
 
@@ -160,7 +160,7 @@ Deshabilita la interacción.
 |---|---|---|---|
 | `items` | `ComboOption[]` | `[]` | Opciones del dropdown |
 | `modelValue` | `string` | `''` | Valor seleccionado (v-model) |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color de foco y highlight |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color de foco y resaltado |
 | `placeholder` | `string` | `'Search...'` | Placeholder del input |
 | `disabled` | `boolean` | `false` | Deshabilitar interacción |
 

@@ -2,7 +2,6 @@
 import { tooltipMeta } from './meta/tooltip'
 import { useDesign } from '@dowardev/herdrate-vue'
 
-// Global design line (sidebar select) drives which tab loads.
 const line = useDesign()
 </script>
 
@@ -22,6 +21,7 @@ Informational tooltip that appears on hover over an element, with configurable d
   margin-top: 2.5rem;
 }
 </style>
+
 <div class="design-lines-demo">
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
@@ -30,12 +30,16 @@ Informational tooltip that appears on hover over an element, with configurable d
   </TabsList>
   <TabPanel value="tuix">
     <div class="tooltip-demo">
-      <Tooltip text="Hint" design="tuix"><span>Hover over me</span></Tooltip>
+      <Tooltip text="Copy to clipboard" design="tuix">
+        <ButtonTui icon="📋" fill="outline" color="primary">Copy</ButtonTui>
+      </Tooltip>
     </div>
   </TabPanel>
   <TabPanel value="rubik">
     <div class="tooltip-demo">
-      <Tooltip text="Hint" design="rubik"><span>Hover over me</span></Tooltip>
+      <Tooltip text="Copy to clipboard" design="rubik">
+        <ButtonTui icon="📋" fill="outline" color="primary">Copy</ButtonTui>
+      </Tooltip>
     </div>
   </TabPanel>
 </Tabs>
@@ -49,140 +53,115 @@ Informational tooltip that appears on hover over an element, with configurable d
   </TabsList>
   <TabPanel value="tuix">
     <div class="tooltip-demo">
-      <Tooltip text="Hint" design="tuix"><span>Hover over me</span></Tooltip>
+      <Tooltip text="Copy to clipboard" design="tuix">
+        <ButtonTui icon="📋" fill="outline" color="primary">Copy</ButtonTui>
+      </Tooltip>
     </div>
   </TabPanel>
   <TabPanel value="rubik">
     <div class="tooltip-demo">
-      <Tooltip text="Hint" design="rubik"><span>Hover over me</span></Tooltip>
+      <Tooltip text="Copy to clipboard" design="rubik">
+        <ButtonTui icon="📋" fill="outline" color="primary">Copy</ButtonTui>
+      </Tooltip>
     </div>
   </TabPanel>
 </Tabs>
 ```
 
-
 ## Demo
 
-<div style="display: flex; gap: 1rem; align-items: center; padding: 2rem 0;">
-  <Tooltip text="Informational message">
-    <span>Hover over me</span>
+### Posición (`position`)
+
+Posición relativa al trigger.
+
+<div style="display: flex; gap: 2rem; align-items: center; padding: 2rem 0;">
+  <Tooltip text="Top" position="top">
+    <ButtonTui fill="outline" color="primary">Top</ButtonTui>
   </Tooltip>
-  <Tooltip text="Success" color="success">
-    <span>Success tooltip</span>
+  <Tooltip text="Bottom" position="bottom">
+    <ButtonTui fill="outline" color="primary">Bottom</ButtonTui>
   </Tooltip>
-  <Tooltip text="Danger" color="danger" position="bottom">
-    <span>Tooltip below</span>
+  <Tooltip text="Left" position="left">
+    <ButtonTui fill="outline" color="primary">Left</ButtonTui>
+  </Tooltip>
+  <Tooltip text="Right" position="right">
+    <ButtonTui fill="outline" color="primary">Right</ButtonTui>
   </Tooltip>
 </div>
 
 ```vue
-<Tooltip text="Informational message">
-  <span>Hover over me</span>
+<Tooltip text="Top" position="top"><ButtonTui>Top</ButtonTui></Tooltip>
+<Tooltip text="Bottom" position="bottom"><ButtonTui>Bottom</ButtonTui></Tooltip>
+<Tooltip text="Left" position="left"><ButtonTui>Left</ButtonTui></Tooltip>
+<Tooltip text="Right" position="right"><ButtonTui>Right</ButtonTui></Tooltip>
+```
+
+### Color (`color`)
+
+Color del borde y flecha.
+
+<div style="display: flex; gap: 1rem; align-items: center; padding: 2rem 0;">
+  <Tooltip text="Primary" color="primary">
+    <ButtonTui fill="outline" color="primary">Primary</ButtonTui>
+  </Tooltip>
+  <Tooltip text="Success" color="success">
+    <ButtonTui fill="outline" color="success">Success</ButtonTui>
+  </Tooltip>
+  <Tooltip text="Warning" color="warning">
+    <ButtonTui fill="outline" color="warning">Warning</ButtonTui>
+  </Tooltip>
+  <Tooltip text="Danger" color="danger">
+    <ButtonTui fill="outline" color="danger">Danger</ButtonTui>
+  </Tooltip>
+</div>
+
+```vue
+<Tooltip text="Primary" color="primary"><ButtonTui>Primary</ButtonTui></Tooltip>
+<Tooltip text="Success" color="success"><ButtonTui>Success</ButtonTui></Tooltip>
+<Tooltip text="Warning" color="warning"><ButtonTui>Warning</ButtonTui></Tooltip>
+<Tooltip text="Danger" color="danger"><ButtonTui>Danger</ButtonTui></Tooltip>
+```
+
+### Delay (`delay`)
+
+Milisegundos antes de mostrar.
+
+<div style="display: flex; gap: 1rem; align-items: center; padding: 2rem 0;">
+  <Tooltip text="Instant (0ms)" :delay="0">
+    <ButtonTui fill="outline" color="primary">Instant</ButtonTui>
+  </Tooltip>
+  <Tooltip text="Default (300ms)" :delay="300">
+    <ButtonTui fill="outline" color="primary">Default</ButtonTui>
+  </Tooltip>
+  <Tooltip text="Slow (1000ms)" :delay="1000">
+    <ButtonTui fill="outline" color="primary">Slow</ButtonTui>
+  </Tooltip>
+</div>
+
+```vue
+<Tooltip text="Instant" :delay="0"><ButtonTui>Instant</ButtonTui></Tooltip>
+<Tooltip text="Default" :delay="300"><ButtonTui>Default</ButtonTui></Tooltip>
+<Tooltip text="Slow" :delay="1000"><ButtonTui>Slow</ButtonTui></Tooltip>
+```
+
+### Contenido (`text`)
+
+Texto del tooltip.
+
+<Tooltip text="Help message">
+  <ButtonTui fill="outline" color="primary">Hover me</ButtonTui>
 </Tooltip>
-<Tooltip text="Success" color="success">
-  <span>Success tooltip</span>
-</Tooltip>
-<Tooltip text="Danger" color="danger" position="bottom">
-  <span>Tooltip below</span>
-</Tooltip>
+
+```vue
+<Tooltip text="Help message"><ButtonTui>Hover me</ButtonTui></Tooltip>
 ```
 
 ## Props
 
-### text
-
-Content of the tooltip.
-
-<div style="padding: 2rem 0;">
-  <Tooltip text="Help message">
-    <span>Hover to see tooltip</span>
-  </Tooltip>
-</div>
-
-```vue
-<Tooltip text="Help message">
-  <span>Hover over me</span>
-</Tooltip>
-```
-
-### position
-
-Position of the tooltip relative to the trigger element.
-
-<div style="display: flex; gap: 2rem; align-items: center; padding: 2rem 0;">
-  <Tooltip text="Top" position="top">
-    <span>Top</span>
-  </Tooltip>
-  <Tooltip text="Bottom" position="bottom">
-    <span>Bottom</span>
-  </Tooltip>
-  <Tooltip text="Left" position="left">
-    <span>Left</span>
-  </Tooltip>
-  <Tooltip text="Right" position="right">
-    <span>Right</span>
-  </Tooltip>
-</div>
-
-```vue
-<Tooltip text="Top" position="top">
-  <span>Top</span>
-</Tooltip>
-<Tooltip text="Bottom" position="bottom">
-  <span>Bottom</span>
-</Tooltip>
-<Tooltip text="Left" position="left">
-  <span>Left</span>
-</Tooltip>
-<Tooltip text="Right" position="right">
-  <span>Right</span>
-</Tooltip>
-```
-
-### color
-
-Color of the tooltip border and arrow.
-
-<div style="display: flex; gap: 1rem; align-items: center; padding: 2rem 0;">
-  <Tooltip text="Primary" color="primary">
-    <span>Primary</span>
-  </Tooltip>
-  <Tooltip text="Success" color="success">
-    <span>Success</span>
-  </Tooltip>
-  <Tooltip text="Danger" color="danger">
-    <span>Danger</span>
-  </Tooltip>
-</div>
-
-```vue
-<Tooltip text="Primary" color="primary">
-  <span>Primary</span>
-</Tooltip>
-<Tooltip text="Success" color="success">
-  <span>Success</span>
-</Tooltip>
-<Tooltip text="Danger" color="danger">
-  <span>Danger</span>
-</Tooltip>
-```
-
-### delay
-
-Milliseconds of delay before showing the tooltip.
-
-```vue
-<Tooltip text="Appears after 1s" :delay="1000">
-  <span>Hover</span>
-</Tooltip>
-```
-
-## API
-
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `text` | `string` | `''` | Tooltip content |
-| `position` | `'top' \\| 'bottom' \\| 'left' \\| 'right'` | `'top'` | Position relative to the trigger |
+| `position` | `'top' \| 'bottom' \| 'left' \| 'right'` | `'top'` | Position relative to the trigger |
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Border and arrow color |
 | `delay` | `number` | `300` | Milliseconds before showing |
 

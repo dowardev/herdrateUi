@@ -68,6 +68,8 @@ function onSelect(id) {
 
 ## Demo
 
+### Básico (`commands` + `modelValue`)
+
 <ClientOnly>
   <CommandPaletteDemo />
 </ClientOnly>

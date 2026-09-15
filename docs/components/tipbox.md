@@ -52,6 +52,8 @@ Notification component with icon, title and message.
 
 ## Demo
 
+### Básico (`type`)
+
 <TipBox color="primary" title="Information" message="Operation completed successfully." />
 
 <TipBox color="warning" title="Warning" message="Check the permissions before continuing." />

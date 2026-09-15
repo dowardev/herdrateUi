@@ -2,7 +2,6 @@
 import { badgeMeta } from './meta/badge'
 import { useDesign } from '@dowardev/herdrate-vue'
 
-// Global design line (sidebar select) drives which tab loads.
 const line = useDesign()
 </script>
 
@@ -19,6 +18,7 @@ Lightweight label for displaying highlighted information with color variants.
   margin-bottom: 1rem;
 }
 </style>
+
 <div class="design-lines-demo">
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
@@ -26,10 +26,10 @@ Lightweight label for displaying highlighted information with color variants.
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
   <TabPanel value="tuix">
-    <Badge design="tuix">NEW</Badge>
+    <Badge color="primary" design="tuix">NEW</Badge>
   </TabPanel>
   <TabPanel value="rubik">
-    <Badge design="rubik">NEW</Badge>
+    <Badge color="primary" design="rubik">NEW</Badge>
   </TabPanel>
 </Tabs>
 </div>
@@ -41,31 +41,52 @@ Lightweight label for displaying highlighted information with color variants.
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
   <TabPanel value="tuix">
-    <Badge design="tuix">NEW</Badge>
+    <Badge color="primary" design="tuix">NEW</Badge>
   </TabPanel>
   <TabPanel value="rubik">
-    <Badge design="rubik">NEW</Badge>
+    <Badge color="primary" design="rubik">NEW</Badge>
   </TabPanel>
 </Tabs>
 ```
 
-
 ## Demo
 
+### Color (`color`)
+
 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-  <Badge color="primary">Primary</Badge>
-  <Badge color="secondary">Secondary</Badge>
-  <Badge color="success">Success</Badge>
-  <Badge color="warning">Warning</Badge>
-  <Badge color="danger">Danger</Badge>
+  <Badge color="primary">primary</Badge>
+  <Badge color="secondary">secondary</Badge>
+  <Badge color="tertiary">tertiary</Badge>
+  <Badge color="success">success</Badge>
+  <Badge color="warning">warning</Badge>
+  <Badge color="danger">danger</Badge>
+  <Badge color="light">light</Badge>
+  <Badge color="medium">medium</Badge>
+  <Badge color="dark">dark</Badge>
 </div>
 
 ```vue
-<Badge color="primary">Primary</Badge>
-<Badge color="secondary">Secondary</Badge>
-<Badge color="success">Success</Badge>
-<Badge color="warning">Warning</Badge>
-<Badge color="danger">Danger</Badge>
+<Badge color="primary">primary</Badge>
+<Badge color="secondary">secondary</Badge>
+<Badge color="tertiary">tertiary</Badge>
+<Badge color="success">success</Badge>
+<Badge color="warning">warning</Badge>
+<Badge color="danger">danger</Badge>
+<Badge color="light">light</Badge>
+<Badge color="medium">medium</Badge>
+<Badge color="dark">dark</Badge>
+```
+
+### Contenido (`default` slot)
+
+<Badge>NEW</Badge>
+<Badge>v2.1.0</Badge>
+<Badge>beta</Badge>
+
+```vue
+<Badge>NEW</Badge>
+<Badge>v2.1.0</Badge>
+<Badge>beta</Badge>
 ```
 
 ## Props

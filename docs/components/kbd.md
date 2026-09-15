@@ -52,6 +52,8 @@ Keyboard key display element with terminal style.
 
 ## Demo
 
+### Básico (`keys`)
+
 <Kbd>Ctrl</Kbd>
 <Kbd color="success">Enter</Kbd>
 <Kbd color="warning">⌘</Kbd>

@@ -23,13 +23,36 @@ Visor de logs con coloreado por nivel estilo terminal.
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
     <Tab value="tuix">TUIX</Tab>
+
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
+
   <TabPanel value="tuix">
-    <LogLines :lines="[{ text: 'ok' }, { text: 'boom', level: 'error' }]" design="tuix" />
+    <LogLines
+      :lines="[
+        { text: 'Starting dev server on port 5173', level: 'info' },
+        { text: 'Deprecated API usage in auth module', level: 'warn' },
+        { text: 'Failed to connect to database', level: 'error' },
+        { text: 'Cache miss for key session:42', level: 'debug' },
+        { text: 'Server ready - accepting connections', level: 'info' },
+      ]"
+      timestamps
+      design="tuix"
+    />
   </TabPanel>
+
   <TabPanel value="rubik">
-    <LogLines :lines="[{ text: 'ok' }, { text: 'boom', level: 'error' }]" design="rubik" />
+    <LogLines
+      :lines="[
+        { text: 'Starting dev server on port 5173', level: 'info' },
+        { text: 'Deprecated API usage in auth module', level: 'warn' },
+        { text: 'Failed to connect to database', level: 'error' },
+        { text: 'Cache miss for key session:42', level: 'debug' },
+        { text: 'Server ready - accepting connections', level: 'info' },
+      ]"
+      timestamps
+      design="rubik"
+    />
   </TabPanel>
 </Tabs>
 </div>
@@ -38,19 +61,44 @@ Visor de logs con coloreado por nivel estilo terminal.
 <Tabs defaultValue="tuix">
   <TabsList>
     <Tab value="tuix">TUIX</Tab>
+
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
+
   <TabPanel value="tuix">
-    <LogLines :lines="[{ text: 'ok' }, { text: 'boom', level: 'error' }]" design="tuix" />
+    <LogLines
+      :lines="[
+        { text: 'Starting dev server on port 5173', level: 'info' },
+        { text: 'Deprecated API usage in auth module', level: 'warn' },
+        { text: 'Failed to connect to database', level: 'error' },
+        { text: 'Cache miss for key session:42', level: 'debug' },
+        { text: 'Server ready - accepting connections', level: 'info' },
+      ]"
+      timestamps
+      design="tuix"
+    />
   </TabPanel>
+
   <TabPanel value="rubik">
-    <LogLines :lines="[{ text: 'ok' }, { text: 'boom', level: 'error' }]" design="rubik" />
+    <LogLines
+      :lines="[
+        { text: 'Starting dev server on port 5173', level: 'info' },
+        { text: 'Deprecated API usage in auth module', level: 'warn' },
+        { text: 'Failed to connect to database', level: 'error' },
+        { text: 'Cache miss for key session:42', level: 'debug' },
+        { text: 'Server ready - accepting connections', level: 'info' },
+      ]"
+      timestamps
+      design="rubik"
+    />
   </TabPanel>
 </Tabs>
 ```
 
 
 ## Demo
+
+### Básico (`lines`)
 
 <LogLines
   :lines="[
@@ -166,7 +214,7 @@ Color del componente (se aplica al borde).
 | Campo | Tipo | Requerido | Descripción |
 |---|---|---|---|
 | `text` | `string` | ✅ | Contenido de la línea |
-| `level` | `'info' \\| 'warn' \\| 'error' \\| 'debug'` | ❌ | Nivel de log |
+| `level` | `'info' \| 'warn' \| 'error' \| 'debug'` | ❌ | Nivel de log |
 
 ## API
 

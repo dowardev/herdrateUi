@@ -105,6 +105,8 @@ const positionButtons = computed(() =>
 
 ## Demo
 
+### Básico (`message` / `color`)
+
 <ClientOnly>
   <div style="margin-bottom: 2rem;">
     <ButtonTuiGroup :buttons="positionButtons" />

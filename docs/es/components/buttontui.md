@@ -68,6 +68,8 @@ Botones con estilo terminal (TUI), minimales, diseñados para Catppuccin Mocha.
 
 ## Demo
 
+### Variantes (`color` / `fill` / `icon`)
+
 <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
   <ButtonTui icon="↖" fill="solid" color="primary">[ TL ]</ButtonTui>
   <ButtonTui icon="↗" fill="outline" color="success">[ TR ]</ButtonTui>

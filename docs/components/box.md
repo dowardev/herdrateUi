@@ -52,6 +52,8 @@ Decorative wrapper with terminal-style border variants.
 
 ## Demo
 
+### Básico (`borderStyle` + slots)
+
 <Box borderStyle="single">
   <template #header>Header</template>
   Box content.

@@ -3,7 +3,6 @@ import { ref } from 'vue'
 import { useDesign } from '@dowardev/herdrate-vue'
 import { checkboxMeta } from './meta/checkbox'
 
-// Global design line (sidebar select) drives which tab loads.
 const line = useDesign()
 const checked = ref(false)
 const checked2 = ref(true)
@@ -23,6 +22,7 @@ Terminal-style checkbox with `[x]` / `[ ]`.
   margin-bottom: 1rem;
 }
 </style>
+
 <div class="design-lines-demo">
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
@@ -53,41 +53,35 @@ Terminal-style checkbox with `[x]` / `[ ]`.
 </Tabs>
 ```
 
-
 ## Demo
+
+### Estado (`modelValue` / `v-model`)
 
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
     <Checkbox v-model="checked" label="Option A" />
-    <Checkbox v-model="checked2" color="success" label="Option B (success)" />
-    <Checkbox v-model="checked3" disabled label="Disabled" />
+    <Checkbox v-model="checked2" label="Option B (checked)" />
   </div>
   <p style="color:var(--text-muted);font-size:0.8rem;">checked: {{ checked }}, checked2: {{ checked2 }}</p>
 </ClientOnly>
 
 ```vue
 <Checkbox v-model="checked" label="Option A" />
-<Checkbox v-model="checked" color="success" label="Option B" />
-<Checkbox v-model="checked" disabled label="Disabled" />
+<Checkbox v-model="checked2" label="Option B" />
 ```
 
-## Props
-
-### label
-
-Text displayed next to the checkbox.
+### Etiqueta (`label`)
 
 <ClientOnly>
   <Checkbox v-model="checked" label="Accept terms" />
+  <Checkbox v-model="checked" label="Enable notifications" />
 </ClientOnly>
 
 ```vue
 <Checkbox v-model="checked" label="Accept terms" />
 ```
 
-### color
-
-Color of the `[ ]` bracket when checked.
+### Color (`color`)
 
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
@@ -105,12 +99,11 @@ Color of the `[ ]` bracket when checked.
 <Checkbox v-model="checked2" color="danger" label="Danger" />
 ```
 
-### disabled
-
-Disables interaction.
+### Deshabilitado (`disabled`)
 
 <ClientOnly>
   <Checkbox v-model="checked3" disabled label="Not editable" />
+  <Checkbox :model-value="true" disabled label="Checked disabled" />
 </ClientOnly>
 
 ```vue

@@ -2,7 +2,6 @@
 import { stepperMeta } from './meta/stepper'
 import { useDesign } from '@dowardev/herdrate-vue'
 
-// Global design line (sidebar select) drives which tab loads.
 const line = useDesign()
 </script>
 
@@ -19,6 +18,7 @@ Horizontal step indicator with terminal style. Shows progress with `[1]──[2]
   margin-bottom: 1rem;
 }
 </style>
+
 <div class="design-lines-demo">
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
@@ -26,10 +26,30 @@ Horizontal step indicator with terminal style. Shows progress with `[1]──[2]
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
   <TabPanel value="tuix">
-    <Stepper :steps="[{ label: 'Build' }, { label: 'Ship' }]" :current="1" design="tuix" />
+    <Stepper
+      :steps="[
+        { label: 'Account' },
+        { label: 'Profile' },
+        { label: 'Billing' },
+        { label: 'Confirm' },
+      ]"
+      :current="2"
+      color="primary"
+      design="tuix"
+    />
   </TabPanel>
   <TabPanel value="rubik">
-    <Stepper :steps="[{ label: 'Build' }, { label: 'Ship' }]" :current="1" design="rubik" />
+    <Stepper
+      :steps="[
+        { label: 'Account' },
+        { label: 'Profile' },
+        { label: 'Billing' },
+        { label: 'Confirm' },
+      ]"
+      :current="2"
+      color="primary"
+      design="rubik"
+    />
   </TabPanel>
 </Tabs>
 </div>
@@ -41,27 +61,82 @@ Horizontal step indicator with terminal style. Shows progress with `[1]──[2]
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
   <TabPanel value="tuix">
-    <Stepper :steps="[{ label: 'Build' }, { label: 'Ship' }]" :current="1" design="tuix" />
+    <Stepper
+      :steps="[
+        { label: 'Account' },
+        { label: 'Profile' },
+        { label: 'Billing' },
+        { label: 'Confirm' },
+      ]"
+      :current="2"
+      color="primary"
+      design="tuix"
+    />
   </TabPanel>
   <TabPanel value="rubik">
-    <Stepper :steps="[{ label: 'Build' }, { label: 'Ship' }]" :current="1" design="rubik" />
+    <Stepper
+      :steps="[
+        { label: 'Account' },
+        { label: 'Profile' },
+        { label: 'Billing' },
+        { label: 'Confirm' },
+      ]"
+      :current="2"
+      color="primary"
+      design="rubik"
+    />
   </TabPanel>
 </Tabs>
 ```
 
-
 ## Demo
 
-<Stepper color="primary" :current="1" :steps="[{ label: 'Login' }, { label: 'Config' }, { label: 'Done' }]" />
+### Paso actual (`current`)
 
-<Stepper color="warning" :current="2" :steps="[{ label: 'Login' }, { label: 'Config' }, { label: 'Done' }]" />
+Controla qué paso está activo (1-based).
 
-<Stepper color="success" :current="3" :steps="[{ label: 'Login' }, { label: 'Config' }, { label: 'Done' }]" />
+<Stepper color="primary" :current="1" :steps="[{ label: 'Account' }, { label: 'Profile' }, { label: 'Billing' }, { label: 'Confirm' }]" />
+<Stepper color="primary" :current="2" :steps="[{ label: 'Account' }, { label: 'Profile' }, { label: 'Billing' }, { label: 'Confirm' }]" />
+<Stepper color="primary" :current="3" :steps="[{ label: 'Account' }, { label: 'Profile' }, { label: 'Billing' }, { label: 'Confirm' }]" />
+<Stepper color="primary" :current="4" :steps="[{ label: 'Account' }, { label: 'Profile' }, { label: 'Billing' }, { label: 'Confirm' }]" />
 
 ```vue
-<Stepper color="primary" :current="1" :steps="[{ label: 'Login' }, { label: 'Config' }, { label: 'Done' }]" />
-<Stepper color="warning" :current="2" :steps="[{ label: 'Login' }, { label: 'Config' }, { label: 'Done' }]" />
-<Stepper color="success" :current="3" :steps="[{ label: 'Login' }, { label: 'Config' }, { label: 'Done' }]" />
+<Stepper :current="1" :steps="steps" />
+<Stepper :current="2" :steps="steps" />
+<Stepper :current="3" :steps="steps" />
+<Stepper :current="4" :steps="steps" />
+```
+
+### Color del paso activo (`color`)
+
+Color del marcador del paso actual.
+
+<Stepper color="primary" :current="2" :steps="[{ label: 'A' }, { label: 'B' }, { label: 'C' }]" />
+<Stepper color="success" :current="2" :steps="[{ label: 'A' }, { label: 'B' }, { label: 'C' }]" />
+<Stepper color="warning" :current="2" :steps="[{ label: 'A' }, { label: 'B' }, { label: 'C' }]" />
+<Stepper color="danger" :current="2" :steps="[{ label: 'A' }, { label: 'B' }, { label: 'C' }]" />
+
+```vue
+<Stepper color="primary" :current="2" :steps="[{ label: 'A' }, { label: 'B' }, { label: 'C' }]" />
+<Stepper color="success" :current="2" :steps="[{ label: 'A' }, { label: 'B' }, { label: 'C' }]" />
+<Stepper color="warning" :current="2" :steps="[{ label: 'A' }, { label: 'B' }, { label: 'C' }]" />
+<Stepper color="danger" :current="2" :steps="[{ label: 'A' }, { label: 'B' }, { label: 'C' }]" />
+```
+
+### Número variable de pasos
+
+El layout se adapta de 2 a N pasos.
+
+<Stepper color="primary" :current="1" :steps="[{ label: 'Welcome' }, { label: 'Done' }]" />
+<Stepper color="primary" :current="2" :steps="[{ label: 'Login' }, { label: 'Config' }, { label: 'Done' }]" />
+<Stepper color="primary" :current="3" :steps="[{ label: 'Lint' }, { label: 'Test' }, { label: 'Build' }, { label: 'Deploy' }]" />
+<Stepper color="primary" :current="2" :steps="[{ label: 'A' }, { label: 'B' }, { label: 'C' }, { label: 'D' }, { label: 'E' }]" />
+
+```vue
+<Stepper :current="1" :steps="[{ label: 'Welcome' }, { label: 'Done' }]" />
+<Stepper :current="2" :steps="[{ label: 'Login' }, { label: 'Config' }, { label: 'Done' }]" />
+<Stepper :current="3" :steps="[{ label: 'Lint' }, { label: 'Test' }, { label: 'Build' }, { label: 'Deploy' }]" />
+<Stepper :current="2" :steps="[{ label: 'A' }, { label: 'B' }, { label: 'C' }, { label: 'D' }, { label: 'E' }]" />
 ```
 
 ## Props

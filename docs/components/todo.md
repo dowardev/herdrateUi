@@ -57,6 +57,8 @@ Checkable task list with minimal TUI style. Click to toggle between `[ ]` and `[
 
 ## Demo
 
+### Básico (`items`)
+
 <ClientOnly>
   <div style="display: flex; flex-direction: column; gap: 0.25rem;">
     <Todo v-model:done="t1">Redesign Toast to match the expected aesthetics</Todo>

@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- **Component docs examples (LBDS-240)**: retitled every demo section from example-content titles to functionality/prop titles across all 39 component pages (EN+ES); rewrote weak demos with realistic, multi-row/multi-item content and made TUIX/Rubik tabs render identical content (only `design` differs) so both lines are comparable — LogLines/StatusBar/Table design-line demos now expose their Rubik variants
+
+### Fixed
+
+- **Accordion demos**: `Apertura múltiple` and `Control de estado` now use `@update:opened` (the component has no `opened` prop for `v-model:opened`); `Contenido rico` now uses `#item-content` (was `#default`, which does not exist — only `item-title`/`item-content`)
+- **Theme i18n keys**: added `reset`/`resetToDefaults`/`copy`/`copied`/`copyCode` to `useDocsI18n` (EN+ES) — `PropControls` and `PlayPreview` buttons previously rendered `undefined`
+- **Docs fence/content parity**: Tag heading `removible` → `removable`; Badge fences now list all 9 colors; Radio fences now use `selectedColor`; ProgressBar fences now use kebab `show-label`; ES `checkbox.md`/`progress-bar.md` API tables re-translated to Spanish
+
 ### Added
 
 - **Docs i18n EN content translation (LBDS-247)**: translated all display strings (`label`, `description`, `placeholder`) in 22 component meta files from Spanish to English, completing the EN source-of-truth for the single-source i18n model

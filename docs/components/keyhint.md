@@ -52,6 +52,8 @@ Key or keyboard shortcut with inline style.
 
 ## Demo
 
+### Básico (`hint`)
+
 <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
   <KeyHint>Ctrl+P</KeyHint>
   <KeyHint>⌘K</KeyHint>

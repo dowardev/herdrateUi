@@ -52,6 +52,8 @@ Componente de notificación con icono, título y mensaje.
 
 ## Demo
 
+### Básico (`type`)
+
 <TipBox color="primary" title="Información" message="Operación completada exitosamente." />
 
 <TipBox color="warning" title="Advertencia" message="Revisa los permisos antes de continuar." />

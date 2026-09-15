@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { checkboxMeta } from './meta/checkbox'
 import { useDesign } from '@dowardev/herdrate-vue'
+import { checkboxMeta } from './meta/checkbox'
+
+const line = useDesign()
 const checked = ref(false)
 const checked2 = ref(true)
 const checked3 = ref(false)
-
-// Global design line (sidebar select) drives which tab loads.
-const line = useDesign()
 </script>
 
 # Checkbox
@@ -23,6 +22,7 @@ Checkbox estilo terminal con `[x]` / `[ ]`.
   margin-bottom: 1rem;
 }
 </style>
+
 <div class="design-lines-demo">
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
@@ -53,41 +53,35 @@ Checkbox estilo terminal con `[x]` / `[ ]`.
 </Tabs>
 ```
 
-
 ## Demo
+
+### Estado (`modelValue` / `v-model`)
 
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
-    <Checkbox v-model="checked" label="Opción A" />
-    <Checkbox v-model="checked2" color="success" label="Opción B (success)" />
-    <Checkbox v-model="checked3" disabled label="Deshabilitado" />
+    <Checkbox v-model="checked" label="Option A" />
+    <Checkbox v-model="checked2" label="Option B (checked)" />
   </div>
   <p style="color:var(--text-muted);font-size:0.8rem;">checked: {{ checked }}, checked2: {{ checked2 }}</p>
 </ClientOnly>
 
 ```vue
-<Checkbox v-model="checked" label="Opción A" />
-<Checkbox v-model="checked" color="success" label="Opción B" />
-<Checkbox v-model="checked" disabled label="Deshabilitado" />
+<Checkbox v-model="checked" label="Option A" />
+<Checkbox v-model="checked2" label="Option B" />
 ```
 
-## Props
-
-### label
-
-Texto que se muestra junto al checkbox.
+### Etiqueta (`label`)
 
 <ClientOnly>
-  <Checkbox v-model="checked" label="Aceptar términos" />
+  <Checkbox v-model="checked" label="Accept terms" />
+  <Checkbox v-model="checked" label="Enable notifications" />
 </ClientOnly>
 
 ```vue
-<Checkbox v-model="checked" label="Aceptar términos" />
+<Checkbox v-model="checked" label="Accept terms" />
 ```
 
-### color
-
-Color del bracket `[ ]` cuando está marcado.
+### Color (`color`)
 
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
@@ -105,16 +99,15 @@ Color del bracket `[ ]` cuando está marcado.
 <Checkbox v-model="checked2" color="danger" label="Danger" />
 ```
 
-### disabled
-
-Deshabilita la interacción.
+### Deshabilitado (`disabled`)
 
 <ClientOnly>
-  <Checkbox v-model="checked3" disabled label="No editable" />
+  <Checkbox v-model="checked3" disabled label="Not editable" />
+  <Checkbox :model-value="true" disabled label="Checked disabled" />
 </ClientOnly>
 
 ```vue
-<Checkbox v-model="checked" disabled label="Deshabilitado" />
+<Checkbox v-model="checked" disabled label="Disabled" />
 ```
 
 ## Eventos
@@ -129,7 +122,7 @@ Deshabilita la interacción.
 |---|---|---|---|
 | `modelValue` | `boolean` | `false` | Estado del checkbox (v-model) |
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del bracket |
-| `disabled` | `boolean` | `false` | Deshabilitar interacción |
+| `disabled` | `boolean` | `false` | Deshabilita la interacción |
 | `label` | `string` | `''` | Texto junto al checkbox |
 
 ## Tokens usados

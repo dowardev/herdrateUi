@@ -60,6 +60,8 @@ Terminal-style radio button with `(o)` / `( )`.
 
 ## Demo
 
+### Selección (`modelValue` / `v-model` + `value`)
+
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
     <Radio v-for="opt in options" :key="opt.value" v-model="selected" :value="opt.value" :label="opt.label" />
@@ -70,6 +72,36 @@ Terminal-style radio button with `(o)` / `( )`.
 ```vue
 <Radio v-for="opt in options" :key="opt.value"
   v-model="selected" :value="opt.value" :label="opt.label" />
+```
+
+### Etiqueta (`label`)
+
+<ClientOnly>
+  <Radio v-model="selected" value="x" label="Extra option" />
+</ClientOnly>
+
+```vue
+<Radio v-model="selected" value="x" label="Extra option" />
+```
+
+### Color (`color`)
+
+<ClientOnly>
+  <div style="display:flex;flex-direction:column;gap:0.5rem;">
+    <Radio v-for="opt in ['primary','success','warning','danger']" :key="opt" v-model="selectedColor" :value="opt" :label="opt" :color="opt" />
+  </div>
+</ClientOnly>
+
+```vue
+<Radio v-model="selectedColor" value="success" color="success" label="Success" />
+```
+
+### Deshabilitado (`disabled`)
+
+<Radio value="x" label="Not available" disabled />
+
+```vue
+<Radio value="x" label="Not available" disabled />
 ```
 
 ## Props
@@ -97,7 +129,7 @@ Color of the `(o)` indicator when selected.
 </ClientOnly>
 
 ```vue
-<Radio v-model="selected" value="success" color="success" label="Success" />
+<Radio v-model="selectedColor" value="success" color="success" label="Success" />
 ```
 
 ### disabled

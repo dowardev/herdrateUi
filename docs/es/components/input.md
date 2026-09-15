@@ -56,6 +56,8 @@ Input de texto estilo terminal, con soporte para textarea, password y readonly.
 
 ## Demo
 
+### Básico (`modelValue` / `v-model`)
+
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.75rem;">
     <div><label style="font-size:0.8rem;color:var(--text-muted)">Texto</label><Input v-model="text" placeholder="Escribe algo..." /></div>

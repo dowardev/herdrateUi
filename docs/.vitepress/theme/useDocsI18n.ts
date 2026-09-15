@@ -24,6 +24,11 @@ export const docsI18nKeys = [
   'removeRow',
   'noColor',
   'addRow',
+  'reset',
+  'resetToDefaults',
+  'copy',
+  'copied',
+  'copyCode',
 ] as const;
 
 export type DocsI18nKey = (typeof docsI18nKeys)[number];
@@ -44,6 +49,11 @@ const en: Record<DocsI18nKey, string> = {
   removeRow: 'Remove row',
   noColor: 'No color',
   addRow: 'Add row',
+  reset: 'Reset',
+  resetToDefaults: 'Reset to defaults',
+  copy: 'Copy',
+  copied: 'Copied',
+  copyCode: 'Copy code',
 };
 
 const es: Record<DocsI18nKey, string> = {
@@ -62,6 +72,11 @@ const es: Record<DocsI18nKey, string> = {
   removeRow: 'Eliminar fila',
   noColor: 'Sin color',
   addRow: 'Agregar fila',
+  reset: 'Restablecer',
+  resetToDefaults: 'Restablecer valores por defecto',
+  copy: 'Copiar',
+  copied: 'Copiado',
+  copyCode: 'Copiar código',
 };
 
 /**
