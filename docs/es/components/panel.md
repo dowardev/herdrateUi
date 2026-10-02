@@ -99,6 +99,26 @@ Compara paneles con y sin el prop `divider`.
 <Panel divider>
 <Panel>
 ```
+
+### Cabecera (`header`)
+
+Contenido de texto plano para la cabecera mediante el prop `header`. El slot gana si se proporcionan ambos.
+
+<Panel header="Estado del sistema">Todos los servicios operativos.</Panel>
+
+```vue
+<Panel header="Estado del sistema">Todos los servicios operativos.</Panel>
+```
+
+### Pie (`footer`)
+
+Contenido de texto plano para el pie mediante el prop `footer`. El slot gana si se proporcionan ambos.
+
+<Panel footer="actualizado hace 2m">Todos los servicios operativos.</Panel>
+
+```vue
+<Panel footer="actualizado hace 2m">Todos los servicios operativos.</Panel>
+```
 ## Props
 
 ### divider
@@ -108,6 +128,22 @@ Muestra un divisor vertical (`│`) a la izquierda del contenido.
 | Tipo | Default | Requerido |
 |---|---|---|
 | `boolean` | `false` | ❌ |
+
+### header
+
+Contenido de texto plano para la cabecera, mostrado arriba del cuerpo. Lo pisa el slot `header` si se proporciona.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | — | ❌ |
+
+### footer
+
+Contenido de texto plano para el pie, mostrado debajo del cuerpo. Lo pisa el slot `footer` si se proporciona.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | — | ❌ |
 
 ## Slots
 

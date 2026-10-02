@@ -11,6 +11,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **Accordion**: `opened` (controlled, `v-model:opened`) and `defaultOpened` props — an open panel can now be driven from parent state or start open. `opened` takes precedence over `defaultOpened`, which is initial-only and clamped to its last index in single-open mode
 - **ButtonTui**: `disabled` prop — renders the native attribute and never emits `click`
 - **ButtonTuiGroup**: group-level `disabled` plus a per-item `disabled` on `ButtonTuiItem`
+<<<<<<< HEAD
+- **Card**: `header?: string` and `footer?: string` props alongside the existing `header` and `footer` slots — plain-text header/footer content via prop, slot wins when both are provided (LBDS-285)
+- **Modal**: `title` slot overrides the `title` prop in the header, plus `footer?: string` prop for plain-text footer content alongside the existing `footer` slot (LBDS-285)
+- **Box**: `header?: string` and `footer?: string` props alongside the existing `header` and `footer` slots (LBDS-285)
+- **Panel**: `header?: string` and `footer?: string` props alongside the existing `header` and `footer` slots (LBDS-285)
+- **TreeNode**: `label?: string` prop alongside the existing `label` slot (LBDS-285)
+- **Docs**: new "Convenciones de la API (props y slots)" section in `theming.md` documenting the three content patterns (replaceable content / optional content / visual & style)
+=======
+>>>>>>> origin/main
 
 ### Fixed
 

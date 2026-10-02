@@ -130,4 +130,30 @@ describe('Modal', () => {
     expect(modal?.classList.contains('modal--rubik')).toBe(true);
     expect(modal?.getAttribute('data-design')).toBe('rubik');
   });
+
+  it('renders footer prop text inside .modal-footer when no slot is provided', () => {
+    mount(Modal, { props: { open: true, footer: 'Press Esc to close' } });
+    const footer = document.body.querySelector('.modal-footer');
+    expect(footer?.textContent).toContain('Press Esc to close');
+  });
+
+  it('lets the title slot win over the title prop', () => {
+    mount(Modal, {
+      props: { open: true, title: 'Prop Title' },
+      slots: { title: '<span>Slotted Title</span>' },
+    });
+    const title = document.body.querySelector('.modal-title');
+    expect(title?.textContent).toBe('Slotted Title');
+    expect(title?.textContent).not.toContain('Prop Title');
+  });
+
+  it('lets the footer slot win over the footer prop', () => {
+    mount(Modal, {
+      props: { open: true, footer: 'Prop Footer' },
+      slots: { footer: '<span>Slotted Footer</span>' },
+    });
+    const footer = document.body.querySelector('.modal-footer');
+    expect(footer?.textContent).toBe('Slotted Footer');
+    expect(footer?.textContent).not.toContain('Prop Footer');
+  });
 });

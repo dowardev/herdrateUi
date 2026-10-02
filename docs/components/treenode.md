@@ -84,6 +84,24 @@ Nests `TreeNode` children using the `label` slot for each node name.
 </TreeNode>
 ```
 
+### Label (`label`)
+
+Plain-text label content via the `label` prop. The slot wins if both are provided.
+
+<TreeNode label="src">
+  <TreeNode label="components">
+    <TreeNode label="Panel.vue" />
+  </TreeNode>
+</TreeNode>
+
+```vue
+<TreeNode label="src">
+  <TreeNode label="components">
+    <TreeNode label="Panel.vue" />
+  </TreeNode>
+</TreeNode>
+```
+
 ## Slots
 
 ### label
@@ -98,6 +116,16 @@ Nested child nodes (other `TreeNode`).
 |---|---|
 | `label` | Node content (text or HTML) |
 | `default` | Child nodes (other `TreeNode`) |
+
+## Props
+
+### label
+
+Plain-text label content shown in the row. Overridden by the `label` slot if provided.
+
+| Type | Default | Required |
+|---|---|---|
+| `string` | — | ❌ |
 
 ## CSS Custom Properties
 

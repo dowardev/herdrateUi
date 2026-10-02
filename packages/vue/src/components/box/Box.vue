@@ -5,14 +5,14 @@
     :class="['box', `box-border-${borderStyle}`, `color-${color}`, { 'box--rubik': design === 'rubik' }]"
     :data-design="design === 'rubik' ? 'rubik' : undefined"
   >
-    <div v-if="$slots.header" class="box-header">
-      <slot name="header" />
+    <div v-if="header || $slots.header" class="box-header">
+      <slot name="header">{{ header }}</slot>
     </div>
     <div class="box-body">
       <slot />
     </div>
-    <div v-if="$slots.footer" class="box-footer">
-      <slot name="footer" />
+    <div v-if="footer || $slots.footer" class="box-footer">
+      <slot name="footer">{{ footer }}</slot>
     </div>
   </div>
 </template>
@@ -27,6 +27,10 @@ const props = withDefaults(
   defineProps<{
     borderStyle?: 'single' | 'double' | 'rounded' | 'ascii' | 'none';
     color?: Color;
+    /** Plain-text header content (overridden by the `header` slot). */
+    header?: string;
+    /** Plain-text footer content (overridden by the `footer` slot). */
+    footer?: string;
     /** Design line (or inherit from `data-design`). */
     design?: DesignLine;
   }>(),

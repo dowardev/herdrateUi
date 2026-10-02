@@ -12,7 +12,7 @@
     >
       <span class="tree-node__arrow" aria-hidden="true" v-text="expanded ? '\u25BC' : '\u25B6'" />
 
-      <span class="tree-node__label"><slot name="label" /></span>
+      <span class="tree-node__label"><slot name="label">{{ label }}</slot></span>
     </div>
 
     <div v-if="expanded && _hasChildren" class="tree-node__children">
@@ -27,6 +27,8 @@ import { type DesignLine, useDesign } from '../../composables/useDesign';
 
 const props = withDefaults(
   defineProps<{
+    /** Plain-text label content (overridden by the `label` slot). */
+    label?: string;
     /** Design line (or inherit from `data-design`). */
     design?: DesignLine;
   }>(),

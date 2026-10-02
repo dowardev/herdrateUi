@@ -59,4 +59,36 @@ describe('Box', () => {
     expect(box.classes()).toContain('box--rubik');
     expect(box.attributes('data-design')).toBe('rubik');
   });
+
+  it('renders header prop text inside .box-header when no slot is provided', () => {
+    const wrapper = mount(Box, {
+      props: { header: 'Note:' },
+      slots: { default: 'Content' },
+    });
+    expect(wrapper.find('.box-header').text()).toBe('Note:');
+  });
+
+  it('renders footer prop text inside .box-footer when no slot is provided', () => {
+    const wrapper = mount(Box, {
+      props: { footer: 'End of note' },
+      slots: { default: 'Content' },
+    });
+    expect(wrapper.find('.box-footer').text()).toBe('End of note');
+  });
+
+  it('lets the header slot win over the header prop', () => {
+    const wrapper = mount(Box, {
+      props: { header: 'Prop text' },
+      slots: { header: 'Slotted' },
+    });
+    expect(wrapper.find('.box-header').text()).toBe('Slotted');
+  });
+
+  it('lets the footer slot win over the footer prop', () => {
+    const wrapper = mount(Box, {
+      props: { footer: 'Prop text' },
+      slots: { footer: 'Slotted' },
+    });
+    expect(wrapper.find('.box-footer').text()).toBe('Slotted');
+  });
 });

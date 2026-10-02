@@ -74,4 +74,38 @@ describe('Card', () => {
     expect(wrapper.find('.card-title').text()).toBe('Slotted title');
     expect(wrapper.find('.card-desc').text()).toBe('Slotted desc');
   });
+
+  it('renders header prop text inside .card-head when no slot is provided', () => {
+    const wrapper = mount(Card, {
+      props: { title: 'T', header: 'Live status' },
+    });
+    const head = wrapper.find('.card-head');
+    expect(head.exists()).toBe(true);
+    expect(head.text()).toBe('Live status');
+  });
+
+  it('renders footer prop text inside .card-foot when no slot is provided', () => {
+    const wrapper = mount(Card, {
+      props: { title: 'T', footer: 'Updated 2m ago', arrow: false },
+    });
+    const foot = wrapper.find('.card-foot');
+    expect(foot.exists()).toBe(true);
+    expect(foot.text()).toBe('Updated 2m ago');
+  });
+
+  it('lets the header slot win over the header prop', () => {
+    const wrapper = mount(Card, {
+      props: { title: 'T', header: 'Prop text' },
+      slots: { header: '<span>Slotted</span>' },
+    });
+    expect(wrapper.find('.card-head').text()).toBe('Slotted');
+  });
+
+  it('lets the footer slot win over the footer prop', () => {
+    const wrapper = mount(Card, {
+      props: { title: 'T', footer: 'Prop text', arrow: false },
+      slots: { footer: '<span>Slotted</span>' },
+    });
+    expect(wrapper.find('.card-foot').text()).toBe('Slotted');
+  });
 });

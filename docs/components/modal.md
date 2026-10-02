@@ -139,6 +139,35 @@ const openTitle = ref(false)
 </template>
 ```
 
+#### Title (`title` slot)
+
+Rich content that replaces the plain `title` prop in the header. The slot wins when both are provided.
+
+<ClientOnly>
+  <ButtonTui @click="openTitleSlot = true" color="primary">Open modal</ButtonTui>
+  <Modal v-model:open="openTitleSlot" title="Prop fallback" closable>
+    <template #title><span style="color:var(--accent)">★</span> Slotted title</template>
+    Modal body.
+  </Modal>
+</ClientOnly>
+
+```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
+
+const openTitleSlot = ref(false)
+</script>
+
+<template>
+  <ButtonTui @click="openTitleSlot = true" color="primary">Open modal</ButtonTui>
+  <Modal v-model:open="openTitleSlot" title="Prop fallback" closable>
+    <template #title><span style="color:var(--accent)">★</span> Slotted title</template>
+    Modal body.
+  </Modal>
+</template>
+```
+
 ### Appearance
 
 The props that change the modal's look: `color` and `width`.
@@ -390,6 +419,32 @@ const openFooter = ref(false)
   </Modal>
 </template>
 ```
+
+#### Footer (`footer`)
+
+Plain-text footer content via the `footer` prop. The slot wins if both are provided.
+
+<ClientOnly>
+  <ButtonTui @click="openFooterProp = true" color="primary">Open modal</ButtonTui>
+  <Modal v-model:open="openFooterProp" title="Footer prop" footer="Press Esc to close" closable>
+    Modal body.
+  </Modal>
+</ClientOnly>
+
+```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
+const openFooterProp = ref(false)
+</script>
+
+<template>
+  <ButtonTui @click="openFooterProp = true" color="primary">Open modal</ButtonTui>
+  <Modal v-model:open="openFooterProp" title="Footer prop" footer="Press Esc to close" closable>
+    Modal body.
+  </Modal>
+</template>
+```
 ## Props
 
 ### title
@@ -424,11 +479,20 @@ Shows or hides the close button (×) in the header.
 |---|---|---|
 | `boolean` | `true` | ❌ |
 
+### footer
+
+Plain-text footer content shown at the bottom of the modal. Overridden by the `footer` slot if provided.
+
+| Type | Default | Required |
+|---|---|---|
+| `string` | — | ❌ |
+
 ## Slots
 
 | Slot | Description |
 |---|---|
 | `default` | Modal body, accepts any HTML or Vue component |
+| `title` | Replaces the `title` prop with rich content (icons, components, etc.) |
 | `footer` | Action area, typically confirmation or cancellation buttons |
 ## CSS Custom Properties
 

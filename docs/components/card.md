@@ -129,6 +129,16 @@ Extra header content (e.g. status badges).
 </Card>
 ```
 
+#### Header (`header`)
+
+Plain-text header content via the `header` prop. The slot wins if both are provided.
+
+<Card title="Server Status" description="All systems operational." header="● Live" />
+
+```vue
+<Card title="Server Status" description="All systems operational." header="● Live" />
+```
+
 ### Metadata
 
 Small labels that identify the card: index, category and tech tags.
@@ -271,6 +281,16 @@ import { ButtonTui } from '@dowardev/herdrate-vue'
 </Card>
 ```
 
+### Footer (`footer`)
+
+Plain-text footer content via the `footer` prop. The slot wins if both are provided.
+
+<Card title="Last commit" description="Adds the new prop and updates the docs." footer="updated 2m ago" />
+
+```vue
+<Card title="Last commit" description="Adds the new prop and updates the docs." footer="updated 2m ago" />
+```
+
 ### Hover event (`hover`)
 
 Emitted when the pointer enters the card (`mouseenter`). Consumer decides what to do (e.g. show the border).
@@ -301,6 +321,30 @@ Card title (required).
 | Type | Default | Required |
 |---|---|---|
 | `string` | — | ✅ |
+
+### description
+
+Plain-text body content. Overridden by the default slot if provided.
+
+| Type | Default | Required |
+|---|---|---|
+| `string` | — | ❌ |
+
+### header
+
+Plain-text header content shown before the title. Overridden by the `header` slot if provided.
+
+| Type | Default | Required |
+|---|---|---|
+| `string` | — | ❌ |
+
+### footer
+
+Plain-text footer content shown at the bottom. Overridden by the `footer` slot if provided.
+
+| Type | Default | Required |
+|---|---|---|
+| `string` | — | ❌ |
 
 ### number
 

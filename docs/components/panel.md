@@ -99,6 +99,26 @@ Compares panels with and without the `divider` prop.
 <Panel divider>
 <Panel>
 ```
+
+### Header (`header`)
+
+Plain-text header content via the `header` prop. The slot wins if both are provided.
+
+<Panel header="System status">All services nominal.</Panel>
+
+```vue
+<Panel header="System status">All services nominal.</Panel>
+```
+
+### Footer (`footer`)
+
+Plain-text footer content via the `footer` prop. The slot wins if both are provided.
+
+<Panel footer="Updated 2m ago">All services nominal.</Panel>
+
+```vue
+<Panel footer="Updated 2m ago">All services nominal.</Panel>
+```
 ## Props
 
 ### divider
@@ -108,6 +128,22 @@ Shows a vertical divider (`│`) to the left of the content.
 | Type | Default | Required |
 |---|---|---|
 | `boolean` | `false` | ❌ |
+
+### header
+
+Plain-text header content shown above the body. Overridden by the `header` slot if provided.
+
+| Type | Default | Required |
+|---|---|---|
+| `string` | — | ❌ |
+
+### footer
+
+Plain-text footer content shown below the body. Overridden by the `footer` slot if provided.
+
+| Type | Default | Required |
+|---|---|---|
+| `string` | — | ❌ |
 
 ## Slots
 

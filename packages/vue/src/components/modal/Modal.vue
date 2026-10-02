@@ -10,7 +10,9 @@
             :style="{ width }"
           >
         <div class="modal-header" :class="`color-${color}`">
-          <span class="modal-title">{{ title }}</span>
+          <span class="modal-title">
+            <slot name="title">{{ title }}</slot>
+          </span>
           <button
             v-if="closable"
             class="modal-close"
@@ -23,8 +25,8 @@
         <div class="modal-body">
           <slot />
         </div>
-        <div v-if="$slots.footer" class="modal-footer">
-          <slot name="footer" />
+        <div v-if="footer || $slots.footer" class="modal-footer">
+          <slot name="footer">{{ footer }}</slot>
         </div>
       </div>
     </div>
@@ -43,6 +45,8 @@ const props = withDefaults(
     color?: Color;
     closable?: boolean;
     width?: string;
+    /** Plain-text footer content (overridden by the `footer` slot). */
+    footer?: string;
     /** Design line (or inherit from `data-design`). */
     design?: DesignLine;
   }>(),
