@@ -49,10 +49,11 @@ Key or keyboard shortcut with inline style.
 </Tabs>
 ```
 
-
 ## Demo
 
 ### Básico (`hint`)
+
+Inline hints for `Ctrl+P`, `⌘K`, `Esc` and `F1`.
 
 <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
   <KeyHint>Ctrl+P</KeyHint>
@@ -68,11 +69,9 @@ Key or keyboard shortcut with inline style.
 <KeyHint size="md">F1</KeyHint>
 ```
 
-## Props
+### Size (`size`)
 
-### size
-
-Size of the hint.
+The same hint in `sm` and `md` sizes.
 
 <div style="display: flex; gap: 0.5rem; align-items: center;">
   <KeyHint size="sm">sm</KeyHint>
@@ -83,13 +82,29 @@ Size of the hint.
 <KeyHint size="sm">Esc</KeyHint>
 <KeyHint size="md">F1</KeyHint>
 ```
+## Props
 
-## API
+### size
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `size` | `'sm' \| 'md'` | `'md'` | Size of the hint |
+Size of the hint.
 
-## Tokens used
+| Type | Default | Required |
+|---|---|---|
+| `'sm' \| 'md'` | `'md'` | ❌ |
 
-`--bg-elevated`, `--border`, `--font-mono`, `--text`
+## CSS Custom Properties
+
+
+<div class="table-wrapper">
+
+| Token | Default | Description |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Monospace font stack for code-like content (key labels, log lines, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Accent color, mapped from the active semantic color. |
+| `--bg-panel` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-surface1`) | Background of panel-like raised surfaces (cards, accordions). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Outline and divider color for surfaces. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Secondary text for hints, annotations and disabled state. |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

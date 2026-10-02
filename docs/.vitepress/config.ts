@@ -73,6 +73,10 @@ export default defineConfig({
         ],
         sidebar: [
           {
+            text: 'Theming',
+            items: [{ text: 'Theming', link: '/theming' }],
+          },
+          {
             text: 'Color system',
             items: [{ text: 'Color & Fill', link: '/color' }],
           },
@@ -98,6 +102,10 @@ export default defineConfig({
           { text: 'Líneas de diseño', link: '/es/design-lines' },
         ],
         sidebar: [
+          {
+            text: 'Theming',
+            items: [{ text: 'Theming', link: '/es/theming' }],
+          },
           {
             text: 'Sistema de colores',
             items: [{ text: 'Color & Fill', link: '/es/color' }],

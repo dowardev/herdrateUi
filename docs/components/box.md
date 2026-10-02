@@ -52,31 +52,9 @@ Decorative wrapper with terminal-style border variants.
 
 ## Demo
 
-### Básico (`borderStyle` + slots)
+### Border (`borderStyle`)
 
-<Box borderStyle="single">
-  <template #header>Header</template>
-  Box content.
-  <template #footer>Footer</template>
-</Box>
-
-```vue
-<Box borderStyle="single">
-  <template #header>Header</template>
-  Content.
-  <template #footer>Footer</template>
-</Box>
-
-<Box borderStyle="double" color="success">
-  Double border.
-</Box>
-```
-
-## Props
-
-### borderStyle
-
-Box border variant.
+All five `borderStyle` variants, from `single` to `none`.
 
 <Box borderStyle="single">Single</Box>
 <Box borderStyle="double">Double</Box>
@@ -92,9 +70,9 @@ Box border variant.
 <Box borderStyle="none">None</Box>
 ```
 
-### color
+### Color (`color`)
 
-Semantic border color.
+Semantic `color` values applied to the box border.
 
 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
   <Box borderStyle="single" color="primary">Primary</Box>
@@ -108,41 +86,65 @@ Semantic border color.
 <Box borderStyle="single" color="danger">Danger</Box>
 ```
 
-## Slots
+### Slots (`header` / `default` / `footer`)
 
-### header
+The three named slots fill the box header, body and footer.
 
-Optional content in the box header.
-
-```vue
 <Box>
-  <template #header>Title</template>
-  ...
+  <template #header>Header</template>
+  Box content.
+  <template #footer>Footer</template>
 </Box>
-```
-
-### default
-
-Main content of the box.
-
-### footer
-
-Optional content in the box footer.
 
 ```vue
 <Box>
-  ...
+  <template #header>Header</template>
+  Content.
   <template #footer>Footer</template>
 </Box>
 ```
 
-## API
+## Props
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `borderStyle` | `'single' \\| 'double' \\| 'rounded' \\| 'ascii' \\| 'none'` | `'single'` | Border variant |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Semantic color |
+### borderStyle
 
-## Tokens used
+Box border variant.
 
-`--color-{name}`, `--bg-panel`, `--border`, `--font-mono`, `--bg-*`
+| Type | Default | Required |
+|---|---|---|
+| `'single' \\| 'double' \\| 'rounded' \\| 'ascii' \\| 'none'` | `'single'` | ❌ |
+
+### color
+
+Semantic border color.
+
+| Type | Default | Required |
+|---|---|---|
+| `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
+
+## Slots
+
+| Slot | Description |
+|---|---|
+| `header` | Optional content in the box header |
+| `default` | Main content of the box |
+| `footer` | Optional content in the box footer |
+
+## CSS Custom Properties
+
+
+<div class="table-wrapper">
+
+| Token | Default | Description |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Monospace font stack for code-like content (key labels, log lines, chips). |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Base background of the surface. |
+| `--bg-alt` | from theme (`--ctp-latte-mantle` / `--ctp-mocha-mantle`) | Alternate background (the next layer down from the base). |
+| `--bg-panel` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-surface1`) | Background of panel-like raised surfaces (cards, accordions). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Outline and divider color for surfaces. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Secondary text for hints, annotations and disabled state. |
+| `--cp-ease` | `cubic-bezier(.4, 0, .2, 1)` | Default easing curve for transitions. |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

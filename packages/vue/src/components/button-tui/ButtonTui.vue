@@ -6,7 +6,8 @@
     :data-design="design === 'rubik' ? 'rubik' : undefined"
     :data-fill="fill"
     :data-color="color"
-    @click="$emit('click', $event)"
+    :disabled="disabled"
+    @click="onClick"
   >
     <span v-if="icon" class="btn-tui__icon">{{ icon }}</span>
     <span class="btn-tui__label">
@@ -26,16 +27,24 @@ const props = withDefaults(
     icon?: string;
     fill?: Fill;
     color?: Color;
+    /** Disable interaction (native `disabled`, no click emitted). */
+    disabled?: boolean;
     /** Design line (or inherit from `data-design`). */
     design?: DesignLine;
   }>(),
   {
     fill: 'solid',
     color: DEFAULT_COLOR,
+    disabled: false,
   },
 );
 
-defineEmits<{ click: [e: MouseEvent] }>();
+const emit = defineEmits<{ click: [e: MouseEvent] }>();
+
+function onClick(e: MouseEvent) {
+  if (props.disabled) return;
+  emit('click', e);
+}
 const line = useDesign(toRef(props, 'design'));
 const design = computed<DesignLine>(() => line.value);
 </script>
@@ -65,6 +74,10 @@ const design = computed<DesignLine>(() => line.value);
     border-color 160ms ease,
     transform 120ms ease;
 }
+.btn-tui:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
 .btn-tui.btn-tui--rubik::after {
   content: '\2192';
   font-family: var(--font-mono);
@@ -77,12 +90,12 @@ const design = computed<DesignLine>(() => line.value);
   background: transparent;
   color: var(--text);
 }
-.btn-tui.btn-tui--rubik[data-fill='outline']:hover {
+.btn-tui.btn-tui--rubik[data-fill='outline']:not(:disabled):hover {
   background: var(--text);
   color: var(--bg);
   border-color: var(--text);
 }
-.btn-tui.btn-tui--rubik[data-fill='outline']:hover::after {
+.btn-tui.btn-tui--rubik[data-fill='outline']:not(:disabled):hover::after {
   transform: translateX(4px);
 }
 .btn-tui.btn-tui--rubik[data-fill='outline']:active {
@@ -94,10 +107,10 @@ const design = computed<DesignLine>(() => line.value);
   color: var(--text-muted);
   clip-path: none;
 }
-.btn-tui.btn-tui--rubik[data-fill='clear']:hover {
+.btn-tui.btn-tui--rubik[data-fill='clear']:not(:disabled):hover {
   color: var(--accent);
 }
-.btn-tui.btn-tui--rubik[data-fill='clear']:hover::after {
+.btn-tui.btn-tui--rubik[data-fill='clear']:not(:disabled):hover::after {
   transform: translateX(4px);
 }
 .btn-tui.btn-tui--rubik[data-fill='clear']:active {
@@ -106,12 +119,12 @@ const design = computed<DesignLine>(() => line.value);
 .btn-tui.btn-tui--rubik[data-fill='solid'] {
   border-radius: 0;
 }
-.btn-tui.btn-tui--rubik[data-fill='solid']:hover {
+.btn-tui.btn-tui--rubik[data-fill='solid']:not(:disabled):hover {
   background: var(--accent);
   border-color: var(--accent);
   color: var(--bg);
 }
-.btn-tui.btn-tui--rubik[data-fill='solid']:hover::after {
+.btn-tui.btn-tui--rubik[data-fill='solid']:not(:disabled):hover::after {
   transform: translateX(4px);
 }
 .btn-tui.btn-tui--rubik[data-fill='solid']:active {
@@ -126,10 +139,10 @@ const design = computed<DesignLine>(() => line.value);
   .btn-tui.btn-tui--rubik::after {
     transition: none;
   }
-  .btn-tui.btn-tui--rubik:hover {
+  .btn-tui.btn-tui--rubik:not(:disabled):hover {
     transform: none;
   }
-  .btn-tui.btn-tui--rubik:hover::after {
+  .btn-tui.btn-tui--rubik:not(:disabled):hover::after {
     transform: none;
   }
 }

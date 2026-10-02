@@ -52,45 +52,37 @@ Animated terminal-style spinner with cyclic braille frames.
 
 ## Demo
 
-### Básico (`color` / `size` / `speed`)
-
-<div style="display: flex; gap: 1rem; align-items: center;">
-  <Spinner />
-  <Spinner color="success" />
-  <Spinner size="lg" />
-  <Spinner speed="slow" />
-</div>
-
-```vue
-<Spinner />
-<Spinner color="success" />
-<Spinner size="lg" />
-<Spinner speed="slow" />
-```
-
-## Props
-
-### color
+### Color (`color`)
 
 Semantic color of the spinner.
 
-<div style="display: flex; gap: 1rem; align-items: center;">
+<div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
   <Spinner color="primary" />
+  <Spinner color="secondary" />
+  <Spinner color="tertiary" />
   <Spinner color="success" />
-  <Spinner color="danger" />
   <Spinner color="warning" />
+  <Spinner color="danger" />
+  <Spinner color="light" />
+  <Spinner color="medium" />
+  <Spinner color="dark" />
 </div>
 
 ```vue
 <Spinner color="primary" />
+<Spinner color="secondary" />
+<Spinner color="tertiary" />
 <Spinner color="success" />
-<Spinner color="danger" />
 <Spinner color="warning" />
+<Spinner color="danger" />
+<Spinner color="light" />
+<Spinner color="medium" />
+<Spinner color="dark" />
 ```
 
-### size
+### Size (`size`)
 
-Size of the spinner.
+Spinner size: `sm`, `md` or `lg`.
 
 <div style="display: flex; gap: 1rem; align-items: center;">
   <Spinner size="sm" />
@@ -104,9 +96,9 @@ Size of the spinner.
 <Spinner size="lg" />
 ```
 
-### speed
+### Speed (`speed`)
 
-Speed of the animation.
+Animation speed: `slow`, `normal` or `fast`.
 
 <div style="display: flex; gap: 1rem; align-items: center;">
   <Spinner speed="slow" />
@@ -120,14 +112,43 @@ Speed of the animation.
 <Spinner speed="fast" />
 ```
 
-## API
+## Props
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Semantic color |
-| `size` | `'sm' \\| 'md' \\| 'lg'` | `'md'` | Size of the spinner |
-| `speed` | `'slow' \\| 'normal' \\| 'fast'` | `'normal'` | Speed of the animation |
+### color
 
-## Tokens used
+Semantic color of the spinner.
 
-`--color-{name}`, `--font-mono`
+| Type | Default | Required |
+|---|---|---|
+| `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
+
+### size
+
+Size of the spinner.
+
+| Type | Default | Required |
+|---|---|---|
+| `'sm' \\| 'md' \\| 'lg'` | `'md'` | ❌ |
+
+### speed
+
+Speed of the animation.
+
+| Type | Default | Required |
+|---|---|---|
+| `'slow' \\| 'normal' \\| 'fast'` | `'normal'` | ❌ |
+
+## CSS Custom Properties
+
+
+<div class="table-wrapper">
+
+| Token | Default | Description |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Monospace font stack for code-like content (key labels, log lines, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Accent color, mapped from the active semantic color. |
+| `--color-secondary` | from theme (`--ctp-latte-lavender` / `--ctp-mocha-lavender`) | Secondary semantic color (lavender in Catppuccin). |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

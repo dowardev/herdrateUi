@@ -16,12 +16,29 @@ Three changelogs, no duplication:
 
 ## [Unreleased]
 
+### Added
+
+- Accordion panels can now be opened and closed from your own controls, and can start with panels already open
+- Buttons and button groups can now be disabled
+
 ### Changed
 
+- Component pages now keep every interactive example in the Demo section, and the API sections are pure reference tables
 - Component documentation is now more realistic: every component page shows demos grouped by prop/functionality with the same content in TUIX and Rubik, so both design lines can be compared side-by-side
+- Component pages now read at a glance: clearer section divisions, descriptive one-line summaries for every example, and per-prop signature tables (Type / Default / Required) instead of invented type names
+- Every component page now ends with a CSS Custom Properties table that lists the tokens the component actually uses, their default values, and a short description, plus a link to the new Theming page that explains the layer taxonomy (base / panel / border / text / accent / etc.)
+- Token names in the Custom Properties tables no longer break mid-word on narrow viewports; the tables themselves scroll horizontally when needed
 
 ### Fixed
 
+- Button and Spinner docs no longer bundle multiple unrelated props into the same example; each demo now demonstrates one prop at a time
+- Slot headings in Card, Modal, and StatusBar docs use a name that describes what makes the slot unique (rich title, footer actions, rich content) instead of repeating the prop name
+
+### Fixed
+
+- Component examples no longer stop working after their first element, and three pages that showed stray markup as text now render their design-line switcher correctly
+- The accordion indicator color now actually changes with the `color` prop
+- Live examples no longer share state with each other, so every color variant is visibly different
 - Theme control labels (reset/copy) now show correctly in both languages, and Spanish component pages no longer show English mixed into headings or API tables
 - Accordion documentation no longer references a non-existent `v-model:opened` binding or `#default` slot
 

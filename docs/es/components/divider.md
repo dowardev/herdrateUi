@@ -54,6 +54,8 @@ Divisor horizontal o vertical con estética de terminal.
 
 ### Orientación (`orientation`)
 
+Una `orientation` horizontal entre dos bloques de texto.
+
 <Divider orientation="horizontal" />
 
 Texto separado por divisor horizontal.
@@ -71,23 +73,20 @@ Texto separado por divisor horizontal.
 
 Dirección del divisor.
 
-<Divider orientation="horizontal" />
+| Tipo | Default | Requerido |
+|---|---|---|
+| `'horizontal' \| 'vertical'` | `'horizontal'` | ❌ |
+## CSS Custom Properties
 
-<div style="display: inline-flex; align-items: center; gap: 0.5rem;">
-  Izquierda <Divider orientation="vertical" /> Derecha
+
+<div class="table-wrapper">
+
+| Token | Default | Descripción |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
+
 </div>
 
-```vue
-<Divider orientation="horizontal" />
-<Divider orientation="vertical" />
-```
-
-## API
-
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Dirección del divisor |
-
-## Tokens usados
-
-`--border`, `--font-mono`
+Ver [Theming](../theming.md) para la convención completa.

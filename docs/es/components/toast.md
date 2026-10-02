@@ -107,16 +107,16 @@ const positionButtons = computed(() =>
 
 ### Básico (`message` / `color`)
 
+Muestra toasts con `message` y `color` semántico en cada posición.
+
 <ClientOnly>
   <div style="margin-bottom: 2rem;">
     <ButtonTuiGroup :buttons="positionButtons" />
     <ButtonTui color="medium" fill="clear" @click="clearAll">[ clear ]</ButtonTui>
   </div>
-
   <p v-if="items.length === 0" style="opacity: 0.5; font-style: italic;">
     Haz clic en un botón para mostrar un toast flotante en esa posición.
   </p>
-
   <ToastContainer
     v-for="p in positions" :key="p"
     :toasts="items.filter(t => t.position === p)"
@@ -157,21 +157,11 @@ function dismiss(id: number) {
 
 Esta demo usa la composable `useToast()` real del paquete (singleton, estado compartido) — alineada con el flujo que copiarías a tu proyecto.
 
-## Tipos
-
-### ToastItem
-
-| Campo | Tipo | Requerido | Descripción |
-|---|---|---|---|
-| `id` | `string` | ✅ | Identificador único |
-| `message` | `string` | ✅ | Mensaje a mostrar |
-| `color` | `Color` | ✅ | Color semántico |
-| `icon` | `string` | ✅ | Icono o emoji |
-| `timestamp` | `number` | ✅ | Timestamp UNIX |
-
 ## API
 
 ### Toast
+
+Props aceptadas por el componente `Toast`.
 
 | Prop | Tipo | Default | Descripción |
 |---|---|---|---|
@@ -181,21 +171,35 @@ Esta demo usa la composable `useToast()` real del paquete (singleton, estado com
 
 ### ToastContainer
 
+Contenedor que renderiza la lista de toasts en una posición fija.
+
 | Prop | Tipo | Default | Descripción |
 |---|---|---|---|
-| `toasts` | `ToastItem[]` | — | Lista de toasts a mostrar |
+| `toasts` | `Array<{id, message, color, icon, timestamp}>` | — | Lista de toasts a mostrar |
 | `remove` | `(id: string) => void` | — | Función para cerrar toast |
 | `position` | `'bottom-right' \\| 'bottom-left' \\| 'top-right' \\| 'top-left' \\| 'top-center' \\| 'bottom-center'` | `'bottom-right'` | Posición en pantalla |
 
 ### useToast()
 
+Composable que retorna la lista de toasts y sus helpers.
+
 | Retorno | Tipo | Descripción |
 |---|---|---|
-| `toasts` | `Ref<ToastItem[]>` | Lista reactiva de toasts activos |
-| `add` | `(opts: AddOptions) => string` | Agrega un toast, retorna ID |
+| `toasts` | `Ref<Array<{id, message, color, icon, timestamp}>>` | Lista reactiva de toasts activos |
+| `add` | `(opts: {message, color?, replace?, filter?}) => string` | Agrega un toast, retorna ID |
 | `remove` | `(id: string) => void` | Elimina un toast por ID |
 
-### AddOptions
+**`toasts`** — cada toast tiene esta forma:
+
+| Campo | Tipo | Requerido | Descripción |
+|---|---|---|---|
+| `id` | `string` | ✅ | Identificador único |
+| `message` | `string` | ✅ | Mensaje a mostrar |
+| `color` | `Color` | ✅ | Color semántico |
+| `icon` | `string` | ✅ | Icono o emoji |
+| `timestamp` | `number` | ✅ | Timestamp UNIX |
+
+**`add(opts)`** — opciones aceptadas al crear un toast:
 
 | Prop | Tipo | Default | Descripción |
 |---|---|---|---|
@@ -204,6 +208,20 @@ Esta demo usa la composable `useToast()` real del paquete (singleton, estado com
 | `replace` | `boolean` | `false` | Reemplaza toast duplicado |
 | `filter` | `string` | — | Clave para detectar duplicado |
 
-## Tokens usados
+## CSS Custom Properties
 
-`--font-mono`, `--bg`, `--bg-elevated`, `--border`, `--text`, `--color-*`
+
+<div class="table-wrapper">
+
+| Token | Default | Descripción |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
+| `--bg-elevated` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Fondo de superficies flotantes (modales, dropdowns, popovers). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
+| `--cp-ease` | `cubic-bezier(.4, 0, .2, 1)` | Curva de easing por defecto para transiciones. |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

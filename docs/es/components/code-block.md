@@ -54,14 +54,78 @@ A terminal-style code block with syntax-friendly display, line numbers, a copy b
 
 ### Básico (`code` / `language`)
 
+Uso mínimo: se pasa `code` y `language`, con `color` opcional.
+
 <CodeBlock code="const x = 1;" language="typescript" />
-<CodeBlock code="function greet(name: string) {\n  return `Hello ${name}`;\n}" language="typescript" color="success" />
+<CodeBlock :code="'function greet(name: string) {\n  return `Hello ${name}`;\n}'" language="typescript" color="success" />
 <CodeBlock code="docker compose up -d" language="bash" color="secondary" :showLines="false" />
 
 ```vue
 <CodeBlock code="const x = 1;" language="typescript" />
-<CodeBlock code="function greet(name: string) {\n  return `Hello ${name}`;\n}" language="typescript" color="success" />
+<CodeBlock :code="'function greet(name: string) {\n  return `Hello ${name}`;\n}'" language="typescript" color="success" />
 <CodeBlock code="docker compose up -d" language="bash" color="secondary" :showLines="false" />
+```
+
+### Lenguaje (`language`)
+
+La etiqueta `language` renderizada para JavaScript y bash.
+
+<CodeBlock code='console.log("hi")' language="javascript" />
+<CodeBlock code="npm run dev" language="bash" />
+
+```vue
+<CodeBlock code='console.log("hi")' language="javascript" />
+<CodeBlock code="npm run dev" language="bash" />
+```
+
+### Color (`color`)
+
+Tres valores de `color` para el acento del borde.
+
+<CodeBlock code="const x = 1;" language="ts" color="primary" />
+<CodeBlock code="const x = 1;" language="ts" color="success" />
+<CodeBlock code="const x = 1;" language="ts" color="danger" />
+
+```vue
+<CodeBlock code="const x = 1;" language="ts" color="primary" />
+<CodeBlock code="const x = 1;" language="ts" color="success" />
+<CodeBlock code="const x = 1;" language="ts" color="danger" />
+```
+
+### Borde (`border`)
+
+El borde mostrado y oculto con `border`.
+
+<CodeBlock code="const x = 1;" language="ts" border />
+<CodeBlock code="const x = 1;" language="ts" :border="false" />
+
+```vue
+<CodeBlock code="const x = 1;" language="ts" border />
+<CodeBlock code="const x = 1;" language="ts" :border="false" />
+```
+
+### Números de línea (`showLines`)
+
+El salto de línea debe ser real: en atributo estático `code="...\n..."` la secuencia `\n` llega literal y todo colapsa en una línea. Usá `:code` bindeado para que `\n` sea un salto de verdad.
+
+<CodeBlock :code="'line 1\nline 2\nline 3'" language="ts" showLines />
+<CodeBlock :code="'line 1\nline 2\nline 3'" language="ts" :showLines="false" />
+
+```vue
+<CodeBlock :code="'line 1\nline 2\nline 3'" language="ts" showLines />
+<CodeBlock :code="'line 1\nline 2\nline 3'" language="ts" :showLines="false" />
+```
+
+### Altura máxima (`maxHeight`)
+
+Un bloque largo que scrollea al superar `maxHeight`.
+
+<ClientOnly>
+  <CodeBlock :code="Array.from({ length: 30 }, (_, i) => `line ${i + 1}`).join('\n')" language="ts" maxHeight="200px" />
+</ClientOnly>
+
+```vue
+<CodeBlock :code="Array.from({ length: 30 }, (_, i) => `line ${i + 1}`).join('\n')" language="ts" maxHeight="200px" />
 ```
 
 ## Props
@@ -70,86 +134,51 @@ A terminal-style code block with syntax-friendly display, line numbers, a copy b
 
 Source code string to display.
 
-```vue
-<CodeBlock code="const x = 1;" language="typescript" />
-```
-
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | `''` | ❌ |
 ### language
 
 Language label shown as a tag in the header.
 
-<CodeBlock code='console.log("hi")' language="javascript" />
-<CodeBlock code="npm run dev" language="bash" />
-
-```vue
-<CodeBlock code='console.log("hi")' language="javascript" />
-<CodeBlock code="npm run dev" language="bash" />
-```
-
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | `''` | ❌ |
 ### color
 
 Border accent color of the code block.
 
-<CodeBlock code="const x = 1;" language="ts" color="primary" />
-<CodeBlock code="const x = 1;" language="ts" color="success" />
-<CodeBlock code="const x = 1;" language="ts" color="danger" />
-
-```vue
-<CodeBlock code="const x = 1;" language="ts" color="primary" />
-<CodeBlock code="const x = 1;" language="ts" color="success" />
-<CodeBlock code="const x = 1;" language="ts" color="danger" />
-```
-
+| Tipo | Default | Requerido |
+|---|---|---|
+| `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `DEFAULT_COLOR` | ❌ |
 ### border
 
 Toggle the outer border. Defaults to `true`.
 
-<CodeBlock code="const x = 1;" language="ts" border />
-<CodeBlock code="const x = 1;" language="ts" :border="false" />
-
-```vue
-<CodeBlock code="const x = 1;" language="ts" border />
-<CodeBlock code="const x = 1;" language="ts" :border="false" />
-```
-
+| Tipo | Default | Requerido |
+|---|---|---|
+| `boolean` | `true` | ❌ |
 ### showLines
 
 Toggle line numbers on the left gutter.
 
-<CodeBlock code="line 1\nline 2\nline 3" language="ts" showLines />
-<CodeBlock code="line 1\nline 2\nline 3" language="ts" :showLines="false" />
-
-```vue
-<CodeBlock code="line 1\nline 2\nline 3" language="ts" showLines />
-<CodeBlock code="line 1\nline 2\nline 3" language="ts" :showLines="false" />
-```
-
+| Tipo | Default | Requerido |
+|---|---|---|
+| `boolean` | `true` | ❌ |
 ### maxHeight
 
 Max height before the block becomes scrollable.
 
-```vue
-<CodeBlock code="..." language="ts" maxHeight="200px" />
-```
-
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | `'none'` | ❌ |
 ### formatter
 
 Optional function to format code before syntax highlighting. Useful for auto-formatting with Prettier.
 
-```vue
-<script setup>
-import { usePrettierFormatter } from '@dowardev/herdrate-vue'
-
-const formatter = usePrettierFormatter()
-</script>
-
-<template>
-  <CodeBlock code="const  x  =   1" language="typescript" :formatter="formatter" />
-</template>
-```
-
-The `formatter` receives `(code: string, language: string)` and can return a `string` or `Promise<string>`.
-
+| Tipo | Default | Requerido |
+|---|---|---|
+| `(code: string, lang: string) => Promise\<string\> \| string` | — | ❌ |
 ## Auto-formateo con usePrettierFormatter
 
 `usePrettierFormatter()` retorna una función formateadora que usa Prettier para formatear código según el lenguaje.
@@ -160,6 +189,8 @@ npm i -D prettier
 ```
 
 ### Lenguajes soportados
+
+Etiquetas de lenguaje aceptadas por `language`, cada una mapeada a un parser de Prettier.
 
 | Lenguaje (`language`) | Parser Prettier | Plugin requerido | Built-in |
 |---|---|---|---|
@@ -189,24 +220,36 @@ npm i -D prettier-plugin-sql prettier-plugin-java prettier-plugin-rust
 
 El composable detecta automáticamente los plugins instalados. Si un parser no está disponible, devuelve el código original sin formatear.
 
-## API
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `code` | `string` | `''` | Source code to display |
-| `language` | `string` | `''` | Language label shown as tag |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `DEFAULT_COLOR` | Border accent color |
-| `border` | `boolean` | `true` | Show the outer border |
-| `showLines` | `boolean` | `true` | Show line numbers |
-| `maxHeight` | `string` | `'none'` | Max height before scroll |
-| `formatter` | `(code: string, lang: string) => Promise\<string\> \| string` | — | Optional formatter function |
-
 ## Slots
 
 | Slot | Description |
 |---|---|
 | `default` | Alternative to `code` prop |
 
-## Tokens usados
+## CSS Custom Properties
 
-`--font-mono`, `--bg`, `--bg-panel`, `--border`, `--text`, `--text-muted`, `--color-*`
+
+<div class="table-wrapper">
+
+| Token | Default | Descripción |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Fondo base de la superficie. |
+| `--bg-panel` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-surface1`) | Fondo de superficies tipo panel (cards, accordions). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Texto secundario para pistas, anotaciones y estado deshabilitado. |
+| `--color-primary` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color semántico primario (mauve en Catppuccin). |
+| `--color-secondary` | from theme (`--ctp-latte-lavender` / `--ctp-mocha-lavender`) | Color semántico secundario (lavender en Catppuccin). |
+| `--color-tertiary` | from theme (`--ctp-latte-blue` / `--ctp-mocha-blue`) | Color semántico terciario (blue en Catppuccin). |
+| `--color-success` | from theme (`--ctp-latte-green` / `--ctp-mocha-green`) | Color semántico de éxito (green en Catppuccin). |
+| `--color-warning` | from theme (`--ctp-latte-yellow` / `--ctp-mocha-yellow`) | Color semántico de advertencia (yellow en Catppuccin). |
+| `--color-danger` | from theme (`--ctp-latte-red` / `--ctp-mocha-red`) | Color semántico de peligro (red en Catppuccin). |
+| `--color-light` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-rosewater`) | Color semántico claro (tono de contraste más claro). |
+| `--color-medium` | from theme (`--ctp-latte-overlay0` / `--ctp-mocha-overlay2`) | Color semántico medio (tono intermedio). |
+| `--color-dark` | from theme (`--ctp-latte-text` / `--ctp-mocha-subtext1`) | Color semántico oscuro (texto de alto contraste). |
+| `--shadow` | `none` on TUIX, elevated on rubik | Sombra de elevación para superficies elevadas. |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

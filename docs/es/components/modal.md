@@ -67,10 +67,15 @@ const openRubik = ref(false)
 </Modal>
 ```
 
-
 ## Demo
 
-### Básico (`open` + `title`)
+### Abrir y titular
+
+Cómo se abre y se titula el modal: el modelo `open` y el prop `title`.
+
+#### Básico (`open` + `title`)
+
+Modal mínimo: `open` controla la visibilidad y `title` define el texto de la cabecera.
 
 <ClientOnly>
   <ButtonTui @click="isOpen = true" color="primary">Abrir modal</ButtonTui>
@@ -87,26 +92,24 @@ const openRubik = ref(false)
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
-const open = ref(false)
+const isOpen = ref(false)
 </script>
 
 <template>
-  <ButtonTui @click="open = true" color="primary">Abrir modal</ButtonTui>
-  <Modal v-model:open="open" title="Example Modal" closable>
+  <ButtonTui @click="isOpen = true" color="primary">Abrir modal</ButtonTui>
+  <Modal v-model:open="isOpen" title="Example Modal" closable>
     This is the modal body content.
     <template #footer>
-      <ButtonTui @click="open = false">OK</ButtonTui>
-      <ButtonTui @click="open = false">Cancel</ButtonTui>
+      <ButtonTui @click="isOpen = false">OK</ButtonTui>
+      <ButtonTui @click="isOpen = false">Cancel</ButtonTui>
     </template>
   </Modal>
 </template>
 ```
 
-## Props
+#### Título (`title`)
 
-### title
-
-Título mostrado en la cabecera del modal. Cuando está vacío, no se muestra espacio reservado.
+Encabezado de texto plano renderizado en la cabecera del modal.
 
 <ClientOnly>
   <ButtonTui @click="openTitle = true" color="primary">Abrir modal</ButtonTui>
@@ -122,23 +125,27 @@ Título mostrado en la cabecera del modal. Cuando está vacío, no se muestra es
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
-const open = ref(false)
+const openTitle = ref(false)
 </script>
 
 <template>
-  <ButtonTui @click="open = true" color="primary">Abrir modal</ButtonTui>
-  <Modal v-model:open="open" title="Modal con título" closable>
+  <ButtonTui @click="openTitle = true" color="primary">Abrir modal</ButtonTui>
+  <Modal v-model:open="openTitle" title="Modal con título" closable>
     Contenido del modal.
     <template #footer>
-      <ButtonTui @click="open = false">Cerrar</ButtonTui>
+      <ButtonTui @click="openTitle = false">Cerrar</ButtonTui>
     </template>
   </Modal>
 </template>
 ```
 
-### color
+### Apariencia
 
-Color semántico del título en el header.
+Los props que cambian el aspecto del modal: `color` y `width`.
+
+#### Color (`color`)
+
+Color semántico aplicado al título del modal en la cabecera.
 
 <ClientOnly>
   <div style="display: flex; gap: 0.5rem;">
@@ -170,41 +177,41 @@ Color semántico del título en el header.
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
-const openPrimary = ref(false)
-const openSuccess = ref(false)
-const openDanger = ref(false)
+const openColorP = ref(false)
+const openColorS = ref(false)
+const openColorD = ref(false)
 </script>
 
 <template>
   <div style="display: flex; gap: 0.5rem;">
-    <ButtonTui @click="openPrimary = true" color="primary">Primary</ButtonTui>
-    <ButtonTui @click="openSuccess = true" color="success">Success</ButtonTui>
-    <ButtonTui @click="openDanger = true" color="danger">Danger</ButtonTui>
+    <ButtonTui @click="openColorP = true" color="primary">Primary</ButtonTui>
+    <ButtonTui @click="openColorS = true" color="success">Success</ButtonTui>
+    <ButtonTui @click="openColorD = true" color="danger">Danger</ButtonTui>
   </div>
-  <Modal v-model:open="openPrimary" title="Primary" color="primary" closable>
+  <Modal v-model:open="openColorP" title="Primary" color="primary" closable>
     Modal con color primary.
     <template #footer>
-      <ButtonTui @click="openPrimary = false" color="primary">Cerrar</ButtonTui>
+      <ButtonTui @click="openColorP = false" color="primary">Cerrar</ButtonTui>
     </template>
   </Modal>
-  <Modal v-model:open="openSuccess" title="Success" color="success" closable>
+  <Modal v-model:open="openColorS" title="Success" color="success" closable>
     Modal con color success.
     <template #footer>
-      <ButtonTui @click="openSuccess = false" color="success">Cerrar</ButtonTui>
+      <ButtonTui @click="openColorS = false" color="success">Cerrar</ButtonTui>
     </template>
   </Modal>
-  <Modal v-model:open="openDanger" title="Danger" color="danger" closable>
+  <Modal v-model:open="openColorD" title="Danger" color="danger" closable>
     Modal con color danger.
     <template #footer>
-      <ButtonTui @click="openDanger = false" color="danger">Cerrar</ButtonTui>
+      <ButtonTui @click="openColorD = false" color="danger">Cerrar</ButtonTui>
     </template>
   </Modal>
 </template>
 ```
 
-### width
+#### Ancho (`width`)
 
-Ancho del modal. Acepta cualquier valor CSS: `ch`, `px`, `rem`, `%`.
+Ancho del modal, definido con cualquier unidad CSS como `ch`.
 
 <ClientOnly>
   <div style="display: flex; gap: 0.5rem;">
@@ -229,31 +236,31 @@ Ancho del modal. Acepta cualquier valor CSS: `ch`, `px`, `rem`, `%`.
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
-const openNarrow = ref(false)
-const openWide = ref(false)
+const openWidthNarrow = ref(false)
+const openWidthWide = ref(false)
 </script>
 
 <template>
   <div style="display: flex; gap: 0.5rem;">
-    <ButtonTui @click="openNarrow = true" color="primary">40ch</ButtonTui>
-    <ButtonTui @click="openWide = true" color="primary">80ch</ButtonTui>
+    <ButtonTui @click="openWidthNarrow = true" color="primary">40ch</ButtonTui>
+    <ButtonTui @click="openWidthWide = true" color="primary">80ch</ButtonTui>
   </div>
-  <Modal v-model:open="openNarrow" title="Estrecho (40ch)" width="40ch" closable>
+  <Modal v-model:open="openWidthNarrow" title="Estrecho (40ch)" width="40ch" closable>
     Contenido del modal con ancho 40ch.
     <template #footer>
-      <ButtonTui @click="openNarrow = false" color="primary">Cerrar</ButtonTui>
+      <ButtonTui @click="openWidthNarrow = false" color="primary">Cerrar</ButtonTui>
     </template>
   </Modal>
-  <Modal v-model:open="openWide" title="Ancho (80ch)" width="80ch" closable>
+  <Modal v-model:open="openWidthWide" title="Ancho (80ch)" width="80ch" closable>
     Contenido del modal con ancho 80ch.
     <template #footer>
-      <ButtonTui @click="openWide = false" color="primary">Cerrar</ButtonTui>
+      <ButtonTui @click="openWidthWide = false" color="primary">Cerrar</ButtonTui>
     </template>
   </Modal>
 </template>
 ```
 
-### closable
+### Closable (`closable`)
 
 Muestra u oculta el botón de cierre (×) en la cabecera.
 
@@ -280,33 +287,35 @@ Muestra u oculta el botón de cierre (×) en la cabecera.
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
-const openWithClose = ref(false)
-const openWithoutClose = ref(false)
+const openClosableOn = ref(false)
+const openClosableOff = ref(false)
 </script>
 
 <template>
   <div style="display: flex; gap: 0.5rem;">
-    <ButtonTui @click="openWithClose = true" color="primary">Con cierre</ButtonTui>
-    <ButtonTui @click="openWithoutClose = true" color="primary">Sin cierre</ButtonTui>
+    <ButtonTui @click="openClosableOn = true" color="primary">Con cierre</ButtonTui>
+    <ButtonTui @click="openClosableOff = true" color="primary">Sin cierre</ButtonTui>
   </div>
-  <Modal v-model:open="openWithClose" title="Cerrable" closable>
+  <Modal v-model:open="openClosableOn" title="Cerrable" closable>
     Puedes cerrar con ×, Escape o el botón de abajo.
     <template #footer>
-      <ButtonTui @click="openWithClose = false" color="primary">Cerrar</ButtonTui>
+      <ButtonTui @click="openClosableOn = false" color="primary">Cerrar</ButtonTui>
     </template>
   </Modal>
-  <Modal v-model:open="openWithoutClose" title="No cerrable" :closable="false">
+  <Modal v-model:open="openClosableOff" title="No cerrable" :closable="false">
     Solo puedes cerrar con Escape o el botón de abajo.
     <template #footer>
-      <ButtonTui @click="openWithoutClose = false" color="primary">Cerrar</ButtonTui>
+      <ButtonTui @click="openClosableOff = false" color="primary">Cerrar</ButtonTui>
     </template>
   </Modal>
 </template>
 ```
 
-## Slots
+### Cuerpo y pie
 
-### default (cuerpo)
+Los dos slots que llenan el cuerpo del modal y su área de acciones.
+
+#### Cuerpo (slot `default`)
 
 Contenido principal del modal. Puede incluir cualquier HTML o componente Vue.
 
@@ -329,12 +338,12 @@ Contenido principal del modal. Puede incluir cualquier HTML o componente Vue.
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
-const open = ref(false)
+const openContent = ref(false)
 </script>
 
 <template>
-  <ButtonTui @click="open = true" color="primary">Abrir modal</ButtonTui>
-  <Modal v-model:open="open" title="Contenido variado" closable>
+  <ButtonTui @click="openContent = true" color="primary">Abrir modal</ButtonTui>
+  <Modal v-model:open="openContent" title="Contenido variado" closable>
     <p>Este es el cuerpo del modal.</p>
     <ul>
       <li>Elemento 1</li>
@@ -342,13 +351,13 @@ const open = ref(false)
       <li>Elemento 3</li>
     </ul>
     <template #footer>
-      <ButtonTui @click="open = false" color="primary">OK</ButtonTui>
+      <ButtonTui @click="openContent = false" color="primary">OK</ButtonTui>
     </template>
   </Modal>
 </template>
 ```
 
-### footer
+#### Acciones del pie (slot `footer`)
 
 Área de acciones del modal. Típicamente contiene botones de confirmación o cancelación.
 
@@ -367,41 +376,85 @@ const open = ref(false)
 <script setup lang="ts">
 import { ref } from 'vue'
 import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
-const open = ref(false)
+const openFooter = ref(false)
 </script>
 
 <template>
-  <ButtonTui @click="open = true" color="primary">Abrir modal</ButtonTui>
-  <Modal v-model:open="open" title="Confirmación" closable>
+  <ButtonTui @click="openFooter = true" color="primary">Abrir modal</ButtonTui>
+  <Modal v-model:open="openFooter" title="Confirmación" closable>
     ¿Estás seguro de realizar esta acción?
     <template #footer>
-      <ButtonTui @click="open = false" color="primary">Cancelar</ButtonTui>
-      <ButtonTui @click="open = false" color="primary">Confirmar</ButtonTui>
+      <ButtonTui @click="openFooter = false" color="primary">Cancelar</ButtonTui>
+      <ButtonTui @click="openFooter = false" color="primary">Confirmar</ButtonTui>
     </template>
   </Modal>
 </template>
 ```
+## Props
 
-## API
+### title
 
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `open` | `boolean` | `false` | Control de visibilidad |
-| `title` | `string` | `''` | Título del modal |
-| `color` | [`Color`](/es/color) | `'primary'` | Color del título |
-| `closable` | `boolean` | `true` | Muestra botón de cierre (×) |
-| `width` | `string` | `'60ch'` | Ancho del modal |
+Título mostrado en la cabecera del modal. Cuando está vacío, no se muestra espacio reservado.
 
-| Evento | Descripción |
-|---|---|
-| `close` | Se emite al cerrar el modal |
-| `update:open` | Se emite con `false` al cerrar (soporta `v-model:open`) |
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | `''` | ❌ |
+
+### color
+
+Color semántico del título en el header.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| [`Color`](/es/color) | `'primary'` | ❌ |
+
+### width
+
+Ancho del modal. Acepta cualquier valor CSS: `ch`, `px`, `rem`, `%`.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | `'60ch'` | ❌ |
+
+### closable
+
+Muestra u oculta el botón de cierre (×) en la cabecera.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `boolean` | `true` | ❌ |
+
+## Slots
 
 | Slot | Descripción |
 |---|---|
-| `default` | Cuerpo del modal |
-| `footer` | Pie del modal (área de acciones) |
+| `default` | Cuerpo del modal, acepta cualquier HTML o componente Vue |
+| `footer` | Área de acciones, típicamente botones de confirmación o cancelación |
+## CSS Custom Properties
 
-## Tokens usados
 
-`--bg`, `--bg-panel`, `--border`, `--text`, `--font-mono`, `--color-{color}`
+<div class="table-wrapper">
+
+| Token | Default | Descripción |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Fondo base de la superficie. |
+| `--bg-panel` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-surface1`) | Fondo de superficies tipo panel (cards, accordions). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
+| `--color-primary` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color semántico primario (mauve en Catppuccin). |
+| `--color-secondary` | from theme (`--ctp-latte-lavender` / `--ctp-mocha-lavender`) | Color semántico secundario (lavender en Catppuccin). |
+| `--color-tertiary` | from theme (`--ctp-latte-blue` / `--ctp-mocha-blue`) | Color semántico terciario (blue en Catppuccin). |
+| `--color-success` | from theme (`--ctp-latte-green` / `--ctp-mocha-green`) | Color semántico de éxito (green en Catppuccin). |
+| `--color-warning` | from theme (`--ctp-latte-yellow` / `--ctp-mocha-yellow`) | Color semántico de advertencia (yellow en Catppuccin). |
+| `--color-danger` | from theme (`--ctp-latte-red` / `--ctp-mocha-red`) | Color semántico de peligro (red en Catppuccin). |
+| `--color-light` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-rosewater`) | Color semántico claro (tono de contraste más claro). |
+| `--color-medium` | from theme (`--ctp-latte-overlay0` / `--ctp-mocha-overlay2`) | Color semántico medio (tono intermedio). |
+| `--color-dark` | from theme (`--ctp-latte-text` / `--ctp-mocha-subtext1`) | Color semántico oscuro (texto de alto contraste). |
+| `--cp-ease` | `cubic-bezier(.4, 0, .2, 1)` | Curva de easing por defecto para transiciones. |
+| `--shadow` | `none` on TUIX, elevated on rubik | Sombra de elevación para superficies elevadas. |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

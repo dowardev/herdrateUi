@@ -3,8 +3,12 @@ import { ref } from 'vue'
 import { tagInputMeta } from './meta/tag-input'
 import { useDesign } from '@dowardev/herdrate-vue'
 const tags = ref<string[]>(['vue', 'typescript'])
-const tagsColor = ref<string[]>(['uno', 'dos'])
+const tagsDisabled = ref<string[]>(['locked'])
 const tagsLimited = ref<string[]>(['a', 'b', 'c'])
+const tagPrimary = ref<string[]>(['vue'])
+const tagSuccess = ref<string[]>(['vue'])
+const tagWarning = ref<string[]>(['vue'])
+const tagDanger = ref<string[]>(['vue'])
 
 // Global design line (sidebar select) drives which tab loads.
 const line = useDesign()
@@ -58,6 +62,8 @@ Input que crea tags al presionar Enter, con soporte para límite máximo, elimin
 
 ### Básico (`modelValue`)
 
+Vincula la lista de tags con `v-model` mediante `modelValue`.
+
 <ClientOnly>
   <TagInput v-model="tags" color="success" :max="5" placeholder="Add tag..." />
   <p style="color:var(--text-muted);font-size:0.8rem;">Tags: {{ tags }}</p>
@@ -67,73 +73,97 @@ Input que crea tags al presionar Enter, con soporte para límite máximo, elimin
 <TagInput v-model="tags" color="success" :max="5" placeholder="Add tag..." />
 ```
 
-## Props
+### Color (`color`)
 
-### modelValue
-
-Lista actual de tags (v-model con array de strings).
-
-<ClientOnly>
-  <TagInput v-model="tags" placeholder="Escribe y presiona Enter..." />
-</ClientOnly>
-
-```vue
-<TagInput v-model="tags" />
-```
-
-### color
-
-Color semántico de los tags.
+Cada fila mantiene sus propios tags: agregar o quitar en una nunca afecta a las otras.
 
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
-    <TagInput v-model="tagsColor" color="primary" placeholder="Primary" />
-    <TagInput v-model="tagsColor" color="success" placeholder="Success" />
-    <TagInput v-model="tagsColor" color="warning" placeholder="Warning" />
-    <TagInput v-model="tagsColor" color="danger" placeholder="Danger" />
+    <TagInput v-model="tagPrimary" color="primary" placeholder="Primary" />
+    <TagInput v-model="tagSuccess" color="success" placeholder="Success" />
+    <TagInput v-model="tagWarning" color="warning" placeholder="Warning" />
+    <TagInput v-model="tagDanger" color="danger" placeholder="Danger" />
   </div>
 </ClientOnly>
 
 ```vue
-<TagInput v-model="tagsColor" color="primary" placeholder="Primary" />
-<TagInput v-model="tagsColor" color="success" placeholder="Success" />
-<TagInput v-model="tagsColor" color="warning" placeholder="Warning" />
-<TagInput v-model="tagsColor" color="danger" placeholder="Danger" />
+<script setup lang="ts">
+import { ref } from 'vue'
+import { TagInput } from '@dowardev/herdrate-vue'
+
+const tagPrimary = ref<string[]>(['vue'])
+const tagSuccess = ref<string[]>(['vue'])
+</script>
+
+<template>
+  <TagInput v-model="tagPrimary" color="primary" placeholder="Primary" />
+  <TagInput v-model="tagSuccess" color="success" placeholder="Success" />
+</template>
 ```
 
-### disabled
+### Límite (`max`)
 
-Deshabilita el input y la interacción con los tags.
-
-<TagInput v-model="tags" disabled />
-
-```vue
-<TagInput v-model="tags" disabled />
-```
-
-### placeholder
-
-Placeholder del campo de texto.
-
-<ClientOnly>
-  <TagInput v-model="tags" placeholder="Añade un skill..." />
-</ClientOnly>
-
-```vue
-<TagInput v-model="tags" placeholder="Añade un skill..." />
-```
-
-### max
-
-Número máximo de tags permitidos (0 = sin límite).
+Limita la cantidad de tags mediante la prop `max` (0 desactiva el límite).
 
 <ClientOnly>
   <TagInput v-model="tagsLimited" :max="5" placeholder="Máx 5 tags" />
 </ClientOnly>
 
 ```vue
-<TagInput v-model="tags" :max="5" />
+<TagInput v-model="tagsLimited" :max="5" />
 ```
+
+### Deshabilitado (`disabled`)
+
+Deshabilita el input y la interacción con los tags mediante `disabled`.
+
+<TagInput v-model="tagsDisabled" disabled />
+
+```vue
+<TagInput v-model="tags" disabled />
+```
+
+## Props
+
+### modelValue
+
+Lista actual de tags (v-model con array de strings).
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string[]` | `[]` | ❌ |
+
+### color
+
+Color semántico de los tags.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
+
+### disabled
+
+Deshabilita el input y la interacción con los tags.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `boolean` | `false` | ❌ |
+
+### placeholder
+
+Placeholder del campo de texto.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | `'Add tag...'` | ❌ |
+
+### max
+
+Número máximo de tags permitidos (0 = sin límite).
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `number` | `0` | ❌ |
 
 ## Eventos
 
@@ -141,16 +171,20 @@ Número máximo de tags permitidos (0 = sin límite).
 |---|---|---|
 | `update:modelValue` | `string[]` | Se emite al añadir o eliminar un tag |
 
-## API
+## CSS Custom Properties
 
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `modelValue` | `string[]` | `[]` | Lista de tags (v-model) |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico de los tags |
-| `disabled` | `boolean` | `false` | Deshabilita el input |
-| `placeholder` | `string` | `'Add tag...'` | Placeholder del input |
-| `max` | `number` | `0` | Máximo de tags (0 = sin límite) |
 
-## Tokens usados
+<div class="table-wrapper">
 
-`--bg`, `--border`, `--font-mono`, `--text`, `--color-{name}`
+| Token | Default | Descripción |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Fondo base de la superficie. |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
+| `--cp-ease` | `cubic-bezier(.4, 0, .2, 1)` | Curva de easing por defecto para transiciones. |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

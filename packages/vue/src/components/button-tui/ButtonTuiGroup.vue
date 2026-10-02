@@ -12,6 +12,7 @@
       :icon="b.icon"
       :fill="b.fill || fill"
       :color="b.color || color"
+      :disabled="b.disabled || disabled"
       :design="design"
       @click="b.onClick"
     >{{ b.label }}</ButtonTui>
@@ -31,6 +32,8 @@ export interface ButtonTuiItem {
   onClick: (e: MouseEvent) => void;
   fill?: Fill;
   color?: Color;
+  /** Disable this button. A group-level `disabled` also disables every item. */
+  disabled?: boolean;
 }
 
 const props = withDefaults(
@@ -39,6 +42,8 @@ const props = withDefaults(
     fill?: Fill;
     color?: Color;
     gap?: number;
+    /** Disable every button in the group. */
+    disabled?: boolean;
     /** Design line (or inherit from `data-design`), passed through to buttons. */
     design?: DesignLine;
   }>(),
@@ -46,6 +51,7 @@ const props = withDefaults(
     fill: 'solid',
     color: DEFAULT_COLOR,
     gap: 0.4,
+    disabled: false,
   },
 );
 

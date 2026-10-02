@@ -69,6 +69,8 @@ Navegación breadcrumb con estilo terminal, colores semánticos y slot para cont
 
 ### Items (`items`)
 
+Se renderiza una entrada por cada objeto de `items`, con `href` opcional.
+
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
     <Breadcrumbs :items="simpleItems" />
@@ -105,27 +107,9 @@ const items = [
 </template>
 ```
 
-## Props
+### Separador (`separator`)
 
-### items
-
-Array de migas con `label` y `href` opcional.
-
-<ClientOnly>
-  <Breadcrumbs :items="[{ label: 'Home' }, { label: 'Docs', href: '/docs' }, { label: 'Actual' }]" />
-</ClientOnly>
-
-```vue
-<Breadcrumbs :items="[
-  { label: 'Home' },
-  { label: 'Docs', href: '/docs' },
-  { label: 'Actual' },
-]" />
-```
-
-### separator
-
-Carácter entre los ítems del breadcrumb.
+Tres caracteres separadores distintos entre los mismos ítems.
 
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.25rem;">
@@ -141,17 +125,38 @@ Carácter entre los ítems del breadcrumb.
 <Breadcrumbs separator="→" :items="[{ label: 'A' }, { label: 'B' }, { label: 'C' }]" />
 ```
 
+## Props
+
+### items
+
+Array de migas.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `Array<{label: string, href?: string}>` | `[]` | ✅ |
+
+Cada miga tiene esta forma:
+
+| Campo | Tipo | Requerido | Descripción |
+|---|---|---|---|
+| `label` | `string` | ✅ | Texto visible |
+| `href` | `string` | ❌ | Enlace opcional |
+
+### separator
+
+Carácter entre los ítems del breadcrumb.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | `'/'` | ❌ |
+
 ### color
 
 Color del último ítem y del hover de links.
 
-<ClientOnly>
-  <Breadcrumbs color="success" :items="[{ label: 'Root' }, { label: 'Deploy' }, { label: 'Live' }]" />
-</ClientOnly>
-
-```vue
-<Breadcrumbs color="success" :items="items" />
-```
+| Tipo | Default | Requerido |
+|---|---|---|
+| `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
 
 ## Slots
 
@@ -159,23 +164,17 @@ Color del último ítem y del hover de links.
 |---|---|
 | `default` | Alternativa a `items`, permite markup personalizado |
 
-## Tipos
+## CSS Custom Properties
 
-### BreadcrumbItem
 
-| Campo | Tipo | Requerido | Descripción |
-|---|---|---|---|
-| `label` | `string` | ✅ | Texto visible |
-| `href` | `string` | ❌ | Enlace opcional |
+<div class="table-wrapper">
 
-## API
+| Token | Default | Descripción |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
 
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `items` | `Array<{label, href?}>` | `[]` | Array de migas |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del último ítem y hover de links |
-| `separator` | `string` | `'/'` | Carácter entre ítems |
+</div>
 
-## Tokens usados
-
-`--font-mono`, `--text`, `--color-*`
+Ver [Theming](../theming.md) para la convención completa.

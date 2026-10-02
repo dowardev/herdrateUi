@@ -54,6 +54,8 @@ Keyboard key display element with terminal style.
 
 ### Básico (`keys`)
 
+Default and colored keycaps for `Ctrl`, `Enter` and `⌘`.
+
 <Kbd>Ctrl</Kbd>
 <Kbd color="success">Enter</Kbd>
 <Kbd color="warning">⌘</Kbd>
@@ -70,18 +72,9 @@ Keyboard key display element with terminal style.
 
 Semantic color of the keycap.
 
-<Kbd color="primary">Primary</Kbd>
-<Kbd color="success">Success</Kbd>
-<Kbd color="warning">Warning</Kbd>
-<Kbd color="danger">Danger</Kbd>
-
-```vue
-<Kbd color="primary">Primary</Kbd>
-<Kbd color="success">Success</Kbd>
-<Kbd color="warning">Warning</Kbd>
-<Kbd color="danger">Danger</Kbd>
-```
-
+| Type | Default | Required |
+|---|---|---|
+| `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
 ## Slots
 
 ### default
@@ -92,12 +85,19 @@ Content of the key (shortcut label).
 <Kbd>Ctrl</Kbd>
 ```
 
-## API
+## CSS Custom Properties
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Semantic color |
 
-## Tokens used
+<div class="table-wrapper">
 
-`--color-{name}`, `--bg-elevated`, `--border`, `--font-mono`
+| Token | Default | Description |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Monospace font stack for code-like content (key labels, log lines, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Accent color, mapped from the active semantic color. |
+| `--bg-elevated` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Background of floating surfaces (modals, dropdowns, popovers). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Outline and divider color for surfaces. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Secondary text for hints, annotations and disabled state. |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

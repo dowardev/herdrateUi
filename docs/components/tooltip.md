@@ -21,7 +21,6 @@ Informational tooltip that appears on hover over an element, with configurable d
   margin-top: 2.5rem;
 }
 </style>
-
 <div class="design-lines-demo">
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
@@ -165,6 +164,20 @@ Texto del tooltip.
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Border and arrow color |
 | `delay` | `number` | `300` | Milliseconds before showing |
 
-## Tokens used
+## CSS Custom Properties
 
-`--bg-elevated`, `--border`, `--font-mono`, `--color-{name}`
+
+<div class="table-wrapper">
+
+| Token | Default | Description |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Monospace font stack for code-like content (key labels, log lines, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Accent color, mapped from the active semantic color. |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Base background of the surface. |
+| `--bg-elevated` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Background of floating surfaces (modals, dropdowns, popovers). |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Primary text color used inside the component. |
+| `--cp-ease-snap` | `cubic-bezier(.3, 1.4, .5, 1)` | Snap easing (overshoots) for pop interactions. |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

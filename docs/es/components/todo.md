@@ -58,6 +58,8 @@ Lista de tareas checkable con estilo TUI minimal. Click para alternar entre `[ ]
 
 ### Básico (`items`)
 
+Lista items Todo cuyo estado se vincula con `v-model:done`.
+
 <ClientOnly>
   <div style="display: flex; flex-direction: column; gap: 0.25rem;">
     <Todo v-model:done="t1">Rediseñar Toast para que coincida con la estética esperada</Todo>
@@ -78,6 +80,10 @@ Lista de tareas checkable con estilo TUI minimal. Click para alternar entre `[ ]
 
 Estado completado del item.
 
+| Tipo | Default | Requerido |
+|---|---|---|
+| `boolean` | `false` | ❌ |
+
 ```vue
 <Todo v-model:done="task.done">Hacer algo</Todo>
 ```
@@ -86,22 +92,28 @@ Estado completado del item.
 
 Texto de la tarea como prop (alternativa al slot default).
 
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | — | ❌ |
+
 ```vue
 <Todo v-model:done="done" text="Hacer algo" />
 ```
 
-## API
+## CSS Custom Properties
 
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `text` | `string` | — | Texto de la tarea (alternativa a slot) |
-| `done` | `boolean` | `false` | Estado completado |
 
-| Evento | Tipo | Descripción |
+<div class="table-wrapper">
+
+| Token | Default | Descripción |
 |---|---|---|
-| `update:done` | `boolean` | Toggle de estado (v-model) |
-| `toggle` | `boolean` | Versión sin prefijo `update:` |
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Fondo base de la superficie. |
+| `--bg-elevated` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Fondo de superficies flotantes (modales, dropdowns, popovers). |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Texto secundario para pistas, anotaciones y estado deshabilitado. |
 
-## Tokens usados
+</div>
 
-`--font-mono`, `--text`, `--color-*`, `--border`
+Ver [Theming](../theming.md) para la convención completa.

@@ -54,6 +54,8 @@ Collapsible tree node with instant expansion.
 
 ### Básico (`label` + slots)
 
+Nests `TreeNode` children using the `label` slot for each node name.
+
 <TreeNode>
   <template #label>src</template>
   <TreeNode>
@@ -87,33 +89,9 @@ Collapsible tree node with instant expansion.
 ### label
 
 Content of the node (text or HTML).
-
-<TreeNode>
-  <template #label>src</template>
-  <TreeNode><template #label>App.vue</template></TreeNode>
-</TreeNode>
-
-```vue
-<TreeNode>
-  <template #label>src</template>
-  <TreeNode>
-    <template #label>components</template>
-  </TreeNode>
-</TreeNode>
-```
-
 ### default
 
 Nested child nodes (other `TreeNode`).
-
-```vue
-<TreeNode>
-  <template #label>src</template>
-  <TreeNode><template #label>App.vue</template></TreeNode>
-  <TreeNode><template #label>main.ts</template></TreeNode>
-</TreeNode>
-```
-
 ## API
 
 | Slot | Description |
@@ -121,6 +99,19 @@ Nested child nodes (other `TreeNode`).
 | `label` | Node content (text or HTML) |
 | `default` | Child nodes (other `TreeNode`) |
 
-## Tokens used
+## CSS Custom Properties
 
-`--font-mono`, `--text`, `--border`, `--color-*`
+
+<div class="table-wrapper">
+
+| Token | Default | Description |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Monospace font stack for code-like content (key labels, log lines, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Accent color, mapped from the active semantic color. |
+| `--bg-alt` | from theme (`--ctp-latte-mantle` / `--ctp-mocha-mantle`) | Alternate background (the next layer down from the base). |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Primary text color used inside the component. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Secondary text for hints, annotations and disabled state. |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

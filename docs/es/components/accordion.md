@@ -13,6 +13,7 @@ const items = [
 
 const opened = ref<number[]>([])
 const multiOpened = ref<number[]>([0, 2])
+const controlledOpened = ref<number[]>([2])
 
 // Global design line (sidebar select) drives which tab loads.
 const line = useDesign()
@@ -31,7 +32,6 @@ Panel plegable estilo terminal con soporte para múltiples secciones y slots per
   margin-bottom: 1rem;
 }
 </style>
-
 <div class="design-lines-demo">
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
@@ -64,7 +64,11 @@ Panel plegable estilo terminal con soporte para múltiples secciones y slots per
 
 ## Demo
 
-### Apertura simple (default)
+### Estado de apertura
+
+Cuántos paneles pueden estar abiertos a la vez: uno, `multiple` o controlados por el padre.
+
+#### Apertura simple (default)
 
 Un solo panel abierto a la vez. Al abrir otro, el anterior se cierra.
 
@@ -95,7 +99,7 @@ const opened = ref<number[]>([])
 </template>
 ```
 
-### Apertura múltiple (`multiple`)
+#### Apertura múltiple (`multiple`)
 
 Permite tener varios paneles abiertos simultáneamente.
 
@@ -126,27 +130,39 @@ const multiOpened = ref<number[]>([0, 2])
 </template>
 ```
 
-### Control de estado (`update:opened`)
+#### Controlado (`opened` / `update:opened`)
 
-Observa qué paneles están abiertos vía el evento `update:opened`.
+Vincula los paneles abiertos al estado padre con `:opened` y `update:opened`. Los botones controlan el acordeón de verdad.
 
 <ClientOnly>
-  <Accordion :items="items" @update:opened="opened = $event" />
-  <p v-if="opened.length" style="color:var(--text-muted);font-size:0.8rem;margin-top:0.5rem;">Abiertos: {{ opened }}</p>
+  <div style="display:flex;gap:0.5rem;margin-bottom:0.5rem;">
+    <ButtonTui @click="controlledOpened = []">Cerrar todos</ButtonTui>
+    <ButtonTui @click="controlledOpened = [0, 1, 2, 3, 4]">Abrir todos</ButtonTui>
+    <ButtonTui @click="controlledOpened = [2]">Solo Sonido</ButtonTui>
+  </div>
+  <Accordion :items="items" multiple :opened="controlledOpened" @update:opened="controlledOpened = $event" />
+  <p v-if="controlledOpened.length" style="color:var(--text-muted);font-size:0.8rem;margin-top:0.5rem;">Abiertos: {{ controlledOpened }}</p>
 </ClientOnly>
 
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Accordion } from '@dowardev/herdrate-vue'
+import { Accordion, ButtonTui } from '@dowardev/herdrate-vue'
 
 const items = [ ... ]
-const opened = ref<number[]>([])
+const controlledOpened = ref<number[]>([2])
 </script>
 
 <template>
-  <Accordion :items="items" @update:opened="opened = $event" />
-  <p v-if="opened.length">Abiertos: {{ opened }}</p>
+  <div style="display:flex;gap:0.5rem;margin-bottom:0.5rem;">
+    <ButtonTui @click="controlledOpened = []">Cerrar todos</ButtonTui>
+
+    <ButtonTui @click="controlledOpened = [0, 1, 2, 3, 4]">Abrir todos</ButtonTui>
+
+    <ButtonTui @click="controlledOpened = [2]">Solo Sonido</ButtonTui>
+  </div>
+
+  <Accordion :items="items" multiple :opened="controlledOpened" @update:opened="controlledOpened = $event" />
 </template>
 ```
 
@@ -155,20 +171,20 @@ const opened = ref<number[]>([])
 Cambia el color del marcador ▶/▼.
 
 <ClientOnly>
-  <Accordion :items="[{ title: 'Primary', content: 'Color primary' }]" color="primary" />
-  <Accordion :items="[{ title: 'Success', content: 'Color success' }]" color="success" />
-  <Accordion :items="[{ title: 'Danger', content: 'Color danger' }]" color="danger" />
-  <Accordion :items="[{ title: 'Warning', content: 'Color warning' }]" color="warning" />
+  <Accordion :items="[{ title: 'Primary', content: 'Color primary' }]" color="primary" :default-opened="[0]" />
+  <Accordion :items="[{ title: 'Success', content: 'Color success' }]" color="success" :default-opened="[0]" />
+  <Accordion :items="[{ title: 'Danger', content: 'Color danger' }]" color="danger" :default-opened="[0]" />
+  <Accordion :items="[{ title: 'Warning', content: 'Color warning' }]" color="warning" :default-opened="[0]" />
 </ClientOnly>
 
 ```vue
-<Accordion :items="[{ title: 'Primary', content: 'Color primary' }]" color="primary" />
-<Accordion :items="[{ title: 'Success', content: 'Color success' }]" color="success" />
-<Accordion :items="[{ title: 'Danger', content: 'Color danger' }]" color="danger" />
-<Accordion :items="[{ title: 'Warning', content: 'Color warning' }]" color="warning" />
+<Accordion :items="[{ title: 'Primary', content: 'Color primary' }]" color="primary" :default-opened="[0]" />
+<Accordion :items="[{ title: 'Success', content: 'Color success' }]" color="success" :default-opened="[0]" />
+<Accordion :items="[{ title: 'Danger', content: 'Color danger' }]" color="danger" :default-opened="[0]" />
+<Accordion :items="[{ title: 'Warning', content: 'Color warning' }]" color="warning" :default-opened="[0]" />
 ```
 
-### Contenido rico (slots)
+### Contenido rico (slot `item-content`)
 
 Usa el slot `item-content` para contenido HTML/Vue en lugar de `content` string.
 
@@ -176,7 +192,7 @@ Usa el slot `item-content` para contenido HTML/Vue en lugar de `content` string.
   <Accordion :items="[
     { title: 'Con lista', content: '' },
     { title: 'Con código', content: '' },
-  ]">
+  ]" :default-opened="[0]">
     <template #item-content="{ index }">
       <div v-if="index === 0">
         <ul><li>Item A</li><li>Item B</li><li>Item C</li></ul>
@@ -201,46 +217,50 @@ Usa el slot `item-content` para contenido HTML/Vue en lugar de `content` string.
 
 ### items
 
-Array de paneles del acordeón. Cada item puede tener `title` y `content`.
+Array de paneles del acordeón.
 
-<ClientOnly>
-  <Accordion :items="[{ title: 'Sección 1', content: 'Contenido' }, { title: 'Sección 2', content: 'Contenido' }]" />
-</ClientOnly>
+| Tipo | Default | Requerido |
+|---|---|---|
+| `Array<{title: string, content?: string}>` | `[]` | ❌ |
 
-```vue
-<Accordion :items="[
-  { title: 'Sección 1', content: 'Contenido' },
-  { title: 'Sección 2', content: 'Contenido' },
-]" />
-```
+Cada item tiene esta forma:
+
+| Campo | Tipo | Requerido | Descripción |
+|---|---|---|---|
+| `title` | `string` | ✅ | Título del panel |
+| `content` | `string` | ❌ | Contenido del panel |
 
 ### multiple
 
-Permite abrir varios paneles simultáneamente.
+Permite abrir varios paneles simultáneamente. Por defecto abre uno solo, lo que impone como máximo un panel abierto: tanto la interacción como `defaultOpened` conservan sólo el índice más reciente.
 
-<ClientOnly>
-  <Accordion :items="items" multiple />
-</ClientOnly>
+| Tipo | Default | Requerido |
+|---|---|---|
+| `boolean` | `false` | ❌ |
 
-```vue
-<Accordion :items="items" multiple />
-```
+### opened
+
+Índices de los paneles abiertos, manejados por tu código. Conectalo con `v-model:opened` o con `:opened` + `@update:opened` ([ver demo "Estado de apertura"](#estado-de-apertura)). Mientras lo pasás, el componente **no** guarda estado propio: al hacer clic emite `update:opened` y solo abre el panel si vos actualizás el prop. Tiene prioridad sobre `defaultOpened`. Para que el padre imponga un solo panel abierto, pasá una lista con un solo elemento.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `number[]` | `undefined` | ❌ |
+
+### defaultOpened
+
+Índices de paneles abiertos en el primer render (modo no controlado). Sólo aplica al inicio: los cambios posteriores se ignoran. En modo simple se conserva únicamente el último índice.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `number[]` | `[]` | ❌ |
 
 ### color
 
-Color del indicador de apertura (▶/▼).
+Color del indicador de apertura (▶/▼). Aplica a ambas líneas de diseño.
 
-<ClientOnly>
-  <Accordion :items="[{ title: 'Primary', content: 'Color primary' }]" color="primary" />
-  <Accordion :items="[{ title: 'Success', content: 'Color success' }]" color="success" />
-  <Accordion :items="[{ title: 'Danger', content: 'Color danger' }]" color="danger" />
-</ClientOnly>
-
-```vue
-<Accordion :items="[{ title: 'Primary', content: 'Color primary' }]" color="primary" />
-<Accordion :items="[{ title: 'Success', content: 'Color success' }]" color="success" />
-<Accordion :items="[{ title: 'Danger', content: 'Color danger' }]" color="danger" />
-```
+| Tipo | Default | Requerido |
+|---|---|---|
+| `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
 
 ## Eventos
 
@@ -248,23 +268,40 @@ Color del indicador de apertura (▶/▼).
 |---|---|---|
 | `update:opened` | `indices: number[]` | Se emite al cambiar paneles abiertos |
 
-## Tipos
+## Slots
 
-### AccordionItem
+| Slot | Props | Descripción |
+|---|---|---|
+| `item-title` | `{ index: number, open: boolean }` | Cabecera personalizada (reemplaza indicador + título) |
+| `item-content` | `{ index: number, open: boolean }` | Cuerpo personalizado (reemplaza el string `content`) |
 
-| Campo | Tipo | Requerido | Descripción |
-|---|---|---|---|
-| `title` | `string` | ✅ | Título del panel |
-| `content` | `string` | ❌ | Contenido del panel |
+## CSS Custom Properties
 
-## API
 
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `items` | `AccordionItem[]` | `[]` | Paneles del acordeón |
-| `multiple` | `boolean` | `false` | Permitir múltiples abiertos |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del indicador |
+<div class="table-wrapper">
 
-## Tokens usados
+| Token | Default | Descripción |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Fondo base de la superficie. |
+| `--bg-alt` | from theme (`--ctp-latte-mantle` / `--ctp-mocha-mantle`) | Fondo alternativo (la capa por debajo del fondo base). |
+| `--bg-elevated` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Fondo de superficies flotantes (modales, dropdowns, popovers). |
+| `--bg-panel` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-surface1`) | Fondo de superficies tipo panel (cards, accordions). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Texto secundario para pistas, anotaciones y estado deshabilitado. |
+| `--color-primary` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color semántico primario (mauve en Catppuccin). |
+| `--color-secondary` | from theme (`--ctp-latte-lavender` / `--ctp-mocha-lavender`) | Color semántico secundario (lavender en Catppuccin). |
+| `--color-tertiary` | from theme (`--ctp-latte-blue` / `--ctp-mocha-blue`) | Color semántico terciario (blue en Catppuccin). |
+| `--color-success` | from theme (`--ctp-latte-green` / `--ctp-mocha-green`) | Color semántico de éxito (green en Catppuccin). |
+| `--color-warning` | from theme (`--ctp-latte-yellow` / `--ctp-mocha-yellow`) | Color semántico de advertencia (yellow en Catppuccin). |
+| `--color-danger` | from theme (`--ctp-latte-red` / `--ctp-mocha-red`) | Color semántico de peligro (red en Catppuccin). |
+| `--color-light` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-rosewater`) | Color semántico claro (tono de contraste más claro). |
+| `--color-medium` | from theme (`--ctp-latte-overlay0` / `--ctp-mocha-overlay2`) | Color semántico medio (tono intermedio). |
+| `--color-dark` | from theme (`--ctp-latte-text` / `--ctp-mocha-subtext1`) | Color semántico oscuro (texto de alto contraste). |
+| `--accordion-indicator` | `var(--text-muted)` when closed, `var(--color-primary)` when open | Color del chevron ▶/▼ de apertura de los items del accordion. |
 
-`--font-mono`, `--bg`, `--border`, `--text`, `--color-*`
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

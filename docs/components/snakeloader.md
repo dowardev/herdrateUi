@@ -49,15 +49,14 @@ Loading animation inspired by terminals with Unicode block characters.
 </Tabs>
 ```
 
-
 ## Demo
 
 ### Básico (`progress`)
 
+Basic loader with different colors and speeds around the default slot text.
+
 <SnakeLoader speed="1.2s" color="primary">Primary</SnakeLoader>
-
 <SnakeLoader speed="0.8s" color="secondary">Secondary</SnakeLoader>
-
 <SnakeLoader speed="1.4s" color="success">Success</SnakeLoader>
 
 ```vue
@@ -66,11 +65,9 @@ Loading animation inspired by terminals with Unicode block characters.
 <SnakeLoader speed="1.4s" color="success">Success</SnakeLoader>
 ```
 
-## Props
+### Speed (`speed`)
 
-### speed
-
-Duration of the CSS animation.
+Overrides the CSS animation duration through the `speed` prop.
 
 <SnakeLoader speed="0.6s" color="primary">Fast</SnakeLoader>
 <SnakeLoader speed="1.2s" color="primary">Normal</SnakeLoader>
@@ -82,9 +79,9 @@ Duration of the CSS animation.
 <SnakeLoader speed="2s" color="primary">Slow</SnakeLoader>
 ```
 
-### color
+### Color (`color`)
 
-Color of the animated block.
+Sets the color of the animated block through the `color` prop.
 
 <div style="display: flex; gap: 1rem; align-items: center;">
   <SnakeLoader color="primary">P</SnakeLoader>
@@ -99,13 +96,23 @@ Color of the animated block.
 <SnakeLoader color="warning">W</SnakeLoader>
 <SnakeLoader color="danger">D</SnakeLoader>
 ```
+## Props
 
-## API
+### speed
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `speed` | `string` | `'1.2s'` | Duration of the CSS animation |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color of the animated block |
+Duration of the CSS animation.
+
+| Type | Default | Required |
+|---|---|---|
+| `string` | `'1.2s'` | ❌ |
+
+### color
+
+Color of the animated block.
+
+| Type | Default | Required |
+|---|---|---|
+| `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
 
 ## Slot
 
@@ -113,6 +120,22 @@ Color of the animated block.
 |---|---|
 | `default` | Text to show next to the animation |
 
-## Tokens used
+## CSS Custom Properties
 
-`--color-{name}`, `--text-muted`, `--bg-panel`, `--border`, `--font-mono`, `--loader-speed`
+
+<div class="table-wrapper">
+
+| Token | Default | Description |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Monospace font stack for code-like content (key labels, log lines, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Accent color, mapped from the active semantic color. |
+| `--bg-panel` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-surface1`) | Background of panel-like raised surfaces (cards, accordions). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Outline and divider color for surfaces. |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Primary text color used inside the component. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Secondary text for hints, annotations and disabled state. |
+| `--color-primary` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Primary semantic color (mauve in Catppuccin). |
+| `--loader-speed` | `var(--loader-speed, 1.6s)` | Animation speed (one full loop) of the SnakeLoader. |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

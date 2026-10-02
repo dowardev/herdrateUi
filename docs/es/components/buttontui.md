@@ -68,43 +68,39 @@ Botones con estilo terminal (TUI), minimales, diseñados para Catppuccin Mocha.
 
 ## Demo
 
-### Variantes (`color` / `fill` / `icon`)
+### Color (`color`)
 
-<div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-  <ButtonTui icon="↖" fill="solid" color="primary">[ TL ]</ButtonTui>
-  <ButtonTui icon="↗" fill="outline" color="success">[ TR ]</ButtonTui>
-  <ButtonTui icon="↘" fill="clear" color="danger">[ BR ]</ButtonTui>
+Color semántico del botón en todas las variantes disponibles.
+
+<div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+  <ButtonTui color="primary">primary</ButtonTui>
+  <ButtonTui color="secondary">secondary</ButtonTui>
+  <ButtonTui color="tertiary">tertiary</ButtonTui>
+  <ButtonTui color="success">success</ButtonTui>
+  <ButtonTui color="warning">warning</ButtonTui>
+  <ButtonTui color="danger">danger</ButtonTui>
+  <ButtonTui color="light">light</ButtonTui>
+  <ButtonTui color="medium">medium</ButtonTui>
+  <ButtonTui color="dark">dark</ButtonTui>
 </div>
 
 ```vue
-<ButtonTui icon="↖" fill="solid" color="primary">[ TL ]</ButtonTui>
-<ButtonTui icon="↗" fill="outline" color="success">[ TR ]</ButtonTui>
-<ButtonTui icon="↘" fill="clear" color="danger">[ BR ]</ButtonTui>
+<ButtonTui color="primary">primary</ButtonTui>
+<ButtonTui color="secondary">secondary</ButtonTui>
+<ButtonTui color="tertiary">tertiary</ButtonTui>
+<ButtonTui color="success">success</ButtonTui>
+<ButtonTui color="warning">warning</ButtonTui>
+<ButtonTui color="danger">danger</ButtonTui>
+<ButtonTui color="light">light</ButtonTui>
+<ButtonTui color="medium">medium</ButtonTui>
+<ButtonTui color="dark">dark</ButtonTui>
 ```
 
-## Props
-
-### icon
-
-Icono o emoji opcional dentro del botón.
-
-<div style="display: flex; gap: 0.75rem;">
-  <ButtonTui icon="⌨" color="primary">Key</ButtonTui>
-  <ButtonTui icon="⚙" color="success">Config</ButtonTui>
-  <ButtonTui color="medium">Sin icono</ButtonTui>
-</div>
-
-```vue
-<ButtonTui icon="⌨" color="primary">Key</ButtonTui>
-<ButtonTui icon="⚙" color="success">Config</ButtonTui>
-<ButtonTui color="medium">Sin icono</ButtonTui>
-```
-
-### fill
+### Fill (`fill`)
 
 Modo de relleno del botón: `solid`, `outline` o `clear`.
 
-<div style="display: flex; gap: 0.75rem;">
+<div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
   <ButtonTui fill="solid" color="primary">solid</ButtonTui>
   <ButtonTui fill="outline" color="primary">outline</ButtonTui>
   <ButtonTui fill="clear" color="primary">clear</ButtonTui>
@@ -116,36 +112,88 @@ Modo de relleno del botón: `solid`, `outline` o `clear`.
 <ButtonTui fill="clear" color="primary">clear</ButtonTui>
 ```
 
+### Icono (`icon`)
+
+Icono o emoji opcional dentro del botón.
+
+<div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+  <ButtonTui icon="↖">arriba-izquierda</ButtonTui>
+  <ButtonTui icon="↗">arriba-derecha</ButtonTui>
+  <ButtonTui icon="↘">abajo-derecha</ButtonTui>
+  <ButtonTui icon="↙">abajo-izquierda</ButtonTui>
+  <ButtonTui icon="★">estrella</ButtonTui>
+</div>
+
+```vue
+<ButtonTui icon="↖">arriba-izquierda</ButtonTui>
+<ButtonTui icon="↗">arriba-derecha</ButtonTui>
+<ButtonTui icon="↘">abajo-derecha</ButtonTui>
+<ButtonTui icon="↙">abajo-izquierda</ButtonTui>
+<ButtonTui icon="★">estrella</ButtonTui>
+```
+
+### Deshabilitado (`disabled`)
+
+Un botón activo junto a uno `disabled`.
+
+<div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+  <ButtonTui color="primary">Activo</ButtonTui>
+  <ButtonTui color="primary" disabled>Deshabilitado</ButtonTui>
+</div>
+
+```vue
+<ButtonTui color="primary">Activo</ButtonTui>
+<ButtonTui color="primary" disabled>Deshabilitado</ButtonTui>
+```
+
+## Props
+
+### icon
+
+Icono o emoji opcional dentro del botón.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | — | ❌ |
+
+### disabled
+
+Deshabilita la interacción (`disabled` nativo, no emite `click`).
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `boolean` | `false` | ❌ |
+
+### fill
+
+Modo de relleno del botón: `solid`, `outline` o `clear`.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `'solid' \| 'outline' \| 'clear'` | `'solid'` | ❌ |
+
 ### color
 
 Color semántico del botón.
 
-<div style="display: flex; gap: 0.75rem;">
-  <ButtonTui color="primary">primary</ButtonTui>
-  <ButtonTui color="success">success</ButtonTui>
-  <ButtonTui color="warning">warning</ButtonTui>
-  <ButtonTui color="danger">danger</ButtonTui>
+| Tipo | Default | Requerido |
+|---|---|---|
+| `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
+
+## CSS Custom Properties
+
+
+<div class="table-wrapper">
+
+| Token | Default | Descripción |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Fondo base de la superficie. |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Texto secundario para pistas, anotaciones y estado deshabilitado. |
+
 </div>
 
-```vue
-<ButtonTui color="primary">primary</ButtonTui>
-<ButtonTui color="success">success</ButtonTui>
-<ButtonTui color="warning">warning</ButtonTui>
-<ButtonTui color="danger">danger</ButtonTui>
-```
-
-## API
-
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `icon` | `string` | — | Icono o emoji (opcional) |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico |
-| `fill` | `'solid' \| 'outline' \| 'clear'` | `'solid'` | Modo de relleno |
-
-| Evento | Tipo | Descripción |
-|---|---|---|
-| `click` | — | Se dispara al hacer clic |
-
-## Tokens usados
-
-`--font-mono`, `--color-*`, `--fill-*`
+Ver [Theming](../theming.md) para la convención completa.

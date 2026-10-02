@@ -18,7 +18,6 @@ Etiqueta ligera para mostrar información resaltada con variantes de color.
   margin-bottom: 1rem;
 }
 </style>
-
 <div class="design-lines-demo">
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
@@ -53,6 +52,8 @@ Etiqueta ligera para mostrar información resaltada con variantes de color.
 
 ### Color (`color`)
 
+Todas las variantes de `color`, de `primary` a `dark`.
+
 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
   <Badge color="primary">primary</Badge>
   <Badge color="secondary">secondary</Badge>
@@ -79,6 +80,8 @@ Etiqueta ligera para mostrar información resaltada con variantes de color.
 
 ### Contenido (`default` slot)
 
+El texto pasado por el slot `default` se convierte en el contenido del badge.
+
 <Badge>NEW</Badge>
 <Badge>v2.1.0</Badge>
 <Badge>beta</Badge>
@@ -95,24 +98,20 @@ Etiqueta ligera para mostrar información resaltada con variantes de color.
 
 Define el color semántico del badge.
 
-<div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-  <Badge color="primary">Primary</Badge>
-  <Badge color="success">Success</Badge>
-  <Badge color="danger">Danger</Badge>
+| Tipo | Default | Requerido |
+|---|---|---|
+| `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
+
+## CSS Custom Properties
+
+
+<div class="table-wrapper">
+
+| Token | Default | Descripción |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
+| `--bg-panel` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-surface1`) | Fondo de superficies tipo panel (cards, accordions). |
+
 </div>
 
-```vue
-<Badge color="primary">Primary</Badge>
-<Badge color="success">Success</Badge>
-<Badge color="danger">Danger</Badge>
-```
-
-## API
-
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico del badge |
-
-## Tokens usados
-
-`--color-{name}`, `--bg`, `--text`, `--border`, `--font-mono`
+Ver [Theming](../theming.md) para la convención completa.

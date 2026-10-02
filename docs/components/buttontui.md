@@ -68,43 +68,39 @@ Terminal-style (TUI) minimal buttons, designed for Catppuccin Mocha.
 
 ## Demo
 
-### Variantes (`color` / `fill` / `icon`)
+### Color (`color`)
 
-<div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-  <ButtonTui icon="↖" fill="solid" color="primary">[ TL ]</ButtonTui>
-  <ButtonTui icon="↗" fill="outline" color="success">[ TR ]</ButtonTui>
-  <ButtonTui icon="↘" fill="clear" color="danger">[ BR ]</ButtonTui>
+Semantic color of the button across all available variants.
+
+<div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+  <ButtonTui color="primary">primary</ButtonTui>
+  <ButtonTui color="secondary">secondary</ButtonTui>
+  <ButtonTui color="tertiary">tertiary</ButtonTui>
+  <ButtonTui color="success">success</ButtonTui>
+  <ButtonTui color="warning">warning</ButtonTui>
+  <ButtonTui color="danger">danger</ButtonTui>
+  <ButtonTui color="light">light</ButtonTui>
+  <ButtonTui color="medium">medium</ButtonTui>
+  <ButtonTui color="dark">dark</ButtonTui>
 </div>
 
 ```vue
-<ButtonTui icon="↖" fill="solid" color="primary">[ TL ]</ButtonTui>
-<ButtonTui icon="↗" fill="outline" color="success">[ TR ]</ButtonTui>
-<ButtonTui icon="↘" fill="clear" color="danger">[ BR ]</ButtonTui>
+<ButtonTui color="primary">primary</ButtonTui>
+<ButtonTui color="secondary">secondary</ButtonTui>
+<ButtonTui color="tertiary">tertiary</ButtonTui>
+<ButtonTui color="success">success</ButtonTui>
+<ButtonTui color="warning">warning</ButtonTui>
+<ButtonTui color="danger">danger</ButtonTui>
+<ButtonTui color="light">light</ButtonTui>
+<ButtonTui color="medium">medium</ButtonTui>
+<ButtonTui color="dark">dark</ButtonTui>
 ```
 
-## Props
-
-### icon
-
-Optional icon or emoji inside the button.
-
-<div style="display: flex; gap: 0.75rem;">
-  <ButtonTui icon="⌨" color="primary">Key</ButtonTui>
-  <ButtonTui icon="⚙" color="success">Config</ButtonTui>
-  <ButtonTui color="medium">No icon</ButtonTui>
-</div>
-
-```vue
-<ButtonTui icon="⌨" color="primary">Key</ButtonTui>
-<ButtonTui icon="⚙" color="success">Config</ButtonTui>
-<ButtonTui color="medium">No icon</ButtonTui>
-```
-
-### fill
+### Fill (`fill`)
 
 Button fill mode: `solid`, `outline` or `clear`.
 
-<div style="display: flex; gap: 0.75rem;">
+<div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
   <ButtonTui fill="solid" color="primary">solid</ButtonTui>
   <ButtonTui fill="outline" color="primary">outline</ButtonTui>
   <ButtonTui fill="clear" color="primary">clear</ButtonTui>
@@ -116,36 +112,88 @@ Button fill mode: `solid`, `outline` or `clear`.
 <ButtonTui fill="clear" color="primary">clear</ButtonTui>
 ```
 
+### Icon (`icon`)
+
+Optional icon or emoji inside the button.
+
+<div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
+  <ButtonTui icon="↖">top-left</ButtonTui>
+  <ButtonTui icon="↗">top-right</ButtonTui>
+  <ButtonTui icon="↘">bottom-right</ButtonTui>
+  <ButtonTui icon="↙">bottom-left</ButtonTui>
+  <ButtonTui icon="★">star</ButtonTui>
+</div>
+
+```vue
+<ButtonTui icon="↖">top-left</ButtonTui>
+<ButtonTui icon="↗">top-right</ButtonTui>
+<ButtonTui icon="↘">bottom-right</ButtonTui>
+<ButtonTui icon="↙">bottom-left</ButtonTui>
+<ButtonTui icon="★">star</ButtonTui>
+```
+
+### Disabled (`disabled`)
+
+An active button next to a `disabled` one.
+
+<div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+  <ButtonTui color="primary">Active</ButtonTui>
+  <ButtonTui color="primary" disabled>Disabled</ButtonTui>
+</div>
+
+```vue
+<ButtonTui color="primary">Active</ButtonTui>
+<ButtonTui color="primary" disabled>Disabled</ButtonTui>
+```
+
+## Props
+
+### icon
+
+Optional icon or emoji inside the button.
+
+| Type | Default | Required |
+|---|---|---|
+| `string` | — | ❌ |
+
+### disabled
+
+Disables interaction (native `disabled`, no `click` emitted).
+
+| Type | Default | Required |
+|---|---|---|
+| `boolean` | `false` | ❌ |
+
+### fill
+
+Button fill mode: `solid`, `outline` or `clear`.
+
+| Type | Default | Required |
+|---|---|---|
+| `'solid' \| 'outline' \| 'clear'` | `'solid'` | ❌ |
+
 ### color
 
 Semantic color of the button.
 
-<div style="display: flex; gap: 0.75rem;">
-  <ButtonTui color="primary">primary</ButtonTui>
-  <ButtonTui color="success">success</ButtonTui>
-  <ButtonTui color="warning">warning</ButtonTui>
-  <ButtonTui color="danger">danger</ButtonTui>
+| Type | Default | Required |
+|---|---|---|
+| `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
+
+## CSS Custom Properties
+
+
+<div class="table-wrapper">
+
+| Token | Default | Description |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Monospace font stack for code-like content (key labels, log lines, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Accent color, mapped from the active semantic color. |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Base background of the surface. |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Outline and divider color for surfaces. |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Primary text color used inside the component. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Secondary text for hints, annotations and disabled state. |
+
 </div>
 
-```vue
-<ButtonTui color="primary">primary</ButtonTui>
-<ButtonTui color="success">success</ButtonTui>
-<ButtonTui color="warning">warning</ButtonTui>
-<ButtonTui color="danger">danger</ButtonTui>
-```
-
-## API
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `icon` | `string` | — | Icon or emoji (optional) |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Semantic color |
-| `fill` | `'solid' \| 'outline' \| 'clear'` | `'solid'` | Fill mode |
-
-| Event | Type | Description |
-|---|---|---|
-| `click` | — | Emitted on click |
-
-## Tokens used
-
-`--font-mono`, `--color-*`, `--fill-*`
+Ver [Theming](../theming.md) para la convención completa.

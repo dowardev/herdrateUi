@@ -49,17 +49,17 @@ Versatile container with header, body and footer, plus optional vertical divider
 </Tabs>
 ```
 
-
 ## Demo
 
 ### Básico (`title`)
+
+A panel with header, content, and footer through the `title` prop and slots.
 
 <Panel divider>
   <template #header>&#x1f4cb; Panel</template>
   Main panel content.
   <template #footer>&#x26a1; Footer with information</template>
 </Panel>
-
 <Panel>
   <template #header>&#x1f4cb; No divider</template>
   Panel without the vertical divider.
@@ -80,18 +80,15 @@ Versatile container with header, body and footer, plus optional vertical divider
 </Panel>
 ```
 
-## Props
+### Divider (`divider`)
 
-### divider
-
-Shows a vertical divider (`│`) to the left of the content.
+Compares panels with and without the `divider` prop.
 
 <Panel divider>
   <template #header>With divider</template>
   Content with vertical line.
   <template #footer>Footer</template>
 </Panel>
-
 <Panel>
   <template #header>No divider</template>
   Content without vertical line.
@@ -102,41 +99,40 @@ Shows a vertical divider (`│`) to the left of the content.
 <Panel divider>
 <Panel>
 ```
+## Props
+
+### divider
+
+Shows a vertical divider (`│`) to the left of the content.
+
+| Type | Default | Required |
+|---|---|---|
+| `boolean` | `false` | ❌ |
 
 ## Slots
 
-### header
+| Slot | Description |
+|---|---|
+| `header` | Panel header |
+| `default` | Main panel content |
+| `footer` | Panel footer |
+## CSS Custom Properties
 
-Panel header.
 
-```vue
-<Panel>
-  <template #header>Header</template>
-  ...
-</Panel>
-```
+<div class="table-wrapper">
 
-### default
+| Token | Default | Description |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Monospace font stack for code-like content (key labels, log lines, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Accent color, mapped from the active semantic color. |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Base background of the surface. |
+| `--bg-alt` | from theme (`--ctp-latte-mantle` / `--ctp-mocha-mantle`) | Alternate background (the next layer down from the base). |
+| `--bg-panel` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-surface1`) | Background of panel-like raised surfaces (cards, accordions). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Outline and divider color for surfaces. |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Primary text color used inside the component. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Secondary text for hints, annotations and disabled state. |
+| `--cp-ease` | `cubic-bezier(.4, 0, .2, 1)` | Default easing curve for transitions. |
 
-Main panel content.
+</div>
 
-### footer
-
-Panel footer.
-
-```vue
-<Panel>
-  ...
-  <template #footer>Footer</template>
-</Panel>
-```
-
-## API
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `divider` | `boolean` | `false` | Show vertical divider (`│`) |
-
-## Tokens used
-
-`--bg-panel`, `--bg`, `--text`, `--border`, `--font-mono`
+Ver [Theming](../theming.md) para la convención completa.

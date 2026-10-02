@@ -18,7 +18,6 @@ Circular avatar with initial and deterministic color based on the FNV-1a hash of
   margin-bottom: 1rem;
 }
 </style>
-
 <div class="design-lines-demo">
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
@@ -73,6 +72,8 @@ Deterministic color and initial from hash.
 
 ### Tamaño (`size`)
 
+Three sizes: `sm`, `md` and `lg`.
+
 <div style="display: flex; gap: 0.75rem; align-items: center;">
   <Avatar name="A" size="sm" />
   <Avatar name="B" size="md" />
@@ -93,34 +94,27 @@ Deterministic color and initial from hash.
 
 Name used to extract the initial and generate the color from the hash.
 
-```vue
-<Avatar name="Alice" />
-<Avatar name="Bob" />
-```
+| Type | Default | Required |
+|---|---|---|
+| `string` | — | ✅ |
 
 ### size
 
 Avatar size.
 
-<div style="display: flex; gap: 0.75rem; align-items: center;">
-  <Avatar name="A" size="sm" />
-  <Avatar name="B" size="md" />
-  <Avatar name="C" size="lg" />
+| Type | Default | Required |
+|---|---|---|
+| `'sm' \| 'md' \| 'lg'` | `'md'` | ❌ |
+
+## CSS Custom Properties
+
+
+<div class="table-wrapper">
+
+| Token | Default | Description |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Monospace font stack for code-like content (key labels, log lines, chips). |
+
 </div>
 
-```vue
-<Avatar name="A" size="sm" />
-<Avatar name="B" size="md" />
-<Avatar name="C" size="lg" />
-```
-
-## API
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `name` | `string` | — | Name used to extract initial and hash |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Avatar size |
-
-## Tokens used
-
-`--font-mono`, `--color-*`
+Ver [Theming](../theming.md) para la convención completa.

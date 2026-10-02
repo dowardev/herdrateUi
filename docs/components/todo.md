@@ -59,6 +59,8 @@ Checkable task list with minimal TUI style. Click to toggle between `[ ]` and `[
 
 ### Básico (`items`)
 
+Lists Todo items whose state is bound with `v-model:done`.
+
 <ClientOnly>
   <div style="display: flex; flex-direction: column; gap: 0.25rem;">
     <Todo v-model:done="t1">Redesign Toast to match the expected aesthetics</Todo>
@@ -79,6 +81,10 @@ Checkable task list with minimal TUI style. Click to toggle between `[ ]` and `[
 
 Completed state of the item.
 
+| Type | Default | Required |
+|---|---|---|
+| `boolean` | `false` | ❌ |
+
 ```vue
 <Todo v-model:done="task.done">Do something</Todo>
 ```
@@ -87,22 +93,28 @@ Completed state of the item.
 
 Task text as a prop (alternative to the default slot).
 
+| Type | Default | Required |
+|---|---|---|
+| `string` | — | ❌ |
+
 ```vue
 <Todo v-model:done="done" text="Do something" />
 ```
 
-## API
+## CSS Custom Properties
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `text` | `string` | — | Task text (alternative to slot) |
-| `done` | `boolean` | `false` | Completed state |
 
-| Event | Type | Description |
+<div class="table-wrapper">
+
+| Token | Default | Description |
 |---|---|---|
-| `update:done` | `boolean` | State toggle (v-model) |
-| `toggle` | `boolean` | Version without the `update:` prefix |
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Monospace font stack for code-like content (key labels, log lines, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Accent color, mapped from the active semantic color. |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Base background of the surface. |
+| `--bg-elevated` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Background of floating surfaces (modals, dropdowns, popovers). |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Primary text color used inside the component. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Secondary text for hints, annotations and disabled state. |
 
-## Tokens used
+</div>
 
-`--font-mono`, `--text`, `--color-*`, `--border`
+Ver [Theming](../theming.md) para la convención completa.

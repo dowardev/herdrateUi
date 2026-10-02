@@ -5,6 +5,13 @@ import { selectMeta } from './meta/select'
 
 const line = useDesign()
 const selected = ref('1')
+const selectedDisabled = ref('2')
+const placeholderA = ref('')
+const placeholderB = ref('')
+const colorPrimary = ref('1')
+const colorSuccess = ref('1')
+const colorWarning = ref('1')
+const colorDanger = ref('1')
 const options = [
   { label: 'Opción 1', value: '1' },
   { label: 'Opción 2', value: '2' },
@@ -26,7 +33,6 @@ Select estilo terminal desplegable.
   margin-bottom: 1rem;
 }
 </style>
-
 <div class="design-lines-demo">
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
@@ -84,8 +90,10 @@ Select estilo terminal desplegable.
 Lee la selección con `v-model`.
 
 <ClientOnly>
-  <Select v-model="selected" :options="options" placeholder="Elige una opción" />
-  <p style="color:var(--text-muted);font-size:0.8rem;">Seleccionado: {{ selected || '—' }}</p>
+  <div style="min-height:14rem;">
+    <Select v-model="selected" :options="options" placeholder="Elige una opción" />
+    <p style="color:var(--text-muted);font-size:0.8rem;">Seleccionado: {{ selected || '—' }}</p>
+  </div>
 </ClientOnly>
 
 ```vue
@@ -97,12 +105,23 @@ Lee la selección con `v-model`.
 Texto cuando no hay selección.
 
 <ClientOnly>
-  <Select v-model="selected" :options="options" placeholder="Selecciona..." />
-  <Select v-model="selected" :options="options" placeholder="Elige un framework..." />
+  <Select v-model="placeholderA" :options="options" placeholder="Selecciona..." />
+  <Select v-model="placeholderB" :options="options" placeholder="Elige un framework..." />
 </ClientOnly>
 
 ```vue
-<Select v-model="selected" :options="options" placeholder="Selecciona..." />
+<script setup lang="ts">
+import { ref } from 'vue'
+import { Select } from '@dowardev/herdrate-vue'
+
+const placeholderA = ref('')
+const placeholderB = ref('')
+</script>
+
+<template>
+  <Select v-model="placeholderA" :options="options" placeholder="Selecciona..." />
+  <Select v-model="placeholderB" :options="options" placeholder="Elige un framework..." />
+</template>
 ```
 
 ### Opciones (`options`)
@@ -124,30 +143,40 @@ const options = [
 
 Color del foco y borde al abrir.
 
+Cada variante tiene estado propio con valor inicial: abrir una nunca afecta a las otras.
+
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
-    <Select v-model="selected" :options="options" color="primary" placeholder="Primary" />
-    <Select v-model="selected" :options="options" color="success" placeholder="Success" />
-    <Select v-model="selected" :options="options" color="warning" placeholder="Warning" />
-    <Select v-model="selected" :options="options" color="danger" placeholder="Danger" />
+    <Select v-model="colorPrimary" :options="options" color="primary" placeholder="Primary" />
+    <Select v-model="colorSuccess" :options="options" color="success" placeholder="Success" />
+    <Select v-model="colorWarning" :options="options" color="warning" placeholder="Warning" />
+    <Select v-model="colorDanger" :options="options" color="danger" placeholder="Danger" />
   </div>
 </ClientOnly>
 
 ```vue
-<Select v-model="selected" :options="options" color="primary" placeholder="Primary" />
-<Select v-model="selected" :options="options" color="success" placeholder="Success" />
-<Select v-model="selected" :options="options" color="warning" placeholder="Warning" />
-<Select v-model="selected" :options="options" color="danger" placeholder="Danger" />
+<script setup lang="ts">
+import { ref } from 'vue'
+import { Select } from '@dowardev/herdrate-vue'
+
+const colorPrimary = ref('1')
+const colorSuccess = ref('1')
+</script>
+
+<template>
+  <Select v-model="colorPrimary" :options="options" color="primary" placeholder="Primary" />
+  <Select v-model="colorSuccess" :options="options" color="success" placeholder="Success" />
+</template>
 ```
 
 ### Deshabilitado (`disabled`)
 
 Bloquea la interacción; el valor sigue visible.
 
-<Select v-model="selected" :options="options" disabled placeholder="Deshabilitado" />
+<Select v-model="selectedDisabled" :options="options" disabled placeholder="Deshabilitado" />
 
 ```vue
-<Select v-model="selected" :options="options" disabled />
+<Select v-model="selectedDisabled" :options="options" disabled placeholder="Deshabilitado" />
 ```
 
 ## Eventos
@@ -156,25 +185,50 @@ Bloquea la interacción; el valor sigue visible.
 |---|---|---|
 | `update:modelValue` | `string` | Se emite al seleccionar una opción |
 
-## Tipos
+## API
 
-### SelectOption
+| Prop | Tipo | Default | Descripción |
+|---|---|---|---|
+| `modelValue` | `string` | `''` | Valor seleccionado (v-model) |
+| `options` | `Array<{label: string, value: string}>` | `[]` | Opciones del dropdown |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color de foco |
+| `disabled` | `boolean` | `false` | Deshabilitado |
+| `placeholder` | `string` | `'Select...'` | Placeholder |
+
+**`options`** — cada opción tiene esta forma:
 
 | Campo | Tipo | Requerido | Descripción |
 |---|---|---|---|
 | `label` | `string` | ✅ | Texto visible |
 | `value` | `string` | ✅ | Valor interno |
 
-## API
+## CSS Custom Properties
 
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `modelValue` | `string` | `''` | Valor seleccionado (v-model) |
-| `options` | `SelectOption[]` | `[]` | Opciones del dropdown |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color de foco |
-| `disabled` | `boolean` | `false` | Deshabilitado |
-| `placeholder` | `string` | `'Select...'` | Placeholder |
 
-## Tokens usados
+<div class="table-wrapper">
 
-`--font-mono`, `--bg`, `--border`, `--text`, `--color-*`
+| Token | Default | Descripción |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Fondo base de la superficie. |
+| `--bg-alt` | from theme (`--ctp-latte-mantle` / `--ctp-mocha-mantle`) | Fondo alternativo (la capa por debajo del fondo base). |
+| `--bg-elevated` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Fondo de superficies flotantes (modales, dropdowns, popovers). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Texto secundario para pistas, anotaciones y estado deshabilitado. |
+| `--color-primary` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color semántico primario (mauve en Catppuccin). |
+| `--color-secondary` | from theme (`--ctp-latte-lavender` / `--ctp-mocha-lavender`) | Color semántico secundario (lavender en Catppuccin). |
+| `--color-tertiary` | from theme (`--ctp-latte-blue` / `--ctp-mocha-blue`) | Color semántico terciario (blue en Catppuccin). |
+| `--color-success` | from theme (`--ctp-latte-green` / `--ctp-mocha-green`) | Color semántico de éxito (green en Catppuccin). |
+| `--color-warning` | from theme (`--ctp-latte-yellow` / `--ctp-mocha-yellow`) | Color semántico de advertencia (yellow en Catppuccin). |
+| `--color-danger` | from theme (`--ctp-latte-red` / `--ctp-mocha-red`) | Color semántico de peligro (red en Catppuccin). |
+| `--color-light` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-rosewater`) | Color semántico claro (tono de contraste más claro). |
+| `--color-medium` | from theme (`--ctp-latte-overlay0` / `--ctp-mocha-overlay2`) | Color semántico medio (tono intermedio). |
+| `--color-dark` | from theme (`--ctp-latte-text` / `--ctp-mocha-subtext1`) | Color semántico oscuro (texto de alto contraste). |
+| `--cp-ease` | `cubic-bezier(.4, 0, .2, 1)` | Curva de easing por defecto para transiciones. |
+| `--cp-ease-snap` | `cubic-bezier(.3, 1.4, .5, 1)` | Easing snap (sobrepasa) para interacciones de pop. |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

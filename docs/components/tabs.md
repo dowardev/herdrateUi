@@ -19,7 +19,6 @@ Tabs with horizontal scroll, navigation arrows and individual closing.
   margin-bottom: 1rem;
 }
 </style>
-
 <div class="design-lines-demo">
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
@@ -266,82 +265,52 @@ Add, remove and close tabs live.
 
 Initial value of the active tab.
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `defaultValue` | `string` | `'0'` | Initial value of the active tab |
+| Type | Default | Required |
+|---|---|---|
+| `string` | `undefined` | ❌ |
 
 ### value (Tab)
 
 Unique identifier of the tab. Required.
 
-```vue
-<Tab value="tab1">General</Tab>
-```
+| Type | Default | Required |
+|---|---|---|
+| `string` | — | ✅ |
 
 ### closable (Tab)
 
 Shows a close button (×) on the tab.
 
-<Tabs defaultValue="a">
-  <TabsList>
-    <Tab value="a" closable>README.md</Tab>
-    <Tab value="b" closable>main.ts</Tab>
-    <Tab value="c">package.json</Tab>
-  </TabsList>
-  <TabPanel value="a">README</TabPanel>
-  <TabPanel value="b">main</TabPanel>
-  <TabPanel value="c">package</TabPanel>
-</Tabs>
-
-```vue
-<Tabs defaultValue="a">
-  <TabsList>
-    <Tab value="a" closable>README.md</Tab>
-    <Tab value="b" closable>main.ts</Tab>
-    <Tab value="c">package.json</Tab>
-  </TabsList>
-  <TabPanel value="a">README</TabPanel>
-  <TabPanel value="b">main</TabPanel>
-  <TabPanel value="c">package</TabPanel>
-</Tabs>
-```
+| Type | Default | Required |
+|---|---|---|
+| `boolean` | `false` | ❌ |
 
 ### color (Tab)
 
 Color of the active tab indicator.
 
-<Tabs defaultValue="a">
-  <TabsList>
-    <Tab value="a" color="success">Success</Tab>
-    <Tab value="b" color="danger">Danger</Tab>
-    <Tab value="c" color="warning">Warning</Tab>
-  </TabsList>
-  <TabPanel value="a">Success content</TabPanel>
-  <TabPanel value="b">Danger content</TabPanel>
-  <TabPanel value="c">Warning content</TabPanel>
-</Tabs>
+| Type | Default | Required |
+|---|---|---|
+| `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
 
-```vue
-<Tabs defaultValue="a">
-  <TabsList>
-    <Tab value="a" color="success">Success</Tab>
-    <Tab value="b" color="danger">Danger</Tab>
-    <Tab value="c" color="warning">Warning</Tab>
-  </TabsList>
-  <TabPanel value="a">Success content</TabPanel>
-  <TabPanel value="b">Danger content</TabPanel>
-  <TabPanel value="c">Warning content</TabPanel>
-</Tabs>
-```
+## CSS Custom Properties
 
-## API
 
-### TabPanel
+<div class="table-wrapper">
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `value` | `string` | — | Value that links to the `Tab` |
+| Token | Default | Description |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Monospace font stack for code-like content (key labels, log lines, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Accent color, mapped from the active semantic color. |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Base background of the surface. |
+| `--bg-alt` | from theme (`--ctp-latte-mantle` / `--ctp-mocha-mantle`) | Alternate background (the next layer down from the base). |
+| `--bg-elevated` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Background of floating surfaces (modals, dropdowns, popovers). |
+| `--bg-panel` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-surface1`) | Background of panel-like raised surfaces (cards, accordions). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Outline and divider color for surfaces. |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Primary text color used inside the component. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Secondary text for hints, annotations and disabled state. |
+| `--color-danger` | from theme (`--ctp-latte-red` / `--ctp-mocha-red`) | Danger semantic color (red in Catppuccin). |
 
-## Tokens used
+</div>
 
-`--font-mono`, `--bg`, `--border`, `--text`, `--color-*`
+Ver [Theming](../theming.md) para la convención completa.

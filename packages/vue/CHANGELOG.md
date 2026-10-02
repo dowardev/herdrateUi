@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- **Accordion**: `opened` (controlled, `v-model:opened`) and `defaultOpened` props — an open panel can now be driven from parent state or start open. `opened` takes precedence over `defaultOpened`, which is initial-only and clamped to its last index in single-open mode
+- **ButtonTui**: `disabled` prop — renders the native attribute and never emits `click`
+- **ButtonTuiGroup**: group-level `disabled` plus a per-item `disabled` on `ButtonTuiItem`
+
+### Fixed
+
+- **Accordion**: the Rubik open indicator now follows the `color` prop instead of always using the accent color; the closed marker keeps its muted look
+- **ButtonTui**: disabled buttons no longer paint hover styles
+
 ## [0.2.0] - 2026-09-11
 
 ### Added

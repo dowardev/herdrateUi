@@ -19,7 +19,6 @@ Una tarjeta de contenido flexible con **dos líneas de diseño**:
   margin-bottom: 1rem;
 }
 </style>
-
 <div class="design-lines-demo">
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
@@ -78,11 +77,15 @@ Una tarjeta de contenido flexible con **dos líneas de diseño**:
 </Tabs>
 ```
 
-## Props
+## Demo
 
-### title
+### Título y encabezado
 
-Título de la tarjeta (requerido).
+Cómo se llena la cabecera de la tarjeta: el prop `title` más los slots `title` y `header`.
+
+#### Título (`title`)
+
+Encabezado de texto plano de la tarjeta.
 
 <Card title="Perfil de usuario" description="Gestiona la configuración y preferencias de tu cuenta." />
 
@@ -90,95 +93,25 @@ Título de la tarjeta (requerido).
 <Card title="Perfil de usuario" description="Gestiona la configuración y preferencias de tu cuenta." />
 ```
 
-### number
+#### Título enriquecido (slot `title`)
 
-Índice en monospace (p. ej. `// 03`).
+Reemplaza el texto del encabezado con markup enriquecido.
 
-<Card number="// 03" title="Configuración" description="Configura el comportamiento de la aplicación." />
-
-```vue
-<Card number="// 03" title="Configuración" description="Configura el comportamiento de la aplicación." />
-```
-
-### category
-
-Etiqueta en mayúsculas para categorización.
-
-<Card category="API" title="Endpoints" description="Documentación de endpoints REST y GraphQL." />
+<Card description="Esta tarjeta usa un slot de título personalizado.">
+  <template #title>
+    <strong>Título</strong> <span style="color:var(--primary)">Personalizado</span>
+  </template>
+</Card>
 
 ```vue
-<Card category="API" title="Endpoints" description="Documentación de endpoints REST y GraphQL." />
+<Card description="Esta tarjeta usa un slot de título personalizado.">
+  <template #title>
+    <strong>Título</strong> <span style="color:var(--primary)">Personalizado</span>
+  </template>
+</Card>
 ```
 
-### tags
-
-Chips de tecnologías mostrados debajo de la descripción.
-
-<Card
-  title="Proyecto Alpha"
-  description="Plataforma SaaS multi-tenant con colaboración en tiempo real."
-  :tags="['Vue 3', 'Pinia', 'PostgreSQL', 'Docker']"
-/>
-
-```vue
-<Card
-  title="Proyecto Alpha"
-  description="Plataforma SaaS multi-tenant con colaboración en tiempo real."
-  :tags="['Vue 3', 'Pinia', 'PostgreSQL', 'Docker']"
-/>
-```
-
-### design
-
-La línea de diseño: `tuix` (esquinas afiladas, plano) o `rubik` (esquinas recortadas, restricción HUD).
-
-<Card title="Tarjeta TUIX" description="Esquinas afiladas, monospace, superficies planas." design="tuix" />
-<Card title="Tarjeta Rubik" description="Esquinas recortadas, barras de tinta, restricción HUD." design="rubik" />
-
-```vue
-<Card title="Tarjeta TUIX" description="Esquinas afiladas, monospace, superficies planas." design="tuix" />
-<Card title="Tarjeta Rubik" description="Esquinas recortadas, barras de tinta, restricción HUD." design="rubik" />
-```
-
-### border
-
-Muestra u oculta el borde.
-
-<Card title="Con borde" description="El borde es visible por defecto." border />
-<Card title="Sin borde" description="Tarjeta limpia sin contorno." :border="false" />
-
-```vue
-<Card title="Con borde" description="El borde es visible por defecto." border />
-<Card title="Sin borde" description="Tarjeta limpia sin contorno." :border="false" />
-```
-
-### shadow
-
-Sombra de elevación — plana (`none`) en tuix, flotante en rubik.
-
-<Card title="Sin sombra" description="Apariencia plana (tuix por defecto)." design="tuix" />
-<Card title="Con sombra" description="Apariencia elevada en rubik." design="rubik" shadow />
-
-```vue
-<Card title="Sin sombra" description="Apariencia plana (tuix por defecto)." design="tuix" />
-<Card title="Con sombra" description="Apariencia elevada en rubik." design="rubik" shadow />
-```
-
-### arrow
-
-Muestra el indicador de flecha en el lado derecho.
-
-<Card title="Con flecha" description="El indicador de flecha se muestra por defecto." arrow />
-<Card title="Sin flecha" description="Borde derecho limpio." :arrow="false" />
-
-```vue
-<Card title="Con flecha" description="El indicador de flecha se muestra por defecto." arrow />
-<Card title="Sin flecha" description="Borde derecho limpio." :arrow="false" />
-```
-
-## Slots
-
-### header
+#### Header (slot `header`)
 
 Contenido extra del header (p. ej. badges de estado).
 
@@ -196,25 +129,49 @@ Contenido extra del header (p. ej. badges de estado).
 </Card>
 ```
 
-### title
+### Metadatos
 
-Sobrescribe el título con contenido personalizado.
+Etiquetas pequeñas que identifican la tarjeta: índice, categoría y tags de tecnología.
 
-<Card description="Esta tarjeta usa un slot de título personalizado.">
-  <template #title>
-    <strong>Título</strong> <span style="color:var(--primary)">Personalizado</span>
-  </template>
-</Card>
+#### Número (`number`)
+
+Índice en monospace renderizado en la cabecera de la tarjeta (p. ej. `// 03`).
+
+<Card number="// 03" title="Configuración" description="Configura el comportamiento de la aplicación." />
 
 ```vue
-<Card description="Esta tarjeta usa un slot de título personalizado.">
-  <template #title>
-    <strong>Título</strong> <span style="color:var(--primary)">Personalizado</span>
-  </template>
-</Card>
+<Card number="// 03" title="Configuración" description="Configura el comportamiento de la aplicación." />
 ```
 
-### default
+#### Categoría (`category`)
+
+Etiqueta de categoría en mayúsculas, mostrada junto al índice.
+
+<Card category="API" title="Endpoints" description="Documentación de endpoints REST y GraphQL." />
+
+```vue
+<Card category="API" title="Endpoints" description="Documentación de endpoints REST y GraphQL." />
+```
+
+#### Tags (`tags`)
+
+Lista de chips de tecnologías, renderizada debajo de la descripción.
+
+<Card
+  title="Proyecto Alpha"
+  description="Plataforma SaaS multi-tenant con colaboración en tiempo real."
+  :tags="['Vue 3', 'Pinia', 'PostgreSQL', 'Docker']"
+/>
+
+```vue
+<Card
+  title="Proyecto Alpha"
+  description="Plataforma SaaS multi-tenant con colaboración en tiempo real."
+  :tags="['Vue 3', 'Pinia', 'PostgreSQL', 'Docker']"
+/>
+```
+
+### Contenido rico (slot `default`)
 
 Sobrescribe la descripción con contenido rico.
 
@@ -238,7 +195,59 @@ Sobrescribe la descripción con contenido rico.
 </Card>
 ```
 
-### footer
+### Línea de diseño (`design`)
+
+La misma tarjeta en ambas líneas: tuix (plano, afilado) y rubik (esquina recortada, elevación suave).
+
+<Card title="Tarjeta TUIX" description="Esquinas afiladas, monospace, superficies planas." design="tuix" />
+<Card title="Tarjeta Rubik" description="Esquinas recortadas, barras de tinta, restricción HUD." design="rubik" />
+
+```vue
+<Card title="Tarjeta TUIX" description="Esquinas afiladas, monospace, superficies planas." design="tuix" />
+<Card title="Tarjeta Rubik" description="Esquinas recortadas, barras de tinta, restricción HUD." design="rubik" />
+```
+
+### Apariencia
+
+Flags booleanos que cambian el aspecto de la superficie de la tarjeta.
+
+#### Borde (`border`)
+
+Contorno alrededor de la tarjeta (activo por defecto).
+
+<Card title="Con borde" description="El borde es visible por defecto." border />
+<Card title="Sin borde" description="Tarjeta limpia sin contorno." :border="false" />
+
+```vue
+<Card title="Con borde" description="El borde es visible por defecto." border />
+<Card title="Sin borde" description="Tarjeta limpia sin contorno." :border="false" />
+```
+
+#### Sombra (`shadow`)
+
+`shadow` aplica `var(--shadow)`. tuix define `--shadow: none` (línea plana), así que el prop solo es visible en rubik. Las dos tarjetas de abajo están fijadas a rubik — la única diferencia entre ellas es la sombra.
+
+<Card title="Con sombra" description="Prop shadow explícito." design="rubik" shadow />
+<Card title="Sin sombra" description="Default (shadow=false)." design="rubik" :shadow="false" />
+
+```vue
+<Card title="Con sombra" description="Prop shadow explícito." design="rubik" shadow />
+<Card title="Sin sombra" description="Default (shadow=false)." design="rubik" :shadow="false" />
+```
+
+#### Flecha (`arrow`)
+
+Afordancia de flecha en el borde derecho (activa por defecto).
+
+<Card title="Con flecha" description="El indicador de flecha se muestra por defecto." arrow />
+<Card title="Sin flecha" description="Borde derecho limpio." :arrow="false" />
+
+```vue
+<Card title="Con flecha" description="El indicador de flecha se muestra por defecto." arrow />
+<Card title="Sin flecha" description="Borde derecho limpio." :arrow="false" />
+```
+
+### Footer (slot `footer`)
 
 Contenido extra del footer (p. ej. botones de acción).
 
@@ -262,9 +271,7 @@ import { ButtonTui } from '@dowardev/herdrate-vue'
 </Card>
 ```
 
-## Eventos
-
-### hover
+### Evento hover (`hover`)
 
 Se emite cuando el puntero entra en la tarjeta (`mouseenter`). El consumidor decide qué hacer (p. ej. mostrar el borde).
 
@@ -285,32 +292,102 @@ Se emite cuando el puntero entra en la tarjeta (`mouseenter`). El consumidor dec
   @hover="() => console.log('¡Tarjeta con hover!')"
 />
 ```
+## Props
 
-## API
+### title
 
-| Prop | Tipo | Default | Descripción | Diseños |
-|---|---|---|---|---|
-| `arrow` | `boolean` | `true` | muestra el indicador de flecha | Ambos |
-| `border` | `boolean` | `true` | muestra/oculta el borde | Ambos |
-| `category` | `string` | — | etiqueta en mayúsculas | Ambos |
-| `description` | `string` | — | texto del cuerpo | Ambos |
-| `design` | `'tuix' \| 'rubik'` | inherit | la línea de diseño | Ambos |
-| `number` | `string` | — | índice monospace (p. ej. `// 03`) | Ambos |
-| `shadow` | `boolean` | `false` | sombra de elevación — plana (`none`) en tuix, flotante en rubik | Ambos |
-| `tags` | `string[]` | — | chips de tecnologías | Ambos |
-| `title` | `string` | — | título de la tarjeta (requerido) | Ambos |
+Título de la tarjeta (requerido).
 
-| Evento | Descripción |
-|---|---|
-| `hover` | Se emite al entrar el puntero (`mouseenter`). El consumidor maneja el comportamiento al hover. |
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | — | ✅ |
+
+### number
+
+Índice en monospace (p. ej. `// 03`).
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | — | ❌ |
+
+### category
+
+Etiqueta en mayúsculas para categorización.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | — | ❌ |
+
+### tags
+
+Chips de tecnologías mostrados debajo de la descripción.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string[]` | — | ❌ |
+
+### design
+
+La línea de diseño: `tuix` (esquinas afiladas, plano) o `rubik` (esquinas recortadas, restricción HUD).
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `'tuix' \| 'rubik'` | inherit | ❌ |
+
+### border
+
+Muestra u oculta el borde.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `boolean` | `true` | ❌ |
+
+### shadow
+
+Sombra de elevación — plana (`ninguno`) en tuix —valor CSS `none`—, flotante en rubik.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `boolean` | `false` | ❌ |
+
+### arrow
+
+Muestra el indicador de flecha en el lado derecho.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `boolean` | `true` | ❌ |
+## Slots
 
 | Slot | Descripción |
 |---|---|
-| `header` | Contenido extra del header |
-| `title` | Reemplaza el título |
-| `default` | Reemplaza la descripción |
-| `footer` | Contenido extra del footer |
+| `header` | Contenido extra de cabecera |
+| `title` | Sobrescribe el título |
+| `default` | Sobrescribe la descripción |
+| `footer` | Contenido extra de pie |
+## Eventos
 
-## Tokens usados
+| Evento | Payload | Descripción |
+|---|---|---|
+| `hover` | `void` | Se emite al entrar el puntero (`mouseenter`); el consumidor decide el comportamiento |
+## CSS Custom Properties
 
-`--font-mono`, `--color-*`, `--bg`, `--border`, `--fill-*`
+
+<div class="table-wrapper">
+
+| Token | Default | Descripción |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Fondo base de la superficie. |
+| `--bg-alt` | from theme (`--ctp-latte-mantle` / `--ctp-mocha-mantle`) | Fondo alternativo (la capa por debajo del fondo base). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Texto secundario para pistas, anotaciones y estado deshabilitado. |
+| `--cp-ease` | `cubic-bezier(.4, 0, .2, 1)` | Curva de easing por defecto para transiciones. |
+| `--shadow` | `none` on TUIX, elevated on rubik | Sombra de elevación para superficies elevadas. |
+| `--shadow-hover` | `var(--shadow-hover, var(--shadow))` | Sombra en estado hover/active. |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

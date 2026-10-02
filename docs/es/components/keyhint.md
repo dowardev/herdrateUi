@@ -49,10 +49,11 @@ Tecla o atajo de teclado con estilo inline.
 </Tabs>
 ```
 
-
 ## Demo
 
 ### Básico (`hint`)
+
+Hints inline para `Ctrl+P`, `⌘K`, `Esc` y `F1`.
 
 <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
   <KeyHint>Ctrl+P</KeyHint>
@@ -68,11 +69,9 @@ Tecla o atajo de teclado con estilo inline.
 <KeyHint size="md">F1</KeyHint>
 ```
 
-## Props
+### Tamaño (`size`)
 
-### size
-
-Tamaño del hint.
+El mismo hint en tamaños `sm` y `md`.
 
 <div style="display: flex; gap: 0.5rem; align-items: center;">
   <KeyHint size="sm">sm</KeyHint>
@@ -83,13 +82,29 @@ Tamaño del hint.
 <KeyHint size="sm">Esc</KeyHint>
 <KeyHint size="md">F1</KeyHint>
 ```
+## Props
 
-## API
+### size
 
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `size` | `'sm' \| 'md'` | `'md'` | Tamaño del hint |
+Tamaño del hint.
 
-## Tokens usados
+| Tipo | Default | Requerido |
+|---|---|---|
+| `'sm' \| 'md'` | `'md'` | ❌ |
 
-`--bg-elevated`, `--border`, `--font-mono`, `--text`
+## CSS Custom Properties
+
+
+<div class="table-wrapper">
+
+| Token | Default | Descripción |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
+| `--bg-panel` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-surface1`) | Fondo de superficies tipo panel (cards, accordions). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Texto secundario para pistas, anotaciones y estado deshabilitado. |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

@@ -49,10 +49,11 @@ Groups TUI buttons horizontally with a gap and consistent styles.
 </Tabs>
 ```
 
-
 ## Demo
 
-### Grupo (`buttons`)
+### Group (`buttons`)
+
+Minimal usage: pass `buttons` and the group renders one button per item.
 
 <ButtonTuiGroup fill="solid" color="secondary" :buttons="[
   { icon: '↖', label: 'Left', onClick: () => {} },
@@ -75,6 +76,102 @@ Groups TUI buttons horizontally with a gap and consistent styles.
 <ButtonTuiGroup fill="outline" color="primary" :gap="0.8" :buttons="[
   { icon: '✕', label: 'Cancel', onClick: () => {} },
   { icon: '✓', label: 'Accept', onClick: () => {} },
+]" />
+```
+
+### Fill (`fill`)
+
+Solid and outline `fill` applied to the whole group.
+
+<ButtonTuiGroup fill="solid" color="primary" :buttons="[
+  { label: 'A', onClick: () => {} },
+  { label: 'B', onClick: () => {} },
+]" />
+
+<ButtonTuiGroup fill="outline" color="primary" :buttons="[
+  { label: 'A', onClick: () => {} },
+  { label: 'B', onClick: () => {} },
+]" />
+
+```vue
+<ButtonTuiGroup fill="solid" color="primary" :buttons="[
+  { label: 'A', onClick: () => {} },
+  { label: 'B', onClick: () => {} },
+]" />
+<ButtonTuiGroup fill="outline" color="primary" :buttons="[
+  { label: 'A', onClick: () => {} },
+  { label: 'B', onClick: () => {} },
+]" />
+```
+
+### Color (`color`)
+
+The group `color` applied to every button.
+
+<ButtonTuiGroup fill="solid" color="success" :buttons="[
+  { label: 'A', onClick: () => {} },
+  { label: 'B', onClick: () => {} },
+]" />
+
+```vue
+<ButtonTuiGroup fill="solid" color="success" :buttons="[
+  { label: 'A', onClick: () => {} },
+  { label: 'B', onClick: () => {} },
+]" />
+```
+
+### Gap (`gap`)
+
+Two `gap` values showing the spacing between buttons.
+
+<ButtonTuiGroup fill="solid" color="primary" :gap="0.2" :buttons="[
+  { label: 'A', onClick: () => {} },
+  { label: 'B', onClick: () => {} },
+  { label: 'C', onClick: () => {} },
+]" />
+
+<ButtonTuiGroup fill="solid" color="primary" :gap="1" :buttons="[
+  { label: 'A', onClick: () => {} },
+  { label: 'B', onClick: () => {} },
+  { label: 'C', onClick: () => {} },
+]" />
+
+```vue
+<ButtonTuiGroup fill="solid" color="primary" :gap="0.2" :buttons="[
+  { label: 'A', onClick: () => {} },
+  { label: 'B', onClick: () => {} },
+  { label: 'C', onClick: () => {} },
+]" />
+<ButtonTuiGroup fill="solid" color="primary" :gap="1" :buttons="[
+  { label: 'A', onClick: () => {} },
+  { label: 'B', onClick: () => {} },
+  { label: 'C', onClick: () => {} },
+]" />
+```
+
+### Disabled (`disabled`)
+
+The whole group disabled, plus a single disabled item.
+
+<ButtonTuiGroup :disabled="true" fill="solid" color="primary" :buttons="[
+  { label: 'A', onClick: () => {} },
+  { label: 'B', onClick: () => {} },
+]" />
+
+<ButtonTuiGroup fill="solid" color="primary" :buttons="[
+  { label: 'Enabled', onClick: () => {} },
+  { label: 'Item disabled', onClick: () => {}, disabled: true },
+]" />
+
+```vue
+<ButtonTuiGroup :disabled="true" fill="solid" color="primary" :buttons="[
+  { label: 'A', onClick: () => {} },
+  { label: 'B', onClick: () => {} },
+]" />
+
+<ButtonTuiGroup fill="solid" color="primary" :buttons="[
+  { label: 'Enabled', onClick: () => {} },
+  { label: 'Item disabled', onClick: () => {}, disabled: true },
 ]" />
 ```
 
@@ -82,116 +179,63 @@ Groups TUI buttons horizontally with a gap and consistent styles.
 
 ### buttons
 
-Array of buttons with optional `label`, `icon`, `onClick`, `color` and `fill`.
+Array of buttons.
 
-```vue
-<ButtonTuiGroup :buttons="[
-  { icon: '↖', label: 'L', onClick: () => {} },
-  { icon: '↗', label: 'R', onClick: () => {} },
-]" />
-```
+| Type | Default | Required |
+|---|---|---|
+| `Array<{label, icon?, onClick, fill?, color?, disabled?}>` | — | ✅ |
 
-### fill
-
-Global fill for all buttons. Can be overridden per item.
-
-<ButtonTuiGroup fill="solid" color="primary" :buttons="[
-  { label: 'A', onClick: () => {} },
-  { label: 'B', onClick: () => {} },
-]" />
-
-<ButtonTuiGroup fill="outline" color="primary" :buttons="[
-  { label: 'A', onClick: () => {} },
-  { label: 'B', onClick: () => {} },
-]" />
-
-```vue
-<ButtonTuiGroup fill="solid" color="primary" :buttons="[
-  { label: 'A', onClick: () => {} },
-  { label: 'B', onClick: () => {} },
-]" />
-<ButtonTuiGroup fill="outline" color="primary" :buttons="[
-  { label: 'A', onClick: () => {} },
-  { label: 'B', onClick: () => {} },
-]" />
-```
-
-### color
-
-Global color for all buttons. Can be overridden per item.
-
-<ButtonTuiGroup fill="solid" color="success" :buttons="[
-  { label: 'A', onClick: () => {} },
-  { label: 'B', onClick: () => {} },
-]" />
-
-```vue
-<ButtonTuiGroup fill="solid" color="success" :buttons="[
-  { label: 'A', onClick: () => {} },
-  { label: 'B', onClick: () => {} },
-]" />
-```
-
-### gap
-
-Spacing between buttons (in rem).
-
-<ButtonTuiGroup fill="solid" color="primary" :gap="0.2" :buttons="[
-  { label: 'A', onClick: () => {} },
-  { label: 'B', onClick: () => {} },
-  { label: 'C', onClick: () => {} },
-]" />
-
-<ButtonTuiGroup fill="solid" color="primary" :gap="1" :buttons="[
-  { label: 'A', onClick: () => {} },
-  { label: 'B', onClick: () => {} },
-  { label: 'C', onClick: () => {} },
-]" />
-
-```vue
-<ButtonTuiGroup fill="solid" color="primary" :gap="0.2" :buttons="[
-  { label: 'A', onClick: () => {} },
-  { label: 'B', onClick: () => {} },
-  { label: 'C', onClick: () => {} },
-]" />
-<ButtonTuiGroup fill="solid" color="primary" :gap="1" :buttons="[
-  { label: 'A', onClick: () => {} },
-  { label: 'B', onClick: () => {} },
-  { label: 'C', onClick: () => {} },
-]" />
-```
-
-## Types
-
-### ButtonTuiItem
+Each button has this shape:
 
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `label` | `string` | ✅ | Button text |
 | `icon` | `string` | ❌ | Icon or emoji |
-| `onClick` | `() => void` | ✅ | Click callback |
+| `onClick` | `(e: MouseEvent) => void` | ✅ | Click callback |
 | `fill` | `Fill` | ❌ | Fill style |
 | `color` | `Color` | ❌ | Semantic color |
+| `disabled` | `boolean` | ❌ | Disable this button |
 
-## API
+### fill
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `buttons` | `ButtonTuiItem[]` | — | Array of buttons |
-| `fill` | `'solid' \| 'outline' \| 'clear'` | `'solid'` | Global fill (override per item) |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Global color (override per item) |
-| `gap` | `number` | `0.4` | Spacing between buttons (rem) |
+Global fill for all buttons. Can be overridden per item.
 
-### ButtonTuiItem
-
-| Prop | Type | Description |
+| Type | Default | Required |
 |---|---|---|
-| `label` | `string` | Button text |
-| `icon` | `string` | Optional icon |
-| `onClick` | `() => void` | Click callback |
-| `fill` | `'solid' \| 'outline' \| 'clear'` | Individual fill (optional) |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | Individual color (optional) |
+| `'solid' \| 'outline' \| 'clear'` | `'solid'` | ❌ |
 
-## Tokens used
+### color
 
-`--font-mono`, `--color-*`, `--fill-*`
+Global color for all buttons. Can be overridden per item.
+
+| Type | Default | Required |
+|---|---|---|
+| `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
+
+### gap
+
+Spacing between buttons (in rem).
+
+| Type | Default | Required |
+|---|---|---|
+| `number` | `0.4` | ❌ |
+
+### disabled
+
+Disables every button in the group. An individual item can also set its own `disabled`, which is OR-ed with the group value.
+
+| Type | Default | Required |
+|---|---|---|
+| `boolean` | `false` | ❌ |
+
+## CSS Custom Properties
+
+
+<div class="table-wrapper">
+
+| Token | Default | Description |
+|---|---|---|
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.
