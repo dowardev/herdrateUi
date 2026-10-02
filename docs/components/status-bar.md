@@ -23,14 +23,11 @@ Terminal-style status bar with mode, position and info.
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
     <Tab value="tuix">TUIX</Tab>
-
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
-
   <TabPanel value="tuix">
     <StatusBar mode="INSERT" info="src/components/table/Table.vue" position="128, 12" design="tuix" />
   </TabPanel>
-
   <TabPanel value="rubik">
     <StatusBar mode="INSERT" info="src/components/table/Table.vue" position="128, 12" design="rubik" />
   </TabPanel>
@@ -55,10 +52,11 @@ Terminal-style status bar with mode, position and info.
 </Tabs>
 ```
 
-
 ## Demo
 
-### Básico (`items`)
+### Basic (`items`)
+
+A basic bar combining mode, position and info.
 
 <StatusBar mode="NORMAL" color="primary" position="22,4" info="main.ts" />
 
@@ -66,9 +64,7 @@ Terminal-style status bar with mode, position and info.
 <StatusBar mode="NORMAL" color="primary" position="22,4" info="main.ts" />
 ```
 
-## Props
-
-### mode
+### Mode (`mode`)
 
 Mode text shown on the left, bold and uppercase.
 
@@ -82,7 +78,7 @@ Mode text shown on the left, bold and uppercase.
 <StatusBar mode="VISUAL" color="warning" />
 ```
 
-### position
+### Position (`position`)
 
 Position text shown on the right (e.g. `1,1`).
 
@@ -94,7 +90,7 @@ Position text shown on the right (e.g. `1,1`).
 <StatusBar mode="NORMAL" position="22,4" />
 ```
 
-### color
+### Color (`color`)
 
 Color applied to the mode text.
 
@@ -110,9 +106,13 @@ Color applied to the mode text.
 <StatusBar mode="NORMAL" color="danger" />
 ```
 
-### info
+### Extra content
 
-Informational text shown in the center.
+The two ways to add content to the middle of the bar: the `info` prop and the `default` slot.
+
+#### Info (`info`)
+
+Informational text shown in the center of the bar.
 
 <StatusBar mode="NORMAL" info="main.ts" />
 <StatusBar mode="NORMAL" info="types.ts" position="10,5" />
@@ -122,7 +122,7 @@ Informational text shown in the center.
 <StatusBar mode="NORMAL" info="types.ts" position="10,5" />
 ```
 
-### default slot
+#### Rich content (`default` slot)
 
 Replaces the `info` area with custom content.
 
@@ -135,16 +135,65 @@ Replaces the `info` area with custom content.
   <span style="color: var(--color-success);">✔ Ready</span>
 </StatusBar>
 ```
+## Props
 
-## API
+### mode
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `mode` | `string` | `'NORMAL'` | Mode text shown left, bold and uppercase |
-| `position` | `string` | `''` | Position text shown right (e.g. `1,1`) |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color applied to mode text |
-| `info` | `string` | `''` | Info text shown in center |
+Mode text shown on the left, bold and uppercase.
 
-## Tokens used
+| Type | Default | Required |
+|---|---|---|
+| `string` | `'NORMAL'` | ❌ |
 
-`--font-mono`, `--bg`, `--bg-panel`, `--border`, `--text`, `--color-*`
+### position
+
+Position text shown on the right (e.g. `1,1`).
+
+| Type | Default | Required |
+|---|---|---|
+| `string` | `''` | ❌ |
+
+### color
+
+Color applied to the mode text.
+
+| Type | Default | Required |
+|---|---|---|
+| `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
+
+### info
+
+Informational text shown in the center.
+
+| Type | Default | Required |
+|---|---|---|
+| `string` | `''` | ❌ |
+
+### default
+
+Replaces the `info` area with custom content.
+## CSS Custom Properties
+
+
+<div class="table-wrapper">
+
+| Token | Default | Description |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Monospace font stack for code-like content (key labels, log lines, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Accent color, mapped from the active semantic color. |
+| `--bg-panel` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-surface1`) | Background of panel-like raised surfaces (cards, accordions). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Outline and divider color for surfaces. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Secondary text for hints, annotations and disabled state. |
+| `--color-primary` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Primary semantic color (mauve in Catppuccin). |
+| `--color-secondary` | from theme (`--ctp-latte-lavender` / `--ctp-mocha-lavender`) | Secondary semantic color (lavender in Catppuccin). |
+| `--color-tertiary` | from theme (`--ctp-latte-blue` / `--ctp-mocha-blue`) | Tertiary semantic color (blue in Catppuccin). |
+| `--color-success` | from theme (`--ctp-latte-green` / `--ctp-mocha-green`) | Success semantic color (green in Catppuccin). |
+| `--color-warning` | from theme (`--ctp-latte-yellow` / `--ctp-mocha-yellow`) | Warning semantic color (yellow in Catppuccin). |
+| `--color-danger` | from theme (`--ctp-latte-red` / `--ctp-mocha-red`) | Danger semantic color (red in Catppuccin). |
+| `--color-light` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-rosewater`) | Light semantic color (lighter contrast tone). |
+| `--color-medium` | from theme (`--ctp-latte-overlay0` / `--ctp-mocha-overlay2`) | Medium semantic color (mid-tone). |
+| `--color-dark` | from theme (`--ctp-latte-text` / `--ctp-mocha-subtext1`) | Dark semantic color (high contrast text). |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

@@ -19,7 +19,6 @@ Tabs con scroll horizontal, flechas de navegación y cierre individual.
   margin-bottom: 1rem;
 }
 </style>
-
 <div class="design-lines-demo">
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
@@ -266,82 +265,52 @@ Añade, elimina y cierra tabs en vivo.
 
 Valor inicial de la tab activa.
 
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `defaultValue` | `string` | `'0'` | Valor inicial de la tab activa |
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | `undefined` | ❌ |
 
 ### value (Tab)
 
 Identificador único de la tab. Requerido.
 
-```vue
-<Tab value="tab1">General</Tab>
-```
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | — | ✅ |
 
 ### closable (Tab)
 
 Muestra un botón de cerrar (×) en la tab.
 
-<Tabs defaultValue="a">
-  <TabsList>
-    <Tab value="a" closable>README.md</Tab>
-    <Tab value="b" closable>main.ts</Tab>
-    <Tab value="c">package.json</Tab>
-  </TabsList>
-  <TabPanel value="a">README</TabPanel>
-  <TabPanel value="b">main</TabPanel>
-  <TabPanel value="c">package</TabPanel>
-</Tabs>
-
-```vue
-<Tabs defaultValue="a">
-  <TabsList>
-    <Tab value="a" closable>README.md</Tab>
-    <Tab value="b" closable>main.ts</Tab>
-    <Tab value="c">package.json</Tab>
-  </TabsList>
-  <TabPanel value="a">README</TabPanel>
-  <TabPanel value="b">main</TabPanel>
-  <TabPanel value="c">package</TabPanel>
-</Tabs>
-```
+| Tipo | Default | Requerido |
+|---|---|---|
+| `boolean` | `false` | ❌ |
 
 ### color (Tab)
 
 Color del indicador de tab activa.
 
-<Tabs defaultValue="a">
-  <TabsList>
-    <Tab value="a" color="success">Success</Tab>
-    <Tab value="b" color="danger">Danger</Tab>
-    <Tab value="c" color="warning">Warning</Tab>
-  </TabsList>
-  <TabPanel value="a">Contenido Success</TabPanel>
-  <TabPanel value="b">Contenido Danger</TabPanel>
-  <TabPanel value="c">Contenido Warning</TabPanel>
-</Tabs>
+| Tipo | Default | Requerido |
+|---|---|---|
+| `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
 
-```vue
-<Tabs defaultValue="a">
-  <TabsList>
-    <Tab value="a" color="success">Success</Tab>
-    <Tab value="b" color="danger">Danger</Tab>
-    <Tab value="c" color="warning">Warning</Tab>
-  </TabsList>
-  <TabPanel value="a">Contenido Success</TabPanel>
-  <TabPanel value="b">Contenido Danger</TabPanel>
-  <TabPanel value="c">Contenido Warning</TabPanel>
-</Tabs>
-```
+## CSS Custom Properties
 
-## API
 
-### TabPanel
+<div class="table-wrapper">
 
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `value` | `string` | — | Valor que enlaza con el `Tab` |
+| Token | Default | Descripción |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Fondo base de la superficie. |
+| `--bg-alt` | from theme (`--ctp-latte-mantle` / `--ctp-mocha-mantle`) | Fondo alternativo (la capa por debajo del fondo base). |
+| `--bg-elevated` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Fondo de superficies flotantes (modales, dropdowns, popovers). |
+| `--bg-panel` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-surface1`) | Fondo de superficies tipo panel (cards, accordions). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Texto secundario para pistas, anotaciones y estado deshabilitado. |
+| `--color-danger` | from theme (`--ctp-latte-red` / `--ctp-mocha-red`) | Color semántico de peligro (red en Catppuccin). |
 
-## Tokens usados
+</div>
 
-`--font-mono`, `--bg`, `--border`, `--text`, `--color-*`
+Ver [Theming](../theming.md) para la convención completa.

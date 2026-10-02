@@ -120,23 +120,25 @@ describe('docs i18n parity (LBDS-238)', () => {
 
     expect(headingsOf(enMd)).toEqual([
       enCatalog.designLines,
+      enCatalog.demo,
       enCatalog.props,
       enCatalog.slots,
       enCatalog.events,
+      enCatalog.tokens,
     ]);
     expect(headingsOf(esMd)).toEqual([
       esCatalog.designLines,
+      esCatalog.demo,
       esCatalog.props,
       esCatalog.slots,
       esCatalog.events,
+      esCatalog.tokens,
     ]);
   });
 
-  it('renders translated Both cells and (none) parens in the ES card table', () => {
+  it('renders translated (none) parens in the ES card shadow prose', () => {
     const esMd = readFileSync(esCardMd, 'utf8');
 
-    expect(esMd).not.toMatch(/\| Both \|/);
-    expect(esMd).toContain(`| ${esCatalog.both} |`);
     expect(esMd).not.toContain('(`none`)');
     expect(esMd).toContain(`(\`${esCatalog.none}\`)`);
   });

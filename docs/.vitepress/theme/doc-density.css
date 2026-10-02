@@ -1,0 +1,68 @@
+/* SPDX-License-Identifier: GPL-3.0-or-later */
+
+/* LBDS-270 — doc page visual density: clear section boundaries and breathing room.
+
+   VitePress wraps the rendered markdown in an inner div
+   (`.vp-doc > div > h2|h3|h4|p|div.language-*`). All rules target that level on
+   purpose: headings, code and text INSIDE live demo components sit deeper in the
+   tree and must keep the component's own look. */
+
+/* Concept sections (###). The diviner opens the section and closes the previous
+   one, so the reader can see where a group starts and ends. */
+.vp-doc > div > h3 {
+  margin-top: 2.75rem;
+  margin-bottom: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--vp-c-divider);
+  font-weight: 700;
+}
+
+/* The first section under an h2 is already announced by the h2 (which carries
+   its own divider): no second line, less air. */
+.vp-doc > div > h2 + h3 {
+  margin-top: 2rem;
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* Variants (####): bold like the section, smaller in size — hierarchy comes from
+   size and the section divider, never from being fainter than the body text. */
+.vp-doc > div > h4 {
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+/* Right after a section heading the detail belongs to the heading block. */
+.vp-doc > div > h3 + h4,
+.vp-doc > div > h2 + h4 {
+  margin-top: 1rem;
+}
+
+/* Code fences: secondary to the live result, with room around them. The left
+   rail reads "this is source" without competing with the demo above it. */
+.vp-doc > div > div[class*='language-'] {
+  margin: 1.5rem 0 2rem;
+  border-left: 2px solid var(--vp-c-border);
+}
+
+/* Prose between demos gets a little more air than the default 16px. */
+.vp-doc > div > p {
+  margin: 1rem 0 1.5rem;
+}
+
+/* =====================================================================
+   CSS Custom Properties tables: keep token names on one line so they
+   don't break mid-name on narrow viewports (e.g. `--font-mono` splitting
+   as `--font-` / `mono`).
+   ===================================================================== */
+.vp-doc table td:first-child code {
+  white-space: nowrap;
+}
+
+/* CSS Custom Properties tables: horizontal scroll on narrow viewports. */
+.vp-doc .table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}

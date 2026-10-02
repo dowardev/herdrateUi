@@ -54,6 +54,8 @@ Horizontal or vertical divider with terminal aesthetics.
 
 ### Orientación (`orientation`)
 
+A horizontal `orientation` between two blocks of text.
+
 <Divider orientation="horizontal" />
 
 Text separated by a horizontal divider.
@@ -71,23 +73,20 @@ Text separated by a horizontal divider.
 
 Direction of the divider.
 
-<Divider orientation="horizontal" />
+| Type | Default | Required |
+|---|---|---|
+| `'horizontal' \| 'vertical'` | `'horizontal'` | ❌ |
+## CSS Custom Properties
 
-<div style="display: inline-flex; align-items: center; gap: 0.5rem;">
-  Left <Divider orientation="vertical" /> Right
+
+<div class="table-wrapper">
+
+| Token | Default | Description |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Monospace font stack for code-like content (key labels, log lines, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Accent color, mapped from the active semantic color. |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Outline and divider color for surfaces. |
+
 </div>
 
-```vue
-<Divider orientation="horizontal" />
-<Divider orientation="vertical" />
-```
-
-## API
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `orientation` | `'horizontal' \| 'vertical'` | `'horizontal'` | Direction of the divider |
-
-## Tokens used
-
-`--border`, `--font-mono`
+Ver [Theming](../theming.md) para la convención completa.

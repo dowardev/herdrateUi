@@ -23,10 +23,8 @@ Visor de logs con coloreado por nivel estilo terminal.
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
     <Tab value="tuix">TUIX</Tab>
-
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
-
   <TabPanel value="tuix">
     <LogLines
       :lines="[
@@ -40,7 +38,6 @@ Visor de logs con coloreado por nivel estilo terminal.
       design="tuix"
     />
   </TabPanel>
-
   <TabPanel value="rubik">
     <LogLines
       :lines="[
@@ -95,10 +92,11 @@ Visor de logs con coloreado por nivel estilo terminal.
 </Tabs>
 ```
 
-
 ## Demo
 
 ### Básico (`lines`)
+
+Renderiza una lista de líneas de log desde el prop `lines`.
 
 <LogLines
   :lines="[
@@ -122,11 +120,86 @@ Visor de logs con coloreado por nivel estilo terminal.
 />
 ```
 
+### Máximo (`max`)
+
+Conserva solo las líneas más recientes cuando se define `max`.
+
+<LogLines
+  :lines="[
+    { text: 'Line 1', level: 'info' },
+    { text: 'Line 2', level: 'info' },
+    { text: 'Line 3', level: 'info' },
+    { text: 'Line 4', level: 'info' },
+    { text: 'Line 5', level: 'info' },
+  ]"
+  :max="3"
+/>
+
+```vue
+<LogLines
+  :lines="[
+    { text: 'Line 1', level: 'info' },
+    { text: 'Line 2', level: 'info' },
+    { text: 'Line 3', level: 'info' },
+    { text: 'Line 4', level: 'info' },
+    { text: 'Line 5', level: 'info' },
+  ]"
+  :max="3"
+/>
+```
+
+### Timestamps (`timestamps`)
+
+Agrega el prefijo `[HH:MM:SS]` a cada línea cuando se activa `timestamps`.
+
+<LogLines
+  :lines="[
+    { text: 'Server started', level: 'info' },
+    { text: 'Connection lost', level: 'error' },
+  ]"
+  timestamps
+/>
+
+```vue
+<LogLines
+  :lines="[
+    { text: 'Server started', level: 'info' },
+    { text: 'Connection lost', level: 'error' },
+  ]"
+  timestamps
+/>
+```
+
+### Color (`color`)
+
+Aplica el prop `color` al borde del componente.
+
+<LogLines
+  :lines="[
+    { text: 'Primary log', level: 'info' },
+    { text: 'Success log', level: 'info' },
+  ]"
+  color="success"
+/>
+
+```vue
+<LogLines
+  :lines="[
+    { text: 'Primary log', level: 'info' },
+    { text: 'Success log', level: 'info' },
+  ]"
+  color="success"
+/>
+```
 ## Props
 
 ### lines
 
-Array de líneas de log con `text` y `level` opcional.
+Array de líneas de log.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `Array<{text: string, level?: 'info' \| 'warn' \| 'error' \| 'debug'}>` | `[]` | ❌ |
 
 ```vue
 <LogLines :lines="[
@@ -135,96 +208,53 @@ Array de líneas de log con `text` y `level` opcional.
 ]" />
 ```
 
-### max
-
-Máximo de líneas visibles (las más recientes). Excedentes se descartan.
-
-<LogLines
-  :lines="[
-    { text: 'Line 1', level: 'info' },
-    { text: 'Line 2', level: 'info' },
-    { text: 'Line 3', level: 'info' },
-    { text: 'Line 4', level: 'info' },
-    { text: 'Line 5', level: 'info' },
-  ]"
-  :max="3"
-/>
-
-```vue
-<LogLines
-  :lines="[
-    { text: 'Line 1', level: 'info' },
-    { text: 'Line 2', level: 'info' },
-    { text: 'Line 3', level: 'info' },
-    { text: 'Line 4', level: 'info' },
-    { text: 'Line 5', level: 'info' },
-  ]"
-  :max="3"
-/>
-```
-
-### timestamps
-
-Agrega prefijo `[HH:MM:SS]` a cada línea.
-
-<LogLines
-  :lines="[
-    { text: 'Server started', level: 'info' },
-    { text: 'Connection lost', level: 'error' },
-  ]"
-  timestamps
-/>
-
-```vue
-<LogLines
-  :lines="[
-    { text: 'Server started', level: 'info' },
-    { text: 'Connection lost', level: 'error' },
-  ]"
-  timestamps
-/>
-```
-
-### color
-
-Color del componente (se aplica al borde).
-
-<LogLines
-  :lines="[
-    { text: 'Primary log', level: 'info' },
-    { text: 'Success log', level: 'info' },
-  ]"
-  color="success"
-/>
-
-```vue
-<LogLines
-  :lines="[
-    { text: 'Primary log', level: 'info' },
-    { text: 'Success log', level: 'info' },
-  ]"
-  color="success"
-/>
-```
-
-## Tipos
-
-### LogLine
+Cada línea tiene esta forma:
 
 | Campo | Tipo | Requerido | Descripción |
 |---|---|---|---|
 | `text` | `string` | ✅ | Contenido de la línea |
 | `level` | `'info' \| 'warn' \| 'error' \| 'debug'` | ❌ | Nivel de log |
 
-## API
+### max
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `lines` | `Array<{text, level?}>` | `[]` | Líneas de log |
-| `max` | `number` | `100` | Máximo de líneas visibles |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del componente |
-| `timestamps` | `boolean` | `false` | Prefijo `[HH:MM:SS]` |
+Máximo de líneas visibles (las más recientes). Excedentes se descartan.
 
-## Tokens usados
+| Tipo | Default | Requerido |
+|---|---|---|
+| `number` | `100` | ❌ |
 
-`--font-mono`, `--text`, `--text-muted`, `--color-*`
+### timestamps
+
+Agrega prefijo `[HH:MM:SS]` a cada línea.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `boolean` | `false` | ❌ |
+
+### color
+
+Color del componente (se aplica al borde).
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
+
+## CSS Custom Properties
+
+
+<div class="table-wrapper">
+
+| Token | Default | Descripción |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Fondo base de la superficie. |
+| `--bg-alt` | from theme (`--ctp-latte-mantle` / `--ctp-mocha-mantle`) | Fondo alternativo (la capa por debajo del fondo base). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Texto secundario para pistas, anotaciones y estado deshabilitado. |
+| `--color-primary` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color semántico primario (mauve en Catppuccin). |
+| `--color-warning` | from theme (`--ctp-latte-yellow` / `--ctp-mocha-yellow`) | Color semántico de advertencia (yellow en Catppuccin). |
+| `--color-danger` | from theme (`--ctp-latte-red` / `--ctp-mocha-red`) | Color semántico de peligro (red en Catppuccin). |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

@@ -54,6 +54,8 @@ Nodo de árbol colapsable con expansión instantánea.
 
 ### Básico (`label` + slots)
 
+Anida nodos `TreeNode` y usa el slot `label` para el nombre de cada nodo.
+
 <TreeNode>
   <template #label>src</template>
   <TreeNode>
@@ -87,33 +89,9 @@ Nodo de árbol colapsable con expansión instantánea.
 ### label
 
 Contenido del nodo (texto o HTML).
-
-<TreeNode>
-  <template #label>src</template>
-  <TreeNode><template #label>App.vue</template></TreeNode>
-</TreeNode>
-
-```vue
-<TreeNode>
-  <template #label>src</template>
-  <TreeNode>
-    <template #label>components</template>
-  </TreeNode>
-</TreeNode>
-```
-
 ### default
 
 Nodos hijos anidados (otros `TreeNode`).
-
-```vue
-<TreeNode>
-  <template #label>src</template>
-  <TreeNode><template #label>App.vue</template></TreeNode>
-  <TreeNode><template #label>main.ts</template></TreeNode>
-</TreeNode>
-```
-
 ## API
 
 | Slot | Descripción |
@@ -121,6 +99,19 @@ Nodos hijos anidados (otros `TreeNode`).
 | `label` | Contenido del nodo (texto o HTML) |
 | `default` | Nodos hijos (otros `TreeNode`) |
 
-## Tokens usados
+## CSS Custom Properties
 
-`--font-mono`, `--text`, `--border`, `--color-*`
+
+<div class="table-wrapper">
+
+| Token | Default | Descripción |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
+| `--bg-alt` | from theme (`--ctp-latte-mantle` / `--ctp-mocha-mantle`) | Fondo alternativo (la capa por debajo del fondo base). |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Texto secundario para pistas, anotaciones y estado deshabilitado. |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

@@ -18,15 +18,12 @@ Tabla con estilo terminal, filas alternadas y modo compacto.
   margin-bottom: 1rem;
 }
 </style>
-
 <div class="design-lines-demo">
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
     <Tab value="tuix">TUIX</Tab>
-
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
-
   <TabPanel value="tuix">
     <Table
       :columns="[
@@ -48,7 +45,6 @@ Tabla con estilo terminal, filas alternadas y modo compacto.
       design="tuix"
     />
   </TabPanel>
-
   <TabPanel value="rubik">
     <Table
       :columns="[
@@ -337,26 +333,51 @@ Todos los props juntos en una tabla densa.
 />
 ```
 
-## Tipos
-
-### Column
-
-| Campo | Tipo | Requerido | Descripción |
-|---|---|---|---|
-| `key` | `string` | ✅ | Identificador de la columna |
-| `label` | `string` | ✅ | Encabezado visible |
-
 ## API
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `columns` | `Column[]` | `[]` | Column definitions with `key` and `label` |
+| `columns` | `Array<{key: string, label: string}>` | `[]` | Column definitions with `key` and `label` |
 | `rows` | `Record<string, string>[]` | `[]` | Row data keyed by column keys |
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Header border color |
 | `striped` | `boolean` | `false` | Alternating row background |
 | `compact` | `boolean` | `false` | Reduced cell padding |
 | `indexed` | `boolean` | `false` | Columna de índice numerada en ambas líneas |
 
-## Tokens usados
+**`columns`** — cada columna tiene esta forma:
 
-`--font-mono`, `--bg`, `--border`, `--text`, `--color-*`
+| Campo | Tipo | Requerido | Descripción |
+|---|---|---|---|
+| `key` | `string` | ✅ | Identificador de la columna |
+| `label` | `string` | ✅ | Encabezado visible |
+
+## CSS Custom Properties
+
+
+<div class="table-wrapper">
+
+| Token | Default | Descripción |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Fondo base de la superficie. |
+| `--bg-alt` | from theme (`--ctp-latte-mantle` / `--ctp-mocha-mantle`) | Fondo alternativo (la capa por debajo del fondo base). |
+| `--bg-elevated` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Fondo de superficies flotantes (modales, dropdowns, popovers). |
+| `--bg-panel` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-surface1`) | Fondo de superficies tipo panel (cards, accordions). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Texto secundario para pistas, anotaciones y estado deshabilitado. |
+| `--color-primary` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color semántico primario (mauve en Catppuccin). |
+| `--color-secondary` | from theme (`--ctp-latte-lavender` / `--ctp-mocha-lavender`) | Color semántico secundario (lavender en Catppuccin). |
+| `--color-tertiary` | from theme (`--ctp-latte-blue` / `--ctp-mocha-blue`) | Color semántico terciario (blue en Catppuccin). |
+| `--color-success` | from theme (`--ctp-latte-green` / `--ctp-mocha-green`) | Color semántico de éxito (green en Catppuccin). |
+| `--color-warning` | from theme (`--ctp-latte-yellow` / `--ctp-mocha-yellow`) | Color semántico de advertencia (yellow en Catppuccin). |
+| `--color-danger` | from theme (`--ctp-latte-red` / `--ctp-mocha-red`) | Color semántico de peligro (red en Catppuccin). |
+| `--color-light` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-rosewater`) | Color semántico claro (tono de contraste más claro). |
+| `--color-medium` | from theme (`--ctp-latte-overlay0` / `--ctp-mocha-overlay2`) | Color semántico medio (tono intermedio). |
+| `--color-dark` | from theme (`--ctp-latte-text` / `--ctp-mocha-subtext1`) | Color semántico oscuro (texto de alto contraste). |
+| `--cp-ease` | `cubic-bezier(.4, 0, .2, 1)` | Curva de easing por defecto para transiciones. |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

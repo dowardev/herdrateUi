@@ -107,16 +107,16 @@ const positionButtons = computed(() =>
 
 ### Básico (`message` / `color`)
 
+Renders toasts with a `message` and a semantic `color` at each position.
+
 <ClientOnly>
   <div style="margin-bottom: 2rem;">
     <ButtonTuiGroup :buttons="positionButtons" />
     <ButtonTui color="medium" fill="clear" @click="clearAll">[ clear ]</ButtonTui>
   </div>
-
   <p v-if="items.length === 0" style="opacity: 0.5; font-style: italic;">
     Click a button to show a floating toast in that position.
   </p>
-
   <ToastContainer
     v-for="p in positions" :key="p"
     :toasts="items.filter(t => t.position === p)"
@@ -157,21 +157,11 @@ function dismiss(id: number) {
 
 This demo uses the real `useToast()` composable from the package (singleton, shared state) — aligned with the flow you would copy to your project.
 
-## Types
-
-### ToastItem
-
-| Field | Type | Required | Description |
-|---|---|---|---|
-| `id` | `string` | ✅ | Unique identifier |
-| `message` | `string` | ✅ | Message to display |
-| `color` | `Color` | ✅ | Semantic color |
-| `icon` | `string` | ✅ | Icon or emoji |
-| `timestamp` | `number` | ✅ | UNIX timestamp |
-
 ## API
 
 ### Toast
+
+Props accepted by the `Toast` component.
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
@@ -181,21 +171,35 @@ This demo uses the real `useToast()` composable from the package (singleton, sha
 
 ### ToastContainer
 
+Container that renders a toast list at a fixed screen position.
+
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `toasts` | `ToastItem[]` | — | List of toasts to display |
+| `toasts` | `Array<{id, message, color, icon, timestamp}>` | — | List of toasts to display |
 | `remove` | `(id: string) => void` | — | Function to close a toast |
 | `position` | `'bottom-right' \\| 'bottom-left' \\| 'top-right' \\| 'top-left' \\| 'top-center' \\| 'bottom-center'` | `'bottom-right'` | Screen position |
 
 ### useToast()
 
+Composable that returns the toast list and its helpers.
+
 | Return | Type | Description |
 |---|---|---|
-| `toasts` | `Ref<ToastItem[]>` | Reactive list of active toasts |
-| `add` | `(opts: AddOptions) => string` | Adds a toast, returns ID |
+| `toasts` | `Ref<Array<{id, message, color, icon, timestamp}>>` | Reactive list of active toasts |
+| `add` | `(opts: {message, color?, replace?, filter?}) => string` | Adds a toast, returns ID |
 | `remove` | `(id: string) => void` | Removes a toast by ID |
 
-### AddOptions
+**`toasts`** — each toast has this shape:
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `id` | `string` | ✅ | Unique identifier |
+| `message` | `string` | ✅ | Message to display |
+| `color` | `Color` | ✅ | Semantic color |
+| `icon` | `string` | ✅ | Icon or emoji |
+| `timestamp` | `number` | ✅ | UNIX timestamp |
+
+**`add(opts)`** — options accepted when creating a toast:
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
@@ -204,6 +208,20 @@ This demo uses the real `useToast()` composable from the package (singleton, sha
 | `replace` | `boolean` | `false` | Replaces duplicate toast |
 | `filter` | `string` | — | Key to detect duplicates |
 
-## Tokens used
+## CSS Custom Properties
 
-`--font-mono`, `--bg`, `--bg-elevated`, `--border`, `--text`, `--color-*`
+
+<div class="table-wrapper">
+
+| Token | Default | Description |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Monospace font stack for code-like content (key labels, log lines, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Accent color, mapped from the active semantic color. |
+| `--bg-elevated` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Background of floating surfaces (modals, dropdowns, popovers). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Outline and divider color for surfaces. |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Primary text color used inside the component. |
+| `--cp-ease` | `cubic-bezier(.4, 0, .2, 1)` | Default easing curve for transitions. |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

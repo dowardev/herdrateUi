@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, toRef } from 'vue';
+import { computed, ref, toRef, watch } from 'vue';
 import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
@@ -55,6 +55,10 @@ const props = withDefaults(
     items?: AccordionItem[];
     multiple?: boolean;
     color?: Color;
+    /** Controlled open panels (use with `update:opened` / `v-model:opened`). */
+    opened?: number[];
+    /** Initially open panels (uncontrolled mode). */
+    defaultOpened?: number[];
     /** Design line (or inherit from `data-design`). */
     design?: DesignLine;
   }>(),
@@ -71,24 +75,51 @@ const emit = defineEmits<{
 const line = useDesign(toRef(props, 'design'));
 const design = computed<DesignLine>(() => line.value);
 
-const opened = ref<number[]>([]);
+function initialOpened(): number[] {
+  const source = [...(props.opened ?? props.defaultOpened ?? [])];
+  // Single mode can only ever reach one open panel, so keep the most recent one.
+  return props.multiple ? source : source.slice(-1);
+}
+
+const innerOpened = ref<number[]>(initialOpened());
+
+watch(
+  () => props.opened,
+  (next) => {
+    if (next !== undefined) innerOpened.value = [...next];
+  },
+);
+
+watch(
+  () => props.multiple,
+  (isMultiple) => {
+    // Single mode owns at most one panel: collapse the internal state when it turns off.
+    if (!isMultiple && props.opened === undefined) {
+      innerOpened.value = innerOpened.value.slice(-1);
+    }
+  },
+);
+
+const opened = computed<number[]>(() => props.opened ?? innerOpened.value);
 
 function toggle(index: number) {
+  const next = [...opened.value];
   if (props.multiple) {
-    const i = opened.value.indexOf(index);
+    const i = next.indexOf(index);
     if (i === -1) {
-      opened.value.push(index);
+      next.push(index);
     } else {
-      opened.value.splice(i, 1);
+      next.splice(i, 1);
     }
+  } else if (next.includes(index)) {
+    next.length = 0;
   } else {
-    if (opened.value.includes(index)) {
-      opened.value = [];
-    } else {
-      opened.value = [index];
-    }
+    next.length = 0;
+    next.push(index);
   }
-  emit('update:opened', [...opened.value]);
+  // In controlled mode the parent owns the state: never keep an optimistic copy.
+  if (props.opened === undefined) innerOpened.value = next;
+  emit('update:opened', [...next]);
 }
 </script>
 
@@ -145,6 +176,16 @@ function toggle(index: number) {
 .color-medium .accordion-indicator { color: var(--color-medium); }
 .color-dark .accordion-indicator { color: var(--color-dark); }
 
+.color-primary { --accordion-indicator: var(--color-primary); }
+.color-secondary { --accordion-indicator: var(--color-secondary); }
+.color-tertiary { --accordion-indicator: var(--color-tertiary); }
+.color-success { --accordion-indicator: var(--color-success); }
+.color-warning { --accordion-indicator: var(--color-warning); }
+.color-danger { --accordion-indicator: var(--color-danger); }
+.color-light { --accordion-indicator: var(--color-light); }
+.color-medium { --accordion-indicator: var(--color-medium); }
+.color-dark { --accordion-indicator: var(--color-dark); }
+
 /* --------------------- RUBIK variant (menu-item3 language) --------------------- */
 .accordion--rubik .accordion-header {
   font-family: var(--font-mono);
@@ -187,8 +228,8 @@ function toggle(index: number) {
   vertical-align: baseline;
 }
 .accordion--rubik .accordion-header:has(+ .accordion-content) .accordion-indicator::before {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--accordion-indicator, var(--accent));
+  border-color: var(--accordion-indicator, var(--accent));
 }
 .accordion--rubik .accordion-content {
   border-left: 2px solid var(--border);

@@ -54,10 +54,10 @@ Notification component with icon, title and message.
 
 ### Básico (`type`)
 
+Shows semantic `color` variants with a `title` and a `message`.
+
 <TipBox color="primary" title="Information" message="Operation completed successfully." />
-
 <TipBox color="warning" title="Warning" message="Check the permissions before continuing." />
-
 <TipBox color="danger" title="Critical error" message="Could not connect to the server." />
 
 ```vue
@@ -72,43 +72,25 @@ Notification component with icon, title and message.
 
 Semantic color of the border and icon.
 
-<div style="display: flex; flex-direction: column; gap: 0.5rem;">
-  <TipBox color="primary" title="Info" message="Informational message" />
-  <TipBox color="success" title="Success" message="Operation successful" />
-  <TipBox color="warning" title="Notice" message="Check this" />
-  <TipBox color="danger" title="Error" message="Something went wrong" />
-</div>
-
-```vue
-<TipBox color="primary" title="Info" message="Informational message" />
-<TipBox color="success" title="Success" message="Operation successful" />
-<TipBox color="warning" title="Notice" message="Check this" />
-<TipBox color="danger" title="Error" message="Something went wrong" />
-```
+| Type | Default | Required |
+|---|---|---|
+| `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
 
 ### title
 
 Optional bold title.
 
-```vue
-<TipBox title="Important" message="Read this" />
-```
+| Type | Default | Required |
+|---|---|---|
+| `string` | `''` | ❌ |
 
 ### message
 
 Optional descriptive message.
 
-```vue
-<TipBox title="Info" message="This is the message" />
-```
-
-## API
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Semantic color of the border and icon |
-| `title` | `string` | `''` | Optional title |
-| `message` | `string` | `''` | Optional message |
+| Type | Default | Required |
+|---|---|---|
+| `string` | `''` | ❌ |
 
 ## Slots
 
@@ -116,6 +98,22 @@ Optional descriptive message.
 |---|---|
 | `default` | Custom content (replaces title/message) |
 
-## Tokens used
+## CSS Custom Properties
 
-`--color-{name}`, `--bg-elevated`, `--bg`, `--text`, `--border`, `--font-mono`
+
+<div class="table-wrapper">
+
+| Token | Default | Description |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Monospace font stack for code-like content (key labels, log lines, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Accent color, mapped from the active semantic color. |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Base background of the surface. |
+| `--bg-elevated` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Background of floating surfaces (modals, dropdowns, popovers). |
+| `--bg-panel` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-surface1`) | Background of panel-like raised surfaces (cards, accordions). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Outline and divider color for surfaces. |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Primary text color used inside the component. |
+| `--color-primary` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Primary semantic color (mauve in Catppuccin). |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

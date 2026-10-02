@@ -18,7 +18,6 @@ Lightweight label for displaying highlighted information with color variants.
   margin-bottom: 1rem;
 }
 </style>
-
 <div class="design-lines-demo">
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
@@ -53,6 +52,8 @@ Lightweight label for displaying highlighted information with color variants.
 
 ### Color (`color`)
 
+All semantic `color` variants, from `primary` to `dark`.
+
 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
   <Badge color="primary">primary</Badge>
   <Badge color="secondary">secondary</Badge>
@@ -79,6 +80,8 @@ Lightweight label for displaying highlighted information with color variants.
 
 ### Contenido (`default` slot)
 
+Text passed through the `default` slot becomes the badge content.
+
 <Badge>NEW</Badge>
 <Badge>v2.1.0</Badge>
 <Badge>beta</Badge>
@@ -95,24 +98,20 @@ Lightweight label for displaying highlighted information with color variants.
 
 Defines the semantic color of the badge.
 
-<div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-  <Badge color="primary">Primary</Badge>
-  <Badge color="success">Success</Badge>
-  <Badge color="danger">Danger</Badge>
+| Type | Default | Required |
+|---|---|---|
+| `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
+
+## CSS Custom Properties
+
+
+<div class="table-wrapper">
+
+| Token | Default | Description |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Monospace font stack for code-like content (key labels, log lines, chips). |
+| `--bg-panel` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-surface1`) | Background of panel-like raised surfaces (cards, accordions). |
+
 </div>
 
-```vue
-<Badge color="primary">Primary</Badge>
-<Badge color="success">Success</Badge>
-<Badge color="danger">Danger</Badge>
-```
-
-## API
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Semantic badge color |
-
-## Tokens used
-
-`--color-{name}`, `--bg`, `--text`, `--border`, `--font-mono`
+Ver [Theming](../theming.md) para la convención completa.

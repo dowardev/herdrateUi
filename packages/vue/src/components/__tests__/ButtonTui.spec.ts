@@ -144,4 +144,51 @@ describe('ButtonTuiGroup', () => {
     expect(el.classes()).toContain('btn-tui--rubik');
     expect(el.attributes('data-design')).toBe('rubik');
   });
+
+  it('forwards disabled to the native button', () => {
+    const wrapper = mount(ButtonTui, {
+      props: { disabled: true },
+    });
+    const el = wrapper.find('.btn-tui');
+    expect(el.attributes('disabled')).toBeDefined();
+  });
+
+  it('does not emit click when disabled', async () => {
+    const wrapper = mount(ButtonTui, {
+      props: { disabled: true },
+    });
+    await wrapper.find('.btn-tui').trigger('click');
+    expect(wrapper.emitted('click')).toBeFalsy();
+  });
+
+  it('disables every button when the group is disabled', () => {
+    const wrapper = mount(ButtonTuiGroup, {
+      props: {
+        disabled: true,
+        buttons: [
+          { label: 'A', onClick: () => {} },
+          { label: 'B', onClick: () => {} },
+        ],
+      },
+    });
+    const buttons = wrapper.findAll('.btn-tui');
+    expect(buttons).toHaveLength(2);
+    for (const btn of buttons) {
+      expect(btn.attributes('disabled')).toBeDefined();
+    }
+  });
+
+  it('disables a single item without disabling its siblings', () => {
+    const wrapper = mount(ButtonTuiGroup, {
+      props: {
+        buttons: [
+          { label: 'A', onClick: () => {} },
+          { label: 'B', onClick: () => {}, disabled: true },
+        ],
+      },
+    });
+    const buttons = wrapper.findAll('.btn-tui');
+    expect(buttons[0].attributes('disabled')).toBeUndefined();
+    expect(buttons[1].attributes('disabled')).toBeDefined();
+  });
 });

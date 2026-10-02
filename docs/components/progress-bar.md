@@ -18,7 +18,6 @@ Terminal-style progress bar with percentage.
   margin-bottom: 1rem;
 }
 </style>
-
 <div class="design-lines-demo">
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
@@ -122,6 +121,18 @@ Muestra u oculta el porcentaje.
 | `showLabel` | `boolean` | `true` | Show the % at the end |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Height of the bar |
 
-## Tokens used
+## CSS Custom Properties
 
-`--color-{name}`, `--bg-elevated`, `--border`, `--font-mono`
+
+<div class="table-wrapper">
+
+| Token | Default | Description |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Monospace font stack for code-like content (key labels, log lines, chips). |
+| `--bg-alt` | from theme (`--ctp-latte-mantle` / `--ctp-mocha-mantle`) | Alternate background (the next layer down from the base). |
+| `--bg-elevated` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Background of floating surfaces (modals, dropdowns, popovers). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Outline and divider color for surfaces. |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

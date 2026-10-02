@@ -2,6 +2,7 @@
 
 import './play-mode.css';
 import './sidebar.css';
+import './doc-density.css';
 import DefaultTheme from 'vitepress/theme';
 import { h } from 'vue';
 import '@catppuccin/vitepress/theme/mocha/mauve.css';

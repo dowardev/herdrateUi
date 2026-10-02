@@ -12,6 +12,8 @@ const paletteCommands = [
 ]
 const openTuix = ref(false)
 const openRubik = ref(false)
+const openColorPrimary = ref(false)
+const openColorSuccess = ref(false)
 function onSelect(id) {
   console.log('selected', id)
 }
@@ -70,6 +72,8 @@ function onSelect(id) {
 
 ### Básico (`commands` + `modelValue`)
 
+A working palette: pass `commands` and bind `modelValue`.
+
 <ClientOnly>
   <CommandPaletteDemo />
 </ClientOnly>
@@ -102,55 +106,52 @@ function onSelect(id: string) {
 </template>
 ```
 
+### Color (`color`)
+
+Each button opens a working palette: compare the prompt (`>`) and highlight in both colors.
+
+<ClientOnly>
+  <div style="display: flex; gap: 0.5rem;">
+    <ButtonTui @click="openColorPrimary = true" color="primary">Open primary</ButtonTui>
+    <ButtonTui @click="openColorSuccess = true" color="success">Open success</ButtonTui>
+  </div>
+  <CommandPalette v-model="openColorPrimary" :commands="paletteCommands" color="primary" @select="onSelect" />
+  <CommandPalette v-model="openColorSuccess" :commands="paletteCommands" color="success" @select="onSelect" />
+</ClientOnly>
+
+```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+import { ButtonTui, CommandPalette } from '@dowardev/herdrate-vue'
+
+const openColorPrimary = ref(false)
+const openColorSuccess = ref(false)
+</script>
+
+<template>
+  <div style="display: flex; gap: 0.5rem;">
+    <ButtonTui @click="openColorPrimary = true" color="primary">Open primary</ButtonTui>
+
+    <ButtonTui @click="openColorSuccess = true" color="success">Open success</ButtonTui>
+  </div>
+
+  <CommandPalette v-model="openColorPrimary" :commands="commands" color="primary" @select="onSelect" />
+
+  <CommandPalette v-model="openColorSuccess" :commands="commands" color="success" @select="onSelect" />
+</template>
+```
+
 ## Props
 
 ### commands
 
 List of available commands to filter and select.
 
-```vue
-<CommandPalette
-  :commands="[
-    { id: 'open', label: 'Open File', description: 'Open a file' },
-    { id: 'save', label: 'Save File', description: 'Save changes' },
-  ]"
-/>
-```
+| Type | Default | Required |
+|---|---|---|
+| `Array<{id, label, description?, icon?}>` | `[]` | ❌ |
 
-### modelValue
-
-Controls opening (`true`) and closing (`false`) of the palette.
-
-```vue
-<CommandPalette v-model="open" :commands="commands" />
-```
-
-### color
-
-Color of the prompt (`>`) and of the highlighted item.
-
-<ClientOnly>
-  <div style="display: flex; gap: 1rem;">
-    <button @click="() => {}" style="background:var(--bg-panel);border:1px solid var(--border);color:var(--text);font-family:var(--font-mono);padding:0.5rem 1rem;cursor:pointer;">Open primary</button>
-    <button @click="() => {}" style="background:var(--bg-panel);border:1px solid var(--border);color:var(--text);font-family:var(--font-mono);padding:0.5rem 1rem;cursor:pointer;">Open success</button>
-  </div>
-</ClientOnly>
-
-```vue
-<CommandPalette v-model="open" :commands="commands" color="success" />
-```
-
-### placeholder
-
-Placeholder of the search input.
-
-```vue
-<CommandPalette v-model="open" :commands="commands" placeholder="Search..." />
-```
-
-## Types
-
-### Command
+Each command has this shape:
 
 | Field | Type | Required | Description |
 |---|---|---|---|
@@ -159,14 +160,29 @@ Placeholder of the search input.
 | `description` | `string` | ❌ | Optional description |
 | `icon` | `string` | ❌ | Icon or emoji |
 
-## API
+### modelValue
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `commands` | `Command[]` | `[]` | List of commands |
-| `modelValue` | `boolean` | `false` | Controls open/close |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Prompt and highlight color |
-| `placeholder` | `string` | `'Type a command...'` | Input placeholder |
+Controls opening (`true`) and closing (`false`) of the palette.
+
+| Type | Default | Required |
+|---|---|---|
+| `boolean` | `false` | ❌ |
+
+### color
+
+Color of the prompt (`>`) and of the highlighted item.
+
+| Type | Default | Required |
+|---|---|---|
+| `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
+
+### placeholder
+
+Placeholder of the search input.
+
+| Type | Default | Required |
+|---|---|---|
+| `string` | `'Type a command...'` | ❌ |
 
 ## Events
 
@@ -175,6 +191,33 @@ Placeholder of the search input.
 | `update:modelValue` | `boolean` | Emitted on open/close |
 | `select` | `string` | Emitted when a command is selected (returns `id`) |
 
-## Tokens used
+## CSS Custom Properties
 
-`--font-mono`, `--bg`, `--bg-panel`, `--border`, `--text`, `--text-muted`, `--color-*`
+
+<div class="table-wrapper">
+
+| Token | Default | Description |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Monospace font stack for code-like content (key labels, log lines, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Accent color, mapped from the active semantic color. |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Base background of the surface. |
+| `--bg-alt` | from theme (`--ctp-latte-mantle` / `--ctp-mocha-mantle`) | Alternate background (the next layer down from the base). |
+| `--bg-panel` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-surface1`) | Background of panel-like raised surfaces (cards, accordions). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Outline and divider color for surfaces. |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Primary text color used inside the component. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Secondary text for hints, annotations and disabled state. |
+| `--color-primary` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Primary semantic color (mauve in Catppuccin). |
+| `--color-secondary` | from theme (`--ctp-latte-lavender` / `--ctp-mocha-lavender`) | Secondary semantic color (lavender in Catppuccin). |
+| `--color-tertiary` | from theme (`--ctp-latte-blue` / `--ctp-mocha-blue`) | Tertiary semantic color (blue in Catppuccin). |
+| `--color-success` | from theme (`--ctp-latte-green` / `--ctp-mocha-green`) | Success semantic color (green in Catppuccin). |
+| `--color-warning` | from theme (`--ctp-latte-yellow` / `--ctp-mocha-yellow`) | Warning semantic color (yellow in Catppuccin). |
+| `--color-danger` | from theme (`--ctp-latte-red` / `--ctp-mocha-red`) | Danger semantic color (red in Catppuccin). |
+| `--color-light` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-rosewater`) | Light semantic color (lighter contrast tone). |
+| `--color-medium` | from theme (`--ctp-latte-overlay0` / `--ctp-mocha-overlay2`) | Medium semantic color (mid-tone). |
+| `--color-dark` | from theme (`--ctp-latte-text` / `--ctp-mocha-subtext1`) | Dark semantic color (high contrast text). |
+| `--shadow` | `none` on TUIX, elevated on rubik | Elevation shadow for raised surfaces. |
+| `--shadow-hover` | `var(--shadow-hover, var(--shadow))` | Shadow on hover/active state. |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

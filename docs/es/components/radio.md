@@ -3,7 +3,11 @@ import { ref } from 'vue'
 import { radioMeta } from './meta/radio'
 import { useDesign } from '@dowardev/herdrate-vue'
 const selected = ref('a')
-const selectedColor = ref('a')
+const colorPrimary = ref('primary')
+const colorSuccess = ref('success')
+const colorWarning = ref('warning')
+const colorDanger = ref('danger')
+const labelSelected = ref('x')
 const options = [
   { value: 'a', label: 'Opción A' },
   { value: 'b', label: 'Opción B' },
@@ -62,6 +66,8 @@ Radio button estilo terminal con `(o)` / `( )`.
 
 ### Selección (`modelValue` / `v-model` + `value`)
 
+Vincula el radio seleccionado a `modelValue` mediante `v-model` y `value`.
+
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
     <Radio v-for="opt in options" :key="opt.value" v-model="selected" :value="opt.value" :label="opt.label" />
@@ -76,27 +82,60 @@ Radio button estilo terminal con `(o)` / `( )`.
 
 ### Etiqueta (`label`)
 
+Define el texto visible junto al radio con el prop `label`.
+
 <ClientOnly>
-  <Radio v-model="selected" value="x" label="Opción extra" />
+  <Radio v-model="labelSelected" value="x" label="Opción extra" />
 </ClientOnly>
 
 ```vue
-<Radio v-model="selected" value="x" label="Opción extra" />
+<script setup lang="ts">
+import { ref } from 'vue'
+import { Radio } from '@dowardev/herdrate-vue'
+
+const labelSelected = ref('x')
+</script>
+
+<template>
+  <Radio v-model="labelSelected" value="x" label="Opción extra" />
+</template>
 ```
 
 ### Color (`color`)
 
+Cada radio es su propio grupo con el valor correspondiente preseleccionado: se ve cada color y sigue siendo clickeable.
+
 <ClientOnly>
   <div style="display:flex;flex-direction:column;gap:0.5rem;">
-    <Radio v-for="opt in ['primary','success','warning','danger']" :key="opt" v-model="selectedColor" :value="opt" :label="opt" :color="opt" />
+    <Radio v-model="colorPrimary" value="primary" color="primary" label="Primary" />
+    <Radio v-model="colorSuccess" value="success" color="success" label="Success" />
+    <Radio v-model="colorWarning" value="warning" color="warning" label="Warning" />
+    <Radio v-model="colorDanger" value="danger" color="danger" label="Danger" />
   </div>
 </ClientOnly>
 
 ```vue
-<Radio v-model="selectedColor" value="success" color="success" label="Success" />
+<script setup lang="ts">
+import { ref } from 'vue'
+import { Radio } from '@dowardev/herdrate-vue'
+
+const colorPrimary = ref('primary')
+const colorSuccess = ref('success')
+const colorWarning = ref('warning')
+const colorDanger = ref('danger')
+</script>
+
+<template>
+  <Radio v-model="colorPrimary" value="primary" color="primary" label="Primary" />
+  <Radio v-model="colorSuccess" value="success" color="success" label="Success" />
+  <Radio v-model="colorWarning" value="warning" color="warning" label="Warning" />
+  <Radio v-model="colorDanger" value="danger" color="danger" label="Danger" />
+</template>
 ```
 
 ### Deshabilitado (`disabled`)
+
+Renderiza un radio que no se puede seleccionar con el prop `disabled`.
 
 <Radio value="x" label="No disponible" disabled />
 
@@ -110,37 +149,25 @@ Radio button estilo terminal con `(o)` / `( )`.
 
 Texto que se muestra junto al radio button.
 
-<ClientOnly>
-  <Radio v-model="selected" value="x" label="Opción extra" />
-</ClientOnly>
-
-```vue
-<Radio v-model="selected" value="x" label="Opción extra" />
-```
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | `''` | ❌ |
 
 ### color
 
 Color del indicador `(o)` cuando está seleccionado.
 
-<ClientOnly>
-  <div style="display:flex;flex-direction:column;gap:0.5rem;">
-    <Radio v-for="opt in ['primary','success','warning','danger']" :key="opt" v-model="selectedColor" :value="opt" :label="opt" :color="opt" />
-  </div>
-</ClientOnly>
-
-```vue
-<Radio v-model="selectedColor" value="success" color="success" label="Success" />
-```
+| Tipo | Default | Requerido |
+|---|---|---|
+| `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
 
 ### disabled
 
 Deshabilita la interacción.
 
-<Radio value="x" label="No disponible" disabled />
-
-```vue
-<Radio value="x" label="No disponible" disabled />
-```
+| Tipo | Default | Requerido |
+|---|---|---|
+| `boolean` | `false` | ❌ |
 
 ## Eventos
 
@@ -148,16 +175,27 @@ Deshabilita la interacción.
 |---|---|---|
 | `update:modelValue` | `string` | Se emite al seleccionar |
 
-## API
+## CSS Custom Properties
 
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `modelValue` | `string` | `''` | Valor seleccionado (v-model) |
-| `value` | `string` | — | Valor de este radio (requerido) |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del indicador |
-| `disabled` | `boolean` | `false` | Deshabilitar |
-| `label` | `string` | `''` | Texto junto al radio |
 
-## Tokens usados
+<div class="table-wrapper">
 
-`--font-mono`, `--color-*`
+| Token | Default | Descripción |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Texto secundario para pistas, anotaciones y estado deshabilitado. |
+| `--color-primary` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color semántico primario (mauve en Catppuccin). |
+| `--color-secondary` | from theme (`--ctp-latte-lavender` / `--ctp-mocha-lavender`) | Color semántico secundario (lavender en Catppuccin). |
+| `--color-tertiary` | from theme (`--ctp-latte-blue` / `--ctp-mocha-blue`) | Color semántico terciario (blue en Catppuccin). |
+| `--color-success` | from theme (`--ctp-latte-green` / `--ctp-mocha-green`) | Color semántico de éxito (green en Catppuccin). |
+| `--color-warning` | from theme (`--ctp-latte-yellow` / `--ctp-mocha-yellow`) | Color semántico de advertencia (yellow en Catppuccin). |
+| `--color-danger` | from theme (`--ctp-latte-red` / `--ctp-mocha-red`) | Color semántico de peligro (red en Catppuccin). |
+| `--color-light` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-rosewater`) | Color semántico claro (tono de contraste más claro). |
+| `--color-medium` | from theme (`--ctp-latte-overlay0` / `--ctp-mocha-overlay2`) | Color semántico medio (tono intermedio). |
+| `--color-dark` | from theme (`--ctp-latte-text` / `--ctp-mocha-subtext1`) | Color semántico oscuro (texto de alto contraste). |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

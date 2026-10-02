@@ -54,10 +54,10 @@ Componente de notificación con icono, título y mensaje.
 
 ### Básico (`type`)
 
+Muestra variantes de `color` semántico con `title` y `message`.
+
 <TipBox color="primary" title="Información" message="Operación completada exitosamente." />
-
 <TipBox color="warning" title="Advertencia" message="Revisa los permisos antes de continuar." />
-
 <TipBox color="danger" title="Error crítico" message="No se pudo conectar al servidor." />
 
 ```vue
@@ -72,43 +72,25 @@ Componente de notificación con icono, título y mensaje.
 
 Color semántico del borde e icono.
 
-<div style="display: flex; flex-direction: column; gap: 0.5rem;">
-  <TipBox color="primary" title="Info" message="Mensaje informativo" />
-  <TipBox color="success" title="Éxito" message="Operación exitosa" />
-  <TipBox color="warning" title="Aviso" message="Revisa esto" />
-  <TipBox color="danger" title="Error" message="Algo salió mal" />
-</div>
-
-```vue
-<TipBox color="primary" title="Info" message="Mensaje informativo" />
-<TipBox color="success" title="Éxito" message="Operación exitosa" />
-<TipBox color="warning" title="Aviso" message="Revisa esto" />
-<TipBox color="danger" title="Error" message="Algo salió mal" />
-```
+| Tipo | Default | Requerido |
+|---|---|---|
+| `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
 
 ### title
 
 Título opcional en negrita.
 
-```vue
-<TipBox title="Importante" message="Lee esto" />
-```
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | `''` | ❌ |
 
 ### message
 
 Mensaje descriptivo opcional.
 
-```vue
-<TipBox title="Info" message="Este es el mensaje" />
-```
-
-## API
-
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico del borde e icono |
-| `title` | `string` | `''` | Título opcional |
-| `message` | `string` | `''` | Mensaje opcional |
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | `''` | ❌ |
 
 ## Slots
 
@@ -116,6 +98,22 @@ Mensaje descriptivo opcional.
 |---|---|
 | `default` | Contenido personalizado (reemplaza title/message) |
 
-## Tokens usados
+## CSS Custom Properties
 
-`--color-{name}`, `--bg-elevated`, `--bg`, `--text`, `--border`, `--font-mono`
+
+<div class="table-wrapper">
+
+| Token | Default | Descripción |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Fondo base de la superficie. |
+| `--bg-elevated` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Fondo de superficies flotantes (modales, dropdowns, popovers). |
+| `--bg-panel` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-surface1`) | Fondo de superficies tipo panel (cards, accordions). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
+| `--color-primary` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color semántico primario (mauve en Catppuccin). |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

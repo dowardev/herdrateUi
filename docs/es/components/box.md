@@ -52,31 +52,9 @@ Wrapper decorativo con variantes de borde estilo terminal.
 
 ## Demo
 
-### Básico (`borderStyle` + slots)
+### Borde (`borderStyle`)
 
-<Box borderStyle="single">
-  <template #header>Header</template>
-  Contenido del box.
-  <template #footer>Footer</template>
-</Box>
-
-```vue
-<Box borderStyle="single">
-  <template #header>Header</template>
-  Contenido.
-  <template #footer>Footer</template>
-</Box>
-
-<Box borderStyle="double" color="success">
-  Borde doble.
-</Box>
-```
-
-## Props
-
-### borderStyle
-
-Variante de borde del box.
+Las cinco variantes de `borderStyle`, de `single` a `none`.
 
 <Box borderStyle="single">Single</Box>
 <Box borderStyle="double">Double</Box>
@@ -92,9 +70,9 @@ Variante de borde del box.
 <Box borderStyle="none">None</Box>
 ```
 
-### color
+### Color (`color`)
 
-Color semántico del borde.
+Valores semánticos de `color` aplicados al borde del box.
 
 <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
   <Box borderStyle="single" color="primary">Primary</Box>
@@ -108,41 +86,65 @@ Color semántico del borde.
 <Box borderStyle="single" color="danger">Danger</Box>
 ```
 
+### Slots (`header` / `default` / `footer`)
+
+Los tres slots con nombre llenan la cabecera, el cuerpo y el pie del box.
+
+<Box>
+  <template #header>Header</template>
+  Contenido del box.
+  <template #footer>Footer</template>
+</Box>
+
+```vue
+<Box>
+  <template #header>Header</template>
+  Contenido.
+  <template #footer>Footer</template>
+</Box>
+```
+
+## Props
+
+### borderStyle
+
+Variante de borde del box.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `'single' \\| 'double' \\| 'rounded' \\| 'ascii' \\| 'none'` | `'single'` | ❌ |
+
+### color
+
+Color semántico del borde.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
+
 ## Slots
 
-### header
+| Slot | Descripción |
+|---|---|
+| `header` | Contenido opcional en la cabecera del box |
+| `default` | Contenido principal del box |
+| `footer` | Contenido opcional en el pie del box |
 
-Contenido opcional en la cabecera del box.
+## CSS Custom Properties
 
-```vue
-<Box>
-  <template #header>Título</template>
-  ...
-</Box>
-```
 
-### default
+<div class="table-wrapper">
 
-Contenido principal del box.
+| Token | Default | Descripción |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Fondo base de la superficie. |
+| `--bg-alt` | from theme (`--ctp-latte-mantle` / `--ctp-mocha-mantle`) | Fondo alternativo (la capa por debajo del fondo base). |
+| `--bg-panel` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-surface1`) | Fondo de superficies tipo panel (cards, accordions). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Texto secundario para pistas, anotaciones y estado deshabilitado. |
+| `--cp-ease` | `cubic-bezier(.4, 0, .2, 1)` | Curva de easing por defecto para transiciones. |
 
-### footer
+</div>
 
-Contenido opcional en el pie del box.
-
-```vue
-<Box>
-  ...
-  <template #footer>Pie</template>
-</Box>
-```
-
-## API
-
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `borderStyle` | `'single' \\| 'double' \\| 'rounded' \\| 'ascii' \\| 'none'` | `'single'` | Variante de borde |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico |
-
-## Tokens usados
-
-`--color-{name}`, `--bg-panel`, `--border`, `--font-mono`, `--bg-*`
+Ver [Theming](../theming.md) para la convención completa.

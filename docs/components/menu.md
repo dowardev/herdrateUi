@@ -29,7 +29,6 @@ Terminal-style vertical menu with items, dividers, disabled and custom slot.
   margin-bottom: 1rem;
 }
 </style>
-
 <div class="design-lines-demo">
 <Tabs :defaultValue="line" :key="line">
   <TabsList>
@@ -150,9 +149,15 @@ Separadores visuales e items no interactivos.
 />
 ```
 
-## Types
+## API
 
-### MenuItem
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `items` | `Array<{label, icon?, disabled?, divider?}>` | `[]` | Menu items |
+| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Active item color |
+| `activeIndex` | `number` | `-1` | Highlighted item index |
+
+**`items`** — each item has this shape:
 
 | Field | Type | Required | Description |
 |---|---|---|---|
@@ -160,14 +165,6 @@ Separadores visuales e items no interactivos.
 | `icon` | `string` | ❌ | Optional icon or emoji |
 | `disabled` | `boolean` | ❌ | Disabled item |
 | `divider` | `boolean` | ❌ | Separator line |
-
-## API
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `items` | `MenuItem[]` | `[]` | Menu items |
-| `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Active item color |
-| `activeIndex` | `number` | `-1` | Highlighted item index |
 
 ## Events
 
@@ -182,6 +179,30 @@ Separadores visuales e items no interactivos.
 | `default` | — | Alternative to `items` |
 | `item` | `{ item, index, active }` | Custom per-item rendering |
 
-## Tokens used
+## CSS Custom Properties
 
-`--font-mono`, `--bg`, `--bg-panel`, `--text`, `--border`, `--color-*`
+
+<div class="table-wrapper">
+
+| Token | Default | Description |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Monospace font stack for code-like content (key labels, log lines, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Accent color, mapped from the active semantic color. |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Base background of the surface. |
+| `--bg-alt` | from theme (`--ctp-latte-mantle` / `--ctp-mocha-mantle`) | Alternate background (the next layer down from the base). |
+| `--bg-panel` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-surface1`) | Background of panel-like raised surfaces (cards, accordions). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Outline and divider color for surfaces. |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Primary text color used inside the component. |
+| `--color-primary` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Primary semantic color (mauve in Catppuccin). |
+| `--color-secondary` | from theme (`--ctp-latte-lavender` / `--ctp-mocha-lavender`) | Secondary semantic color (lavender in Catppuccin). |
+| `--color-tertiary` | from theme (`--ctp-latte-blue` / `--ctp-mocha-blue`) | Tertiary semantic color (blue in Catppuccin). |
+| `--color-success` | from theme (`--ctp-latte-green` / `--ctp-mocha-green`) | Success semantic color (green in Catppuccin). |
+| `--color-warning` | from theme (`--ctp-latte-yellow` / `--ctp-mocha-yellow`) | Warning semantic color (yellow in Catppuccin). |
+| `--color-danger` | from theme (`--ctp-latte-red` / `--ctp-mocha-red`) | Danger semantic color (red in Catppuccin). |
+| `--color-light` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-rosewater`) | Light semantic color (lighter contrast tone). |
+| `--color-medium` | from theme (`--ctp-latte-overlay0` / `--ctp-mocha-overlay2`) | Medium semantic color (mid-tone). |
+| `--color-dark` | from theme (`--ctp-latte-text` / `--ctp-mocha-subtext1`) | Dark semantic color (high contrast text). |
+
+</div>
+
+Ver [Theming](../theming.md) para la convención completa.

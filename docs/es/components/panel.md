@@ -49,17 +49,17 @@ Contenedor versátil con header, body y footer, más divisor vertical opcional.
 </Tabs>
 ```
 
-
 ## Demo
 
 ### Básico (`title`)
+
+Un panel con header, contenido y footer mediante el prop `title` y los slots.
 
 <Panel divider>
   <template #header>&#x1f4cb; Panel</template>
   Contenido principal del panel.
   <template #footer>&#x26a1; Footer con informaci&#xf3;n</template>
 </Panel>
-
 <Panel>
   <template #header>&#x1f4cb; Sin divisor</template>
   Panel sin el divider vertical.
@@ -80,18 +80,15 @@ Contenedor versátil con header, body y footer, más divisor vertical opcional.
 </Panel>
 ```
 
-## Props
+### Divisor (`divider`)
 
-### divider
-
-Muestra un divisor vertical (`│`) a la izquierda del contenido.
+Compara paneles con y sin el prop `divider`.
 
 <Panel divider>
   <template #header>Con divisor</template>
   Contenido con línea vertical.
   <template #footer>Footer</template>
 </Panel>
-
 <Panel>
   <template #header>Sin divisor</template>
   Contenido sin línea vertical.
@@ -102,41 +99,40 @@ Muestra un divisor vertical (`│`) a la izquierda del contenido.
 <Panel divider>
 <Panel>
 ```
+## Props
+
+### divider
+
+Muestra un divisor vertical (`│`) a la izquierda del contenido.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `boolean` | `false` | ❌ |
 
 ## Slots
 
-### header
+| Slot | Descripción |
+|---|---|
+| `header` | Cabecera del panel |
+| `default` | Contenido principal del panel |
+| `footer` | Pie del panel |
+## CSS Custom Properties
 
-Cabecera del panel.
 
-```vue
-<Panel>
-  <template #header>Cabecera</template>
-  ...
-</Panel>
-```
+<div class="table-wrapper">
 
-### default
+| Token | Default | Descripción |
+|---|---|---|
+| `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
+| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
+| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Fondo base de la superficie. |
+| `--bg-alt` | from theme (`--ctp-latte-mantle` / `--ctp-mocha-mantle`) | Fondo alternativo (la capa por debajo del fondo base). |
+| `--bg-panel` | from theme (`--ctp-latte-surface1` / `--ctp-mocha-surface1`) | Fondo de superficies tipo panel (cards, accordions). |
+| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
+| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
+| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Texto secundario para pistas, anotaciones y estado deshabilitado. |
+| `--cp-ease` | `cubic-bezier(.4, 0, .2, 1)` | Curva de easing por defecto para transiciones. |
 
-Contenido principal del panel.
+</div>
 
-### footer
-
-Pie del panel.
-
-```vue
-<Panel>
-  ...
-  <template #footer>Pie</template>
-</Panel>
-```
-
-## API
-
-| Prop | Tipo | Default | Descripción |
-|---|---|---|---|
-| `divider` | `boolean` | `false` | Muestra divisor vertical (`│`) |
-
-## Tokens usados
-
-`--bg-panel`, `--bg`, `--text`, `--border`, `--font-mono`
+Ver [Theming](../theming.md) para la convención completa.
