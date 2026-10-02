@@ -104,6 +104,26 @@ The three named slots fill the box header, body and footer.
 </Box>
 ```
 
+### Header (`header`)
+
+Plain-text header content via the `header` prop. The slot wins if both are provided.
+
+<Box header="Note:">Content with a header label.</Box>
+
+```vue
+<Box header="Note:">Content with a header label.</Box>
+```
+
+### Footer (`footer`)
+
+Plain-text footer content via the `footer` prop. The slot wins if both are provided.
+
+<Box footer="End of section">Content with a footer label.</Box>
+
+```vue
+<Box footer="End of section">Content with a footer label.</Box>
+```
+
 ## Props
 
 ### borderStyle
@@ -121,6 +141,22 @@ Semantic border color.
 | Type | Default | Required |
 |---|---|---|
 | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
+
+### header
+
+Plain-text header content shown above the body. Overridden by the `header` slot if provided.
+
+| Type | Default | Required |
+|---|---|---|
+| `string` | — | ❌ |
+
+### footer
+
+Plain-text footer content shown below the body. Overridden by the `footer` slot if provided.
+
+| Type | Default | Required |
+|---|---|---|
+| `string` | — | ❌ |
 
 ## Slots
 

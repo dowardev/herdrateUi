@@ -88,4 +88,17 @@ describe('TreeNode', () => {
       tuix.find('.tree-node__label').text(),
     );
   });
+
+  it('renders label via prop when no slot is provided', () => {
+    const wrapper = mount(TreeNode, { props: { label: 'src/' } });
+    expect(wrapper.find('.tree-node__label').text()).toBe('src/');
+  });
+
+  it('lets the label slot win over the label prop', () => {
+    const wrapper = mount(TreeNode, {
+      props: { label: 'Prop text' },
+      slots: { label: '<span>Slotted</span>' },
+    });
+    expect(wrapper.find('.tree-node__label').text()).toBe('Slotted');
+  });
 });

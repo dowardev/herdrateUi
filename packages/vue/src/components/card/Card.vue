@@ -11,10 +11,13 @@
     :data-design="design === 'rubik' ? 'rubik' : undefined"
     @mouseenter="$emit('hover')"
   >
-    <header v-if="number || category || $slots.header" class="card-head">
+    <header
+      v-if="number || category || header || $slots.header"
+      class="card-head"
+    >
       <span v-if="number" class="card-number">{{ number }}</span>
       <span v-if="category" class="card-category">{{ category }}</span>
-      <slot name="header" />
+      <slot name="header">{{ header }}</slot>
     </header>
 
     <h3 class="card-title">
@@ -25,11 +28,14 @@
       <slot>{{ description }}</slot>
     </p>
 
-    <footer v-if="tags?.length || $slots.footer || arrow" class="card-foot">
+    <footer
+      v-if="tags?.length || footer || $slots.footer || arrow"
+      class="card-foot"
+    >
       <div v-if="tags?.length" class="card-tags">
         <span v-for="tag in tags" :key="tag" class="card-tag">{{ tag }}</span>
       </div>
-      <slot name="footer" />
+      <slot name="footer">{{ footer }}</slot>
       <button v-if="arrow" class="card-arrow" type="button" aria-label="Open">
         <span aria-hidden="true">→</span>
       </button>
@@ -51,6 +57,10 @@ const props = withDefaults(
     title: string;
     /** Body text. */
     description?: string;
+    /** Plain-text header content shown before the title (overridden by the `header` slot). */
+    header?: string;
+    /** Plain-text footer content shown at the bottom (overridden by the `footer` slot). */
+    footer?: string;
     /** Tech chips. */
     tags?: string[];
     /** Show the arrow affordance. */

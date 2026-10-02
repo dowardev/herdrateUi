@@ -5,14 +5,14 @@
     :class="['panel', { 'panel--with-divider': divider, 'panel--rubik': design === 'rubik' }]"
     :data-design="design === 'rubik' ? 'rubik' : undefined"
   >
-    <div v-if="$slots.header" class="panel-header">
-      <slot name="header" />
+    <div v-if="header || $slots.header" class="panel-header">
+      <slot name="header">{{ header }}</slot>
     </div>
     <div class="panel-body">
       <slot />
     </div>
-    <div v-if="$slots.footer" class="panel-footer">
-      <slot name="footer" />
+    <div v-if="footer || $slots.footer" class="panel-footer">
+      <slot name="footer">{{ footer }}</slot>
     </div>
   </div>
 </template>
@@ -24,6 +24,10 @@ import { type DesignLine, useDesign } from '../../composables/useDesign';
 const props = withDefaults(
   defineProps<{
     divider?: boolean;
+    /** Plain-text header content (overridden by the `header` slot). */
+    header?: string;
+    /** Plain-text footer content (overridden by the `footer` slot). */
+    footer?: string;
     /** Design line (or inherit from `data-design`). */
     design?: DesignLine;
   }>(),

@@ -104,6 +104,26 @@ Los tres slots con nombre llenan la cabecera, el cuerpo y el pie del box.
 </Box>
 ```
 
+### Header (`header`)
+
+Contenido de texto plano para la cabecera mediante el prop `header`. El slot gana si se proporcionan ambos.
+
+<Box header="Nota:">Contenido con etiqueta de cabecera.</Box>
+
+```vue
+<Box header="Nota:">Contenido con etiqueta de cabecera.</Box>
+```
+
+### Footer (`footer`)
+
+Contenido de texto plano para el pie mediante el prop `footer`. El slot gana si se proporcionan ambos.
+
+<Box footer="Fin de la sección">Contenido con etiqueta de pie.</Box>
+
+```vue
+<Box footer="Fin de la sección">Contenido con etiqueta de pie.</Box>
+```
+
 ## Props
 
 ### borderStyle
@@ -121,6 +141,22 @@ Color semántico del borde.
 | Tipo | Default | Requerido |
 |---|---|---|
 | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
+
+### header
+
+Contenido de texto plano para la cabecera, mostrado arriba del cuerpo. Lo pisa el slot `header` si se proporciona.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | — | ❌ |
+
+### footer
+
+Contenido de texto plano para el pie, mostrado debajo del cuerpo. Lo pisa el slot `footer` si se proporciona.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | — | ❌ |
 
 ## Slots
 

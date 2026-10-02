@@ -424,11 +424,20 @@ Muestra u oculta el botón de cierre (×) en la cabecera.
 |---|---|---|
 | `boolean` | `true` | ❌ |
 
+### footer
+
+Contenido de texto plano para el pie, mostrado al final del modal. Lo pisa el slot `footer` si se proporciona.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | — | ❌ |
+
 ## Slots
 
 | Slot | Descripción |
 |---|---|
 | `default` | Cuerpo del modal, acepta cualquier HTML o componente Vue |
+| `title` | Reemplaza el prop `title` con contenido enriquecido (iconos, componentes, etc.) |
 | `footer` | Área de acciones, típicamente botones de confirmación o cancelación |
 ## CSS Custom Properties
 

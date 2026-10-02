@@ -63,3 +63,72 @@ Eso reemplaza el tema entero de tu app de una.
 ## Cómo se aplica por componente
 
 Cada página de componente tiene su propia sección `## CSS Custom Properties` con la tabla de los tokens que ese componente en particular usa, su default real y una descripción corta. La capa es la misma; la lista es por componente.
+
+## Convenciones de la API (props y slots)
+
+Cada área de contenido de un componente sigue uno de tres patrones, elegidos según lo que tenga sentido semánticamente. La regla ayuda a que la API sea predecible: si conocés el patrón, sabés cómo invocar el componente.
+
+### 1. Contenido reemplazable (prop + slot, slot gana)
+
+Áreas como el título, descripción, cabecera o pie de un card que aceptan texto plano como valor por defecto y markup rico cuando hace falta.
+
+```vue
+<h3 class="card-title">
+  <slot name="title">{{ title }}</slot>
+</h3>
+```
+
+Uso:
+
+```vue
+<Card title="Plano" />                                  <!-- prop solo -->
+<Card><template #title>★ <em>rico</em></template></Card> <!-- slot solo -->
+<Card title="Caí"><template #title>Rico</template></Card> <!-- slot pisa al prop -->
+```
+
+**Regla**: el slot gana. El prop es el fallback que se renderiza cuando el slot está vacío.
+
+**Componentes que usan este patrón**: `Card` (`title`, `description`, `header`, `footer`), `Modal` (`title`, `footer`), `Box` (`header`, `footer`), `Panel` (`header`, `footer`), `TreeNode` (`label`), `StatusBar` (`info`).
+
+### 2. Contenido opcional (slot solo, render condicional)
+
+Áreas como un footer de acciones o un bloque extra de cabecera que no tienen un valor por defecto razonable — si no hay slot, el bloque no se renderiza.
+
+```vue
+<footer v-if="$slots.footer" class="card-foot">
+  <slot name="footer" />
+</footer>
+```
+
+Uso:
+
+```vue
+<Card><template #footer><Button>OK</Button></template></Card>
+<!-- sin slot, el bloque no aparece -->
+```
+
+**Componentes que usan este patrón**: por ahora ninguno en la versión actual — todas las áreas que eran slot-only migraron al patrón 1 en LBDS-285. Si en el futuro agregás una nueva área, usá este patrón cuando no haya un valor por defecto razonable.
+
+### 3. Visual / estilo (prop solo)
+
+Colores, sombras, bordes, variantes de tipografía. Los slots no tienen sentido acá porque querés aplicar un valor escalar (un enum, un boolean), no markup.
+
+```vue
+<button :class="`color-${color}`">Click</button>
+```
+
+Uso:
+
+```vue
+<ButtonTui color="primary" fill="solid" :border="false" />
+```
+
+**Regla**: si lo único que tiene sentido es un valor escalar, es prop-only. No agregues slot.
+
+**Componentes que usan este patrón**: todos los booleanos/enums visuales (`color`, `border`, `shadow`, `design`, `fill`, `icon`, `size`, etc.) en cualquier componente.
+
+## Cómo elegir entre los tres
+
+- **¿Tiene sentido un valor textual por defecto que el usuario escriba en una línea?** → Patrón 1 (prop + slot).
+- **¿No hay un default razonable y el área es puramente "extra"?** → Patrón 2 (slot solo).
+- **¿Es un valor escalar que no es texto?** → Patrón 3 (prop solo).

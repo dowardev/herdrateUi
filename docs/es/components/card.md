@@ -129,6 +129,16 @@ Contenido extra del header (p. ej. badges de estado).
 </Card>
 ```
 
+#### Header (`header`)
+
+Contenido de texto plano para el header mediante el prop `header`. El slot gana si se proporcionan ambos.
+
+<Card title="Estado del servidor" description="Todos los sistemas operativos." header="● En vivo" />
+
+```vue
+<Card title="Estado del servidor" description="Todos los sistemas operativos." header="● En vivo" />
+```
+
 ### Metadatos
 
 Etiquetas pequeñas que identifican la tarjeta: índice, categoría y tags de tecnología.
@@ -271,6 +281,16 @@ import { ButtonTui } from '@dowardev/herdrate-vue'
 </Card>
 ```
 
+### Footer (`footer`)
+
+Contenido de texto plano para el footer mediante el prop `footer`. El slot gana si se proporcionan ambos.
+
+<Card title="Último commit" description="Agrega el nuevo prop y actualiza la documentación." footer="actualizado hace 2m" />
+
+```vue
+<Card title="Último commit" description="Agrega el nuevo prop y actualiza la documentación." footer="actualizado hace 2m" />
+```
+
 ### Evento hover (`hover`)
 
 Se emite cuando el puntero entra en la tarjeta (`mouseenter`). El consumidor decide qué hacer (p. ej. mostrar el borde).
@@ -301,6 +321,30 @@ Título de la tarjeta (requerido).
 | Tipo | Default | Requerido |
 |---|---|---|
 | `string` | — | ✅ |
+
+### description
+
+Contenido de texto plano del cuerpo. Lo pisa el slot por defecto si se proporciona.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | — | ❌ |
+
+### header
+
+Contenido de texto plano para el header, mostrado antes del título. Lo pisa el slot `header` si se proporciona.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | — | ❌ |
+
+### footer
+
+Contenido de texto plano para el footer, mostrado al final. Lo pisa el slot `footer` si se proporciona.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | — | ❌ |
 
 ### number
 

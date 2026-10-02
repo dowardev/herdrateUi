@@ -84,6 +84,24 @@ Anida nodos `TreeNode` y usa el slot `label` para el nombre de cada nodo.
 </TreeNode>
 ```
 
+### Label (`label`)
+
+Contenido de texto plano para la etiqueta mediante el prop `label`. El slot gana si se proporcionan ambos.
+
+<TreeNode label="src">
+  <TreeNode label="components">
+    <TreeNode label="Panel.vue" />
+  </TreeNode>
+</TreeNode>
+
+```vue
+<TreeNode label="src">
+  <TreeNode label="components">
+    <TreeNode label="Panel.vue" />
+  </TreeNode>
+</TreeNode>
+```
+
 ## Slots
 
 ### label
@@ -98,6 +116,16 @@ Nodos hijos anidados (otros `TreeNode`).
 |---|---|
 | `label` | Contenido del nodo (texto o HTML) |
 | `default` | Nodos hijos (otros `TreeNode`) |
+
+## Props
+
+### label
+
+Contenido de texto plano para la etiqueta, mostrado en la fila. Lo pisa el slot `label` si se proporciona.
+
+| Tipo | Default | Requerido |
+|---|---|---|
+| `string` | — | ❌ |
 
 ## CSS Custom Properties
 
