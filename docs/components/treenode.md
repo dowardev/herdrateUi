@@ -52,7 +52,7 @@ Collapsible tree node with instant expansion.
 
 ## Demo
 
-### Básico (`label` + slots)
+### Basic (`label` + slots)
 
 Nests `TreeNode` children using the `label` slot for each node name.
 

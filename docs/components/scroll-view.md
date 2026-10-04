@@ -51,7 +51,7 @@ Scroll container with a custom terminal-style bar.
 
 ## Demo
 
-### Básico (`items`)
+### Basic (`items`)
 
 A long list of `items` inside a fixed-height scrollable viewport.
 

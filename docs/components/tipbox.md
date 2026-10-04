@@ -52,7 +52,7 @@ Notification component with icon, title and message.
 
 ## Demo
 
-### Básico (`type`)
+### Basic (`type`)
 
 Shows semantic `color` variants with a `title` and a `message`.
 

@@ -46,10 +46,6 @@ const componentSidebarItems = [
 ];
 
 export default defineConfig({
-  title: 'Herdrate Vue UI Library',
-  description:
-    'Catppuccin-themed Vue 3 UI component library with CLI aesthetics',
-
   srcExclude: ['superpowers/**'],
 
   markdown: {
@@ -63,6 +59,9 @@ export default defineConfig({
     root: {
       label: 'English',
       lang: 'en',
+      title: 'Herdrate Vue UI Library',
+      description:
+        'Catppuccin-themed Vue 3 UI component library with CLI aesthetics',
       themeConfig: {
         langMenuLabel: 'Change language',
         nav: [
@@ -90,16 +89,16 @@ export default defineConfig({
     es: {
       label: 'Español',
       lang: 'es',
-      title: 'Librería de UI Vue de Herdrate',
+      title: 'Herdrate Vue UI Library',
       description:
         'Librería de componentes de interfaz de usuario para Vue 3 con estética CLI y tema Catppuccin',
       themeConfig: {
         langMenuLabel: 'Cambiar idioma',
         nav: [
-          { text: 'Inicio', link: '/es/' },
-          { text: 'Colores', link: '/es/color' },
-          { text: 'Componentes', link: '/es/components/panel' },
-          { text: 'Líneas de diseño', link: '/es/design-lines' },
+          { text: 'Home', link: '/es/' },
+          { text: 'Colors', link: '/es/color' },
+          { text: 'Components', link: '/es/components/panel' },
+          { text: 'Design lines', link: '/es/design-lines' },
         ],
         sidebar: [
           {
@@ -107,11 +106,11 @@ export default defineConfig({
             items: [{ text: 'Theming', link: '/es/theming' }],
           },
           {
-            text: 'Sistema de colores',
+            text: 'Color system',
             items: [{ text: 'Color & Fill', link: '/es/color' }],
           },
           {
-            text: 'Componentes',
+            text: 'Components',
             items: componentSidebarItems.map((item) => ({
               text: item.text,
               link: `/es${item.link}`,

@@ -69,7 +69,7 @@ Informational tooltip that appears on hover over an element, with configurable d
 
 ## Demo
 
-### Posición (`position`)
+### Position (`position`)
 
 Posición relativa al trigger.
 
@@ -143,7 +143,7 @@ Milisegundos antes de mostrar.
 <Tooltip text="Slow" :delay="1000"><ButtonTui>Slow</ButtonTui></Tooltip>
 ```
 
-### Contenido (`text`)
+### Content (`text`)
 
 Texto del tooltip.
 

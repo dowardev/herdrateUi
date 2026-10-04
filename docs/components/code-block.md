@@ -52,7 +52,7 @@ A terminal-style code block with syntax-friendly display, line numbers, a copy b
 
 ## Demo
 
-### Básico (`code` / `language`)
+### Basic (`code` / `language`)
 
 Minimal usage: pass `code` and `language`, with optional `color`.
 

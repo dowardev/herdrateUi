@@ -103,7 +103,7 @@ Tabs with horizontal scroll, navigation arrows and individual closing.
 
 ## Demo
 
-### Valor por defecto (`defaultValue` en Tabs)
+### Default value (`defaultValue` en Tabs)
 
 Tab activa al cargar la página.
 
@@ -131,7 +131,7 @@ Tab activa al cargar la página.
 </Tabs>
 ```
 
-### Cerrar tabs (`closable` en Tab)
+### Close tabs (`closable` en Tab)
 
 Las tabs `closable` muestran botón de cierre.
 
@@ -163,7 +163,7 @@ Las tabs `closable` muestran botón de cierre.
 </Tabs>
 ```
 
-### Color por tab (`color` en Tab)
+### Per-tab color (`color` en Tab)
 
 Cada tab puede tener su propio color.
 
@@ -195,7 +195,7 @@ Cada tab puede tener su propio color.
 </Tabs>
 ```
 
-### Muchas tabs (scroll horizontal)
+### Many tabs (horizontal scroll)
 
 La lista hace scroll horizontal cuando no entran.
 
@@ -251,7 +251,7 @@ La lista hace scroll horizontal cuando no entran.
 </Tabs>
 ```
 
-### Demo interactiva
+### Interactive demo
 
 Add, remove and close tabs live.
 

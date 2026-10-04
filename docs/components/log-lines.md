@@ -94,7 +94,7 @@ Log viewer with per-level coloring, terminal style.
 
 ## Demo
 
-### Básico (`lines`)
+### Basic (`lines`)
 
 Renders a list of log lines from the `lines` prop.
 

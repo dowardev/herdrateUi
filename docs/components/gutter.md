@@ -51,7 +51,7 @@ Column of line numbers with optional terminal-style markers.
 
 ## Demo
 
-### Básico (`items`)
+### Basic (`items`)
 
 A 15-line gutter with markers on lines 3, 7 and 11.
 

@@ -63,7 +63,7 @@ Terminal-style text input, with support for textarea, password and readonly.
 
 ## Demo
 
-### Básico (`modelValue` / `v-model`)
+### Basic (`modelValue` / `v-model`)
 
 Text, password and multiline inputs bound with `v-model`.
 

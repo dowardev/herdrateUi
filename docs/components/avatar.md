@@ -70,7 +70,7 @@ Deterministic color and initial from hash.
 <Avatar name="Eve" />
 ```
 
-### Tamaño (`size`)
+### Size (`size`)
 
 Three sizes: `sm`, `md` and `lg`.
 

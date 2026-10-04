@@ -52,7 +52,7 @@ Horizontal or vertical divider with terminal aesthetics.
 
 ## Demo
 
-### Orientación (`orientation`)
+### Orientation (`orientation`)
 
 A horizontal `orientation` between two blocks of text.
 

@@ -51,7 +51,7 @@ Versatile container with header, body and footer, plus optional vertical divider
 
 ## Demo
 
-### Básico (`title`)
+### Basic (`title`)
 
 A panel with header, content, and footer through the `title` prop and slots.
 

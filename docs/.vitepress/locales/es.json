@@ -9,7 +9,7 @@
   "types": "Tipos",
   "type": "Tipo",
   "description": "Descripción",
-  "default": "Default",
+  "default": "Por defecto",
   "both": "Ambos",
   "none": "ninguno"
 }

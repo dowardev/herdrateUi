@@ -125,7 +125,7 @@ Terminal-style table, alternating rows and compact mode.
 
 ## Demo
 
-### Básico (default)
+### Basic (default)
 
 Tabla simple sin props adicionales.
 
@@ -153,7 +153,7 @@ Tabla simple sin props adicionales.
 />
 ```
 
-### Filas alternadas (`striped`)
+### Striped rows (`striped`)
 
 Mejora la legibilidad en tablas con muchas filas.
 
@@ -193,7 +193,7 @@ Mejora la legibilidad en tablas con muchas filas.
 />
 ```
 
-### Compacto (`compact`)
+### Compact (`compact`)
 
 Reduce el padding para vistas densas.
 
@@ -236,7 +236,7 @@ Reduce el padding para vistas densas.
 />
 ```
 
-### Índice numerado (`indexed`)
+### Numbered index (`indexed`)
 
 Añade columna `#` / `01` al inicio.
 
@@ -262,7 +262,7 @@ Añade columna `#` / `01` al inicio.
 />
 ```
 
-### Color del header (`color`)
+### Header color (`color`)
 
 Color de acento de la cabecera.
 
@@ -297,7 +297,7 @@ Color de acento de la cabecera.
 <Table :columns="..." :rows="..." color="warning" />
 ```
 
-### Combinado (todos los props)
+### Combined (all props)
 
 Todos los props juntos en una tabla densa.
 

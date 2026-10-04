@@ -318,7 +318,7 @@ Se emite cuando el puntero entra en la tarjeta (`mouseenter`). El consumidor dec
 
 Título de la tarjeta (requerido).
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `string` | — | ✅ |
 
@@ -326,7 +326,7 @@ Título de la tarjeta (requerido).
 
 Contenido de texto plano del cuerpo. Lo pisa el slot por defecto si se proporciona.
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `string` | — | ❌ |
 
@@ -334,7 +334,7 @@ Contenido de texto plano del cuerpo. Lo pisa el slot por defecto si se proporcio
 
 Contenido de texto plano para el header, mostrado antes del título. Lo pisa el slot `header` si se proporciona.
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `string` | — | ❌ |
 
@@ -342,7 +342,7 @@ Contenido de texto plano para el header, mostrado antes del título. Lo pisa el 
 
 Contenido de texto plano para el footer, mostrado al final. Lo pisa el slot `footer` si se proporciona.
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `string` | — | ❌ |
 
@@ -350,7 +350,7 @@ Contenido de texto plano para el footer, mostrado al final. Lo pisa el slot `foo
 
 Índice en monospace (p. ej. `// 03`).
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `string` | — | ❌ |
 
@@ -358,7 +358,7 @@ Contenido de texto plano para el footer, mostrado al final. Lo pisa el slot `foo
 
 Etiqueta en mayúsculas para categorización.
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `string` | — | ❌ |
 
@@ -366,7 +366,7 @@ Etiqueta en mayúsculas para categorización.
 
 Chips de tecnologías mostrados debajo de la descripción.
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `string[]` | — | ❌ |
 
@@ -374,7 +374,7 @@ Chips de tecnologías mostrados debajo de la descripción.
 
 La línea de diseño: `tuix` (esquinas afiladas, plano) o `rubik` (esquinas recortadas, restricción HUD).
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `'tuix' \| 'rubik'` | inherit | ❌ |
 
@@ -382,7 +382,7 @@ La línea de diseño: `tuix` (esquinas afiladas, plano) o `rubik` (esquinas reco
 
 Muestra u oculta el borde.
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `boolean` | `true` | ❌ |
 
@@ -390,7 +390,7 @@ Muestra u oculta el borde.
 
 Sombra de elevación — plana (`ninguno`) en tuix —valor CSS `none`—, flotante en rubik.
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `boolean` | `false` | ❌ |
 
@@ -398,7 +398,7 @@ Sombra de elevación — plana (`ninguno`) en tuix —valor CSS `none`—, flota
 
 Muestra el indicador de flecha en el lado derecho.
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `boolean` | `true` | ❌ |
 ## Slots
@@ -419,15 +419,15 @@ Muestra el indicador de flecha en el lado derecho.
 
 <div class="table-wrapper">
 
-| Token | Default | Descripción |
+| Token | Por defecto | Descripción |
 |---|---|---|
 | `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
-| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
-| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Fondo base de la superficie. |
-| `--bg-alt` | from theme (`--ctp-latte-mantle` / `--ctp-mocha-mantle`) | Fondo alternativo (la capa por debajo del fondo base). |
-| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
-| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
-| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Texto secundario para pistas, anotaciones y estado deshabilitado. |
+| `--accent` | desde el tema (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
+| `--bg` | desde el tema (`--ctp-latte-base` / `--ctp-mocha-base`) | Fondo base de la superficie. |
+| `--bg-alt` | desde el tema (`--ctp-latte-mantle` / `--ctp-mocha-mantle`) | Fondo alternativo (la capa por debajo del fondo base). |
+| `--border` | desde el tema (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
+| `--text` | desde el tema (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
+| `--text-muted` | desde el tema (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Texto secundario para pistas, anotaciones y estado deshabilitado. |
 | `--cp-ease` | `cubic-bezier(.4, 0, .2, 1)` | Curva de easing por defecto para transiciones. |
 | `--shadow` | `none` on TUIX, elevated on rubik | Sombra de elevación para superficies elevadas. |
 | `--shadow-hover` | `var(--shadow-hover, var(--shadow))` | Sombra en estado hover/active. |

@@ -59,7 +59,7 @@ Terminal-style toggle switch with `[ON]` / `[OFF]`.
 
 ## Demo
 
-### Básico (`modelValue`)
+### Basic (`modelValue`)
 
 Binds the toggle state with `v-model` through `modelValue`.
 
