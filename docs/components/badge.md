@@ -78,7 +78,7 @@ All semantic `color` variants, from `primary` to `dark`.
 <Badge color="dark">dark</Badge>
 ```
 
-### Contenido (`default` slot)
+### Content (`default` slot)
 
 Text passed through the `default` slot becomes the badge content.
 

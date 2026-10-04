@@ -60,7 +60,7 @@ Input that creates tags on Enter, with support for a maximum limit, removal and 
 
 ## Demo
 
-### Básico (`modelValue`)
+### Basic (`modelValue`)
 
 Binds the current tag list with `v-model` through `modelValue`.
 

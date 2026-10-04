@@ -64,7 +64,7 @@ Terminal-style radio button with `(o)` / `( )`.
 
 ## Demo
 
-### Selección (`modelValue` / `v-model` + `value`)
+### Selection (`modelValue` / `v-model` + `value`)
 
 Binds the selected radio to `modelValue` through `v-model` and `value`.
 

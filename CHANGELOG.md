@@ -52,6 +52,15 @@ Three changelogs, no duplication:
   tabs and section headings in Spanish, and an automated check prevents future
   English/Spanish drift between the two versions of each page
 
+### Changed
+
+- **Docs follow a single i18n convention (LBDS-282)**: navbar/sidebar labels, app title, and URL paths stay English regardless of locale; everything else (prose, table cells, demo headings) translates. Documented at `/i18n-conventions` (and `/es/i18n-conventions`) so future contributors don't relitigate
+
+### Fixed
+
+- **ES pages no longer mix English and Spanish in the same table (LBDS-282)**: the `Default` column reads `Por defecto`, the `from theme (...)` cells read `desde el tema (...)`, and remaining English-leaked table headers are translated. EN pages had several Spanish-leaked `###` headings that now read in English (`Basic` instead of `Básico`, `Content` instead of `Contenido`, `Current step` instead of `Paso actual`, etc.)
+- **The Theming page in English is now actually in English (LBDS-282)**: it had been left fully in Spanish by an earlier translation step
+
 ## [0.3.0] - 2026-09-11
 
 ### Added

@@ -163,7 +163,7 @@ Esta demo usa la composable `useToast()` real del paquete (singleton, estado com
 
 Props aceptadas por el componente `Toast`.
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Tipo | Por defecto | Descripción |
 |---|---|---|---|
 | `message` | `string` | — | Contenido del toast |
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico del toast |
@@ -173,7 +173,7 @@ Props aceptadas por el componente `Toast`.
 
 Contenedor que renderiza la lista de toasts en una posición fija.
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Tipo | Por defecto | Descripción |
 |---|---|---|---|
 | `toasts` | `Array<{id, message, color, icon, timestamp}>` | — | Lista de toasts a mostrar |
 | `remove` | `(id: string) => void` | — | Función para cerrar toast |
@@ -201,7 +201,7 @@ Composable que retorna la lista de toasts y sus helpers.
 
 **`add(opts)`** — opciones aceptadas al crear un toast:
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Tipo | Por defecto | Descripción |
 |---|---|---|---|
 | `message` | `string` | — | Contenido del toast |
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico |
@@ -213,13 +213,13 @@ Composable que retorna la lista de toasts y sus helpers.
 
 <div class="table-wrapper">
 
-| Token | Default | Descripción |
+| Token | Por defecto | Descripción |
 |---|---|---|
 | `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
-| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
-| `--bg-elevated` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Fondo de superficies flotantes (modales, dropdowns, popovers). |
-| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
-| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
+| `--accent` | desde el tema (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
+| `--bg-elevated` | desde el tema (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Fondo de superficies flotantes (modales, dropdowns, popovers). |
+| `--border` | desde el tema (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
+| `--text` | desde el tema (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
 | `--cp-ease` | `cubic-bezier(.4, 0, .2, 1)` | Curva de easing por defecto para transiciones. |
 
 </div>

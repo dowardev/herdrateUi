@@ -129,7 +129,7 @@ Deshabilita el input y la interacción con los tags mediante `disabled`.
 
 Lista actual de tags (v-model con array de strings).
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `string[]` | `[]` | ❌ |
 
@@ -137,7 +137,7 @@ Lista actual de tags (v-model con array de strings).
 
 Color semántico de los tags.
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
 
@@ -145,7 +145,7 @@ Color semántico de los tags.
 
 Deshabilita el input y la interacción con los tags.
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `boolean` | `false` | ❌ |
 
@@ -153,7 +153,7 @@ Deshabilita el input y la interacción con los tags.
 
 Placeholder del campo de texto.
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `string` | `'Add tag...'` | ❌ |
 
@@ -161,7 +161,7 @@ Placeholder del campo de texto.
 
 Número máximo de tags permitidos (0 = sin límite).
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `number` | `0` | ❌ |
 
@@ -176,13 +176,13 @@ Número máximo de tags permitidos (0 = sin límite).
 
 <div class="table-wrapper">
 
-| Token | Default | Descripción |
+| Token | Por defecto | Descripción |
 |---|---|---|
 | `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
-| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
-| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Fondo base de la superficie. |
-| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
-| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
+| `--accent` | desde el tema (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
+| `--bg` | desde el tema (`--ctp-latte-base` / `--ctp-mocha-base`) | Fondo base de la superficie. |
+| `--border` | desde el tema (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
+| `--text` | desde el tema (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
 | `--cp-ease` | `cubic-bezier(.4, 0, .2, 1)` | Curva de easing por defecto para transiciones. |
 
 </div>

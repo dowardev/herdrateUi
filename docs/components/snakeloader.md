@@ -51,7 +51,7 @@ Loading animation inspired by terminals with Unicode block characters.
 
 ## Demo
 
-### Básico (`progress`)
+### Basic (`progress`)
 
 Basic loader with different colors and speeds around the default slot text.
 

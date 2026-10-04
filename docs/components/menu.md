@@ -79,7 +79,7 @@ Array de objetos con `label`, `icon`, `disabled`, `divider`.
 ]" :active-index="0" />
 ```
 
-### Índice activo (`activeIndex`)
+### Active index (`activeIndex`)
 
 Resalta un item con el marcador `>`.
 
@@ -115,7 +115,7 @@ Color del item activo.
 <Menu :items="[{ label: 'Danger' }, { label: 'Item 2' }]" color="danger" :activeIndex="0" />
 ```
 
-### Divider y disabled
+### Divider and disabled
 
 Separadores visuales e items no interactivos.
 

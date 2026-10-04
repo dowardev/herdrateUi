@@ -90,7 +90,7 @@ Horizontal step indicator with terminal style. Shows progress with `[1]──[2]
 
 ## Demo
 
-### Paso actual (`current`)
+### Current step (`current`)
 
 Controla qué paso está activo (1-based).
 
@@ -106,7 +106,7 @@ Controla qué paso está activo (1-based).
 <Stepper :current="4" :steps="steps" />
 ```
 
-### Color del paso activo (`color`)
+### Active step color (`color`)
 
 Color del marcador del paso actual.
 
@@ -122,7 +122,7 @@ Color del marcador del paso actual.
 <Stepper color="danger" :current="2" :steps="[{ label: 'A' }, { label: 'B' }, { label: 'C' }]" />
 ```
 
-### Número variable de pasos
+### Variable number of steps
 
 El layout se adapta de 2 a N pasos.
 

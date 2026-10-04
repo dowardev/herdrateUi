@@ -157,7 +157,7 @@ Texto del tooltip.
 
 ## Props
 
-| Prop | Tipo | Default | Descripción |
+| Prop | Tipo | Por defecto | Descripción |
 |---|---|---|---|
 | `text` | `string` | `''` | Contenido del tooltip |
 | `position` | `'top' \| 'bottom' \| 'left' \| 'right'` | `'top'` | Posición relativa al trigger |
@@ -169,13 +169,13 @@ Texto del tooltip.
 
 <div class="table-wrapper">
 
-| Token | Default | Descripción |
+| Token | Por defecto | Descripción |
 |---|---|---|
 | `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
-| `--accent` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
-| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Fondo base de la superficie. |
-| `--bg-elevated` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Fondo de superficies flotantes (modales, dropdowns, popovers). |
-| `--text` | from theme (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
+| `--accent` | desde el tema (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color de acento, mapeado desde el color semántico activo. |
+| `--bg` | desde el tema (`--ctp-latte-base` / `--ctp-mocha-base`) | Fondo base de la superficie. |
+| `--bg-elevated` | desde el tema (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Fondo de superficies flotantes (modales, dropdowns, popovers). |
+| `--text` | desde el tema (`--ctp-latte-text` / `--ctp-mocha-text`) | Color de texto principal dentro del componente. |
 | `--cp-ease-snap` | `cubic-bezier(.3, 1.4, .5, 1)` | Easing snap (sobrepasa) para interacciones de pop. |
 
 </div>

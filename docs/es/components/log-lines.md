@@ -197,7 +197,7 @@ Aplica el prop `color` al borde del componente.
 
 Array de líneas de log.
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `Array<{text: string, level?: 'info' \| 'warn' \| 'error' \| 'debug'}>` | `[]` | ❌ |
 
@@ -219,7 +219,7 @@ Cada línea tiene esta forma:
 
 Máximo de líneas visibles (las más recientes). Excedentes se descartan.
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `number` | `100` | ❌ |
 
@@ -227,7 +227,7 @@ Máximo de líneas visibles (las más recientes). Excedentes se descartan.
 
 Agrega prefijo `[HH:MM:SS]` a cada línea.
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `boolean` | `false` | ❌ |
 
@@ -235,7 +235,7 @@ Agrega prefijo `[HH:MM:SS]` a cada línea.
 
 Color del componente (se aplica al borde).
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
 
@@ -244,16 +244,16 @@ Color del componente (se aplica al borde).
 
 <div class="table-wrapper">
 
-| Token | Default | Descripción |
+| Token | Por defecto | Descripción |
 |---|---|---|
 | `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
-| `--bg` | from theme (`--ctp-latte-base` / `--ctp-mocha-base`) | Fondo base de la superficie. |
-| `--bg-alt` | from theme (`--ctp-latte-mantle` / `--ctp-mocha-mantle`) | Fondo alternativo (la capa por debajo del fondo base). |
-| `--border` | from theme (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
-| `--text-muted` | from theme (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Texto secundario para pistas, anotaciones y estado deshabilitado. |
-| `--color-primary` | from theme (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color semántico primario (mauve en Catppuccin). |
-| `--color-warning` | from theme (`--ctp-latte-yellow` / `--ctp-mocha-yellow`) | Color semántico de advertencia (yellow en Catppuccin). |
-| `--color-danger` | from theme (`--ctp-latte-red` / `--ctp-mocha-red`) | Color semántico de peligro (red en Catppuccin). |
+| `--bg` | desde el tema (`--ctp-latte-base` / `--ctp-mocha-base`) | Fondo base de la superficie. |
+| `--bg-alt` | desde el tema (`--ctp-latte-mantle` / `--ctp-mocha-mantle`) | Fondo alternativo (la capa por debajo del fondo base). |
+| `--border` | desde el tema (`--ctp-latte-surface0` / `--ctp-mocha-surface0`) | Color de contorno y divisor de superficies. |
+| `--text-muted` | desde el tema (`--ctp-latte-subtext1` / `--ctp-mocha-subtext1`) | Texto secundario para pistas, anotaciones y estado deshabilitado. |
+| `--color-primary` | desde el tema (`--ctp-latte-mauve` / `--ctp-mocha-mauve`) | Color semántico primario (mauve en Catppuccin). |
+| `--color-warning` | desde el tema (`--ctp-latte-yellow` / `--ctp-mocha-yellow`) | Color semántico de advertencia (yellow en Catppuccin). |
+| `--color-danger` | desde el tema (`--ctp-latte-red` / `--ctp-mocha-red`) | Color semántico de peligro (red en Catppuccin). |
 
 </div>
 

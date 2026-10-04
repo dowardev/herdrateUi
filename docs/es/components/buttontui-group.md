@@ -181,7 +181,7 @@ El grupo entero deshabilitado, más un ítem deshabilitado suelto.
 
 Array de botones.
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `Array<{label, icon?, onClick, fill?, color?, disabled?}>` | — | ✅ |
 
@@ -200,7 +200,7 @@ Cada botón tiene esta forma:
 
 Fill global para todos los botones. Puede sobrescribirse por ítem.
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `'solid' \| 'outline' \| 'clear'` | `'solid'` | ❌ |
 
@@ -208,7 +208,7 @@ Fill global para todos los botones. Puede sobrescribirse por ítem.
 
 Color global para todos los botones. Puede sobrescribirse por ítem.
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
 
@@ -216,7 +216,7 @@ Color global para todos los botones. Puede sobrescribirse por ítem.
 
 Espaciado entre botones (en rem).
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `number` | `0.4` | ❌ |
 
@@ -224,7 +224,7 @@ Espaciado entre botones (en rem).
 
 Deshabilita todos los botones del grupo. Cada ítem puede además definir su propio `disabled`, que se combina con el del grupo.
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `boolean` | `false` | ❌ |
 
@@ -233,7 +233,7 @@ Deshabilita todos los botones del grupo. Cada ítem puede además definir su pro
 
 <div class="table-wrapper">
 
-| Token | Default | Descripción |
+| Token | Por defecto | Descripción |
 |---|---|---|
 
 </div>

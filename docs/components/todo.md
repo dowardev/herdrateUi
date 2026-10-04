@@ -57,7 +57,7 @@ Checkable task list with minimal TUI style. Click to toggle between `[ ]` and `[
 
 ## Demo
 
-### Básico (`items`)
+### Basic (`items`)
 
 Lists Todo items whose state is bound with `v-model:done`.
 

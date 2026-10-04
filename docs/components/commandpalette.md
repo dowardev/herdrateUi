@@ -70,7 +70,7 @@ function onSelect(id) {
 
 ## Demo
 
-### Básico (`commands` + `modelValue`)
+### Basic (`commands` + `modelValue`)
 
 A working palette: pass `commands` and bind `modelValue`.
 

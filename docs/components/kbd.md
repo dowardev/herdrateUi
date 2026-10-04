@@ -52,7 +52,7 @@ Keyboard key display element with terminal style.
 
 ## Demo
 
-### Básico (`keys`)
+### Basic (`keys`)
 
 Default and colored keycaps for `Ctrl`, `Enter` and `⌘`.
 

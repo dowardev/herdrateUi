@@ -94,7 +94,7 @@ Tres tamaños: `sm`, `md` y `lg`.
 
 Nombre usado para extraer the initial and generate the color from the hash.
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `string` | — | ✅ |
 
@@ -102,7 +102,7 @@ Nombre usado para extraer the initial and generate the color from the hash.
 
 Tamaño del avatar.
 
-| Tipo | Default | Requerido |
+| Tipo | Por defecto | Requerido |
 |---|---|---|
 | `'sm' \| 'md' \| 'lg'` | `'md'` | ❌ |
 
@@ -111,7 +111,7 @@ Tamaño del avatar.
 
 <div class="table-wrapper">
 
-| Token | Default | Descripción |
+| Token | Por defecto | Descripción |
 |---|---|---|
 | `--font-mono` | `"JetBrains Mono", ui-monospace, monospace` | Stack monoespaciado para contenido tipo código (etiquetas, logs, chips). |
 

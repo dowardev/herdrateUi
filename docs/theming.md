@@ -1,23 +1,23 @@
 # Theming
 
-Las CSS custom properties de la librería siguen una **taxonomía por capa de superficie**. Cada token apunta a una capa visual concreta, no a un componente específico: si override-ás una capa, todos los componentes que la usan se actualizan juntos.
+The library's CSS custom properties follow a **surface-layer taxonomy**. Each token points to a concrete visual layer, not to a specific component: if you override a layer, every component that uses it updates together.
 
-## Capas
+## Layers
 
-| Capa | Token | Función visual |
+| Layer | Token | Visual role |
 |------|-------|----------------|
-| base | `--bg` | fondo de la app, inputs vacíos |
-| intermedia | `--bg-alt` | hover / pressed |
-| elevada | `--bg-elevated` | modals, dropdowns, popovers |
+| base | `--bg` | app background, empty inputs |
+| intermediate | `--bg-alt` | hover / pressed |
+| elevated | `--bg-elevated` | modals, dropdowns, popovers |
 | panel | `--bg-panel` | cards, accordions, side panels |
-| borde | `--border` | bordes de superficies |
-| texto | `--text` / `--text-muted` | texto principal / secundario |
-| acento | `--accent` | hover y selección |
-| paleta | `--color-primary` …`--color-dark` | 9 colores semánticos (Catppuccin) |
-| tipografía | `--font-mono` | stack monospace |
-| animación | `--cp-ease` / `--cp-ease-snap` | curvas de easing |
+| border | `--border` | surface outlines |
+| text | `--text` / `--text-muted` | primary / secondary text |
+| accent | `--accent` | hover and selection |
+| palette | `--color-primary` …`--color-dark` | 9 semantic colors (Catppuccin) |
+| typography | `--font-mono` | monospace stack |
+| motion | `--cp-ease` / `--cp-ease-snap` | easing curves |
 
-## Ejemplo — tema sepia
+## Example — sepia theme
 
 ```css
 .sepia-card {
@@ -28,7 +28,7 @@ Las CSS custom properties de la librería siguen una **taxonomía por capa de su
 }
 ```
 
-Funciona porque la card usa `var(--bg-panel)` para su fondo, `var(--border)` para su borde, `var(--text)` para el color del texto y `var(--color-primary)` para sus acentos. Todos estos `var()` están en el CSS scoped del componente y reciben el cascade normal.
+It works because the card uses `var(--bg-panel)` for its background, `var(--border)` for its border, `var(--text)` for the text color, and `var(--color-primary)` for its accents. All those `var()` calls live in the component's scoped CSS and receive the normal cascade.
 
 ## When to change one thing vs the whole theme
 
@@ -60,17 +60,17 @@ That touches one variable. Only what uses it changes; the rest stays the same.
 
 That replaces the whole theme of your app in one go.
 
-## Cómo se aplica por componente
+## How it's applied per component
 
-Cada página de componente tiene su propia sección `## CSS Custom Properties` con la tabla de los tokens que ese componente en particular usa, su default real y una descripción corta. La capa es la misma; la lista es por componente.
+Each component page has its own `## CSS Custom Properties` section with the table of tokens that particular component uses, its actual default, and a short description. The layer is the same; the list is per component.
 
-## Convenciones de la API (props y slots)
+## API conventions (props and slots)
 
-Cada área de contenido de un componente sigue uno de tres patrones, elegidos según lo que tenga sentido semánticamente. La regla ayuda a que la API sea predecible: si sabés el patrón, sabés cómo invocar el componente.
+Each content area of a component follows one of three patterns, chosen by what makes semantic sense. The rule makes the API predictable: if you know the pattern, you know how to invoke the component.
 
-### 1. Contenido reemplazable (prop + slot, slot gana)
+### 1. Replaceable content (prop + slot, slot wins)
 
-Áreas como el título, descripción, cabecera o pie de un card que aceptan texto plano como valor por defecto y markup rico cuando hace falta.
+Areas like the title, description, header, or footer of a card that accept plain text as a default value and rich markup when needed.
 
 ```vue
 <h3 class="card-title">
@@ -78,21 +78,21 @@ Cada área de contenido de un componente sigue uno de tres patrones, elegidos se
 </h3>
 ```
 
-Uso:
+Use:
 
 ```vue
-<Card title="Plano" />                                  <!-- prop solo -->
-<Card><template #title>★ <em>rico</em></template></Card> <!-- slot solo -->
-<Card title="Caí"><template #title>Rico</template></Card> <!-- slot pisa al prop -->
+<Card title="Plain" />                                  <!-- prop only -->
+<Card><template #title>★ <em>rich</em></template></Card> <!-- slot only -->
+<Card title="Fell"><template #title>Rich</template></Card> <!-- slot overrides prop -->
 ```
 
-**Regla**: el slot gana. El prop es el fallback que se renderiza cuando el slot está vacío.
+**Rule**: the slot wins. The prop is the fallback rendered when the slot is empty.
 
-**Componentes que usan este patrón**: `Card` (`title`, `description`, `header`, `footer`), `Modal` (`title`, `footer`), `Box` (`header`, `footer`), `Panel` (`header`, `footer`), `TreeNode` (`label`), `StatusBar` (`info`).
+**Components using this pattern**: `Card` (`title`, `description`, `header`, `footer`), `Modal` (`title`, `footer`), `Box` (`header`, `footer`), `Panel` (`header`, `footer`), `TreeNode` (`label`), `StatusBar` (`info`).
 
-### 2. Contenido opcional (slot solo, render condicional)
+### 2. Optional content (slot only, conditional render)
 
-Áreas como un footer de acciones o un bloque extra de cabecera que no tienen un valor por defecto razonable — si no hay slot, el bloque no se renderiza.
+Areas like a footer of actions or an extra header block that do not have a reasonable default value — if there is no slot, the block is not rendered.
 
 ```vue
 <footer v-if="$slots.footer" class="card-foot">
@@ -100,35 +100,35 @@ Uso:
 </footer>
 ```
 
-Uso:
+Use:
 
 ```vue
 <Card><template #footer><Button>OK</Button></template></Card>
-<!-- sin slot, el bloque no aparece -->
+<!-- without a slot, the block does not appear -->
 ```
 
-**Componentes que usan este patrón**: por ahora ninguno en la versión actual — todas las áreas que eran slot-only migraron al patrón 1 en LBDS-285. Si en el futuro agregás una nueva área, usá este patrón cuando no haya un valor por defecto razonable.
+**Components using this pattern**: none in the current version — every area that used to be slot-only migrated to pattern 1 in LBDS-285. If you add a new area in the future, use this pattern when there is no reasonable default.
 
-### 3. Visual / estilo (prop solo)
+### 3. Visual / styling (prop only)
 
-Colores, sombras, bordes, variantes de tipografía. Los slots no tienen sentido acá porque querés aplicar un valor escalar (un enum, un boolean), no markup.
+Colors, shadows, borders, typography variants. Slots do not make sense here because you want to apply a scalar value (an enum, a boolean), not markup.
 
 ```vue
 <button :class="`color-${color}`">Click</button>
 ```
 
-Uso:
+Use:
 
 ```vue
 <ButtonTui color="primary" fill="solid" :border="false" />
 ```
 
-**Regla**: si lo único que tiene sentido es un valor escalar, es prop-only. No agregues slot.
+**Rule**: if the only sensible value is a scalar, it is prop-only. Do not add a slot.
 
-**Componentes que usan este patrón**: todos los booleanos/enums visuales (`color`, `border`, `shadow`, `design`, `fill`, `icon`, `size`, etc.) en cualquier componente.
+**Components using this pattern**: every visual boolean/enum (`color`, `border`, `shadow`, `design`, `fill`, `icon`, `size`, etc.) on any component.
 
-## Cómo elegir entre los tres
+## How to choose between the three
 
-- **¿Tiene sentido un valor textual por defecto que el usuario escriba en una línea?** → Patrón 1 (prop + slot).
-- **¿No hay un default razonable y el área es puramente "extra"?** → Patrón 2 (slot solo).
-- **¿Es un valor escalar que no es texto?** → Patrón 3 (prop solo).
+- **Does a one-line default text value make sense?** → Pattern 1 (prop + slot).
+- **No reasonable default and the area is purely "extra"?** → Pattern 2 (slot only).
+- **Is it a scalar value that is not text?** → Pattern 3 (prop only).

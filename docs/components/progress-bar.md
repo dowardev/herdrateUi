@@ -86,7 +86,7 @@ Color semántico de la barra.
 <ProgressBar value="60" color="tertiary" />
 ```
 
-### Tamaño (`size`)
+### Size (`size`)
 
 Altura de la barra.
 

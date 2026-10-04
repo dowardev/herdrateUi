@@ -51,7 +51,7 @@ Key or keyboard shortcut with inline style.
 
 ## Demo
 
-### Básico (`hint`)
+### Basic (`hint`)
 
 Inline hints for `Ctrl+P`, `⌘K`, `Esc` and `F1`.
 

@@ -47,6 +47,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **`es/components/meta/card.ts`**: fixed type import pointing at nonexistent `docs/es/.vitepress`
 - **`es/components/toast.md`**: removed duplicated top-level `<script setup>` (build-breaking)
 
+### Added
+
+- **i18n convention doc (LBDS-282)**: new `docs/i18n-conventions.md` (EN) and `docs/es/i18n-conventions.md` (ES mirror) document the single rule for docs i18n — navbar/sidebar item labels, app title, and URL paths stay English regardless of locale; everything else (prose, table cells, demo headings) translates. Spec-terms like `## CSS Custom Properties` stay English in both (W3C + Ionic convention)
+
+### Changed
+
+- **i18n chrome (LBDS-282)**: ES page-chrome `default` → `Por defecto` in `docs/.vitepress/locales/es.json`; table headers hard-coded in markdown translated to Spanish counterparts in 39 ES component pages (`| Por defecto |`, `| Descripción |`, `| Tipo |`)
+- **CSS Custom Properties table cells in ES pages (LBDS-282)**: `from theme (\`--X\` / \`--Y\`)` → `desde el tema (\`--X\` / \`--Y\`)` across all 37 ES component pages
+- **EN component pages `###` headings — round 1 (LBDS-282)**: fixed 22 Spanish-leaked headings (`### Básico` → `### Basic`, `### Contenido` → `### Content`, `### Color del header` → `### Header color`, `### Cerrar tabs` → `### Close tabs`, etc.) across 22 components
+- **EN component pages `###` headings — round 2 (LBDS-282)**: caught 11 additional Spanish-leaked headings in the same components (`### Paso actual` → `### Current step`, `### Filas alternadas` → `### Striped rows`, `### Demo interactiva` → `### Interactive demo`, `### Combinado (todos los props)` → `### Combined (all props)`, etc.) that the first sed pass missed
+- **VitePress config (`docs/.vitepress/config.ts`) (LBDS-282)**: both `locales.root.title` and `locales.es.title` set to `Herdrate Vue UI Library`; navbar and sidebar labels aligned to English in both locales (`Home`, `Colors`, `Components`, `Design lines`, `Theming`, `Color system`); ES `description` kept in Spanish (per-locale SEO)
+
+### Fixed
+
+- **EN theming page (`docs/theming.md`) (LBDS-282)**: root-locale page was entirely Spanish (drift from earlier translation step); translated to natural English with the section headings the EN locale needs (`## Layers`, `## Example — sepia theme`, `## When to change one thing vs the whole theme`, `## How it's applied per component`, `## API conventions (props and slots)`, `## How to choose between the three`)
+
 ## [0.3.0] - 2026-09-11
 
 ### Added

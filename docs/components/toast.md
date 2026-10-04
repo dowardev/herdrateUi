@@ -105,7 +105,7 @@ const positionButtons = computed(() =>
 
 ## Demo
 
-### Básico (`message` / `color`)
+### Basic (`message` / `color`)
 
 Renders toasts with a `message` and a semantic `color` at each position.
 
