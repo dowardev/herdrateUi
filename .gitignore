@@ -24,3 +24,6 @@ scripts/deploy.conf
 .env
 scripts/deploy.conf
 scripts/deploy/.env
+
+# Local working notes (per-session task artifacts)
+odd/
