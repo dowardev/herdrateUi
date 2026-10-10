@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 import { describe, expect, it, vi } from 'vitest';
-import { useDocsI18n } from '../useDocsI18n';
+import { docsI18nKeys, useDocsI18n } from '../useDocsI18n';
 
 // Shared vitepress mock: mutable localeIndex (REQ-7). Root locale is the
 // string 'root' (never 'en').
@@ -29,6 +29,15 @@ const EN = {
   removeRow: 'Remove row',
   noColor: 'No color',
   addRow: 'Add row',
+  reset: 'Reset',
+  resetToDefaults: 'Reset to defaults',
+  copy: 'Copy',
+  copied: 'Copied',
+  copyCode: 'Copy code',
+  // LBDS-291: dev-mode banner templates use `{version}` interpolation.
+  devBannerUnknown: 'Version unknown — may be in development',
+  devBannerDevelopment: 'HerdrateUi v{version} — in active development',
+  devBannerStable: 'HerdrateUi v{version} — stable',
 };
 
 const ES = {
@@ -47,14 +56,27 @@ const ES = {
   removeRow: 'Eliminar fila',
   noColor: 'Sin color',
   addRow: 'Agregar fila',
+  reset: 'Restablecer',
+  resetToDefaults: 'Restablecer valores por defecto',
+  copy: 'Copiar',
+  copied: 'Copiado',
+  copyCode: 'Copiar código',
+  devBannerUnknown: 'Versión desconocida — puede estar en desarrollo',
+  devBannerDevelopment: 'HerdrateUi v{version} — en desarrollo activo',
+  devBannerStable: 'HerdrateUi v{version} — estable',
 };
 
 describe('useDocsI18n (REQ-7)', () => {
+  it('keeps the catalog key list stable', () => {
+    // Catches accidental key drift in `docsI18nKeys`.
+    expect(docsI18nKeys.length).toBe(23);
+  });
+
   it('maps every catalog key to English under the root locale', () => {
     localeIndex.value = 'root';
     const { t } = useDocsI18n();
     const keys = Object.keys(EN);
-    expect(keys.length).toBe(15);
+    expect(keys.length).toBe(23);
     for (const key of keys) {
       expect(t(key as keyof typeof EN)).toBe(EN[key as keyof typeof EN]);
     }
@@ -64,7 +86,7 @@ describe('useDocsI18n (REQ-7)', () => {
     localeIndex.value = 'es';
     const { t } = useDocsI18n();
     const keys = Object.keys(ES);
-    expect(keys.length).toBe(15);
+    expect(keys.length).toBe(23);
     for (const key of keys) {
       expect(t(key as keyof typeof ES)).toBe(ES[key as keyof typeof ES]);
     }
@@ -85,5 +107,31 @@ describe('useDocsI18n (REQ-7)', () => {
     const { t } = useDocsI18n();
     expect(t('previewTab')).toBe('Preview');
     expect(t('removeRow')).toBe('Remove row');
+  });
+
+  it('substitutes {version} placeholders in devBanner templates (LBDS-291)', () => {
+    localeIndex.value = 'root';
+    const { t } = useDocsI18n();
+    expect(t('devBannerDevelopment', { version: '0.3.0' })).toBe(
+      'HerdrateUi v0.3.0 — in active development',
+    );
+    expect(t('devBannerStable', { version: '1.0.0' })).toBe(
+      'HerdrateUi v1.0.0 — stable',
+    );
+    localeIndex.value = 'es';
+    expect(t('devBannerDevelopment', { version: '0.3.0' })).toBe(
+      'HerdrateUi v0.3.0 — en desarrollo activo',
+    );
+    expect(t('devBannerStable', { version: '1.0.0' })).toBe(
+      'HerdrateUi v1.0.0 — estable',
+    );
+  });
+
+  it('leaves templates untouched when no params are passed', () => {
+    localeIndex.value = 'root';
+    const { t } = useDocsI18n();
+    expect(t('devBannerDevelopment')).toBe(
+      'HerdrateUi v{version} — in active development',
+    );
   });
 });
