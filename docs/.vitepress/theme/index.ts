@@ -57,6 +57,7 @@ import {
 } from '@dowardev/herdrate-vue';
 import CommandPaletteDemo from '../../components/CommandPaletteDemo.vue';
 import MenuDemo from '../../components/MenuDemo.vue';
+import DevModeBanner from './components/DevModeBanner.vue';
 import PropControlArray from './controls/PropControlArray.vue';
 import PropControlColor from './controls/PropControlColor.vue';
 import PropControlInput from './controls/PropControlInput.vue';
@@ -132,6 +133,7 @@ export default {
   extends: DefaultTheme,
   Layout: h(DefaultTheme.Layout, null, {
     'sidebar-nav-before': () => h(DesignLineSelect),
+    'layout-top': () => h(DevModeBanner),
   }),
   enhanceApp({ app }) {
     for (const [name, component] of Object.entries(components)) {
@@ -142,5 +144,17 @@ export default {
     app.config.globalProperties.$toast = add;
     app.config.globalProperties.$toasts = toasts;
     app.config.globalProperties.$removeToast = remove;
+
+    // LBDS-291: the dev-mode banner is `position: fixed; bottom: 0`,
+    // matching OneSpend's DevModeBanner.vue. VitePress has no equivalent
+    // of Ionic's automatic tab-bar padding, so we reserve space at the
+    // bottom of the viewport by adding padding-bottom to <body>. We do
+    // this client-side only (avoid SSR mutation), and only when a body
+    // element exists. Tolerant of missing <body>: if SSR or a future
+    // VitePress change replaces the root, the banner just overlays the
+    // last row of content (same as OneSpend on a bare Ionic page).
+    if (typeof document !== 'undefined' && document.body) {
+      document.body.style.paddingBottom = '26px';
+    }
   },
 };

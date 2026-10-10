@@ -29,6 +29,12 @@ export const docsI18nKeys = [
   'copy',
   'copied',
   'copyCode',
+  // Dev-mode banner labels (LBDS-291) — version-aware label templates
+  // using `{version}` interpolation, mirroring OneSpend's i18n pattern
+  // (`t('devmodebanner.development', { version })`).
+  'devBannerUnknown',
+  'devBannerDevelopment',
+  'devBannerStable',
 ] as const;
 
 export type DocsI18nKey = (typeof docsI18nKeys)[number];
@@ -54,6 +60,9 @@ const en: Record<DocsI18nKey, string> = {
   copy: 'Copy',
   copied: 'Copied',
   copyCode: 'Copy code',
+  devBannerUnknown: 'Version unknown — may be in development',
+  devBannerDevelopment: 'HerdrateUi v{version} — in active development',
+  devBannerStable: 'HerdrateUi v{version} — stable',
 };
 
 const es: Record<DocsI18nKey, string> = {
@@ -77,7 +86,25 @@ const es: Record<DocsI18nKey, string> = {
   copy: 'Copiar',
   copied: 'Copiado',
   copyCode: 'Copiar código',
+  devBannerUnknown: 'Versión desconocida — puede estar en desarrollo',
+  devBannerDevelopment: 'HerdrateUi v{version} — en desarrollo activo',
+  devBannerStable: 'HerdrateUi v{version} — estable',
 };
+
+/**
+ * Substitute `{name}` placeholders in a template string with values from
+ * `params`. Missing params become an empty string (matches OneSpend's
+ * behavior for `t('key', { version: undefined })`).
+ */
+function interpolate(
+  template: string,
+  params?: Record<string, string | number>,
+): string {
+  if (!params) return template;
+  return template.replace(/\{(\w+)\}/g, (_, name) =>
+    String(params[name] ?? ''),
+  );
+}
 
 /**
  * Locale-aware theme strings. Root localeIndex is the string `'root'` (never
@@ -86,7 +113,8 @@ const es: Record<DocsI18nKey, string> = {
 export function useDocsI18n() {
   const { localeIndex } = useData();
   return {
-    t: (k: DocsI18nKey): string => (localeIndex.value === 'es' ? es : en)[k],
+    t: (k: DocsI18nKey, params?: Record<string, string | number>): string =>
+      interpolate((localeIndex.value === 'es' ? es : en)[k], params),
   };
 }
 

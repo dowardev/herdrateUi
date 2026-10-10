@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+- **Docs in-development banner (LBDS-291)**: persistent footer at the bottom of every docs page in EN+ES, mirroring OneSpend's `front/src/components/DevModeBanner.vue` 1:1 (warning-tint background, `position: fixed; bottom: 0`, glass backdrop blur). The label switches between "vX.Y.Z — in active development" and "vX.Y.Z — stable" based on the version parsed from `docs/CHANGELOG.md`. A `×` control persists the dismissal in `localStorage` under the current version; any new release re-shows the banner. New file `docs/.vitepress/theme/components/DevModeBanner.vue` (no CTA; the per-error CTA lives in LBDS-288). Mounted globally in `docs/.vitepress/theme/index.ts`.
+
 ### Changed
 
 - **Component docs structure (LBDS-262)**: moved every live example out of the `Props`/`Slots`/`Events`/`API` sections into `## Demo` across all 39 component pages in both locales, so the reference sections are pure tables and prose. Every prop that affects appearance now has its own focused demo, and prop-plus-slot demos were split one concept per example
