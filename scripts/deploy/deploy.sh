@@ -684,17 +684,24 @@ deploy_docs() {
   run_cmd "Build all packages" "$BUILD_CMD"
 
   log_phase "PACKAGE ARTIFACT"
-  run_cmd "Compress docs build" "cd '$ARTIFACT_SOURCE' && tar czf '../../$ARTIFACT_NAME' . && cd ../.."
+  # Use absolute destination + tar -C so the artifact lands at a known path
+  # regardless of ARTIFACT_SOURCE depth. The previous `cd .../../..` pattern
+  # silently miscounted one `..` and dropped the tarball into docs/ instead
+  # of the repo root, which made the next scp step fail with
+  # "stat local dist.tar.gz: No such file or directory".
+  run_cmd "Compress docs build" \
+    "tar -czf '$REPO_ROOT/$ARTIFACT_NAME' -C '$ARTIFACT_SOURCE' ."
 
   log_phase "UPLOAD"
-  run_cmd "Upload tarball to server" "scp ${SCP_OPTS[*]} $ARTIFACT_NAME ${SSH_USER}@${SSH_HOST}:${DEPLOY_PATH}"
+  run_cmd "Upload tarball to server" \
+    "scp ${SCP_OPTS[*]} '$REPO_ROOT/$ARTIFACT_NAME' ${SSH_USER}@${SSH_HOST}:${DEPLOY_PATH}"
 
   log_phase "REMOTE EXTRACT"
   REMOTE_CMD="cd ${DEPLOY_PATH} && tar xzvf ${ARTIFACT_NAME} && rm ${ARTIFACT_NAME}"
   run_remote "Extract on server" "$REMOTE_CMD"
 
   log_phase "CLEANUP"
-  [[ "$DRY_RUN" != "true" ]] && rm -f "$ARTIFACT_NAME"
+  [[ "$DRY_RUN" != "true" ]] && rm -f "$REPO_ROOT/$ARTIFACT_NAME"
   log_info "Local artifact cleaned up"
 }
 
