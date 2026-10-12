@@ -263,20 +263,20 @@ Extra footer content (e.g. action buttons).
 
 <Card title="Confirm Action" description="Are you sure you want to proceed?">
   <template #footer>
-    <ButtonTui color="danger" fill="outline" @click="() => {}">Cancel</ButtonTui>
-    <ButtonTui color="primary" @click="() => {}">Confirm</ButtonTui>
+    <Button color="danger" fill="outline" @click="() => {}">Cancel</Button>
+    <Button color="primary" @click="() => {}">Confirm</Button>
   </template>
 </Card>
 
 ```vue
 <script setup>
-import { ButtonTui } from '@dowardev/herdrate-vue'
+import { Button } from '@dowardev/herdrate-vue'
 </script>
 
 <Card title="Confirm Action" description="Are you sure you want to proceed?">
   <template #footer>
-    <ButtonTui color="danger" fill="outline" @click="() => {}">Cancel</ButtonTui>
-    <ButtonTui color="primary" @click="() => {}">Confirm</ButtonTui>
+    <Button color="danger" fill="outline" @click="() => {}">Cancel</Button>
+    <Button color="primary" @click="() => {}">Confirm</Button>
   </template>
 </Card>
 ```

@@ -25,7 +25,7 @@ type Color =
 type Fill = 'solid' | 'outline' | 'clear';
 ```
 
-`Fill` only applies to `ButtonTui` and `ButtonTuiGroup`.
+`Fill` only applies to `Button` and `ButtonGroup`.
 
 ---
 

@@ -1,16 +1,16 @@
 <script setup>
-import { buttonTuiGroupMeta } from './meta/buttontui-group'
+import { buttonGroupMeta } from './meta/button-group'
 import { useDesign } from '@dowardev/herdrate-vue'
 
 // Global design line (sidebar select) drives which tab loads.
 const line = useDesign()
 </script>
 
-# ButtonTuiGroup
+# ButtonGroup
 
 Agrupa botones TUI horizontalmente con gap y estilos consistentes.
 
-<PlayHost :meta="buttonTuiGroupMeta" />
+<PlayHost :meta="buttonGroupMeta" />
 
 ## Líneas de diseño
 
@@ -26,10 +26,10 @@ Agrupa botones TUI horizontalmente con gap y estilos consistentes.
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
   <TabPanel value="tuix">
-    <ButtonTuiGroup fill="solid" color="primary" :buttons="[{ label: 'A', onClick: () => {} }, { label: 'B', onClick: () => {} }]" design="tuix" />
+    <ButtonGroup fill="solid" color="primary" :buttons="[{ label: 'A', onClick: () => {} }, { label: 'B', onClick: () => {} }]" design="tuix" />
   </TabPanel>
   <TabPanel value="rubik">
-    <ButtonTuiGroup fill="solid" color="primary" :buttons="[{ label: 'A', onClick: () => {} }, { label: 'B', onClick: () => {} }]" design="rubik" />
+    <ButtonGroup fill="solid" color="primary" :buttons="[{ label: 'A', onClick: () => {} }, { label: 'B', onClick: () => {} }]" design="rubik" />
   </TabPanel>
 </Tabs>
 </div>
@@ -41,10 +41,10 @@ Agrupa botones TUI horizontalmente con gap y estilos consistentes.
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
   <TabPanel value="tuix">
-    <ButtonTuiGroup fill="solid" color="primary" :buttons="[{ label: 'A', onClick: () => {} }, { label: 'B', onClick: () => {} }]" design="tuix" />
+    <ButtonGroup fill="solid" color="primary" :buttons="[{ label: 'A', onClick: () => {} }, { label: 'B', onClick: () => {} }]" design="tuix" />
   </TabPanel>
   <TabPanel value="rubik">
-    <ButtonTuiGroup fill="solid" color="primary" :buttons="[{ label: 'A', onClick: () => {} }, { label: 'B', onClick: () => {} }]" design="rubik" />
+    <ButtonGroup fill="solid" color="primary" :buttons="[{ label: 'A', onClick: () => {} }, { label: 'B', onClick: () => {} }]" design="rubik" />
   </TabPanel>
 </Tabs>
 ```
@@ -55,25 +55,25 @@ Agrupa botones TUI horizontalmente con gap y estilos consistentes.
 
 Uso mínimo: se pasa `buttons` y el grupo renderiza un botón por ítem.
 
-<ButtonTuiGroup fill="solid" color="secondary" :buttons="[
+<ButtonGroup fill="solid" color="secondary" :buttons="[
   { icon: '↖', label: 'Izquierda', onClick: () => {} },
   { icon: '⬆', label: 'Centro', onClick: () => {} },
   { icon: '↗', label: 'Derecha', onClick: () => {} },
 ]" />
 
-<ButtonTuiGroup fill="outline" color="primary" :gap="0.8" :buttons="[
+<ButtonGroup fill="outline" color="primary" :gap="0.8" :buttons="[
   { icon: '✕', label: 'Cancelar', onClick: () => {} },
   { icon: '✓', label: 'Aceptar', onClick: () => {} },
 ]" />
 
 ```vue
-<ButtonTuiGroup fill="solid" color="secondary" :buttons="[
+<ButtonGroup fill="solid" color="secondary" :buttons="[
   { icon: '↖', label: 'Izquierda', onClick: () => {} },
   { icon: '⬆', label: 'Centro', onClick: () => {} },
   { icon: '↗', label: 'Derecha', onClick: () => {} },
 ]" />
 
-<ButtonTuiGroup fill="outline" color="primary" :gap="0.8" :buttons="[
+<ButtonGroup fill="outline" color="primary" :gap="0.8" :buttons="[
   { icon: '✕', label: 'Cancelar', onClick: () => {} },
   { icon: '✓', label: 'Aceptar', onClick: () => {} },
 ]" />
@@ -83,22 +83,22 @@ Uso mínimo: se pasa `buttons` y el grupo renderiza un botón por ítem.
 
 `fill` solid y outline aplicados a todo el grupo.
 
-<ButtonTuiGroup fill="solid" color="primary" :buttons="[
+<ButtonGroup fill="solid" color="primary" :buttons="[
   { label: 'A', onClick: () => {} },
   { label: 'B', onClick: () => {} },
 ]" />
 
-<ButtonTuiGroup fill="outline" color="primary" :buttons="[
+<ButtonGroup fill="outline" color="primary" :buttons="[
   { label: 'A', onClick: () => {} },
   { label: 'B', onClick: () => {} },
 ]" />
 
 ```vue
-<ButtonTuiGroup fill="solid" color="primary" :buttons="[
+<ButtonGroup fill="solid" color="primary" :buttons="[
   { label: 'A', onClick: () => {} },
   { label: 'B', onClick: () => {} },
 ]" />
-<ButtonTuiGroup fill="outline" color="primary" :buttons="[
+<ButtonGroup fill="outline" color="primary" :buttons="[
   { label: 'A', onClick: () => {} },
   { label: 'B', onClick: () => {} },
 ]" />
@@ -108,13 +108,13 @@ Uso mínimo: se pasa `buttons` y el grupo renderiza un botón por ítem.
 
 El `color` del grupo aplicado a todos los botones.
 
-<ButtonTuiGroup fill="solid" color="success" :buttons="[
+<ButtonGroup fill="solid" color="success" :buttons="[
   { label: 'A', onClick: () => {} },
   { label: 'B', onClick: () => {} },
 ]" />
 
 ```vue
-<ButtonTuiGroup fill="solid" color="success" :buttons="[
+<ButtonGroup fill="solid" color="success" :buttons="[
   { label: 'A', onClick: () => {} },
   { label: 'B', onClick: () => {} },
 ]" />
@@ -124,25 +124,25 @@ El `color` del grupo aplicado a todos los botones.
 
 Dos valores de `gap` que muestran la separación entre botones.
 
-<ButtonTuiGroup fill="solid" color="primary" :gap="0.2" :buttons="[
+<ButtonGroup fill="solid" color="primary" :gap="0.2" :buttons="[
   { label: 'A', onClick: () => {} },
   { label: 'B', onClick: () => {} },
   { label: 'C', onClick: () => {} },
 ]" />
 
-<ButtonTuiGroup fill="solid" color="primary" :gap="1" :buttons="[
+<ButtonGroup fill="solid" color="primary" :gap="1" :buttons="[
   { label: 'A', onClick: () => {} },
   { label: 'B', onClick: () => {} },
   { label: 'C', onClick: () => {} },
 ]" />
 
 ```vue
-<ButtonTuiGroup fill="solid" color="primary" :gap="0.2" :buttons="[
+<ButtonGroup fill="solid" color="primary" :gap="0.2" :buttons="[
   { label: 'A', onClick: () => {} },
   { label: 'B', onClick: () => {} },
   { label: 'C', onClick: () => {} },
 ]" />
-<ButtonTuiGroup fill="solid" color="primary" :gap="1" :buttons="[
+<ButtonGroup fill="solid" color="primary" :gap="1" :buttons="[
   { label: 'A', onClick: () => {} },
   { label: 'B', onClick: () => {} },
   { label: 'C', onClick: () => {} },
@@ -153,23 +153,23 @@ Dos valores de `gap` que muestran la separación entre botones.
 
 El grupo entero deshabilitado, más un ítem deshabilitado suelto.
 
-<ButtonTuiGroup :disabled="true" fill="solid" color="primary" :buttons="[
+<ButtonGroup :disabled="true" fill="solid" color="primary" :buttons="[
   { label: 'A', onClick: () => {} },
   { label: 'B', onClick: () => {} },
 ]" />
 
-<ButtonTuiGroup fill="solid" color="primary" :buttons="[
+<ButtonGroup fill="solid" color="primary" :buttons="[
   { label: 'Habilitado', onClick: () => {} },
   { label: 'Ítem deshabilitado', onClick: () => {}, disabled: true },
 ]" />
 
 ```vue
-<ButtonTuiGroup :disabled="true" fill="solid" color="primary" :buttons="[
+<ButtonGroup :disabled="true" fill="solid" color="primary" :buttons="[
   { label: 'A', onClick: () => {} },
   { label: 'B', onClick: () => {} },
 ]" />
 
-<ButtonTuiGroup fill="solid" color="primary" :buttons="[
+<ButtonGroup fill="solid" color="primary" :buttons="[
   { label: 'Habilitado', onClick: () => {} },
   { label: 'Ítem deshabilitado', onClick: () => {}, disabled: true },
 ]" />

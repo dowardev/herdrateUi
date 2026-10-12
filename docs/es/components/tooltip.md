@@ -30,14 +30,14 @@ Tooltip informativo que aparece al pasar el ratón sobre un elemento, con delay 
   <TabPanel value="tuix">
     <div class="tooltip-demo">
       <Tooltip text="Copiar al portapapeles" design="tuix">
-        <ButtonTui icon="📋" fill="outline" color="primary">Copiar</ButtonTui>
+        <Button icon="📋" fill="outline" color="primary">Copiar</Button>
       </Tooltip>
     </div>
   </TabPanel>
   <TabPanel value="rubik">
     <div class="tooltip-demo">
       <Tooltip text="Copiar al portapapeles" design="rubik">
-        <ButtonTui icon="📋" fill="outline" color="primary">Copiar</ButtonTui>
+        <Button icon="📋" fill="outline" color="primary">Copiar</Button>
       </Tooltip>
     </div>
   </TabPanel>
@@ -53,14 +53,14 @@ Tooltip informativo que aparece al pasar el ratón sobre un elemento, con delay 
   <TabPanel value="tuix">
     <div class="tooltip-demo">
       <Tooltip text="Copiar al portapapeles" design="tuix">
-        <ButtonTui icon="📋" fill="outline" color="primary">Copiar</ButtonTui>
+        <Button icon="📋" fill="outline" color="primary">Copiar</Button>
       </Tooltip>
     </div>
   </TabPanel>
   <TabPanel value="rubik">
     <div class="tooltip-demo">
       <Tooltip text="Copiar al portapapeles" design="rubik">
-        <ButtonTui icon="📋" fill="outline" color="primary">Copiar</ButtonTui>
+        <Button icon="📋" fill="outline" color="primary">Copiar</Button>
       </Tooltip>
     </div>
   </TabPanel>
@@ -75,24 +75,24 @@ Posición relativa al trigger.
 
 <div style="display: flex; gap: 2rem; align-items: center; padding: 2rem 0;">
   <Tooltip text="Arriba" position="top">
-    <ButtonTui fill="outline" color="primary">Arriba</ButtonTui>
+    <Button fill="outline" color="primary">Arriba</Button>
   </Tooltip>
   <Tooltip text="Abajo" position="bottom">
-    <ButtonTui fill="outline" color="primary">Abajo</ButtonTui>
+    <Button fill="outline" color="primary">Abajo</Button>
   </Tooltip>
   <Tooltip text="Izquierda" position="left">
-    <ButtonTui fill="outline" color="primary">Izquierda</ButtonTui>
+    <Button fill="outline" color="primary">Izquierda</Button>
   </Tooltip>
   <Tooltip text="Derecha" position="right">
-    <ButtonTui fill="outline" color="primary">Derecha</ButtonTui>
+    <Button fill="outline" color="primary">Derecha</Button>
   </Tooltip>
 </div>
 
 ```vue
-<Tooltip text="Arriba" position="top"><ButtonTui>Arriba</ButtonTui></Tooltip>
-<Tooltip text="Abajo" position="bottom"><ButtonTui>Abajo</ButtonTui></Tooltip>
-<Tooltip text="Izquierda" position="left"><ButtonTui>Izquierda</ButtonTui></Tooltip>
-<Tooltip text="Derecha" position="right"><ButtonTui>Derecha</ButtonTui></Tooltip>
+<Tooltip text="Arriba" position="top"><Button>Arriba</Button></Tooltip>
+<Tooltip text="Abajo" position="bottom"><Button>Abajo</Button></Tooltip>
+<Tooltip text="Izquierda" position="left"><Button>Izquierda</Button></Tooltip>
+<Tooltip text="Derecha" position="right"><Button>Derecha</Button></Tooltip>
 ```
 
 ### Color (`color`)
@@ -101,24 +101,24 @@ Color del borde y flecha.
 
 <div style="display: flex; gap: 1rem; align-items: center; padding: 2rem 0;">
   <Tooltip text="Primary" color="primary">
-    <ButtonTui fill="outline" color="primary">Primary</ButtonTui>
+    <Button fill="outline" color="primary">Primary</Button>
   </Tooltip>
   <Tooltip text="Success" color="success">
-    <ButtonTui fill="outline" color="success">Success</ButtonTui>
+    <Button fill="outline" color="success">Success</Button>
   </Tooltip>
   <Tooltip text="Warning" color="warning">
-    <ButtonTui fill="outline" color="warning">Warning</ButtonTui>
+    <Button fill="outline" color="warning">Warning</Button>
   </Tooltip>
   <Tooltip text="Danger" color="danger">
-    <ButtonTui fill="outline" color="danger">Danger</ButtonTui>
+    <Button fill="outline" color="danger">Danger</Button>
   </Tooltip>
 </div>
 
 ```vue
-<Tooltip text="Primary" color="primary"><ButtonTui>Primary</ButtonTui></Tooltip>
-<Tooltip text="Success" color="success"><ButtonTui>Success</ButtonTui></Tooltip>
-<Tooltip text="Warning" color="warning"><ButtonTui>Warning</ButtonTui></Tooltip>
-<Tooltip text="Danger" color="danger"><ButtonTui>Danger</ButtonTui></Tooltip>
+<Tooltip text="Primary" color="primary"><Button>Primary</Button></Tooltip>
+<Tooltip text="Success" color="success"><Button>Success</Button></Tooltip>
+<Tooltip text="Warning" color="warning"><Button>Warning</Button></Tooltip>
+<Tooltip text="Danger" color="danger"><Button>Danger</Button></Tooltip>
 ```
 
 ### Delay (`delay`)
@@ -127,20 +127,20 @@ Milisegundos antes de mostrar.
 
 <div style="display: flex; gap: 1rem; align-items: center; padding: 2rem 0;">
   <Tooltip text="Instantáneo (0ms)" :delay="0">
-    <ButtonTui fill="outline" color="primary">Instant</ButtonTui>
+    <Button fill="outline" color="primary">Instant</Button>
   </Tooltip>
   <Tooltip text="Por defecto (300ms)" :delay="300">
-    <ButtonTui fill="outline" color="primary">Default</ButtonTui>
+    <Button fill="outline" color="primary">Default</Button>
   </Tooltip>
   <Tooltip text="Lento (1000ms)" :delay="1000">
-    <ButtonTui fill="outline" color="primary">Slow</ButtonTui>
+    <Button fill="outline" color="primary">Slow</Button>
   </Tooltip>
 </div>
 
 ```vue
-<Tooltip text="Instantáneo" :delay="0"><ButtonTui>Instant</ButtonTui></Tooltip>
-<Tooltip text="Por defecto" :delay="300"><ButtonTui>Default</ButtonTui></Tooltip>
-<Tooltip text="Lento" :delay="1000"><ButtonTui>Slow</ButtonTui></Tooltip>
+<Tooltip text="Instantáneo" :delay="0"><Button>Instant</Button></Tooltip>
+<Tooltip text="Por defecto" :delay="300"><Button>Default</Button></Tooltip>
+<Tooltip text="Lento" :delay="1000"><Button>Slow</Button></Tooltip>
 ```
 
 ### Contenido (`text`)
@@ -148,11 +148,11 @@ Milisegundos antes de mostrar.
 Texto del tooltip.
 
 <Tooltip text="Mensaje de ayuda">
-  <ButtonTui fill="outline" color="primary">Pasa el ratón</ButtonTui>
+  <Button fill="outline" color="primary">Pasa el ratón</Button>
 </Tooltip>
 
 ```vue
-<Tooltip text="Mensaje de ayuda"><ButtonTui>Pasa el ratón</ButtonTui></Tooltip>
+<Tooltip text="Mensaje de ayuda"><Button>Pasa el ratón</Button></Tooltip>
 ```
 
 ## Props

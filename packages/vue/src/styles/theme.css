@@ -137,12 +137,12 @@
   --shadow-hover: none;
 }
 
-.btn-tui-group {
+.btn-group {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
-.btn-tui {
+.btn {
   font-family: var(--font-mono);
   font-size: 0.875rem;
   padding: 0.15rem 0.4rem;
@@ -159,7 +159,7 @@
     color 0.12s;
   font-weight: 400;
 }
-.btn-tui__icon {
+.btn__icon {
   margin-right: 0.25rem;
   font-size: 0.9rem;
 }

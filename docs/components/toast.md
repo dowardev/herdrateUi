@@ -45,7 +45,7 @@ Temporary notifications inspired by noice.nvim, with configurable positioning an
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useDesign } from '@dowardev/herdrate-vue'
-import { ButtonTui, ButtonTuiGroup } from '@dowardev/herdrate-vue'
+import { Button, ButtonGroup } from '@dowardev/herdrate-vue'
 import { toastMeta } from './meta/toast'
 import ToastDemo from './ToastDemo.vue'
 
@@ -111,8 +111,8 @@ Renders toasts with a `message` and a semantic `color` at each position.
 
 <ClientOnly>
   <div style="margin-bottom: 2rem;">
-    <ButtonTuiGroup :buttons="positionButtons" />
-    <ButtonTui color="medium" fill="clear" @click="clearAll">[ clear ]</ButtonTui>
+    <ButtonGroup :buttons="positionButtons" />
+    <Button color="medium" fill="clear" @click="clearAll">[ clear ]</Button>
   </div>
   <p v-if="items.length === 0" style="opacity: 0.5; font-style: italic;">
     Click a button to show a floating toast in that position.

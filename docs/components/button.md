@@ -1,16 +1,16 @@
 <script setup>
-import { buttonTuiMeta } from './meta/buttontui'
+import { buttonMeta } from './meta/button'
 import { useDesign } from '@dowardev/herdrate-vue'
 
 // Global design line (sidebar select) drives which tab loads.
 const line = useDesign()
 </script>
 
-# ButtonTui
+# Button
 
 Terminal-style (TUI) minimal buttons, designed for Catppuccin Mocha.
 
-<PlayHost :meta="buttonTuiMeta" />
+<PlayHost :meta="buttonMeta" />
 
 ## Design lines
 
@@ -27,16 +27,16 @@ Terminal-style (TUI) minimal buttons, designed for Catppuccin Mocha.
   </TabsList>
   <TabPanel value="tuix">
     <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-  <ButtonTui fill="solid" color="primary" design="tuix">solid</ButtonTui>
-  <ButtonTui fill="outline" color="primary" design="tuix">outline</ButtonTui>
-  <ButtonTui fill="clear" color="primary" design="tuix">clear</ButtonTui>
+  <Button fill="solid" color="primary" design="tuix">solid</Button>
+  <Button fill="outline" color="primary" design="tuix">outline</Button>
+  <Button fill="clear" color="primary" design="tuix">clear</Button>
 </div>
   </TabPanel>
   <TabPanel value="rubik">
     <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-  <ButtonTui fill="solid" color="primary" design="rubik">solid</ButtonTui>
-  <ButtonTui fill="outline" color="primary" design="rubik">outline</ButtonTui>
-  <ButtonTui fill="clear" color="primary" design="rubik">clear</ButtonTui>
+  <Button fill="solid" color="primary" design="rubik">solid</Button>
+  <Button fill="outline" color="primary" design="rubik">outline</Button>
+  <Button fill="clear" color="primary" design="rubik">clear</Button>
 </div>
   </TabPanel>
 </Tabs>
@@ -50,16 +50,16 @@ Terminal-style (TUI) minimal buttons, designed for Catppuccin Mocha.
   </TabsList>
   <TabPanel value="tuix">
     <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-  <ButtonTui fill="solid" color="primary" design="tuix">solid</ButtonTui>
-  <ButtonTui fill="outline" color="primary" design="tuix">outline</ButtonTui>
-  <ButtonTui fill="clear" color="primary" design="tuix">clear</ButtonTui>
+  <Button fill="solid" color="primary" design="tuix">solid</Button>
+  <Button fill="outline" color="primary" design="tuix">outline</Button>
+  <Button fill="clear" color="primary" design="tuix">clear</Button>
 </div>
   </TabPanel>
   <TabPanel value="rubik">
     <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-  <ButtonTui fill="solid" color="primary" design="rubik">solid</ButtonTui>
-  <ButtonTui fill="outline" color="primary" design="rubik">outline</ButtonTui>
-  <ButtonTui fill="clear" color="primary" design="rubik">clear</ButtonTui>
+  <Button fill="solid" color="primary" design="rubik">solid</Button>
+  <Button fill="outline" color="primary" design="rubik">outline</Button>
+  <Button fill="clear" color="primary" design="rubik">clear</Button>
 </div>
   </TabPanel>
 </Tabs>
@@ -73,27 +73,27 @@ Terminal-style (TUI) minimal buttons, designed for Catppuccin Mocha.
 Semantic color of the button across all available variants.
 
 <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
-  <ButtonTui color="primary">primary</ButtonTui>
-  <ButtonTui color="secondary">secondary</ButtonTui>
-  <ButtonTui color="tertiary">tertiary</ButtonTui>
-  <ButtonTui color="success">success</ButtonTui>
-  <ButtonTui color="warning">warning</ButtonTui>
-  <ButtonTui color="danger">danger</ButtonTui>
-  <ButtonTui color="light">light</ButtonTui>
-  <ButtonTui color="medium">medium</ButtonTui>
-  <ButtonTui color="dark">dark</ButtonTui>
+  <Button color="primary">primary</Button>
+  <Button color="secondary">secondary</Button>
+  <Button color="tertiary">tertiary</Button>
+  <Button color="success">success</Button>
+  <Button color="warning">warning</Button>
+  <Button color="danger">danger</Button>
+  <Button color="light">light</Button>
+  <Button color="medium">medium</Button>
+  <Button color="dark">dark</Button>
 </div>
 
 ```vue
-<ButtonTui color="primary">primary</ButtonTui>
-<ButtonTui color="secondary">secondary</ButtonTui>
-<ButtonTui color="tertiary">tertiary</ButtonTui>
-<ButtonTui color="success">success</ButtonTui>
-<ButtonTui color="warning">warning</ButtonTui>
-<ButtonTui color="danger">danger</ButtonTui>
-<ButtonTui color="light">light</ButtonTui>
-<ButtonTui color="medium">medium</ButtonTui>
-<ButtonTui color="dark">dark</ButtonTui>
+<Button color="primary">primary</Button>
+<Button color="secondary">secondary</Button>
+<Button color="tertiary">tertiary</Button>
+<Button color="success">success</Button>
+<Button color="warning">warning</Button>
+<Button color="danger">danger</Button>
+<Button color="light">light</Button>
+<Button color="medium">medium</Button>
+<Button color="dark">dark</Button>
 ```
 
 ### Fill (`fill`)
@@ -101,15 +101,15 @@ Semantic color of the button across all available variants.
 Button fill mode: `solid`, `outline` or `clear`.
 
 <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
-  <ButtonTui fill="solid" color="primary">solid</ButtonTui>
-  <ButtonTui fill="outline" color="primary">outline</ButtonTui>
-  <ButtonTui fill="clear" color="primary">clear</ButtonTui>
+  <Button fill="solid" color="primary">solid</Button>
+  <Button fill="outline" color="primary">outline</Button>
+  <Button fill="clear" color="primary">clear</Button>
 </div>
 
 ```vue
-<ButtonTui fill="solid" color="primary">solid</ButtonTui>
-<ButtonTui fill="outline" color="primary">outline</ButtonTui>
-<ButtonTui fill="clear" color="primary">clear</ButtonTui>
+<Button fill="solid" color="primary">solid</Button>
+<Button fill="outline" color="primary">outline</Button>
+<Button fill="clear" color="primary">clear</Button>
 ```
 
 ### Icon (`icon`)
@@ -117,19 +117,19 @@ Button fill mode: `solid`, `outline` or `clear`.
 Optional icon or emoji inside the button.
 
 <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center;">
-  <ButtonTui icon="↖">top-left</ButtonTui>
-  <ButtonTui icon="↗">top-right</ButtonTui>
-  <ButtonTui icon="↘">bottom-right</ButtonTui>
-  <ButtonTui icon="↙">bottom-left</ButtonTui>
-  <ButtonTui icon="★">star</ButtonTui>
+  <Button icon="↖">top-left</Button>
+  <Button icon="↗">top-right</Button>
+  <Button icon="↘">bottom-right</Button>
+  <Button icon="↙">bottom-left</Button>
+  <Button icon="★">star</Button>
 </div>
 
 ```vue
-<ButtonTui icon="↖">top-left</ButtonTui>
-<ButtonTui icon="↗">top-right</ButtonTui>
-<ButtonTui icon="↘">bottom-right</ButtonTui>
-<ButtonTui icon="↙">bottom-left</ButtonTui>
-<ButtonTui icon="★">star</ButtonTui>
+<Button icon="↖">top-left</Button>
+<Button icon="↗">top-right</Button>
+<Button icon="↘">bottom-right</Button>
+<Button icon="↙">bottom-left</Button>
+<Button icon="★">star</Button>
 ```
 
 ### Disabled (`disabled`)
@@ -137,13 +137,13 @@ Optional icon or emoji inside the button.
 An active button next to a `disabled` one.
 
 <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-  <ButtonTui color="primary">Active</ButtonTui>
-  <ButtonTui color="primary" disabled>Disabled</ButtonTui>
+  <Button color="primary">Active</Button>
+  <Button color="primary" disabled>Disabled</Button>
 </div>
 
 ```vue
-<ButtonTui color="primary">Active</ButtonTui>
-<ButtonTui color="primary" disabled>Disabled</ButtonTui>
+<Button color="primary">Active</Button>
+<Button color="primary" disabled>Disabled</Button>
 ```
 
 ## Props

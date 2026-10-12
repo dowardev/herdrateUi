@@ -136,9 +136,9 @@ Binds the open panels to parent state with `:opened` and `update:opened`. The bu
 
 <ClientOnly>
   <div style="display:flex;gap:0.5rem;margin-bottom:0.5rem;">
-    <ButtonTui @click="controlledOpened = []">Close all</ButtonTui>
-    <ButtonTui @click="controlledOpened = [0, 1, 2, 3, 4]">Open all</ButtonTui>
-    <ButtonTui @click="controlledOpened = [2]">Sound only</ButtonTui>
+    <Button @click="controlledOpened = []">Close all</Button>
+    <Button @click="controlledOpened = [0, 1, 2, 3, 4]">Open all</Button>
+    <Button @click="controlledOpened = [2]">Sound only</Button>
   </div>
   <Accordion :items="items" multiple :opened="controlledOpened" @update:opened="controlledOpened = $event" />
   <p v-if="controlledOpened.length" style="color:var(--text-muted);font-size:0.8rem;margin-top:0.5rem;">Opened: {{ controlledOpened }}</p>
@@ -147,7 +147,7 @@ Binds the open panels to parent state with `:opened` and `update:opened`. The bu
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Accordion, ButtonTui } from '@dowardev/herdrate-vue'
+import { Accordion, Button } from '@dowardev/herdrate-vue'
 
 const items = [ ... ]
 const controlledOpened = ref<number[]>([2])
@@ -155,11 +155,11 @@ const controlledOpened = ref<number[]>([2])
 
 <template>
   <div style="display:flex;gap:0.5rem;margin-bottom:0.5rem;">
-    <ButtonTui @click="controlledOpened = []">Close all</ButtonTui>
+    <Button @click="controlledOpened = []">Close all</Button>
 
-    <ButtonTui @click="controlledOpened = [0, 1, 2, 3, 4]">Open all</ButtonTui>
+    <Button @click="controlledOpened = [0, 1, 2, 3, 4]">Open all</Button>
 
-    <ButtonTui @click="controlledOpened = [2]">Sound only</ButtonTui>
+    <Button @click="controlledOpened = [2]">Sound only</Button>
   </div>
 
   <Accordion :items="items" multiple :opened="controlledOpened" @update:opened="controlledOpened = $event" />

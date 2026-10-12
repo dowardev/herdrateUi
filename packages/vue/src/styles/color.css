@@ -93,66 +93,66 @@
 }
 
 /* ============================================
-   ButtonTui — fill + color via data attributes
+   Button — fill + color via data attributes
    ============================================ */
-.btn-tui[data-fill="solid"] {
+.btn[data-fill="solid"] {
   background: var(--_btn-bg);
   color: var(--bg);
 }
-.btn-tui[data-fill="solid"]:hover {
+.btn[data-fill="solid"]:hover {
   opacity: 0.85;
 }
-.btn-tui[data-fill="outline"] {
+.btn[data-fill="outline"] {
   border: 1px solid var(--_btn-text);
   color: var(--_btn-text);
   background: transparent;
 }
-.btn-tui[data-fill="outline"]:hover {
+.btn[data-fill="outline"]:hover {
   background: var(--_btn-bg);
   color: var(--bg);
 }
-.btn-tui[data-fill="clear"] {
+.btn[data-fill="clear"] {
   color: var(--_btn-text);
   background: transparent;
   border: none;
 }
-.btn-tui[data-fill="clear"]:hover {
+.btn[data-fill="clear"]:hover {
   background: var(--bg-elevated);
 }
 
-.btn-tui[data-color="primary"] {
+.btn[data-color="primary"] {
   --_btn-bg: var(--color-primary);
   --_btn-text: var(--color-primary);
 }
-.btn-tui[data-color="secondary"] {
+.btn[data-color="secondary"] {
   --_btn-bg: var(--color-secondary);
   --_btn-text: var(--color-secondary);
 }
-.btn-tui[data-color="tertiary"] {
+.btn[data-color="tertiary"] {
   --_btn-bg: var(--color-tertiary);
   --_btn-text: var(--color-tertiary);
 }
-.btn-tui[data-color="success"] {
+.btn[data-color="success"] {
   --_btn-bg: var(--color-success);
   --_btn-text: var(--color-success);
 }
-.btn-tui[data-color="warning"] {
+.btn[data-color="warning"] {
   --_btn-bg: var(--color-warning);
   --_btn-text: var(--color-warning);
 }
-.btn-tui[data-color="danger"] {
+.btn[data-color="danger"] {
   --_btn-bg: var(--color-danger);
   --_btn-text: var(--color-danger);
 }
-.btn-tui[data-color="light"] {
+.btn[data-color="light"] {
   --_btn-bg: var(--color-light);
   --_btn-text: var(--color-light);
 }
-.btn-tui[data-color="medium"] {
+.btn[data-color="medium"] {
   --_btn-bg: var(--color-medium);
   --_btn-text: var(--color-medium);
 }
-.btn-tui[data-color="dark"] {
+.btn[data-color="dark"] {
   --_btn-bg: var(--color-dark);
   --_btn-text: var(--color-dark);
 }
