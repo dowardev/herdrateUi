@@ -126,6 +126,53 @@ describe('CodeBlock', () => {
     expect(formatter).toHaveBeenCalledTimes(2);
     expect(wrapper.find('code').text()).toContain('world');
   });
+
+  it('runs formatter when preload is true (default)', async () => {
+    const formatter = vi.fn((code: string) => code.trim());
+    const wrapper = mount(CodeBlock, {
+      props: { code: '  hello  ', language: 'ts', formatter, preload: true },
+    });
+    await vi.dynamicImportSettled();
+    expect(formatter).toHaveBeenCalledTimes(1);
+    expect(wrapper.find('code').text()).toContain('hello');
+  });
+
+  it('skips formatter when preload is false', async () => {
+    const formatter = vi.fn((code: string) => code.trim());
+    const wrapper = mount(CodeBlock, {
+      props: { code: '  hello  ', language: 'ts', formatter, preload: false },
+    });
+    await vi.dynamicImportSettled();
+    expect(formatter).not.toHaveBeenCalled();
+    // Raw code is rendered as-is (whitespace preserved in the source HTML).
+    expect(wrapper.html()).toContain('hello');
+  });
+
+  it('does not re-run formatter on code change when preload is false', async () => {
+    const formatter = vi.fn((code: string) => code.trim());
+    const wrapper = mount(CodeBlock, {
+      props: { code: '  hello  ', formatter, preload: false },
+    });
+    await vi.dynamicImportSettled();
+    expect(formatter).not.toHaveBeenCalled();
+    await wrapper.setProps({ code: '  world  ' });
+    await vi.dynamicImportSettled();
+    expect(formatter).not.toHaveBeenCalled();
+    expect(wrapper.html()).toContain('world');
+  });
+
+  it('treats loader toggle reactively: turning preload back on re-formats', async () => {
+    const formatter = vi.fn((code: string) => code.trim());
+    const wrapper = mount(CodeBlock, {
+      props: { code: '  hello  ', language: 'ts', formatter, preload: false },
+    });
+    await vi.dynamicImportSettled();
+    expect(formatter).not.toHaveBeenCalled();
+    await wrapper.setProps({ preload: true });
+    await vi.dynamicImportSettled();
+    expect(formatter).toHaveBeenCalledTimes(1);
+    expect(wrapper.find('code').text()).toContain('hello');
+  });
 });
 
 describe('usePrettierFormatter', () => {

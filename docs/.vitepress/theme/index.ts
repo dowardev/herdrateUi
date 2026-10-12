@@ -53,11 +53,13 @@ import {
   Toggle,
   Tooltip,
   TreeNode,
+  usePrettierFormatter,
   useToast,
 } from '@dowardev/herdrate-vue';
 import CommandPaletteDemo from '../../components/CommandPaletteDemo.vue';
 import MenuDemo from '../../components/MenuDemo.vue';
 import DevModeBanner from './components/DevModeBanner.vue';
+import DocsCodeBlock from './components/DocsCodeBlock.vue';
 import PropControlArray from './controls/PropControlArray.vue';
 import PropControlColor from './controls/PropControlColor.vue';
 import PropControlInput from './controls/PropControlInput.vue';
@@ -66,6 +68,7 @@ import PropControlSelect from './controls/PropControlSelect.vue';
 import PropControlSlot from './controls/PropControlSlot.vue';
 import PropControlToggle from './controls/PropControlToggle.vue';
 import DesignLineSelect from './DesignLineSelect.vue';
+import { DOCS_PRETTIER_FORMATTER } from './docsFormatterKey';
 import PlayHost from './PlayHost.vue';
 import PropControls from './PropControls.vue';
 
@@ -80,6 +83,7 @@ const components = {
   ButtonTuiGroup,
   Checkbox,
   CodeBlock,
+  DocsCodeBlock,
   CommandPalette,
   CommandPaletteDemo,
   ComboBox,
@@ -144,6 +148,26 @@ export default {
     app.config.globalProperties.$toast = add;
     app.config.globalProperties.$toasts = toasts;
     app.config.globalProperties.$removeToast = remove;
+
+    // LBDS-284: provide a single Prettier formatter instance for the
+    // entire docs site. <DocsCodeBlock> injects it and forwards it to the
+    // library <CodeBlock>. Sharing the instance (instead of letting each
+    // <CodeBlock> build its own) means prettier/standalone is loaded once
+    // and deduped across every fence on every page.
+    const prettierFormatter = usePrettierFormatter();
+    app.provide(DOCS_PRETTIER_FORMATTER, prettierFormatter);
+
+    // Eagerly warm Prettier so the first paint doesn't pay the async load
+    // cost. The result is intentionally discarded; we only care that the
+    // dynamic imports for `prettier/standalone` + plugins have resolved by
+    // the time the first <DocsCodeBlock> mounts.
+    if (typeof window !== 'undefined') {
+      void prettierFormatter('const x = 1', 'js').catch(() => {
+        // Prettier not available (e.g. missing peer deps): the wrapper
+        // falls back to rendering the raw code, so we intentionally
+        // swallow the rejection.
+      });
+    }
 
     // LBDS-291: the dev-mode banner is `position: fixed; bottom: 0`,
     // matching OneSpend's DevModeBanner.vue. VitePress has no equivalent

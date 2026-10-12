@@ -24,6 +24,7 @@ Three changelogs, no duplication:
 
 ### Changed
 
+- **Docs code blocks now use the library `<CodeBlock>` everywhere** (LBDS-284): every code fence in the docs renders through the library's component with Prettier auto-formatting, so long single-line snippets wrap instead of overflowing, the `lang` tag and copy button show on every block, and the docs dogfood the `<CodeBlock>` API. Mermaid diagrams stay as before
 - Component pages now keep every interactive example in the Demo section, and the API sections are pure reference tables
 - Component documentation is now more realistic: every component page shows demos grouped by prop/functionality with the same content in TUIX and Rubik, so both design lines can be compared side-by-side
 - Component pages now read at a glance: clearer section divisions, descriptive one-line summaries for every example, and per-prop signature tables (Type / Default / Required) instead of invented type names

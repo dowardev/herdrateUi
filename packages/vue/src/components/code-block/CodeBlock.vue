@@ -33,6 +33,17 @@ const props = withDefaults(
     showLines?: boolean;
     maxHeight?: string;
     formatter?: Formatter;
+    /**
+     * Whether to run the formatter before highlighting.
+     *
+     * `true` (default) — call `formatter(code, language)` (sync or async) and
+     *   render the result. Use this when the formatter is cheap or you want
+     *   guaranteed formatting.
+     * `false` — skip the formatter entirely. Use this for short snippets where
+     *   loading `prettier/standalone` and friends isn't worth it, or when the
+     *   caller has already pre-formatted the source.
+     */
+    preload?: boolean;
     /** Design line (or inherit from `data-design`). */
     design?: DesignLine;
   }>(),
@@ -43,6 +54,7 @@ const props = withDefaults(
     border: true,
     showLines: true,
     maxHeight: 'none',
+    preload: true,
   },
 );
 const line = useDesign(toRef(props, 'design'));
@@ -54,12 +66,12 @@ const formattedCode = ref(props.code);
 let formatToken = 0;
 
 async function applyFormatter() {
-  const { code, language, formatter } = props;
+  const { code, language, formatter, preload } = props;
   if (!code) {
     formattedCode.value = '';
     return;
   }
-  if (!formatter) {
+  if (!preload || !formatter) {
     formattedCode.value = code;
     return;
   }
@@ -74,9 +86,13 @@ async function applyFormatter() {
   }
 }
 
-watch(() => `${props.code}\0${props.language}`, applyFormatter, {
-  immediate: true,
-});
+watch(
+  () => `${props.code}\0${props.language}\0${props.preload}`,
+  applyFormatter,
+  {
+    immediate: true,
+  },
+);
 
 const highlightedHtml = computed(() => {
   if (!formattedCode.value) return '';
