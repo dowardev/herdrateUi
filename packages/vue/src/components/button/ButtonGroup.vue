@@ -2,11 +2,11 @@
 
 <template>
   <div
-    :class="['btn-tui-group', { 'btn-tui-group--rubik': design === 'rubik' }]"
+    :class="['btn-group', { 'btn-group--rubik': design === 'rubik' }]"
     :data-design="design === 'rubik' ? 'rubik' : undefined"
     :style="{ gap: `${gap}rem` }"
   >
-    <ButtonTui
+    <Button
       v-for="(b, i) in buttons"
       :key="i"
       :icon="b.icon"
@@ -15,7 +15,7 @@
       :disabled="b.disabled || disabled"
       :design="design"
       @click="b.onClick"
-    >{{ b.label }}</ButtonTui>
+    >{{ b.label }}</Button>
   </div>
 </template>
 
@@ -24,9 +24,9 @@ import { computed, toRef } from 'vue';
 import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color, Fill } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
-import ButtonTui from './ButtonTui.vue';
+import Button from './Button.vue';
 
-export interface ButtonTuiItem {
+export interface ButtonItem {
   label: string;
   icon?: string;
   onClick: (e: MouseEvent) => void;
@@ -38,7 +38,7 @@ export interface ButtonTuiItem {
 
 const props = withDefaults(
   defineProps<{
-    buttons: ButtonTuiItem[];
+    buttons: ButtonItem[];
     fill?: Fill;
     color?: Color;
     gap?: number;

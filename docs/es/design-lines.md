@@ -37,7 +37,7 @@ Rubik es morfología + movimiento + jerarquía, NUNCA paleta (los colores son de
 9. **Casa del CSS (regla Fase 2):** la variante scoped `.x--rubik` es la fuente de
    verdad — debe llevar el delta visible COMPLETO, porque los selectores globales
    `[data-design="rubik"] .x` NO matchean cuando clase + atributo están en el MISMO
-   elemento (uso solo-prop: `<ButtonTui design="rubik">`). `src/themes/rubik.css` guarda
+   elemento (uso solo-prop: `<Button design="rubik">`). `src/themes/rubik.css` guarda
    solo tokens, keyframes y mejoras de ancestro. Nunca tocar tuix.
 10. **Contrato por componente:** prop `design` + `useDesign()` + clase estilo `card--rubik` y/o
     attr `data-design="rubik"` + spec que verifica la clase + demo en docs dentro de `[data-design="rubik"]`.

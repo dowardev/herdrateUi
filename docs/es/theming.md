@@ -120,7 +120,7 @@ Colores, sombras, bordes, variantes de tipografía. Los slots no tienen sentido 
 Uso:
 
 ```vue
-<ButtonTui color="primary" fill="solid" :border="false" />
+<Button color="primary" fill="solid" :border="false" />
 ```
 
 **Regla**: si lo único que tiene sentido es un valor escalar, es prop-only. No agregues slot.

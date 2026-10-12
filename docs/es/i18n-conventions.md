@@ -49,7 +49,7 @@ comentarios dentro de bloques de código.
   `Components`, `Design lines`.
 - Los labels de grupo del sidebar son inglés en ambas localizaciones: `Theming`,
   `Color system`, `Components`.
-- Los nombres de componentes (`Accordion`, `Card`, `ButtonTui`, …) son inglés en
+- Los nombres de componentes (`Accordion`, `Card`, `Button`, …) son inglés en
   ambas.
 - `## CSS Custom Properties` es inglés en ambas — es el término del spec (CSS
   Custom Properties for Cascading Variables Module) y matchea Ionic/Vuetify/Material.

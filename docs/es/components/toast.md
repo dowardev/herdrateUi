@@ -45,7 +45,7 @@ Notificaciones temporales inspiradas en noice.nvim, con posicionamiento configur
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useDesign } from '@dowardev/herdrate-vue'
-import { ButtonTui, ButtonTuiGroup } from '@dowardev/herdrate-vue'
+import { Button, ButtonGroup } from '@dowardev/herdrate-vue'
 import { toastMeta } from './meta/toast'
 import ToastDemo from './ToastDemo.vue'
 
@@ -111,8 +111,8 @@ Muestra toasts con `message` y `color` semántico en cada posición.
 
 <ClientOnly>
   <div style="margin-bottom: 2rem;">
-    <ButtonTuiGroup :buttons="positionButtons" />
-    <ButtonTui color="medium" fill="clear" @click="clearAll">[ clear ]</ButtonTui>
+    <ButtonGroup :buttons="positionButtons" />
+    <Button color="medium" fill="clear" @click="clearAll">[ clear ]</Button>
   </div>
   <p v-if="items.length === 0" style="opacity: 0.5; font-style: italic;">
     Haz clic en un botón para mostrar un toast flotante en esa posición.

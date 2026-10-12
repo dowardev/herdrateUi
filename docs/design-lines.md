@@ -37,7 +37,7 @@ Rubik is morphology + motion + hierarchy, NEVER palette (colors stay consumer-ow
 9. **CSS home (Fase 2 rule):** the scoped `.x--rubik` variant is the source of
    truth — it must carry the FULL visible delta, because `[data-design="rubik"] .x`
    global selectors do NOT match when class + attribute sit on the SAME element
-   (prop-only usage: `<ButtonTui design="rubik">`). `src/themes/rubik.css` keeps
+   (prop-only usage: `<Button design="rubik">`). `src/themes/rubik.css` keeps
    only tokens, keyframes, and ancestor-scoped enhancements. Never touch tuix.
 10. **Contract per component:** `design` prop + `useDesign()` + `card--rubik`-style class and/or
     `data-design="rubik"` attr + spec asserting the class + docs demo inside `[data-design="rubik"]`.

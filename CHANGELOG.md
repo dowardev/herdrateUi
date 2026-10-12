@@ -63,6 +63,10 @@ Three changelogs, no duplication:
 - **ES pages no longer mix English and Spanish in the same table (LBDS-282)**: the `Default` column reads `Por defecto`, the `from theme (...)` cells read `desde el tema (...)`, and remaining English-leaked table headers are translated. EN pages had several Spanish-leaked `###` headings that now read in English (`Basic` instead of `Básico`, `Content` instead of `Contenido`, `Current step` instead of `Paso actual`, etc.)
 - **The Theming page in English is now actually in English (LBDS-282)**: it had been left fully in Spanish by an earlier translation step
 
+### Changed
+
+- **Buttons drop the `Tui` suffix (LBDS-283)** — the two button components are now called `Button` and `ButtonGroup` (instead of `ButtonTui` and `ButtonTuiGroup`). This is a breaking change for any consumer that imports them today: update your imports and your templates before upgrading. The old names are removed, not aliased. See the Vue package changelog for the full migration.
+
 ## [0.3.0] - 2026-09-11
 
 ### Added

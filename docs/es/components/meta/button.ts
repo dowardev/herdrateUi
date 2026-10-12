@@ -11,7 +11,7 @@ import type {
 // order) is inherited from the source; only translatable display strings
 // (label, description, placeholder) are overridden here. Any structural drift
 // is caught by docs/.vitepress/__tests__/docs-i18n-parity.spec.ts.
-import { buttonTuiMeta as buttonTuiMetaEn } from '../../../components/meta/buttontui';
+import { buttonMeta as buttonMetaEn } from '../../../components/meta/button';
 
 type PropText = Pick<PropMeta, 'label' | 'description'> &
   Partial<Pick<PropMeta, 'placeholder'>>;
@@ -48,20 +48,20 @@ function isSlotObject(slot: string | SlotMeta): slot is SlotMeta {
   return typeof slot !== 'string';
 }
 
-export const buttonTuiMeta: ComponentMeta = {
-  ...buttonTuiMetaEn,
-  props: buttonTuiMetaEn.props.map((prop) => ({
+export const buttonMeta: ComponentMeta = {
+  ...buttonMetaEn,
+  props: buttonMetaEn.props.map((prop) => ({
     ...prop,
     ...(propText[prop.name] ?? {}),
   })),
-  slots: buttonTuiMetaEn.slots?.map((slot) =>
+  slots: buttonMetaEn.slots?.map((slot) =>
     isSlotObject(slot)
       ? { ...slot, ...(slotText[slot.name] ?? {}) }
       : slotText[slot]
         ? { name: slot, ...slotText[slot] }
         : slot,
   ),
-  events: buttonTuiMetaEn.events?.map((event) => ({
+  events: buttonMetaEn.events?.map((event) => ({
     ...event,
     ...(eventText[event.name] ?? {}),
   })),

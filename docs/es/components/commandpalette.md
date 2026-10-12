@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { commandPaletteMeta } from './meta/commandpalette'
-import { ButtonTui, CommandPalette, useDesign } from '@dowardev/herdrate-vue'
+import { Button, CommandPalette, useDesign } from '@dowardev/herdrate-vue'
 import CommandPaletteDemo from './CommandPaletteDemo.vue'
 
 // Global design line (sidebar select) drives which tab loads.
@@ -40,11 +40,11 @@ Paleta de comandos con overlay, filtrado en vivo y navegación por teclado, idea
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
   <TabPanel value="tuix">
-    <ButtonTui @click="openTuix = true">Open palette (tuix)</ButtonTui>
+    <Button @click="openTuix = true">Open palette (tuix)</Button>
     <CommandPalette v-model="openTuix" :commands="paletteCommands" design="tuix" @select="onSelect" />
   </TabPanel>
   <TabPanel value="rubik">
-    <ButtonTui @click="openRubik = true">Open palette (rubik)</ButtonTui>
+    <Button @click="openRubik = true">Open palette (rubik)</Button>
     <CommandPalette v-model="openRubik" :commands="paletteCommands" design="rubik" @select="onSelect" />
   </TabPanel>
 </Tabs>
@@ -64,7 +64,7 @@ function onSelect(id) {
 }
 </script>
 
-<ButtonTui @click="openRubik = true">Open palette (rubik)</ButtonTui>
+<Button @click="openRubik = true">Open palette (rubik)</Button>
 <CommandPalette v-model="openRubik" :commands="paletteCommands" design="rubik" @select="onSelect" />
 ```
 
@@ -113,8 +113,8 @@ Cada botón abre una paleta funcional: compará el prompt (`>`) y el resaltado e
 
 <ClientOnly>
   <div style="display: flex; gap: 0.5rem;">
-    <ButtonTui @click="openColorPrimary = true" color="primary">Abrir primary</ButtonTui>
-    <ButtonTui @click="openColorSuccess = true" color="success">Abrir success</ButtonTui>
+    <Button @click="openColorPrimary = true" color="primary">Abrir primary</Button>
+    <Button @click="openColorSuccess = true" color="success">Abrir success</Button>
   </div>
   <CommandPalette v-model="openColorPrimary" :commands="paletteCommands" color="primary" @select="onSelect" />
   <CommandPalette v-model="openColorSuccess" :commands="paletteCommands" color="success" @select="onSelect" />
@@ -123,7 +123,7 @@ Cada botón abre una paleta funcional: compará el prompt (`>`) y el resaltado e
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ButtonTui, CommandPalette } from '@dowardev/herdrate-vue'
+import { Button, CommandPalette } from '@dowardev/herdrate-vue'
 
 const openColorPrimary = ref(false)
 const openColorSuccess = ref(false)
@@ -131,9 +131,9 @@ const openColorSuccess = ref(false)
 
 <template>
   <div style="display: flex; gap: 0.5rem;">
-    <ButtonTui @click="openColorPrimary = true" color="primary">Abrir primary</ButtonTui>
+    <Button @click="openColorPrimary = true" color="primary">Abrir primary</Button>
 
-    <ButtonTui @click="openColorSuccess = true" color="success">Abrir success</ButtonTui>
+    <Button @click="openColorSuccess = true" color="success">Abrir success</Button>
   </div>
 
   <CommandPalette v-model="openColorPrimary" :commands="commands" color="primary" @select="onSelect" />

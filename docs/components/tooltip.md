@@ -30,14 +30,14 @@ Informational tooltip that appears on hover over an element, with configurable d
   <TabPanel value="tuix">
     <div class="tooltip-demo">
       <Tooltip text="Copy to clipboard" design="tuix">
-        <ButtonTui icon="📋" fill="outline" color="primary">Copy</ButtonTui>
+        <Button icon="📋" fill="outline" color="primary">Copy</Button>
       </Tooltip>
     </div>
   </TabPanel>
   <TabPanel value="rubik">
     <div class="tooltip-demo">
       <Tooltip text="Copy to clipboard" design="rubik">
-        <ButtonTui icon="📋" fill="outline" color="primary">Copy</ButtonTui>
+        <Button icon="📋" fill="outline" color="primary">Copy</Button>
       </Tooltip>
     </div>
   </TabPanel>
@@ -53,14 +53,14 @@ Informational tooltip that appears on hover over an element, with configurable d
   <TabPanel value="tuix">
     <div class="tooltip-demo">
       <Tooltip text="Copy to clipboard" design="tuix">
-        <ButtonTui icon="📋" fill="outline" color="primary">Copy</ButtonTui>
+        <Button icon="📋" fill="outline" color="primary">Copy</Button>
       </Tooltip>
     </div>
   </TabPanel>
   <TabPanel value="rubik">
     <div class="tooltip-demo">
       <Tooltip text="Copy to clipboard" design="rubik">
-        <ButtonTui icon="📋" fill="outline" color="primary">Copy</ButtonTui>
+        <Button icon="📋" fill="outline" color="primary">Copy</Button>
       </Tooltip>
     </div>
   </TabPanel>
@@ -75,24 +75,24 @@ Posición relativa al trigger.
 
 <div style="display: flex; gap: 2rem; align-items: center; padding: 2rem 0;">
   <Tooltip text="Top" position="top">
-    <ButtonTui fill="outline" color="primary">Top</ButtonTui>
+    <Button fill="outline" color="primary">Top</Button>
   </Tooltip>
   <Tooltip text="Bottom" position="bottom">
-    <ButtonTui fill="outline" color="primary">Bottom</ButtonTui>
+    <Button fill="outline" color="primary">Bottom</Button>
   </Tooltip>
   <Tooltip text="Left" position="left">
-    <ButtonTui fill="outline" color="primary">Left</ButtonTui>
+    <Button fill="outline" color="primary">Left</Button>
   </Tooltip>
   <Tooltip text="Right" position="right">
-    <ButtonTui fill="outline" color="primary">Right</ButtonTui>
+    <Button fill="outline" color="primary">Right</Button>
   </Tooltip>
 </div>
 
 ```vue
-<Tooltip text="Top" position="top"><ButtonTui>Top</ButtonTui></Tooltip>
-<Tooltip text="Bottom" position="bottom"><ButtonTui>Bottom</ButtonTui></Tooltip>
-<Tooltip text="Left" position="left"><ButtonTui>Left</ButtonTui></Tooltip>
-<Tooltip text="Right" position="right"><ButtonTui>Right</ButtonTui></Tooltip>
+<Tooltip text="Top" position="top"><Button>Top</Button></Tooltip>
+<Tooltip text="Bottom" position="bottom"><Button>Bottom</Button></Tooltip>
+<Tooltip text="Left" position="left"><Button>Left</Button></Tooltip>
+<Tooltip text="Right" position="right"><Button>Right</Button></Tooltip>
 ```
 
 ### Color (`color`)
@@ -101,24 +101,24 @@ Color del borde y flecha.
 
 <div style="display: flex; gap: 1rem; align-items: center; padding: 2rem 0;">
   <Tooltip text="Primary" color="primary">
-    <ButtonTui fill="outline" color="primary">Primary</ButtonTui>
+    <Button fill="outline" color="primary">Primary</Button>
   </Tooltip>
   <Tooltip text="Success" color="success">
-    <ButtonTui fill="outline" color="success">Success</ButtonTui>
+    <Button fill="outline" color="success">Success</Button>
   </Tooltip>
   <Tooltip text="Warning" color="warning">
-    <ButtonTui fill="outline" color="warning">Warning</ButtonTui>
+    <Button fill="outline" color="warning">Warning</Button>
   </Tooltip>
   <Tooltip text="Danger" color="danger">
-    <ButtonTui fill="outline" color="danger">Danger</ButtonTui>
+    <Button fill="outline" color="danger">Danger</Button>
   </Tooltip>
 </div>
 
 ```vue
-<Tooltip text="Primary" color="primary"><ButtonTui>Primary</ButtonTui></Tooltip>
-<Tooltip text="Success" color="success"><ButtonTui>Success</ButtonTui></Tooltip>
-<Tooltip text="Warning" color="warning"><ButtonTui>Warning</ButtonTui></Tooltip>
-<Tooltip text="Danger" color="danger"><ButtonTui>Danger</ButtonTui></Tooltip>
+<Tooltip text="Primary" color="primary"><Button>Primary</Button></Tooltip>
+<Tooltip text="Success" color="success"><Button>Success</Button></Tooltip>
+<Tooltip text="Warning" color="warning"><Button>Warning</Button></Tooltip>
+<Tooltip text="Danger" color="danger"><Button>Danger</Button></Tooltip>
 ```
 
 ### Delay (`delay`)
@@ -127,20 +127,20 @@ Milisegundos antes de mostrar.
 
 <div style="display: flex; gap: 1rem; align-items: center; padding: 2rem 0;">
   <Tooltip text="Instant (0ms)" :delay="0">
-    <ButtonTui fill="outline" color="primary">Instant</ButtonTui>
+    <Button fill="outline" color="primary">Instant</Button>
   </Tooltip>
   <Tooltip text="Default (300ms)" :delay="300">
-    <ButtonTui fill="outline" color="primary">Default</ButtonTui>
+    <Button fill="outline" color="primary">Default</Button>
   </Tooltip>
   <Tooltip text="Slow (1000ms)" :delay="1000">
-    <ButtonTui fill="outline" color="primary">Slow</ButtonTui>
+    <Button fill="outline" color="primary">Slow</Button>
   </Tooltip>
 </div>
 
 ```vue
-<Tooltip text="Instant" :delay="0"><ButtonTui>Instant</ButtonTui></Tooltip>
-<Tooltip text="Default" :delay="300"><ButtonTui>Default</ButtonTui></Tooltip>
-<Tooltip text="Slow" :delay="1000"><ButtonTui>Slow</ButtonTui></Tooltip>
+<Tooltip text="Instant" :delay="0"><Button>Instant</Button></Tooltip>
+<Tooltip text="Default" :delay="300"><Button>Default</Button></Tooltip>
+<Tooltip text="Slow" :delay="1000"><Button>Slow</Button></Tooltip>
 ```
 
 ### Content (`text`)
@@ -148,11 +148,11 @@ Milisegundos antes de mostrar.
 Texto del tooltip.
 
 <Tooltip text="Help message">
-  <ButtonTui fill="outline" color="primary">Hover me</ButtonTui>
+  <Button fill="outline" color="primary">Hover me</Button>
 </Tooltip>
 
 ```vue
-<Tooltip text="Help message"><ButtonTui>Hover me</ButtonTui></Tooltip>
+<Tooltip text="Help message"><Button>Hover me</Button></Tooltip>
 ```
 
 ## Props

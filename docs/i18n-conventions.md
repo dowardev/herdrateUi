@@ -43,7 +43,7 @@ Only two things stay in English in **both** locales:
 
 - Navbar labels are English in both locales: `Home`, `Colors`, `Components`, `Design lines`.
 - Sidebar group labels are English in both locales: `Theming`, `Color system`, `Components`.
-- Component names (`Accordion`, `Card`, `ButtonTui`, …) are English in both.
+- Component names (`Accordion`, `Card`, `Button`, …) are English in both.
 - `## CSS Custom Properties` is English in both — it is the spec term (CSS Custom
   Properties for Cascading Variables Module) and matches Ionic/Vuetify/Material.
 - The VitePress config keeps both `locales.root.title` and `locales.es.title` set

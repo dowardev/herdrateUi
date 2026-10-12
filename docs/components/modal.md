@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { modalMeta } from './meta/modal'
-import { ButtonTui, Modal, useDesign } from '@dowardev/herdrate-vue'
+import { Button, Modal, useDesign } from '@dowardev/herdrate-vue'
 
 // Global design line (sidebar select) drives which tab loads.
 const line = useDesign()
@@ -40,13 +40,13 @@ Terminal-style modal dialog with overlay, header, body, footer, and keyboard sup
     <Tab value="rubik">Rubik</Tab>
   </TabsList>
   <TabPanel value="tuix">
-    <ButtonTui @click="openTuix = true" color="primary">Open tuix modal</ButtonTui>
+    <Button @click="openTuix = true" color="primary">Open tuix modal</Button>
     <Modal v-model:open="openTuix" title="Tuix modal" design="tuix">
       Sharp corners, monospace, flat surfaces.
     </Modal>
   </TabPanel>
   <TabPanel value="rubik">
-    <ButtonTui @click="openRubik = true" color="primary">Open rubik modal</ButtonTui>
+    <Button @click="openRubik = true" color="primary">Open rubik modal</Button>
     <Modal v-model:open="openRubik" title="Rubik modal" design="rubik">
       Cut corners, ink bars, HUD restraint.
     </Modal>
@@ -61,7 +61,7 @@ import { ref } from 'vue'
 const openRubik = ref(false)
 </script>
 
-<ButtonTui @click="openRubik = true" color="primary">Open rubik modal</ButtonTui>
+<Button @click="openRubik = true" color="primary">Open rubik modal</Button>
 <Modal v-model:open="openRubik" title="Rubik modal" design="rubik">
   Cut corners, ink bars, HUD restraint.
 </Modal>
@@ -78,12 +78,12 @@ How the modal is opened and titled: the `open` model and the `title` prop.
 Minimal modal: `open` controls visibility and `title` sets the header text.
 
 <ClientOnly>
-  <ButtonTui @click="isOpen = true" color="primary">Open modal</ButtonTui>
+  <Button @click="isOpen = true" color="primary">Open modal</Button>
   <Modal v-model:open="isOpen" title="Example Modal" closable>
     This is the modal body content.
     <template #footer>
-      <ButtonTui @click="isOpen = false">OK</ButtonTui>
-      <ButtonTui @click="isOpen = false">Cancel</ButtonTui>
+      <Button @click="isOpen = false">OK</Button>
+      <Button @click="isOpen = false">Cancel</Button>
     </template>
   </Modal>
 </ClientOnly>
@@ -91,17 +91,17 @@ Minimal modal: `open` controls visibility and `title` sets the header text.
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
+import { Button, Modal } from '@dowardev/herdrate-vue'
 const isOpen = ref(false)
 </script>
 
 <template>
-  <ButtonTui @click="isOpen = true" color="primary">Open modal</ButtonTui>
+  <Button @click="isOpen = true" color="primary">Open modal</Button>
   <Modal v-model:open="isOpen" title="Example Modal" closable>
     This is the modal body content.
     <template #footer>
-      <ButtonTui @click="isOpen = false">OK</ButtonTui>
-      <ButtonTui @click="isOpen = false">Cancel</ButtonTui>
+      <Button @click="isOpen = false">OK</Button>
+      <Button @click="isOpen = false">Cancel</Button>
     </template>
   </Modal>
 </template>
@@ -112,11 +112,11 @@ const isOpen = ref(false)
 Plain-text heading rendered in the modal header.
 
 <ClientOnly>
-  <ButtonTui @click="openTitle = true" color="primary">Open modal</ButtonTui>
+  <Button @click="openTitle = true" color="primary">Open modal</Button>
   <Modal v-model:open="openTitle" title="Modal with title" closable>
     Modal content.
     <template #footer>
-      <ButtonTui @click="openTitle = false">Close</ButtonTui>
+      <Button @click="openTitle = false">Close</Button>
     </template>
   </Modal>
 </ClientOnly>
@@ -124,16 +124,16 @@ Plain-text heading rendered in the modal header.
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
+import { Button, Modal } from '@dowardev/herdrate-vue'
 const openTitle = ref(false)
 </script>
 
 <template>
-  <ButtonTui @click="openTitle = true" color="primary">Open modal</ButtonTui>
+  <Button @click="openTitle = true" color="primary">Open modal</Button>
   <Modal v-model:open="openTitle" title="Modal with title" closable>
     Modal content.
     <template #footer>
-      <ButtonTui @click="openTitle = false">Close</ButtonTui>
+      <Button @click="openTitle = false">Close</Button>
     </template>
   </Modal>
 </template>
@@ -144,7 +144,7 @@ const openTitle = ref(false)
 Rich content that replaces the plain `title` prop in the header. The slot wins when both are provided.
 
 <ClientOnly>
-  <ButtonTui @click="openTitleSlot = true" color="primary">Open modal</ButtonTui>
+  <Button @click="openTitleSlot = true" color="primary">Open modal</Button>
   <Modal v-model:open="openTitleSlot" title="Prop fallback" closable>
     <template #title><span style="color:var(--accent)">★</span> Slotted title</template>
     Modal body.
@@ -154,13 +154,13 @@ Rich content that replaces the plain `title` prop in the header. The slot wins w
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
+import { Button, Modal } from '@dowardev/herdrate-vue'
 
 const openTitleSlot = ref(false)
 </script>
 
 <template>
-  <ButtonTui @click="openTitleSlot = true" color="primary">Open modal</ButtonTui>
+  <Button @click="openTitleSlot = true" color="primary">Open modal</Button>
   <Modal v-model:open="openTitleSlot" title="Prop fallback" closable>
     <template #title><span style="color:var(--accent)">★</span> Slotted title</template>
     Modal body.
@@ -178,26 +178,26 @@ Semantic color applied to the modal title in the header.
 
 <ClientOnly>
   <div style="display: flex; gap: 0.5rem;">
-    <ButtonTui @click="openColorP = true" color="primary">Primary</ButtonTui>
-    <ButtonTui @click="openColorS = true" color="success">Success</ButtonTui>
-    <ButtonTui @click="openColorD = true" color="danger">Danger</ButtonTui>
+    <Button @click="openColorP = true" color="primary">Primary</Button>
+    <Button @click="openColorS = true" color="success">Success</Button>
+    <Button @click="openColorD = true" color="danger">Danger</Button>
   </div>
   <Modal v-model:open="openColorP" title="Primary" color="primary" closable>
     Modal with primary color.
     <template #footer>
-      <ButtonTui @click="openColorP = false" color="primary">Close</ButtonTui>
+      <Button @click="openColorP = false" color="primary">Close</Button>
     </template>
   </Modal>
   <Modal v-model:open="openColorS" title="Success" color="success" closable>
     Modal with success color.
     <template #footer>
-      <ButtonTui @click="openColorS = false" color="success">Close</ButtonTui>
+      <Button @click="openColorS = false" color="success">Close</Button>
     </template>
   </Modal>
   <Modal v-model:open="openColorD" title="Danger" color="danger" closable>
     Modal with danger color.
     <template #footer>
-      <ButtonTui @click="openColorD = false" color="danger">Close</ButtonTui>
+      <Button @click="openColorD = false" color="danger">Close</Button>
     </template>
   </Modal>
 </ClientOnly>
@@ -205,7 +205,7 @@ Semantic color applied to the modal title in the header.
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
+import { Button, Modal } from '@dowardev/herdrate-vue'
 const openColorP = ref(false)
 const openColorS = ref(false)
 const openColorD = ref(false)
@@ -213,26 +213,26 @@ const openColorD = ref(false)
 
 <template>
   <div style="display: flex; gap: 0.5rem;">
-    <ButtonTui @click="openColorP = true" color="primary">Primary</ButtonTui>
-    <ButtonTui @click="openColorS = true" color="success">Success</ButtonTui>
-    <ButtonTui @click="openColorD = true" color="danger">Danger</ButtonTui>
+    <Button @click="openColorP = true" color="primary">Primary</Button>
+    <Button @click="openColorS = true" color="success">Success</Button>
+    <Button @click="openColorD = true" color="danger">Danger</Button>
   </div>
   <Modal v-model:open="openColorP" title="Primary" color="primary" closable>
     Modal with primary color.
     <template #footer>
-      <ButtonTui @click="openColorP = false" color="primary">Close</ButtonTui>
+      <Button @click="openColorP = false" color="primary">Close</Button>
     </template>
   </Modal>
   <Modal v-model:open="openColorS" title="Success" color="success" closable>
     Modal with success color.
     <template #footer>
-      <ButtonTui @click="openColorS = false" color="success">Close</ButtonTui>
+      <Button @click="openColorS = false" color="success">Close</Button>
     </template>
   </Modal>
   <Modal v-model:open="openColorD" title="Danger" color="danger" closable>
     Modal with danger color.
     <template #footer>
-      <ButtonTui @click="openColorD = false" color="danger">Close</ButtonTui>
+      <Button @click="openColorD = false" color="danger">Close</Button>
     </template>
   </Modal>
 </template>
@@ -244,19 +244,19 @@ Width of the modal, set with any CSS unit such as `ch`.
 
 <ClientOnly>
   <div style="display: flex; gap: 0.5rem;">
-    <ButtonTui @click="openWidthNarrow = true" color="primary">40ch</ButtonTui>
-    <ButtonTui @click="openWidthWide = true" color="primary">80ch</ButtonTui>
+    <Button @click="openWidthNarrow = true" color="primary">40ch</Button>
+    <Button @click="openWidthWide = true" color="primary">80ch</Button>
   </div>
   <Modal v-model:open="openWidthNarrow" title="Narrow (40ch)" width="40ch" closable>
     Modal content with 40ch width.
     <template #footer>
-      <ButtonTui @click="openWidthNarrow = false" color="primary">Close</ButtonTui>
+      <Button @click="openWidthNarrow = false" color="primary">Close</Button>
     </template>
   </Modal>
   <Modal v-model:open="openWidthWide" title="Wide (80ch)" width="80ch" closable>
     Modal content with 80ch width.
     <template #footer>
-      <ButtonTui @click="openWidthWide = false" color="primary">Close</ButtonTui>
+      <Button @click="openWidthWide = false" color="primary">Close</Button>
     </template>
   </Modal>
 </ClientOnly>
@@ -264,26 +264,26 @@ Width of the modal, set with any CSS unit such as `ch`.
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
+import { Button, Modal } from '@dowardev/herdrate-vue'
 const openWidthNarrow = ref(false)
 const openWidthWide = ref(false)
 </script>
 
 <template>
   <div style="display: flex; gap: 0.5rem;">
-    <ButtonTui @click="openWidthNarrow = true" color="primary">40ch</ButtonTui>
-    <ButtonTui @click="openWidthWide = true" color="primary">80ch</ButtonTui>
+    <Button @click="openWidthNarrow = true" color="primary">40ch</Button>
+    <Button @click="openWidthWide = true" color="primary">80ch</Button>
   </div>
   <Modal v-model:open="openWidthNarrow" title="Narrow (40ch)" width="40ch" closable>
     Modal content with 40ch width.
     <template #footer>
-      <ButtonTui @click="openWidthNarrow = false" color="primary">Close</ButtonTui>
+      <Button @click="openWidthNarrow = false" color="primary">Close</Button>
     </template>
   </Modal>
   <Modal v-model:open="openWidthWide" title="Wide (80ch)" width="80ch" closable>
     Modal content with 80ch width.
     <template #footer>
-      <ButtonTui @click="openWidthWide = false" color="primary">Close</ButtonTui>
+      <Button @click="openWidthWide = false" color="primary">Close</Button>
     </template>
   </Modal>
 </template>
@@ -295,19 +295,19 @@ Shows or hides the close button (×) in the header.
 
 <ClientOnly>
   <div style="display: flex; gap: 0.5rem;">
-    <ButtonTui @click="openClosableOn = true" color="primary">With close</ButtonTui>
-    <ButtonTui @click="openClosableOff = true" color="primary">Without close</ButtonTui>
+    <Button @click="openClosableOn = true" color="primary">With close</Button>
+    <Button @click="openClosableOff = true" color="primary">Without close</Button>
   </div>
   <Modal v-model:open="openClosableOn" title="Closable" closable>
     You can close with ×, Escape or the button below.
     <template #footer>
-      <ButtonTui @click="openClosableOn = false" color="primary">Close</ButtonTui>
+      <Button @click="openClosableOn = false" color="primary">Close</Button>
     </template>
   </Modal>
   <Modal v-model:open="openClosableOff" title="Not closable" :closable="false">
     You can only close with Escape or the button below.
     <template #footer>
-      <ButtonTui @click="openClosableOff = false" color="primary">Close</ButtonTui>
+      <Button @click="openClosableOff = false" color="primary">Close</Button>
     </template>
   </Modal>
 </ClientOnly>
@@ -315,26 +315,26 @@ Shows or hides the close button (×) in the header.
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
+import { Button, Modal } from '@dowardev/herdrate-vue'
 const openClosableOn = ref(false)
 const openClosableOff = ref(false)
 </script>
 
 <template>
   <div style="display: flex; gap: 0.5rem;">
-    <ButtonTui @click="openClosableOn = true" color="primary">With close</ButtonTui>
-    <ButtonTui @click="openClosableOff = true" color="primary">Without close</ButtonTui>
+    <Button @click="openClosableOn = true" color="primary">With close</Button>
+    <Button @click="openClosableOff = true" color="primary">Without close</Button>
   </div>
   <Modal v-model:open="openClosableOn" title="Closable" closable>
     You can close with ×, Escape or the button below.
     <template #footer>
-      <ButtonTui @click="openClosableOn = false" color="primary">Close</ButtonTui>
+      <Button @click="openClosableOn = false" color="primary">Close</Button>
     </template>
   </Modal>
   <Modal v-model:open="openClosableOff" title="Not closable" :closable="false">
     You can only close with Escape or the button below.
     <template #footer>
-      <ButtonTui @click="openClosableOff = false" color="primary">Close</ButtonTui>
+      <Button @click="openClosableOff = false" color="primary">Close</Button>
     </template>
   </Modal>
 </template>
@@ -349,7 +349,7 @@ The two slots that fill the modal body and its action area.
 Main content of the modal. Can include any HTML or Vue component.
 
 <ClientOnly>
-  <ButtonTui @click="openContent = true" color="primary">Open modal</ButtonTui>
+  <Button @click="openContent = true" color="primary">Open modal</Button>
   <Modal v-model:open="openContent" title="Varied content" closable>
     <p>This is the modal body.</p>
     <ul>
@@ -358,7 +358,7 @@ Main content of the modal. Can include any HTML or Vue component.
       <li>Item 3</li>
     </ul>
     <template #footer>
-      <ButtonTui @click="openContent = false" color="primary">OK</ButtonTui>
+      <Button @click="openContent = false" color="primary">OK</Button>
     </template>
   </Modal>
 </ClientOnly>
@@ -366,12 +366,12 @@ Main content of the modal. Can include any HTML or Vue component.
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
+import { Button, Modal } from '@dowardev/herdrate-vue'
 const openContent = ref(false)
 </script>
 
 <template>
-  <ButtonTui @click="openContent = true" color="primary">Open modal</ButtonTui>
+  <Button @click="openContent = true" color="primary">Open modal</Button>
   <Modal v-model:open="openContent" title="Varied content" closable>
     <p>This is the modal body.</p>
     <ul>
@@ -380,7 +380,7 @@ const openContent = ref(false)
       <li>Item 3</li>
     </ul>
     <template #footer>
-      <ButtonTui @click="openContent = false" color="primary">OK</ButtonTui>
+      <Button @click="openContent = false" color="primary">OK</Button>
     </template>
   </Modal>
 </template>
@@ -391,12 +391,12 @@ const openContent = ref(false)
 Action area of the modal. Typically contains confirmation or cancellation buttons.
 
 <ClientOnly>
-  <ButtonTui @click="openFooter = true" color="primary">Open modal</ButtonTui>
+  <Button @click="openFooter = true" color="primary">Open modal</Button>
   <Modal v-model:open="openFooter" title="Confirmation" closable>
     Are you sure you want to perform this action?
     <template #footer>
-      <ButtonTui @click="openFooter = false" color="primary">Cancel</ButtonTui>
-      <ButtonTui @click="openFooter = false" color="primary">Confirm</ButtonTui>
+      <Button @click="openFooter = false" color="primary">Cancel</Button>
+      <Button @click="openFooter = false" color="primary">Confirm</Button>
     </template>
   </Modal>
 </ClientOnly>
@@ -404,17 +404,17 @@ Action area of the modal. Typically contains confirmation or cancellation button
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
+import { Button, Modal } from '@dowardev/herdrate-vue'
 const openFooter = ref(false)
 </script>
 
 <template>
-  <ButtonTui @click="openFooter = true" color="primary">Open modal</ButtonTui>
+  <Button @click="openFooter = true" color="primary">Open modal</Button>
   <Modal v-model:open="openFooter" title="Confirmation" closable>
     Are you sure you want to perform this action?
     <template #footer>
-      <ButtonTui @click="openFooter = false" color="primary">Cancel</ButtonTui>
-      <ButtonTui @click="openFooter = false" color="primary">Confirm</ButtonTui>
+      <Button @click="openFooter = false" color="primary">Cancel</Button>
+      <Button @click="openFooter = false" color="primary">Confirm</Button>
     </template>
   </Modal>
 </template>
@@ -425,7 +425,7 @@ const openFooter = ref(false)
 Plain-text footer content via the `footer` prop. The slot wins if both are provided.
 
 <ClientOnly>
-  <ButtonTui @click="openFooterProp = true" color="primary">Open modal</ButtonTui>
+  <Button @click="openFooterProp = true" color="primary">Open modal</Button>
   <Modal v-model:open="openFooterProp" title="Footer prop" footer="Press Esc to close" closable>
     Modal body.
   </Modal>
@@ -434,12 +434,12 @@ Plain-text footer content via the `footer` prop. The slot wins if both are provi
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ButtonTui, Modal } from '@dowardev/herdrate-vue'
+import { Button, Modal } from '@dowardev/herdrate-vue'
 const openFooterProp = ref(false)
 </script>
 
 <template>
-  <ButtonTui @click="openFooterProp = true" color="primary">Open modal</ButtonTui>
+  <Button @click="openFooterProp = true" color="primary">Open modal</Button>
   <Modal v-model:open="openFooterProp" title="Footer prop" footer="Press Esc to close" closable>
     Modal body.
   </Modal>

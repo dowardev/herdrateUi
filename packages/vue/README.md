@@ -30,13 +30,13 @@ CSS is automatically injected when importing any component — no manual imports
 
 ```vue
 <script setup lang="ts">
-import { ButtonTui, Panel } from "@dowardev/herdrate-vue";
+import { Button, Panel } from "@dowardev/herdrate-vue";
 </script>
 
 <template>
   <Panel divider>
     <template #header>Panel demo</template>
-    <ButtonTui color="primary" @click="handleClick">Click me</ButtonTui>
+    <Button color="primary" @click="handleClick">Click me</Button>
     <template #footer>Panel footer</template>
   </Panel>
 </template>
@@ -44,7 +44,7 @@ import { ButtonTui, Panel } from "@dowardev/herdrate-vue";
 
 ## Components
 
-Accordion · Avatar · Badge · Box · Breadcrumbs · ButtonTui · ButtonTuiGroup ·
+Accordion · Avatar · Badge · Box · Breadcrumbs · Button · ButtonGroup ·
 Checkbox · CodeBlock · ComboBox · CommandPalette · Divider · Gutter · Input ·
 Kbd · KbdGroup · KeyHint · LogLines · Menu · Modal · Panel · PanelBody ·
 PanelFooter · PanelHeader · ProgressBar · Radio · ScrollView · Select ·

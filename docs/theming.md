@@ -120,7 +120,7 @@ Colors, shadows, borders, typography variants. Slots do not make sense here beca
 Use:
 
 ```vue
-<ButtonTui color="primary" fill="solid" :border="false" />
+<Button color="primary" fill="solid" :border="false" />
 ```
 
 **Rule**: if the only sensible value is a scalar, it is prop-only. Do not add a slot.

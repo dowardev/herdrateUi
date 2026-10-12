@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-import { ButtonTui } from '@dowardev/herdrate-vue';
+import { Button } from '@dowardev/herdrate-vue';
 import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
-export const buttonTuiMeta: ComponentMeta = {
-  component: ButtonTui,
+export const buttonMeta: ComponentMeta = {
+  component: Button,
   props: [
     {
       name: 'icon',
