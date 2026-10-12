@@ -128,6 +128,18 @@ Un bloque largo que scrollea al superar `maxHeight`.
 <CodeBlock :code="Array.from({ length: 30 }, (_, i) => `line ${i + 1}`).join('\n')" language="ts" maxHeight="200px" />
 ```
 
+### Preload (`preload`)
+
+Saltea la llamada a `formatter` (y la carga asíncrona que dispara) poniendo `preload` en `false`. Útil para snippets cortos donde cargar `prettier/standalone` no vale la pena. Por defecto: `true`.
+
+<CodeBlock code="const x = 1;" language="ts" :preload="false" />
+<CodeBlock code="const x = 1;" language="ts" :preload="true" />
+
+```vue
+<CodeBlock code="const x = 1;" language="ts" :preload="false" />
+<CodeBlock code="const x = 1;" language="ts" :preload="true" />
+```
+
 ## Props
 
 ### code
@@ -179,6 +191,13 @@ Optional function to format code before syntax highlighting. Useful for auto-for
 | Tipo | Por defecto | Requerido |
 |---|---|---|
 | `(code: string, lang: string) => Promise\<string\> \| string` | — | ❌ |
+### preload
+
+Run `formatter` before highlighting. Defaults to `true`; set to `false` to skip the formatter entirely (no Prettier load).
+
+| Tipo | Por defecto | Requerido |
+|---|---|---|
+| `boolean` | `true` | ❌ |
 ## Auto-formateo con usePrettierFormatter
 
 `usePrettierFormatter()` retorna una función formateadora que usa Prettier para formatear código según el lenguaje.

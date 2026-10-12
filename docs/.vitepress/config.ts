@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 import { defineConfig } from 'vitepress';
+import { renderFence } from './fenceRenderer';
 
 // REQ-4: component names stay byte-identical in both locales.
 const componentSidebarItems = [
@@ -52,6 +53,24 @@ export default defineConfig({
     theme: {
       light: 'catppuccin-latte',
       dark: 'catppuccin-mocha',
+    },
+
+    // LBDS-284: replace the default ```fence``` renderer with one that
+    // emits our `<DocsCodeBlock>` component instead of VitePress's native
+    // <pre><code>. Authors keep writing ```vue fences; the rendered
+    // output is the library <CodeBlock> with Prettier formatting wired
+    // in (via the formatter provided in theme/index.ts).
+    config: (md) => {
+      const defaultFence = md.renderer.rules.fence;
+      md.renderer.rules.fence = (tokens, idx, options, env, self) => {
+        const token = tokens[idx];
+        return renderFence(token.content, token.info, {
+          passthroughRender: () =>
+            defaultFence
+              ? defaultFence(tokens, idx, options, env, self)
+              : self.renderToken(tokens, idx, options),
+        });
+      };
     },
   },
 

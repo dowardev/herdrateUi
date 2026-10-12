@@ -9,6 +9,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - **Docs in-development banner (LBDS-291)**: persistent footer at the bottom of every docs page in EN+ES, mirroring OneSpend's `front/src/components/DevModeBanner.vue` 1:1 (warning-tint background, `position: fixed; bottom: 0`, glass backdrop blur). The label switches between "vX.Y.Z — in active development" and "vX.Y.Z — stable" based on the version parsed from `docs/CHANGELOG.md`. A `×` control persists the dismissal in `localStorage` under the current version; any new release re-shows the banner. New file `docs/.vitepress/theme/components/DevModeBanner.vue` (no CTA; the per-error CTA lives in LBDS-288). Mounted globally in `docs/.vitepress/theme/index.ts`.
+- **Docs fence renderer (LBDS-284)**: every markdown code fence now renders as the library `<CodeBlock>` via a new `<DocsCodeBlock>` wrapper in `docs/.vitepress/theme/components/DocsCodeBlock.vue`, with a single shared Prettier formatter provided once in `enhanceApp`. Authors keep writing ` ```vue ` fences; the rendered output is the dogfooded component. Mermaid fences (the only language on the deny-list) keep the default `<pre><code>` renderer
+- **CodeBlock docs (EN+ES)**: documented the new `preload` prop with a demo and a `### preload` row in the Props table (LBDS-284)
 
 ### Changed
 
