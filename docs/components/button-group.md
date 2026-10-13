@@ -228,6 +228,14 @@ Disables every button in the group. An individual item can also set its own `dis
 |---|---|---|
 | `boolean` | `false` | ❌ |
 
+### design
+
+Design line (or inherit from `data-design`), passed through to every button in the group.
+
+| Type | Default | Required |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (inherits from `data-design`) | ❌ |
+
 ## CSS Custom Properties
 
 

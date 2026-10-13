@@ -447,6 +447,14 @@ const openFooterProp = ref(false)
 ```
 ## Props
 
+### open
+
+Controls the open state of the modal (use with `v-model:open` / `update:open`).
+
+| Type | Default | Required |
+|---|---|---|
+| `boolean` | `false` | ❌ |
+
 ### title
 
 Title shown in the modal header. When empty, no reserved space is shown.
@@ -486,6 +494,21 @@ Plain-text footer content shown at the bottom of the modal. Overridden by the `f
 | Type | Default | Required |
 |---|---|---|
 | `string` | — | ❌ |
+
+### design
+
+Design line (or inherit from `data-design`).
+
+| Type | Default | Required |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (inherits from `data-design`) | ❌ |
+
+## Events
+
+| Event | Payload | Description |
+|---|---|---|
+| `update:open` | `boolean` | Emitted when the modal requests to open or close (use with `v-model:open`). |
+| `close` | `void` | Emitted when the close button is clicked or `Escape` is pressed. |
 
 ## Slots
 

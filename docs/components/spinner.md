@@ -138,6 +138,14 @@ Speed of the animation.
 |---|---|---|
 | `'slow' \\| 'normal' \\| 'fast'` | `'normal'` | ❌ |
 
+### design
+
+Design line (or inherit from `data-design`).
+
+| Type | Default | Required |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (inherits from `data-design`) | ❌ |
+
 ## CSS Custom Properties
 
 

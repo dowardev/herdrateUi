@@ -145,6 +145,22 @@ Renders a radio that cannot be selected with the `disabled` prop.
 
 ## Props
 
+### modelValue
+
+Currently selected value (string v-model across a radio group).
+
+| Type | Default | Required |
+|---|---|---|
+| `string` | `''` | ❌ |
+
+### value
+
+This radio's own value. The radio is checked when `modelValue === value`.
+
+| Type | Default | Required |
+|---|---|---|
+| `string` | — | ✅ |
+
 ### label
 
 Text shown next to the radio button.
@@ -168,6 +184,14 @@ Disables interaction.
 | Type | Default | Required |
 |---|---|---|
 | `boolean` | `false` | ❌ |
+
+### design
+
+Design line (or inherit from `data-design`).
+
+| Type | Default | Required |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (inherits from `data-design`) | ❌ |
 
 ## Events
 

@@ -97,6 +97,27 @@ Task text as a prop (alternative to the default slot).
 |---|---|---|
 | `string` | — | ❌ |
 
+### design
+
+Design line (or inherit from `data-design`).
+
+| Type | Default | Required |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (inherits from `data-design`) | ❌ |
+
+## Events
+
+| Event | Payload | Description |
+|---|---|---|
+| `update:done` | `boolean` | Emitted when the user toggles the checkbox (use with `v-model:done`). |
+| `toggle` | `boolean` | Emitted alongside `update:done` for consumers that prefer an explicit event name. |
+
+## Slots
+
+| Slot | Description |
+|---|---|
+| `default` | Custom content shown next to the checkbox (replaces the `text` prop). |
+
 ```vue
 <Todo v-model:done="done" text="Do something" />
 ```

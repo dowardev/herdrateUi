@@ -180,6 +180,26 @@ Color semántico del botón.
 |---|---|---|
 | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
 
+### design
+
+Línea de diseño (o hereda de `data-design`). Permite elegir familia visual independientemente del `data-design` del entorno.
+
+| Tipo | Por defecto | Requerido |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (hereda de `data-design`) | ❌ |
+
+## Events
+
+| Evento | Payload | Descripción |
+|---|---|---|
+| `click` | `MouseEvent` | Se emite al hacer click. No se emite cuando `disabled` es `true`. |
+
+## Slots
+
+| Slot | Descripción |
+|---|---|
+| `default` | Texto de la etiqueta del botón (se renderiza junto al `icon`, si existe). |
+
 ## CSS Custom Properties
 
 

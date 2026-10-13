@@ -158,6 +158,14 @@ Color del último ítem y del hover de links.
 |---|---|---|
 | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
 
+### design
+
+Línea de diseño (o hereda de `data-design`).
+
+| Tipo | Por defecto | Requerido |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (hereda de `data-design`) | ❌ |
+
 ## Slots
 
 | Slot | Descripción |

@@ -169,9 +169,20 @@ Informational text shown in the center.
 |---|---|---|
 | `string` | `''` | ❌ |
 
-### default
+### design
 
-Replaces the `info` area with custom content.
+Design line (or inherit from `data-design`).
+
+| Type | Default | Required |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (inherits from `data-design`) | ❌ |
+
+## Slots
+
+| Slot | Description |
+|---|---|
+| `default` | Replaces the `info` area with custom content. |
+
 ## CSS Custom Properties
 
 

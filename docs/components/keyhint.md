@@ -92,6 +92,20 @@ Size of the hint.
 |---|---|---|
 | `'sm' \| 'md'` | `'md'` | ❌ |
 
+### design
+
+Design line (or inherit from `data-design`).
+
+| Type | Default | Required |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (inherits from `data-design`) | ❌ |
+
+## Slots
+
+| Slot | Description |
+|---|---|
+| `default` | Key hint content (text, icons, etc.). |
+
 ## CSS Custom Properties
 
 

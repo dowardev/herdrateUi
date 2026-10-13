@@ -149,6 +149,14 @@ The `labels` object has this shape:
 | `on` | `string` | ✅ | ON state text |
 | `off` | `string` | ✅ | OFF state text |
 
+### design
+
+Design line (or inherit from `data-design`).
+
+| Type | Default | Required |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (inherits from `data-design`) | ❌ |
+
 ## Events
 
 | Event | Payload | Description |

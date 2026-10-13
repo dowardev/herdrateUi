@@ -127,6 +127,14 @@ Plain-text label content shown in the row. Overridden by the `label` slot if pro
 |---|---|---|
 | `string` | — | ❌ |
 
+### design
+
+Design line (or inherit from `data-design`).
+
+| Type | Default | Required |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (inherits from `data-design`) | ❌ |
+
 ## CSS Custom Properties
 
 

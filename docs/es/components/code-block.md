@@ -198,6 +198,15 @@ Run `formatter` before highlighting. Defaults to `true`; set to `false` to skip 
 | Tipo | Por defecto | Requerido |
 |---|---|---|
 | `boolean` | `true` | ❌ |
+
+### design
+
+Línea de diseño (o hereda de `data-design`).
+
+| Tipo | Por defecto | Requerido |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (hereda de `data-design`) | ❌ |
+
 ## Auto-formateo con usePrettierFormatter
 
 `usePrettierFormatter()` retorna una función formateadora que usa Prettier para formatear código según el lenguaje.

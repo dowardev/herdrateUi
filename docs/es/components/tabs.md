@@ -293,6 +293,29 @@ Color del indicador de tab activa.
 |---|---|---|
 | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
 
+### design (Tabs / TabsList / Tab / TabPanel)
+
+Línea de diseño (o hereda de `data-design`). Acepta el mismo valor en cada subcomponente; los anidados heredan del `<Tabs>` padre si se omiten.
+
+| Tipo | Por defecto | Requerido |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (hereda de `data-design`) | ❌ |
+
+## Eventos
+
+| Evento | Payload | Descripción |
+|---|---|---|
+| `close` (Tabs) | `value: string` | Se emite cuando se cierra un tab con `closable`. |
+
+## Slots
+
+| Slot | Componente | Descripción |
+|---|---|---|
+| `default` | `Tabs` | Triggers de tab (`<Tab>` / `<TabsList>`). |
+| `default` | `TabsList` | Triggers de tab (`<Tab>`). |
+| `default` | `Tab` | Etiqueta visible del tab. |
+| `default` | `TabPanel` | Contenido del panel cuando el tab está activo. |
+
 ## CSS Custom Properties
 
 

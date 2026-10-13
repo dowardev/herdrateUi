@@ -92,6 +92,20 @@ Tamaño del hint.
 |---|---|---|
 | `'sm' \| 'md'` | `'md'` | ❌ |
 
+### design
+
+Línea de diseño (o hereda de `data-design`).
+
+| Tipo | Por defecto | Requerido |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (hereda de `data-design`) | ❌ |
+
+## Slots
+
+| Slot | Descripción |
+|---|---|
+| `default` | Contenido del key hint (texto, iconos, etc.). |
+
 ## CSS Custom Properties
 
 

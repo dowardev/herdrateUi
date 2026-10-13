@@ -149,6 +149,14 @@ El objeto `labels` tiene esta forma:
 | `on` | `string` | ✅ | Texto estado ON |
 | `off` | `string` | ✅ | Texto estado OFF |
 
+### design
+
+Línea de diseño (o hereda de `data-design`).
+
+| Tipo | Por defecto | Requerido |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (hereda de `data-design`) | ❌ |
+
 ## Eventos
 
 | Evento | Payload | Descripción |

@@ -163,6 +163,7 @@ Muestra botón × para cerrar.
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Tag color |
 | `variant` | `'solid' \| 'outline'` | `'solid'` | Fill style |
 | `removable` | `boolean` | `false` | Show x remove button |
+| `design` | `'tuix' \| 'rubik'` | — (hereda de `data-design`) | Línea de diseño (o hereda de `data-design`). |
 
 ## Slots
 

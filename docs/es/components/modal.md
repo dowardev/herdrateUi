@@ -392,6 +392,14 @@ const openFooter = ref(false)
 ```
 ## Props
 
+### open
+
+Controla el estado de apertura del modal (usar con `v-model:open` / `update:open`).
+
+| Tipo | Por defecto | Requerido |
+|---|---|---|
+| `boolean` | `false` | ❌ |
+
 ### title
 
 Título mostrado en la cabecera del modal. Cuando está vacío, no se muestra espacio reservado.
@@ -431,6 +439,21 @@ Contenido de texto plano para el pie, mostrado al final del modal. Lo pisa el sl
 | Tipo | Por defecto | Requerido |
 |---|---|---|
 | `string` | — | ❌ |
+
+### design
+
+Línea de diseño (o hereda de `data-design`).
+
+| Tipo | Por defecto | Requerido |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (hereda de `data-design`) | ❌ |
+
+## Eventos
+
+| Evento | Payload | Descripción |
+|---|---|---|
+| `update:open` | `boolean` | Se emite cuando el modal pide abrirse o cerrarse (usar con `v-model:open`). |
+| `close` | `void` | Se emite al hacer click en el botón de cerrar o presionar `Escape`. |
 
 ## Slots
 

@@ -183,6 +183,7 @@ Bloquea la interacción; el valor sigue visible.
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Focus and highlight color |
 | `placeholder` | `string` | `'Search...'` | Input placeholder |
 | `disabled` | `boolean` | `false` | Disable interaction |
+| `design` | `'tuix' \| 'rubik'` | — (inherits from `data-design`) | Design line (or inherit from `data-design`). |
 
 **`items`** — each option has this shape:
 

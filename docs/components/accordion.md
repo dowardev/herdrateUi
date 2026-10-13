@@ -262,6 +262,14 @@ Color of the opening indicator (▶/▼). Applies to both design lines.
 |---|---|---|
 | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
 
+### design
+
+Design line (or inherit from `data-design`).
+
+| Type | Default | Required |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (inherits from `data-design`) | ❌ |
+
 ## Events
 
 | Event | Payload | Description |

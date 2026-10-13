@@ -156,6 +156,7 @@ Separadores visuales e items no interactivos.
 | `items` | `Array<{label, icon?, disabled?, divider?}>` | `[]` | Items del menú |
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del item activo |
 | `activeIndex` | `number` | `-1` | Índice del item resaltado |
+| `design` | `'tuix' \| 'rubik'` | — (hereda de `data-design`) | Línea de diseño (o hereda de `data-design`). |
 
 **`items`** — cada ítem tiene esta forma:
 

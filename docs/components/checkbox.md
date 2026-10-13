@@ -160,6 +160,7 @@ A disabled checkbox in both checked and unchecked states.
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Bracket color |
 | `disabled` | `boolean` | `false` | Disable interaction |
 | `label` | `string` | `''` | Text next to the checkbox |
+| `design` | `'tuix' \| 'rubik'` | — (inherits from `data-design`) | Design line (or inherit from `data-design`). |
 
 ## CSS Custom Properties
 

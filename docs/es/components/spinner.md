@@ -138,6 +138,14 @@ Velocidad de la animación.
 |---|---|---|
 | `'slow' \\| 'normal' \\| 'fast'` | `'normal'` | ❌ |
 
+### design
+
+Línea de diseño (o hereda de `data-design`).
+
+| Tipo | Por defecto | Requerido |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (hereda de `data-design`) | ❌ |
+
 ## CSS Custom Properties
 
 
