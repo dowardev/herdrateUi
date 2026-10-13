@@ -194,6 +194,7 @@ Bloquea la interacción; el valor sigue visible.
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Focus color |
 | `disabled` | `boolean` | `false` | Disabled |
 | `placeholder` | `string` | `'Select...'` | Placeholder |
+| `design` | `'tuix' \| 'rubik'` | — (inherits from `data-design`) | Design line (or inherit from `data-design`). |
 
 **`options`** — each option has this shape:
 

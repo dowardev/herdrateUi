@@ -92,6 +92,14 @@ Optional descriptive message.
 |---|---|---|
 | `string` | `''` | ❌ |
 
+### design
+
+Design line (or inherit from `data-design`).
+
+| Type | Default | Required |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (inherits from `data-design`) | ❌ |
+
 ## Slots
 
 | Slot | Description |

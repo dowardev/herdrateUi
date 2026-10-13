@@ -180,6 +180,14 @@ Un input tipo textarea con `rows` en 4.
 
 ## Props
 
+### modelValue
+
+Valor actual del input (v-model con string).
+
+| Tipo | Por defecto | Requerido |
+|---|---|---|
+| `string` | `''` | ❌ |
+
 ### placeholder
 
 Texto temporal dentro del input mientras está vacío.
@@ -227,6 +235,14 @@ Número de filas. Cuando es mayor a 1 se comporta como textarea.
 | Tipo | Por defecto | Requerido |
 |---|---|---|
 | `number` | `1` | ❌ |
+
+### design
+
+Línea de diseño (o hereda de `data-design`).
+
+| Tipo | Por defecto | Requerido |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (hereda de `data-design`) | ❌ |
 
 ## Eventos
 

@@ -96,6 +96,27 @@ Texto de la tarea como prop (alternativa al slot default).
 |---|---|---|
 | `string` | — | ❌ |
 
+### design
+
+Línea de diseño (o hereda de `data-design`).
+
+| Tipo | Por defecto | Requerido |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (hereda de `data-design`) | ❌ |
+
+## Eventos
+
+| Evento | Payload | Descripción |
+|---|---|---|
+| `update:done` | `boolean` | Se emite al togglear el checkbox (usar con `v-model:done`). |
+| `toggle` | `boolean` | Se emite junto a `update:done` para consumidores que prefieren un nombre de evento explícito. |
+
+## Slots
+
+| Slot | Descripción |
+|---|---|
+| `default` | Contenido personalizado junto al checkbox (reemplaza el prop `text`). |
+
 ```vue
 <Todo v-model:done="done" text="Hacer algo" />
 ```

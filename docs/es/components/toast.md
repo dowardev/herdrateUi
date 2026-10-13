@@ -168,6 +168,13 @@ Props aceptadas por el componente `Toast`.
 | `message` | `string` | — | Contenido del toast |
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico del toast |
 | `icon` | `string` | `''` | Icono personalizado (default: ▼/✓/●/✖) |
+| `design` | `'tuix' \| 'rubik'` | — (hereda de `data-design`) | Línea de diseño (o hereda de `data-design`). |
+
+### Eventos
+
+| Evento | Payload | Descripción |
+|---|---|---|
+| `close` | `void` | Se emite al hacer click en el botón de cerrar. |
 
 ### ToastContainer
 

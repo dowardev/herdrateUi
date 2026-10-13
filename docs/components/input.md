@@ -180,6 +180,14 @@ A textarea-like input with `rows` set to 4.
 
 ## Props
 
+### modelValue
+
+Current input value (string v-model).
+
+| Type | Default | Required |
+|---|---|---|
+| `string` | `''` | ❌ |
+
 ### placeholder
 
 Temporary text inside the input while it is empty.
@@ -227,6 +235,14 @@ Number of rows. When greater than 1 it behaves as a textarea.
 | Type | Default | Required |
 |---|---|---|
 | `number` | `1` | ❌ |
+
+### design
+
+Design line (or inherit from `data-design`).
+
+| Type | Default | Required |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (inherits from `data-design`) | ❌ |
 
 ## Events
 

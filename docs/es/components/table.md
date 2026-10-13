@@ -343,6 +343,7 @@ Todos los props juntos en una tabla densa.
 | `striped` | `boolean` | `false` | Alternating row background |
 | `compact` | `boolean` | `false` | Reduced cell padding |
 | `indexed` | `boolean` | `false` | Columna de índice numerada en ambas líneas |
+| `design` | `'tuix' \| 'rubik'` | — (hereda de `data-design`) | Línea de diseño (o hereda de `data-design`). |
 
 **`columns`** — cada columna tiene esta forma:
 

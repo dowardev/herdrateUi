@@ -76,6 +76,15 @@ Dirección del divisor.
 | Tipo | Por defecto | Requerido |
 |---|---|---|
 | `'horizontal' \| 'vertical'` | `'horizontal'` | ❌ |
+
+### design
+
+Línea de diseño (o hereda de `data-design`).
+
+| Tipo | Por defecto | Requerido |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (hereda de `data-design`) | ❌ |
+
 ## CSS Custom Properties
 
 

@@ -163,6 +163,13 @@ Texto del tooltip.
 | `position` | `'top' \| 'bottom' \| 'left' \| 'right'` | `'top'` | Posición relativa al trigger |
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del borde y flecha |
 | `delay` | `number` | `300` | Milisegundos antes de mostrar |
+| `design` | `'tuix' \| 'rubik'` | — (hereda de `data-design`) | Línea de diseño (o hereda de `data-design`). |
+
+## Slots
+
+| Slot | Descripción |
+|---|---|
+| `default` | Trigger del tooltip (el elemento que al hacer hover muestra el tooltip). Cuando se usa el slot, el prop `text` se ignora. |
 
 ## CSS Custom Properties
 

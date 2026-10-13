@@ -160,6 +160,7 @@ Un checkbox `disabled` en estado marcado y desmarcado.
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color del bracket |
 | `disabled` | `boolean` | `false` | Deshabilita la interacción |
 | `label` | `string` | `''` | Texto junto al checkbox |
+| `design` | `'tuix' \| 'rubik'` | — (hereda de `data-design`) | Línea de diseño (o hereda de `data-design`). |
 
 ## CSS Custom Properties
 

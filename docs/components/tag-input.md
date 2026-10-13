@@ -165,6 +165,14 @@ Maximum number of allowed tags (0 = no limit).
 |---|---|---|
 | `number` | `0` | ❌ |
 
+### design
+
+Design line (or inherit from `data-design`).
+
+| Type | Default | Required |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (inherits from `data-design`) | ❌ |
+
 ## Events
 
 | Event | Payload | Description |

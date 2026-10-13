@@ -180,6 +180,26 @@ Semantic color of the button.
 |---|---|---|
 | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | ❌ |
 
+### design
+
+Design line (or inherit from `data-design`). Lets you pick a visual family independently of the surrounding `data-design`.
+
+| Type | Default | Required |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (inherits from `data-design`) | ❌ |
+
+## Events
+
+| Event | Payload | Description |
+|---|---|---|
+| `click` | `MouseEvent` | Emitted on click. Not emitted when `disabled` is `true`. |
+
+## Slots
+
+| Slot | Description |
+|---|---|
+| `default` | Button label text (rendered next to the `icon`, if any). |
+
 ## CSS Custom Properties
 
 

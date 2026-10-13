@@ -8,6 +8,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- **Complete component API reference (LBDS-241)**: every component page now documents its full public contract (Props, Events, Slots) audited against `packages/vue/src/components/*/*.vue`. Mirrored in `docs/es/components/*.md`. Per-page additions:
+  - `design?: 'tuix' | 'rubik'` prop added to 38 component pages (Card already had it)
+  - `modelValue` prop added to Input and Radio docs
+  - `value` prop added to Radio docs
+  - `## Events` sections added: Button (`click: MouseEvent`), Modal (`update:open: boolean`, `close: void`), Tabs (`close: string`), CommandPalette (`select: string`), Menu (`select: number`), Tag (`remove: void`), Toast (`close: void`), Todo (`update:done: boolean`, `toggle: boolean`); Card already had `hover`
+  - `## Slots` sections added: Badge, KeyHint, StatusBar, Tooltip, CodeBlock, Todo (each with `default`); Box (`header`, `default`, `footer`); Card (`header`, `title`, `default`, `footer`); Panel (`header`, `default`, `footer`); ScrollView (`default`); Breadcrumbs (`default`); Kbd (`default`); SnakeLoader (`default`); Tag (`default`); TipBox (`default`); Tabs / TabsList / Tab / TabPanel (each `default`); TreeNode (`label`, `default`)
+  - Structural fixes: `status-bar.md` had `### default` (a slot description) misplaced under `## Props` — moved to `## Slots`; `snakeloader.md` `## Slot` (singular) normalized to `## Slots`
 - **Docs in-development banner (LBDS-291)**: persistent footer at the bottom of every docs page in EN+ES, mirroring OneSpend's `front/src/components/DevModeBanner.vue` 1:1 (warning-tint background, `position: fixed; bottom: 0`, glass backdrop blur). The label switches between "vX.Y.Z — in active development" and "vX.Y.Z — stable" based on the version parsed from `docs/CHANGELOG.md`. A `×` control persists the dismissal in `localStorage` under the current version; any new release re-shows the banner. New file `docs/.vitepress/theme/components/DevModeBanner.vue` (no CTA; the per-error CTA lives in LBDS-288). Mounted globally in `docs/.vitepress/theme/index.ts`.
 - **Docs fence renderer (LBDS-284)**: every markdown code fence now renders as the library `<CodeBlock>` via a new `<DocsCodeBlock>` wrapper in `docs/.vitepress/theme/components/DocsCodeBlock.vue`, with a single shared Prettier formatter provided once in `enhanceApp`. Authors keep writing ` ```vue ` fences; the rendered output is the dogfooded component. Mermaid fences (the only language on the deny-list) keep the default `<pre><code>` renderer
 - **CodeBlock docs (EN+ES)**: documented the new `preload` prop with a demo and a `### preload` row in the Props table (LBDS-284)

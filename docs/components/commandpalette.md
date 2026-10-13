@@ -184,6 +184,14 @@ Placeholder of the search input.
 |---|---|---|
 | `string` | `'Type a command...'` | ❌ |
 
+### design
+
+Design line (or inherit from `data-design`).
+
+| Type | Default | Required |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (inherits from `data-design`) | ❌ |
+
 ## Events
 
 | Event | Payload | Description |

@@ -158,6 +158,14 @@ Contenido de texto plano para el pie, mostrado debajo del cuerpo. Lo pisa el slo
 |---|---|---|
 | `string` | — | ❌ |
 
+### design
+
+Línea de diseño (o hereda de `data-design`).
+
+| Tipo | Por defecto | Requerido |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (hereda de `data-design`) | ❌ |
+
 ## Slots
 
 | Slot | Descripción |

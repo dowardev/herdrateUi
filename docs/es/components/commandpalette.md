@@ -185,6 +185,14 @@ Placeholder del input de búsqueda.
 |---|---|---|
 | `string` | `'Type a command...'` | ❌ |
 
+### design
+
+Línea de diseño (o hereda de `data-design`).
+
+| Tipo | Por defecto | Requerido |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (hereda de `data-design`) | ❌ |
+
 ## Eventos
 
 | Evento | Payload | Descripción |

@@ -120,6 +120,7 @@ Muestra u oculta el porcentaje.
 | `color` | `'primary' \| 'secondary' \| 'tertiary' \| 'success' \| 'warning' \| 'danger' \| 'light' \| 'medium' \| 'dark'` | `'primary'` | Color semántico |
 | `showLabel` | `boolean` | `true` | Muestra el % al final |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Alto de la barra |
+| `design` | `'tuix' \| 'rubik'` | — (hereda de `data-design`) | Línea de diseño (o hereda de `data-design`). |
 
 ## CSS Custom Properties
 

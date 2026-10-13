@@ -228,6 +228,14 @@ Deshabilita todos los botones del grupo. Cada ítem puede además definir su pro
 |---|---|---|
 | `boolean` | `false` | ❌ |
 
+### design
+
+Línea de diseño (o hereda de `data-design`), se propaga a cada botón del grupo.
+
+| Tipo | Por defecto | Requerido |
+|---|---|---|
+| `'tuix' \| 'rubik'` | — (hereda de `data-design`) | ❌ |
+
 ## CSS Custom Properties
 
 
