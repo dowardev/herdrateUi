@@ -36,6 +36,7 @@ export { default as PanelHeader } from './components/panel/PanelHeader.vue';
 export { default as ProgressBar } from './components/progress-bar/ProgressBar.vue';
 export { default as Radio } from './components/radio/Radio.vue';
 export { default as ScrollView } from './components/scroll-view/ScrollView.vue';
+export { default as SearchBar } from './components/search-bar/SearchBar.vue';
 export { default as Select } from './components/select/Select.vue';
 export { default as Spinner } from './components/spinner/Spinner.vue';
 export { default as StatusBar } from './components/status-bar/StatusBar.vue';

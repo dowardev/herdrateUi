@@ -18,6 +18,7 @@ Three changelogs, no duplication:
 
 ### Added
 
+- Search field component with debounced search events and a clear button. Adapts to your data source — wire the filter yourself (LBDS-223)
 - Every component page now documents its complete public API (props, events, slots) — a consumer can read the contract from the docs without opening the source
 - The docs site now shows a persistent "in development" footer at the bottom of every page, mirroring the OneSpend app's dev banner — the same version-aware label, dismissal storage, and visual styling
 - Accordion panels can now be opened and closed from your own controls, and can start with panels already open

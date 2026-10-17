@@ -30,6 +30,7 @@ const componentNames = [
   'ProgressBar',
   'Radio',
   'ScrollView',
+  'SearchBar',
   'Select',
   'SnakeLoader',
   'Spinner',

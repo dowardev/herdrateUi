@@ -29,6 +29,7 @@ const componentSidebarItems = [
   { text: 'ProgressBar', link: '/components/progress-bar' },
   { text: 'Radio', link: '/components/radio' },
   { text: 'ScrollView', link: '/components/scroll-view' },
+  { text: 'SearchBar', link: '/components/search-bar' },
   { text: 'Select', link: '/components/select' },
   { text: 'SnakeLoader', link: '/components/snakeloader' },
   { text: 'Spinner', link: '/components/spinner' },

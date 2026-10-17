@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- **SearchBar** docs page (`/components/search-bar`) with design-lines tabs, demos (local filter, async loading, adorners, color, placeholder, disabled, loading, clearable, Enter submit), props/events/slots/CSS-tokens API tables, and full Spanish mirror at `/es/components/search-bar` (LBDS-223)
 - **Complete component API reference (LBDS-241)**: every component page now documents its full public contract (Props, Events, Slots) audited against `packages/vue/src/components/*/*.vue`. Mirrored in `docs/es/components/*.md`. Per-page additions:
   - `design?: 'tuix' | 'rubik'` prop added to 38 component pages (Card already had it)
   - `modelValue` prop added to Input and Radio docs
