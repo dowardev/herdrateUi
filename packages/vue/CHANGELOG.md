@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- **SearchBar** component with instance-owned debounce and typed emit set (`update:modelValue`, `search`, `clear`, `focus`, `blur`, `enter`); debounce default 250 ms (`0` = no debounce); leading and trailing adorner slots; debounce timer cancels on unmount. No built-in data source — emits events, the consumer wires the search logic (LBDS-223)
 - **CodeBlock**: `preload?: boolean` prop (default `true`) — when `false`, skips the `formatter` call entirely (no Prettier async load). Useful for short snippets where loading `prettier/standalone` isn't worth it (LBDS-284)
 - **Accordion**: `opened` (controlled, `v-model:opened`) and `defaultOpened` props — an open panel can now be driven from parent state or start open. `opened` takes precedence over `defaultOpened`, which is initial-only and clamped to its last index in single-open mode
 - **Button**: `disabled` prop — renders the native attribute and never emits `click`
