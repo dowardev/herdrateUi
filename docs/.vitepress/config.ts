@@ -109,16 +109,16 @@ export default defineConfig({
     es: {
       label: 'Español',
       lang: 'es',
-      title: 'Herdrate Vue UI Library',
+      title: 'Librería de UI Vue de Herdrate',
       description:
         'Librería de componentes de interfaz de usuario para Vue 3 con estética CLI y tema Catppuccin',
       themeConfig: {
         langMenuLabel: 'Cambiar idioma',
         nav: [
-          { text: 'Home', link: '/es/' },
-          { text: 'Colors', link: '/es/color' },
-          { text: 'Components', link: '/es/components/panel' },
-          { text: 'Design lines', link: '/es/design-lines' },
+          { text: 'Inicio', link: '/es/' },
+          { text: 'Colores', link: '/es/color' },
+          { text: 'Componentes', link: '/es/components/panel' },
+          { text: 'Líneas de diseño', link: '/es/design-lines' },
         ],
         sidebar: [
           {
@@ -130,7 +130,7 @@ export default defineConfig({
             items: [{ text: 'Color & Fill', link: '/es/color' }],
           },
           {
-            text: 'Components',
+            text: 'Componentes',
             items: componentSidebarItems.map((item) => ({
               text: item.text,
               link: `/es${item.link}`,
