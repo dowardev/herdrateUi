@@ -188,7 +188,7 @@ Línea de diseño (o hereda de `data-design`). Permite elegir familia visual ind
 |---|---|---|
 | `'tuix' \| 'rubik'` | — (hereda de `data-design`) | ❌ |
 
-## Events
+## Eventos
 
 | Evento | Payload | Descripción |
 |---|---|---|
