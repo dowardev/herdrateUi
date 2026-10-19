@@ -93,6 +93,29 @@ describe('SearchBar', () => {
     expect(wrapper.emitted('search')).toEqual([['preset'], ['preset']]);
   });
 
+  it('re-emits search when parent force-syncs modelValue to the same value as last search', async () => {
+    // I1 (pre-merge review of issue #1): when the parent force-syncs
+    // modelValue to the SAME value as the last emitted search, the dedup
+    // tracker must also reset. This covers force-sync scenarios that
+    // don't go through a different value first.
+    const wrapper = mount(SearchBar, {
+      props: { modelValue: '', debounce: 0 },
+    });
+    const input = wrapper.find('input');
+
+    // First emit
+    await input.setValue('preset');
+    expect(wrapper.emitted('search')).toEqual([['preset']]);
+
+    // Parent force-syncs to the SAME value as the last emitted search
+    await wrapper.setProps({ modelValue: 'preset' });
+
+    // User types the same value again — must re-emit because the watch
+    // on modelValue resets lastEmittedSearch on every prop change.
+    await input.setValue('preset');
+    expect(wrapper.emitted('search')).toEqual([['preset'], ['preset']]);
+  });
+
   it('emits search immediately when debounce=0', async () => {
     const wrapper = mount(SearchBar, {
       props: { modelValue: '', debounce: 0 },
@@ -108,6 +131,21 @@ describe('SearchBar', () => {
     // mismatch between doc controls (min=0) and runtime behavior.
     const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
     mount(SearchBar, { props: { modelValue: '', debounce: -1 } });
+    expect(warnSpy).toHaveBeenCalled();
+    warnSpy.mockRestore();
+  });
+
+  it('warns when debounce is set to a negative value after mount', async () => {
+    // I2 (pre-merge review of issue #1): the F6 warn must be reactive.
+    // setProps({ debounce: -X }) after mount should also trigger it, not
+    // only the initial mount-time check.
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const wrapper = mount(SearchBar, {
+      props: { modelValue: '', debounce: 100 },
+    });
+    // debounce=100 at mount is valid, so the spy should be empty so far.
+    expect(warnSpy).not.toHaveBeenCalled();
+    await wrapper.setProps({ debounce: -5 });
     expect(warnSpy).toHaveBeenCalled();
     warnSpy.mockRestore();
   });
