@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, toRef } from 'vue';
+import { computed, onBeforeUnmount, toRef, watch } from 'vue';
 import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
@@ -75,6 +75,16 @@ const props = withDefaults(
   },
 );
 
+// F6 (issue #1): warn when `debounce` is negative. The doc controls declare
+// min=0, and the component gracefully treats negative values as 0 (no
+// debounce), but consumers should know about the mismatch so they can fix
+// the source.
+if (props.debounce < 0) {
+  console.warn(
+    `[SearchBar] Invalid prop: \`debounce\` should be >= 0 (got ${props.debounce}). Treating as 0 (no debounce).`,
+  );
+}
+
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void;
   (e: 'search', value: string): void;
@@ -94,6 +104,19 @@ const canClear = computed(
 
 let timer: ReturnType<typeof setTimeout> | null = null;
 let lastEmittedSearch: string | undefined;
+
+// F5 (issue #1): reset the search dedup when the parent changes
+// modelValue programmatically (e.g. a "reset filters" button clearing the
+// field). Skipped when the new value equals the previously-emitted search,
+// which covers the v-model round-trip triggered by the component's own emit.
+watch(
+  () => props.modelValue,
+  (newVal) => {
+    if (newVal !== lastEmittedSearch) {
+      lastEmittedSearch = undefined;
+    }
+  },
+);
 
 function clearTimer(): void {
   if (timer !== null) {
