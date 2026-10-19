@@ -3,6 +3,10 @@
 import { Input } from '@dowardev/herdrate-vue';
 import type { ComponentMeta } from '../../.vitepress/theme/PropControls.vue';
 
+// LBDS-238 source of truth (English). The ES locale lives at
+// docs/es/components/meta/input.ts and only overrides the
+// translatable strings (label, description, placeholder).
+
 export const inputMeta: ComponentMeta = {
   component: Input,
   name: 'Input',
@@ -10,16 +14,16 @@ export const inputMeta: ComponentMeta = {
     {
       name: 'modelValue',
       type: 'string',
-      label: 'Valor',
+      label: 'Value',
       default: '',
-      placeholder: 'Texto del input',
+      placeholder: 'Input text',
     },
     {
       name: 'placeholder',
       type: 'string',
       label: 'Placeholder',
       default: '',
-      placeholder: 'Escribe algo...',
+      placeholder: 'Type something...',
     },
     {
       name: 'type',

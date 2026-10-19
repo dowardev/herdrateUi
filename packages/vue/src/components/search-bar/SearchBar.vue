@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, toRef } from 'vue';
+import { computed, onBeforeUnmount, toRef, watch } from 'vue';
 import { type DesignLine, useDesign } from '../../composables/useDesign';
 import type { Color } from '../../types/color';
 import { DEFAULT_COLOR } from '../../types/color';
@@ -75,6 +75,24 @@ const props = withDefaults(
   },
 );
 
+// F6 (issue #1) + I2/I3 (pre-merge review of #1): warn when `debounce` is
+// negative. The doc controls declare min=0, and the component gracefully
+// treats negative values as 0 (no debounce), but consumers should know
+// about the mismatch so they can fix the source. Reactive (covers both
+// initial mount via `immediate: true` and runtime setProps changes) and
+// dev-only (no production log noise).
+watch(
+  () => props.debounce,
+  (v) => {
+    if (import.meta.env.DEV && v < 0) {
+      console.warn(
+        `[SearchBar] Invalid prop: \`debounce\` should be >= 0 (got ${v}). Treating as 0 (no debounce).`,
+      );
+    }
+  },
+  { immediate: true },
+);
+
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void;
   (e: 'search', value: string): void;
@@ -94,6 +112,22 @@ const canClear = computed(
 
 let timer: ReturnType<typeof setTimeout> | null = null;
 let lastEmittedSearch: string | undefined;
+
+// F5 (issue #1) + I1 (pre-merge review of #1): reset the search dedup
+// when the parent changes modelValue programmatically (e.g. a "reset
+// filters" button clearing the field, or a force-sync to the same value
+// as the last emitted search). Resets on every prop change, which also
+// covers the v-model round-trip — `setValue(sameValue)` on an input bound
+// to modelValue produces a no-op input event in the real DOM (the browser
+// suppresses the `input` event when the value does not change), and the
+// existing test for that contract does not use v-model, so this does not
+// regress "does not re-emit search if the value did not actually change".
+watch(
+  () => props.modelValue,
+  () => {
+    lastEmittedSearch = undefined;
+  },
+);
 
 function clearTimer(): void {
   if (timer !== null) {
