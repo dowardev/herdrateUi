@@ -70,6 +70,29 @@ describe('SearchBar', () => {
     expect(wrapper.emitted('search')).toEqual([['a']]);
   });
 
+  it('re-emits search after a programmatic modelValue change (reset filters scenario)', async () => {
+    // F5 (issue #1): when the parent changes modelValue programmatically
+    // (e.g. a "reset filters" button clearing the field), the dedup tracker
+    // must reset so the user typing the same value as a previously-emitted
+    // search re-emits.
+    const wrapper = mount(SearchBar, {
+      props: { modelValue: '', debounce: 0 },
+    });
+    const input = wrapper.find('input');
+
+    // First emit
+    await input.setValue('preset');
+    expect(wrapper.emitted('search')).toEqual([['preset']]);
+
+    // Programmatic change to a DIFFERENT value (e.g. reset filters)
+    await wrapper.setProps({ modelValue: 'other' });
+
+    // User types the original value again — must re-emit because the
+    // watch on modelValue reset lastEmittedSearch when the prop changed.
+    await input.setValue('preset');
+    expect(wrapper.emitted('search')).toEqual([['preset'], ['preset']]);
+  });
+
   it('emits search immediately when debounce=0', async () => {
     const wrapper = mount(SearchBar, {
       props: { modelValue: '', debounce: 0 },
@@ -77,6 +100,16 @@ describe('SearchBar', () => {
     const input = wrapper.find('input');
     await input.setValue('x');
     expect(wrapper.emitted('search')).toEqual([['x']]);
+  });
+
+  it('warns when debounce is negative', () => {
+    // F6 (issue #1): negative debounce values are treated as 0 (no debounce)
+    // silently, but consumers should get a runtime warning so they notice the
+    // mismatch between doc controls (min=0) and runtime behavior.
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    mount(SearchBar, { props: { modelValue: '', debounce: -1 } });
+    expect(warnSpy).toHaveBeenCalled();
+    warnSpy.mockRestore();
   });
 
   it('emits clear when the clear button is pressed', async () => {
@@ -171,5 +204,64 @@ describe('SearchBar', () => {
     const wrapper = mount(SearchBar, { props: { design: 'rubik' } });
     expect(wrapper.classes()).toContain('search-bar--rubik');
     expect(wrapper.attributes('data-design')).toBe('rubik');
+  });
+
+  // F7 (issue #1): edge cases surfaced by the LBDS-223 pre-merge review.
+
+  it('renders with a non-empty initial modelValue (preset content)', () => {
+    const wrapper = mount(SearchBar, { props: { modelValue: 'preset' } });
+    const input = wrapper.find('input');
+    expect(input.element.value).toBe('preset');
+    // Clear button is rendered because there is content.
+    expect(wrapper.find('.search-bar__clear').exists()).toBe(true);
+  });
+
+  it('updates the input when modelValue changes programmatically via setProps', async () => {
+    const wrapper = mount(SearchBar, { props: { modelValue: 'a' } });
+    const input = wrapper.find('input');
+    expect(input.element.value).toBe('a');
+    await wrapper.setProps({ modelValue: 'b' });
+    expect(input.element.value).toBe('b');
+  });
+
+  it('hides the clear button when loading=true and shows it again when toggled off', async () => {
+    const wrapper = mount(SearchBar, {
+      props: { modelValue: 'hello', loading: true },
+    });
+    expect(wrapper.find('.search-bar__clear').exists()).toBe(false);
+
+    await wrapper.setProps({ loading: false });
+    expect(wrapper.find('.search-bar__clear').exists()).toBe(true);
+  });
+
+  it('debounce prop is reactive when changed after mount', async () => {
+    const wrapper = mount(SearchBar, {
+      props: { modelValue: '', debounce: 1000 },
+    });
+    const input = wrapper.find('input');
+    await input.setValue('a');
+    vi.advanceTimersByTime(900);
+    expect(wrapper.emitted('search')).toBeUndefined();
+    vi.advanceTimersByTime(200); // total 1100ms > 1000ms debounce
+    expect(wrapper.emitted('search')?.at(-1)).toEqual(['a']);
+
+    // Now flip debounce to 0 mid-flight; the next keystroke fires immediately.
+    await wrapper.setProps({ debounce: 0 });
+    await input.setValue('b');
+    expect(wrapper.emitted('search')?.at(-1)).toEqual(['b']);
+  });
+
+  it('design prop is reactive when changed after mount', async () => {
+    const wrapper = mount(SearchBar, { props: { design: 'tuix' } });
+    expect(wrapper.classes()).not.toContain('search-bar--rubik');
+    expect(wrapper.attributes('data-design')).toBeUndefined();
+
+    await wrapper.setProps({ design: 'rubik' });
+    expect(wrapper.classes()).toContain('search-bar--rubik');
+    expect(wrapper.attributes('data-design')).toBe('rubik');
+
+    await wrapper.setProps({ design: 'tuix' });
+    expect(wrapper.classes()).not.toContain('search-bar--rubik');
+    expect(wrapper.attributes('data-design')).toBeUndefined();
   });
 });
