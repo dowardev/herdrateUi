@@ -76,6 +76,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 - **EN theming page (`docs/theming.md`) (LBDS-282)**: root-locale page was entirely Spanish (drift from earlier translation step); translated to natural English with the section headings the EN locale needs (`## Layers`, `## Example — sepia theme`, `## When to change one thing vs the whole theme`, `## How it's applied per component`, `## API conventions (props and slots)`, `## How to choose between the three`)
+- **Docs i18n drift (issue #1, follow-up of LBDS-223 review)**: the ES sidebar group header is now `Componentes`, the ES nav items are now `Inicio / Colores / Componentes / Líneas de diseño`, the ES `button.md` `## Events` section is now `## Eventos`, and the EN `input.ts` source-of-truth meta is now in English with the Spanish strings in the ES wrapper as overrides. `config.spec.ts` and `docs-i18n-parity.spec.ts` now cover the contract for these surfaces.
 
 ## [0.3.0] - 2026-09-11
 

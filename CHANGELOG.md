@@ -64,6 +64,7 @@ Three changelogs, no duplication:
 
 - **ES pages no longer mix English and Spanish in the same table (LBDS-282)**: the `Default` column reads `Por defecto`, the `from theme (...)` cells read `desde el tema (...)`, and remaining English-leaked table headers are translated. EN pages had several Spanish-leaked `###` headings that now read in English (`Basic` instead of `Básico`, `Content` instead of `Contenido`, `Current step` instead of `Paso actual`, etc.)
 - **The Theming page in English is now actually in English (LBDS-282)**: it had been left fully in Spanish by an earlier translation step
+- **Spanish docs now read consistently**: remaining pre-existing i18n drift in the docs site (sidebar group header, navigation, and one component page heading) is fixed, and the English source-of-truth for the Input component is restored. The i18n parity tests guard against regression.
 
 ### Changed
 

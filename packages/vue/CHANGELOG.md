@@ -24,6 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - **Accordion**: the Rubik open indicator now follows the `color` prop instead of always using the accent color; the closed marker keeps its muted look
 - **Button**: disabled buttons no longer paint hover styles
+- **SearchBar**: programmatic `modelValue` changes (e.g. a "reset filters" button) now reset the search-dedup tracker so the user re-typing the same value re-emits `search`; the reset is also reactive and covers force-sync to the same value. Negative `debounce` values emit a dev-only `console.warn` so consumers notice the mismatch between the doc controls (min=0) and runtime behavior.
 
 ### Changed
 
