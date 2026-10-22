@@ -101,7 +101,9 @@ const hasDefaultSlot = computed(() => {
 function copySnippet() {
   navigator.clipboard.writeText(snippet.value);
   copied.value = true;
-  setTimeout(() => { copied.value = false; }, 2000);
+  setTimeout(() => {
+    copied.value = false;
+  }, 2000);
 }
 
 const snippet = computed(() => {
@@ -153,7 +155,8 @@ const snippet = computed(() => {
       const sigla = scoped ? `="{ ${slot.scopedProps?.join(', ')} }"` : '';
       lines.push(`    <template #${slot.name}${sigla}>`);
       if (txt) lines.push(`      ${txt}`);
-      else lines.push(`      <!-- ${t('slotContentComment')} #${slot.name} -->`);
+      else
+        lines.push(`      <!-- ${t('slotContentComment')} #${slot.name} -->`);
       lines.push(`    </template>`);
     }
     lines.push(`  </${name}>`);

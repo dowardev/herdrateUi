@@ -131,7 +131,11 @@ const eventMetas = computed(() => props.meta?.events || []);
 const tabs = computed(() => [
   { key: 'props' as const, label: 'Props', count: propMetas.value.length },
   { key: 'slots' as const, label: 'Slots', count: slotMetas.value.length },
-  { key: 'events' as const, label: t('eventsTab'), count: eventMetas.value.length },
+  {
+    key: 'events' as const,
+    label: t('eventsTab'),
+    count: eventMetas.value.length,
+  },
 ]);
 
 function toggle(key: string) {
