@@ -6,23 +6,33 @@ tener que relitigar la decisión página por página, la regla de abajo es la
 
 ## La regla
 
-Solo dos cosas quedan en inglés en **ambas** localizaciones:
+**Los identificadores quedan en inglés en ambas localizaciones. Todo lo que el
+lector lee se traduce.**
 
-1. **Links** — paths de URL (`/components/...`, `/es/components/...`) y labels de
-   navbar/sidebar.
-2. **Título de la app y marca** — `<title>` de cada página y la marca
-   `Herdrate Vue UI Library`.
+1. **Identificadores** — paths de URL (`/components/...`, `/es/components/...`),
+   nombres de componentes (`Accordion`, `Card`, `Button`, …), términos definidos
+   por specs usados como headings (`## CSS Custom Properties`) y valores
+   identifier-like dentro de bloques de código (`--cp-cut`, `--font-family`,
+   `aria-label`).
+2. **Todo lo demás se traduce** al idioma de la página: el título de la app, los
+   labels de navbar y sidebar, el prose, las celdas de tablas, los headings
+   `###`/`####` de demos, el texto de demos, descripciones, captions y
+   comentarios dentro de bloques de código.
 
-**Todo lo demás se traduce** al idioma de la página: prose, celdas de tablas,
-headings `###`/`####` de demos, texto de demos, descripciones, captions,
-comentarios dentro de bloques de código.
+Los nombres de componentes son identificadores, no prose: son los mismos strings
+byte-idénticos en ambas localizaciones, así un lector hispanohablante puede
+buscar en la doc, citar un snippet o abrir un issue nombrando un componente sin
+ambigüedad.
 
 ## Mapeo por superficie
 
 | Superficie | Regla |
 | --- | --- |
-| `<title>` y marca `Herdrate Vue UI Library` | Inglés en ambas localizaciones |
-| Labels de navbar/sidebar (`Home`, `Components`, `Colors`, `Theming`, `Color system`, `Design lines`, nombres de componentes) | Inglés en ambas localizaciones |
+| `<title>` / título de la app (`Herdrate Vue UI Library` en EN, `Librería de UI Vue de Herdrate` en ES) | Traducir por locale |
+| Labels de navbar (`Home`/`Inicio`, `Colors`/`Colores`, `Components`/`Componentes`, `Design lines`/`Líneas de diseño`) | Traducir por locale |
+| Labels de grupo del sidebar (`Theming`/`Tematización`, `Color system`/`Sistema de colores`, `Components`/`Componentes`) | Traducir por locale |
+| Título H1 de la página (el nombre propio de la página) | Traducir por locale, y coincidir con el label del sidebar que apunta a ella |
+| Nombres de componentes (`Accordion`, `Card`, `Button`, …) | Inglés en ambas localizaciones — son identificadores, y el spec de paridad los exige byte-idénticos |
 | Paths de URL (`/components/accordion`, `/es/components/accordion`, `/design-lines`, `/es/design-lines`) | Inglés en ambas localizaciones |
 | Prose de la página, párrafos introductorios, callouts | Traducir |
 | Headings de sección/demo dentro de páginas (`### Demo`, `#### Apertura simple (default)`, `### Contenido rico (...)`) | Traducir |
@@ -36,8 +46,13 @@ comentarios dentro de bloques de código.
   localización; si no, un usuario hispanohablante que linkea a
   `/es/components/accordion` bloquearía a un angloparlante de escribir el mismo
   path.
-- **El título de la app / marca queda en inglés** para que la identidad del
-  producto no se bifurque por localización.
+- **Los nombres de componentes quedan en inglés** para que la superficie de la API
+  tenga un solo nombre en todos lados — la doc, el código, el paquete npm y
+  cualquier tracker de issues. Un nombre de componente traducido bifurcaría el
+  vocabulario de la API por localización.
+- **El chrome se traduce** (título de la app, navbar, sidebar) para que un lector
+  hispanohablante no se encuentre fragmentos en inglés en la navegación que usa
+  para moverse.
 - **Todo lo demás se traduce** para que un lector hispanohablante no se encuentre
   fragmentos en inglés en medio del prose.
 - La convención es conservadora en las *excepciones* (CSS Custom Properties,
@@ -45,16 +60,20 @@ comentarios dentro de bloques de código.
 
 ## Decisiones baked in en esta regla
 
-- Los labels del navbar son inglés en ambas localizaciones: `Home`, `Colors`,
-  `Components`, `Design lines`.
-- Los labels de grupo del sidebar son inglés en ambas localizaciones: `Theming`,
-  `Color system`, `Components`.
+- El título de la app está localizado: `Herdrate Vue UI Library` en EN,
+  `Librería de UI Vue de Herdrate` en ES.
+- Los labels del navbar se traducen: `Home`, `Colors`, `Components`, `Design lines`
+  en EN; `Inicio`, `Colores`, `Componentes`, `Líneas de diseño` en ES.
+- Los labels de grupo del sidebar se traducen: `Theming`, `Color system`,
+  `Components` en EN; `Tematización`, `Sistema de colores`, `Componentes` en ES.
+- Un label de grupo del sidebar es el nombre de la página a la que apunta, en ese locale
+  — coincide con el H1 de esa página. `/es/theming` es `# Tematización`,
+  `/es/color` es `# Sistema de colores`.
 - Los nombres de componentes (`Accordion`, `Card`, `Button`, …) son inglés en
   ambas.
 - `## CSS Custom Properties` es inglés en ambas — es el término del spec (CSS
   Custom Properties for Cascading Variables Module) y matchea Ionic/Vuetify/Material.
-- La config de VitePress mantiene tanto `locales.root.title` como
-  `locales.es.title` con el valor `Herdrate Vue UI Library`.
+- La config de VitePress setea `locales.root.title` y `locales.es.title` por locale.
 
 ## Cómo aplicar esto
 
@@ -62,11 +81,14 @@ Cuando creás o editás una página:
 
 1. La página vive en `/<name>.md` (inglés) y `/es/<name>.md` (español).
 2. Headings, párrafo y celdas de tablas se traducen libremente.
-3. Cualquier cosa que sea un **link** (URL o label de un item del navbar/sidebar)
-   queda en inglés.
-4. El string de marca `Herdrate Vue UI Library` queda en inglés en ambas.
-5. Valores identifier-like dentro de bloques de código (`--cp-cut`, `--font-mono`,
-   `font-family`, `aria-label`) quedan en inglés en ambas.
+3. Los nombres de componentes, los paths de URL y los valores identifier-like
+   dentro de bloques de código (`--cp-cut`, `--font-mono`, `font-family`,
+   `aria-label`) quedan en inglés en ambas.
+4. Si cambiás un string de navbar, sidebar o del título de la app, cambialo en
+   ambas localizaciones en el mismo commit — `docs/.vitepress/config.ts` tiene
+   las dos.
+5. Un label de grupo del sidebar es el nombre de la página a la que linkea, en ese
+   locale — mantenelo igual al H1 de esa página. Si traducís uno, traducí el otro.
 
 Cuando no estés seguro si un string es "término del spec" o "prose", preguntá en
 el PR — no dejes prose en inglés silenciosamente.
