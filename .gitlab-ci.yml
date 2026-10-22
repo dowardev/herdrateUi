@@ -80,7 +80,9 @@ rollback:
     - .ssh_setup
   when: manual
   script:
+    - git fetch --tags --force || true
     - PREVIOUS_TAG=$(git tag --list "v*" --sort=-version:refname | sed -n '2p')
+    - if [ -z "$PREVIOUS_TAG" ]; then echo "No previous release tag to roll back to (only one v* tag exists). Nothing to do."; exit 0; fi
     - echo "Rolling back to $PREVIOUS_TAG"
     - git checkout "$PREVIOUS_TAG"
     - corepack enable
