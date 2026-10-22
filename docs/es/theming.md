@@ -1,4 +1,4 @@
-# Theming
+# Tematización
 
 Las CSS custom properties de la librería siguen una **taxonomía por capa de superficie**. Cada token apunta a una capa visual concreta, no a un componente específico: si override-ás una capa, todos los componentes que la usan se actualizan juntos.
 

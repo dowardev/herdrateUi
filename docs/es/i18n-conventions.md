@@ -30,7 +30,8 @@ ambigüedad.
 | --- | --- |
 | `<title>` / título de la app (`Herdrate Vue UI Library` en EN, `Librería de UI Vue de Herdrate` en ES) | Traducir por locale |
 | Labels de navbar (`Home`/`Inicio`, `Colors`/`Colores`, `Components`/`Componentes`, `Design lines`/`Líneas de diseño`) | Traducir por locale |
-| Labels de grupo del sidebar (`Theming`/`Tematización`, `Color system`/`Sistema de color`, `Components`/`Componentes`) | Traducir por locale |
+| Labels de grupo del sidebar (`Theming`/`Tematización`, `Color system`/`Sistema de colores`, `Components`/`Componentes`) | Traducir por locale |
+| Título H1 de la página (el nombre propio de la página) | Traducir por locale, y coincidir con el label del sidebar que apunta a ella |
 | Nombres de componentes (`Accordion`, `Card`, `Button`, …) | Inglés en ambas localizaciones — son identificadores, y el spec de paridad los exige byte-idénticos |
 | Paths de URL (`/components/accordion`, `/es/components/accordion`, `/design-lines`, `/es/design-lines`) | Inglés en ambas localizaciones |
 | Prose de la página, párrafos introductorios, callouts | Traducir |
@@ -64,7 +65,10 @@ ambigüedad.
 - Los labels del navbar se traducen: `Home`, `Colors`, `Components`, `Design lines`
   en EN; `Inicio`, `Colores`, `Componentes`, `Líneas de diseño` en ES.
 - Los labels de grupo del sidebar se traducen: `Theming`, `Color system`,
-  `Components` en EN; `Tematización`, `Sistema de color`, `Componentes` en ES.
+  `Components` en EN; `Tematización`, `Sistema de colores`, `Componentes` en ES.
+- Un label de grupo del sidebar es el nombre de la página a la que apunta, en ese locale
+  — coincide con el H1 de esa página. `/es/theming` es `# Tematización`,
+  `/es/color` es `# Sistema de colores`.
 - Los nombres de componentes (`Accordion`, `Card`, `Button`, …) son inglés en
   ambas.
 - `## CSS Custom Properties` es inglés en ambas — es el término del spec (CSS
@@ -83,6 +87,8 @@ Cuando creás o editás una página:
 4. Si cambiás un string de navbar, sidebar o del título de la app, cambialo en
    ambas localizaciones en el mismo commit — `docs/.vitepress/config.ts` tiene
    las dos.
+5. Un label de grupo del sidebar es el nombre de la página a la que linkea, en ese
+   locale — mantenelo igual al H1 de esa página. Si traducís uno, traducí el otro.
 
 Cuando no estés seguro si un string es "término del spec" o "prose", preguntá en
 el PR — no dejes prose en inglés silenciosamente.

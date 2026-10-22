@@ -25,7 +25,8 @@ snippet, or file an issue naming a component without ambiguity.
 | --- | --- |
 | `<title>` / app title (`Herdrate Vue UI Library` in EN, `Librería de UI Vue de Herdrate` in ES) | Translate per locale |
 | Navbar item labels (`Home`/`Inicio`, `Colors`/`Colores`, `Components`/`Componentes`, `Design lines`/`Líneas de diseño`) | Translate per locale |
-| Sidebar group labels (`Theming`/`Tematización`, `Color system`/`Sistema de color`, `Components`/`Componentes`) | Translate per locale |
+| Sidebar group labels (`Theming`/`Tematización`, `Color system`/`Sistema de colores`, `Components`/`Componentes`) | Translate per locale |
+| Page H1 title (the page's own name) | Translate per locale, and match the sidebar label that points to it |
 | Component names (`Accordion`, `Card`, `Button`, …) | English in both locales — identifiers, and the parity spec requires them byte-identical |
 | URL paths (`/components/accordion`, `/es/components/accordion`, `/design-lines`, `/es/design-lines`) | English in both locales |
 | Page prose, intro paragraphs, callouts | Translate |
@@ -56,7 +57,9 @@ snippet, or file an issue naming a component without ambiguity.
 - Navbar labels translate: `Home`, `Colors`, `Components`, `Design lines` in EN;
   `Inicio`, `Colores`, `Componentes`, `Líneas de diseño` in ES.
 - Sidebar group labels translate: `Theming`, `Color system`, `Components` in EN;
-  `Tematización`, `Sistema de color`, `Componentes` in ES.
+  `Tematización`, `Sistema de colores`, `Componentes` in ES.
+- A sidebar group label is the name of the page it points to, in that locale — it matches
+  that page's H1. `/es/theming` is `# Tematización`, `/es/color` is `# Sistema de colores`.
 - Component names (`Accordion`, `Card`, `Button`, …) are English in both.
 - `## CSS Custom Properties` is English in both — it is the spec term (CSS
   Custom Properties for Cascading Variables Module) and matches Ionic/Vuetify/Material.
@@ -72,6 +75,8 @@ When you create or edit a page:
    (`--cp-cut`, `--font-mono`, `font-family`, `aria-label`) stay English in both.
 4. If you change a navbar, sidebar, or app-title string, change it in both
    locales in the same commit — `docs/.vitepress/config.ts` holds both.
+5. A sidebar group label is the name of the page it links to, in that locale — keep it
+   equal to that page's H1. If you translate one, translate the other.
 
 When you are unsure whether a string is a "spec term" or "prose", ask in the PR —
 do not silently keep English prose.

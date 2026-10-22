@@ -126,7 +126,7 @@ export default defineConfig({
             items: [{ text: 'Tematización', link: '/es/theming' }],
           },
           {
-            text: 'Sistema de color',
+            text: 'Sistema de colores',
             items: [{ text: 'Color y relleno', link: '/es/color' }],
           },
           {
