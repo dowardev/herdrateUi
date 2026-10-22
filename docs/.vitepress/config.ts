@@ -122,12 +122,12 @@ export default defineConfig({
         ],
         sidebar: [
           {
-            text: 'Theming',
-            items: [{ text: 'Theming', link: '/es/theming' }],
+            text: 'Tematización',
+            items: [{ text: 'Tematización', link: '/es/theming' }],
           },
           {
-            text: 'Color system',
-            items: [{ text: 'Color & Fill', link: '/es/color' }],
+            text: 'Sistema de color',
+            items: [{ text: 'Color y relleno', link: '/es/color' }],
           },
           {
             text: 'Componentes',
