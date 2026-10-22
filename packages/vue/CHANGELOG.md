@@ -6,8 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Added
+## [0.4.0] - 2026-10-21
 
+### Added
 - **SearchBar** component with instance-owned debounce and typed emit set (`update:modelValue`, `search`, `clear`, `focus`, `blur`, `enter`); debounce default 250 ms (`0` = no debounce); leading and trailing adorner slots; debounce timer cancels on unmount. No built-in data source — emits events, the consumer wires the search logic (LBDS-223)
 - **CodeBlock**: `preload?: boolean` prop (default `true`) — when `false`, skips the `formatter` call entirely (no Prettier async load). Useful for short snippets where loading `prettier/standalone` isn't worth it (LBDS-284)
 - **Accordion**: `opened` (controlled, `v-model:opened`) and `defaultOpened` props — an open panel can now be driven from parent state or start open. `opened` takes precedence over `defaultOpened`, which is initial-only and clamped to its last index in single-open mode
@@ -20,19 +21,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - **TreeNode**: `label?: string` prop alongside the existing `label` slot (LBDS-285)
 - **Docs**: new "Convenciones de la API (props y slots)" section in `theming.md` documenting the three content patterns (replaceable content / optional content / visual & style)
 
-### Fixed
-
-- **Accordion**: the Rubik open indicator now follows the `color` prop instead of always using the accent color; the closed marker keeps its muted look
-- **Button**: disabled buttons no longer paint hover styles
-- **SearchBar**: programmatic `modelValue` changes (e.g. a "reset filters" button) now reset the search-dedup tracker so the user re-typing the same value re-emits `search`; the reset is also reactive and covers force-sync to the same value. Negative `debounce` values emit a dev-only `console.warn` so consumers notice the mismatch between the doc controls (min=0) and runtime behavior.
-
 ### Changed
-
 - **BREAKING: rename `ButtonTui` → `Button` and `ButtonTuiGroup` → `ButtonGroup` (LBDS-283)** — the `Tui` suffix referenced internal design-line nomenclature and was leaking into consumer imports. Old exports are gone, no deprecation aliases. Shipped in the next `0.x` release; consumers must update their imports and templates manually. Migration:
   - Source-level imports: `import { ButtonTui } from '@dowardev/herdrate-vue'` → `import { Button } from '@dowardev/herdrate-vue'`. Same for `ButtonTuiGroup` → `ButtonGroup` and `ButtonTuiItem` → `ButtonItem` (the per-button object type re-exported from `ButtonGroup`).
   - Templates: `<ButtonTui ...>` → `<Button ...>`, `<ButtonTuiGroup ...>` → `<ButtonGroup ...>`.
   - Files (kebab path): `packages/vue/src/components/button-tui/ButtonTui.vue` → `button/Button.vue`, and the same for the group. Meta registry files are renamed too: `docs/components/meta/buttontui.ts` → `meta/button.ts`, etc.
   - CSS hooks: `.btn-tui` and `.btn-tui-group` (and the `-rubik`/BEM variants like `.btn-tui--rubik`, `.btn-tui-group--rubik`, `.btn-tui__icon`, `.btn-tui__label`) are now `.btn`, `.btn-group`, `.btn--rubik`, `.btn-group--rubik`, `.btn__icon`, `.btn__label`. The library's global `color.css` was updated to match.
+
+### Fixed
+- **Accordion**: the Rubik open indicator now follows the `color` prop instead of always using the accent color; the closed marker keeps its muted look
+- **Button**: disabled buttons no longer paint hover styles
+- **SearchBar**: programmatic `modelValue` changes (e.g. a "reset filters" button) now reset the search-dedup tracker so the user re-typing the same value re-emits `search`; the reset is also reactive and covers force-sync to the same value. Negative `debounce` values emit a dev-only `console.warn` so consumers notice the mismatch between the doc controls (min=0) and runtime behavior.
 
 ## [0.2.0] - 2026-09-11
 
