@@ -69,7 +69,8 @@ function initSlotDefaults(): Record<string, string> {
   );
   const hasDefault = names.includes('default');
   if (hasDefault) map.default = t('defaultSlotExample');
-  else if (names.length && !map.default) map[names[0]] = t('defaultSlotContent');
+  else if (names.length && !map.default)
+    map[names[0]] = t('defaultSlotContent');
   for (const n of names) {
     if (n !== 'default' && !map[n]) map[n] = '';
   }

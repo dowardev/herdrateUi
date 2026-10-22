@@ -42,7 +42,7 @@
 
 /* Code fences: secondary to the live result, with room around them. The left
    rail reads "this is source" without competing with the demo above it. */
-.vp-doc > div > div[class*='language-'] {
+.vp-doc > div > div[class*="language-"] {
   margin: 1.5rem 0 2rem;
   border-left: 2px solid var(--vp-c-border);
 }
