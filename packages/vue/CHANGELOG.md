@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-10-22
+
+### Fixed
+
+- **TypeScript declarations are now published**: the build emits `dist/index.d.ts` plus per-component declarations via `vue-tsc --emitDeclarationOnly` (new `tsconfig.build.json`), so the `types` field and the `exports["."].types` condition point to a file that actually ships. Previously the package advertised type definitions that were never included, and a TypeScript consumer got `TS7016: Could not find a declaration file for module '@dowardev/herdrate-vue'` with the whole API falling back to `any` (the defect was present since 0.1.0)
+- **The `types` condition now comes first in `exports`**: with `import` ahead of `types`, TypeScript resolved the JavaScript entry and never looked for the declarations
+- **The stylesheet imports moved to a runtime-only entry** (`src/entry.ts`, the Vite build entry) so the emitted declarations do not reference CSS modules the package does not ship — the CSS is still injected into the JavaScript bundle by `vite-plugin-css-injected-by-js`
+
 ## [0.4.0] - 2026-10-21
 
 ### Added
