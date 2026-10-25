@@ -4,6 +4,8 @@ Librería de componentes Vue 3 con tema **Catppuccin** y estética CLI/terminal.
 
 Incluye un [sistema de colores semántico](/es/color) estilo Ionic con 9 colores (`primary` → `dark`) y 3 modos de relleno (`solid`, `outline`, `clear`), todos adaptados automáticamente al tema oscuro/claro.
 
+¿Primera vez con la librería? Sigue la guía de [primeros pasos](/es/getting-started) para instalar el paquete e importar los componentes.
+
 ## Componentes
 
 | Componente | Descripción |

@@ -78,6 +78,7 @@ describe('per-locale navigation (REQ-1)', () => {
   it('root nav is English and rooted at /', () => {
     expect(config.locales.root.themeConfig.nav).toEqual([
       { text: 'Home', link: '/' },
+      { text: 'Getting started', link: '/getting-started' },
       { text: 'Colors', link: '/color' },
       { text: 'Components', link: '/components/panel' },
       { text: 'Design lines', link: '/design-lines' },
@@ -87,6 +88,7 @@ describe('per-locale navigation (REQ-1)', () => {
   it('es nav is Spanish and rooted at /es/', () => {
     expect(config.locales.es.themeConfig.nav).toEqual([
       { text: 'Inicio', link: '/es/' },
+      { text: 'Primeros pasos', link: '/es/getting-started' },
       { text: 'Colores', link: '/es/color' },
       { text: 'Componentes', link: '/es/components/panel' },
       { text: 'Líneas de diseño', link: '/es/design-lines' },
