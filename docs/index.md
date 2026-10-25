@@ -4,6 +4,8 @@ A Vue 3 component library with a **Catppuccin** theme and CLI/terminal aesthetic
 
 It includes a [semantic color system](/color) in the style of Ionic with 9 colors (`primary` → `dark`) and 3 fill modes (`solid`, `outline`, `clear`), all automatically adapted to dark/light themes.
 
+New to the library? Follow the [getting started](/getting-started) guide to install the package and import the components.
+
 ## Components
 
 | Component | Description |

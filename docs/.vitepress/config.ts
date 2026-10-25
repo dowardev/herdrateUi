@@ -86,11 +86,16 @@ export default defineConfig({
         langMenuLabel: 'Change language',
         nav: [
           { text: 'Home', link: '/' },
+          { text: 'Getting started', link: '/getting-started' },
           { text: 'Colors', link: '/color' },
           { text: 'Components', link: '/components/panel' },
           { text: 'Design lines', link: '/design-lines' },
         ],
         sidebar: [
+          {
+            text: 'Getting started',
+            items: [{ text: 'Getting started', link: '/getting-started' }],
+          },
           {
             text: 'Theming',
             items: [{ text: 'Theming', link: '/theming' }],
@@ -116,11 +121,16 @@ export default defineConfig({
         langMenuLabel: 'Cambiar idioma',
         nav: [
           { text: 'Inicio', link: '/es/' },
+          { text: 'Primeros pasos', link: '/es/getting-started' },
           { text: 'Colores', link: '/es/color' },
           { text: 'Componentes', link: '/es/components/panel' },
           { text: 'Líneas de diseño', link: '/es/design-lines' },
         ],
         sidebar: [
+          {
+            text: 'Primeros pasos',
+            items: [{ text: 'Primeros pasos', link: '/es/getting-started' }],
+          },
           {
             text: 'Tematización',
             items: [{ text: 'Tematización', link: '/es/theming' }],
