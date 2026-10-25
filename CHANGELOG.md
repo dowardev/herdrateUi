@@ -16,6 +16,9 @@ Three changelogs, no duplication:
 
 ## [Unreleased]
 
+### Added
+- The docs site now has a getting started page that explains how to install the library and import its components
+
 ## [0.4.1] - 2026-10-22
 
 ### Fixed
