@@ -7,6 +7,7 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import config from '../config';
 
 const root = process.cwd();
 const read = (path: string) => readFileSync(resolve(root, path), 'utf8');
@@ -29,6 +30,18 @@ function headingsOf(md: string): string[] {
     .map((line) => line.slice(3).trim());
 }
 
+// The EN headings are the source of truth; every ES heading has its own
+// translation. A count-only comparison would let a page drift (or keep an
+// untranslated heading) without failing.
+const esHeadingByEnHeading: Record<string, string> = {
+  Installation: 'Instalación',
+  Import: 'Importación',
+  Styles: 'Estilos',
+  Usage: 'Uso',
+  'Live example': 'Ejemplo en vivo',
+  'Next steps': 'Próximos pasos',
+};
+
 describe('getting-started page (GitLab issue #2)', () => {
   it('exists in both locales', () => {
     expect(enMd.length).toBeGreaterThan(0);
@@ -36,7 +49,11 @@ describe('getting-started page (GitLab issue #2)', () => {
   });
 
   it('keeps the same section structure in both locales', () => {
-    expect(headingsOf(esMd)).toHaveLength(headingsOf(enMd).length);
+    const enHeadings = headingsOf(enMd);
+    expect(enHeadings).toEqual(Object.keys(esHeadingByEnHeading));
+    expect(headingsOf(esMd)).toEqual(
+      enHeadings.map((heading) => esHeadingByEnHeading[heading]),
+    );
   });
 
   it('documents the installation command with the real package name', () => {
@@ -65,6 +82,50 @@ describe('getting-started page (GitLab issue #2)', () => {
     expect(libraryIndex).toContain(
       "export { default as Panel } from './components/panel/Panel.vue';",
     );
+  });
+
+  it('pins every composable and type the page tells users to import', () => {
+    const documented = [
+      'useDesign',
+      'useToast',
+      'DEFAULT_COLOR',
+      'Color',
+      'Fill',
+      'DesignLine',
+    ];
+    for (const name of documented) {
+      expect(enMd).toContain(name);
+      expect(esMd).toContain(name);
+      expect(libraryIndex).toContain(name);
+    }
+  });
+
+  it('registers the page in the nav and the sidebar of both locales', () => {
+    const rootConfig = config.locales.root.themeConfig;
+    const esConfig = config.locales.es.themeConfig;
+
+    expect(rootConfig.nav).toContainEqual({
+      text: 'Getting started',
+      link: '/getting-started',
+    });
+    expect(esConfig.nav).toContainEqual({
+      text: 'Primeros pasos',
+      link: '/es/getting-started',
+    });
+
+    for (const [themeConfig, link] of [
+      [rootConfig, '/getting-started'],
+      [esConfig, '/es/getting-started'],
+    ] as const) {
+      const groups = themeConfig.sidebar as {
+        text: string;
+        items: { link: string }[];
+      }[];
+      const links = groups.flatMap((group) =>
+        group.items.map((item) => item.link),
+      );
+      expect(links).toContain(link);
+    }
   });
 
   it('states that the CSS is injected automatically', () => {

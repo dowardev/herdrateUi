@@ -1,6 +1,6 @@
 # Getting started
 
-Three steps: install the package, import the components you need, and you are done — the styles ship with the library.
+Install the package, import the components you need, and you are done — the styles ship with the library.
 
 ## Installation
 
@@ -15,6 +15,8 @@ npm install @dowardev/herdrate-vue
 ```
 
 Vue is a **peer dependency**: the library requires `vue ^3.4` and does not bundle it, so make sure your project already has Vue 3.4 or newer installed.
+
+`prettier ^3` is a second, **optional** peer dependency: install it (plus the plugins for the languages you use) if you want `<CodeBlock>` to format the code it renders.
 
 ## Import
 
@@ -32,6 +34,8 @@ import type { Color, Fill, DesignLine } from '@dowardev/herdrate-vue';
 ```
 
 The package exposes a single root export (`.`). There are **no per-component subpaths**, so `@dowardev/herdrate-vue/button` does not exist — always import from `@dowardev/herdrate-vue`.
+
+The package is **ESM-only**: it ships an `import` condition and no `require` condition, so `require()` from CommonJS does not resolve. Use an ESM build, or a dynamic `import()` from CommonJS.
 
 ## Styles
 

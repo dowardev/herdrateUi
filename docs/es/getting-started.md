@@ -1,6 +1,6 @@
 # Primeros pasos
 
-Tres pasos: instala el paquete, importa los componentes que necesites y listo — los estilos vienen con la librería.
+Instala el paquete, importa los componentes que necesites y listo — los estilos vienen con la librería.
 
 ## Instalación
 
@@ -14,9 +14,11 @@ O con npm:
 npm install @dowardev/herdrate-vue
 ```
 
-Vue es una **peer dependency**: la librería requiere `vue ^3.4` y no lo empaqueta, así que asegúrate de que tu proyecto ya tenga Vue 3.4 o superior instalado.
+Vue es una **peer dependency**: la librería requiere `vue ^3.4` y no lo empaqueta, así que asegura que tu proyecto ya tenga Vue 3.4 o superior instalado.
 
-## Import
+`prettier ^3` es una segunda peer dependency **opcional**: instala `prettier` (junto con los plugins de los lenguajes que uses) si quieres que `<CodeBlock>` formatee el código que muestra.
+
+## Importación
 
 Todos los componentes se exportan desde la raíz del paquete:
 
@@ -32,6 +34,8 @@ import type { Color, Fill, DesignLine } from '@dowardev/herdrate-vue';
 ```
 
 El paquete expone una única export raíz (`.`). **No hay subpaths por componente**, así que `@dowardev/herdrate-vue/button` no existe — importa siempre desde `@dowardev/herdrate-vue`.
+
+El paquete es **solo ESM**: publica la condición `import` y no una condición `require`, así que `require()` desde CommonJS no resuelve. Usa un build ESM, o un `import()` dinámico desde CommonJS.
 
 ## Estilos
 
