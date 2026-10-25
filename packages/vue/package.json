@@ -1,6 +1,6 @@
 {
   "name": "@dowardev/herdrate-vue",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "license": "GPL-3.0-or-later",
   "type": "module",
   "main": "./dist/herdrate-vue.es.js",
@@ -11,15 +11,15 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/herdrate-vue.es.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/herdrate-vue.es.js"
     }
   },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "build": "vite build",
+    "build": "vite build && vue-tsc -p tsconfig.build.json",
     "lint": "biome check ."
   },
   "peerDependencies": {

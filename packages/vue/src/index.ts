@@ -1,12 +1,5 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-import './styles/tokens.css';
-import './styles/theme.css';
-import './styles/reset.css';
-import './styles/color.css';
-import './themes/highlight-tui.css';
-import './themes/rubik.css';
-
 export { default as Accordion } from './components/accordion/Accordion.vue';
 export { default as Avatar } from './components/avatar/Avatar.vue';
 export { default as Badge } from './components/badge/Badge.vue';

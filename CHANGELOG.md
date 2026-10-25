@@ -16,6 +16,12 @@ Three changelogs, no duplication:
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-10-22
+
+### Fixed
+
+- **The library now ships TypeScript types**: TypeScript projects can import the components and get real prop and event types instead of a type error. The package had been advertising type definitions that were never included in the published files, so every consumer's editor treated the whole component API as `any`
+
 ## [0.4.0] - 2026-10-21
 
 ### Added
