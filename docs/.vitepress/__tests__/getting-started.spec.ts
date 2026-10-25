@@ -148,12 +148,18 @@ describe('getting-started page (GitLab issue #2)', () => {
 
     expect(rootConfig.nav).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ link: '/getting-started' }),
+        expect.objectContaining({
+          text: 'Getting started',
+          link: '/getting-started',
+        }),
       ]),
     );
     expect(esConfig.nav).toEqual(
       expect.arrayContaining([
-        expect.objectContaining({ link: '/es/getting-started' }),
+        expect.objectContaining({
+          text: 'Primeros pasos',
+          link: '/es/getting-started',
+        }),
       ]),
     );
 
