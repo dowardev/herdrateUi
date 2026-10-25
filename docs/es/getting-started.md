@@ -16,7 +16,7 @@ npm install @dowardev/herdrate-vue
 
 Vue es una **peer dependency**: la librería requiere `vue ^3.4` y no lo empaqueta, así que asegura que tu proyecto ya tenga Vue 3.4 o superior instalado.
 
-`prettier ^3` es una segunda peer dependency **opcional**: instala `prettier` (junto con los plugins de los lenguajes que uses) si quieres que `<CodeBlock>` formatee el código que muestra.
+`prettier ^3` es una segunda peer dependency **opcional**, y solo hace falta si formateas código tú mismo: la librería carga Prettier únicamente cuando le pasas a `<CodeBlock>` un formatter construido con `usePrettierFormatter()`. Instala `prettier` por tu cuenta (junto con los plugins de los lenguajes que uses — nunca se instalan solos) si ese es tu plan.
 
 ## Importación
 

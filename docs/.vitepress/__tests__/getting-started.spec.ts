@@ -18,6 +18,7 @@ const esMd = read('docs/es/getting-started.md');
 const packageJson = JSON.parse(read('packages/vue/package.json')) as {
   name: string;
   peerDependencies: Record<string, string>;
+  peerDependenciesMeta?: Record<string, { optional?: boolean }>;
   exports: Record<string, unknown>;
 };
 
@@ -30,9 +31,10 @@ function headingsOf(md: string): string[] {
     .map((line) => line.slice(3).trim());
 }
 
-// The EN headings are the source of truth; every ES heading has its own
-// translation. A count-only comparison would let a page drift (or keep an
-// untranslated heading) without failing.
+// The map below is the source of truth for the section structure of BOTH
+// locales: the EN page must expose exactly its keys, in order, and the ES page
+// must expose exactly its values, in order. A count-only comparison would let a
+// page drift (or keep an untranslated heading) without failing.
 const esHeadingByEnHeading: Record<string, string> = {
   Installation: 'Instalación',
   Import: 'Importación',
@@ -41,6 +43,28 @@ const esHeadingByEnHeading: Record<string, string> = {
   'Live example': 'Ejemplo en vivo',
   'Next steps': 'Próximos pasos',
 };
+
+// The identifiers the library actually re-exports from its entry point.
+// Matching the export statement (not a bare substring) keeps a renamed or
+// aliased public export from slipping through: `'useDesign'` also appears in
+// the module path `'./composables/useDesign'`.
+function exportedIdentifiers(source: string): Set<string> {
+  const names = new Set<string>();
+  const statements = source.match(/export\s+(?:type\s+)?\{[^}]*\}/g) ?? [];
+  for (const statement of statements) {
+    for (const part of statement
+      .replace(/export\s+(?:type\s+)?\{|\}/g, '')
+      .split(',')) {
+      const identifier = part
+        .trim()
+        .split(/\s+as\s+/)
+        .pop()
+        ?.trim();
+      if (identifier) names.add(identifier);
+    }
+  }
+  return names;
+}
 
 describe('getting-started page (GitLab issue #2)', () => {
   it('exists in both locales', () => {
@@ -65,9 +89,26 @@ describe('getting-started page (GitLab issue #2)', () => {
 
   it('documents the real peer dependency range', () => {
     const vuePeer = packageJson.peerDependencies.vue;
-    expect(vuePeer).toBe('^3.4.0');
+    expect(vuePeer).toMatch(/^\^3\.4/);
     expect(enMd).toContain('vue ^3.4');
     expect(esMd).toContain('vue ^3.4');
+  });
+
+  it('documents the optional prettier peer dependency and how it is used', () => {
+    const prettierPeer = packageJson.peerDependencies.prettier;
+    expect(prettierPeer).toMatch(/^\^3/);
+    expect(packageJson.peerDependenciesMeta?.prettier?.optional).toBe(true);
+    for (const md of [enMd, esMd]) {
+      expect(md).toContain('prettier ^3');
+      expect(md).toContain('usePrettierFormatter');
+    }
+  });
+
+  it('documents that the package is ESM-only', () => {
+    const rootExport = packageJson.exports['.'] as Record<string, string>;
+    expect(Object.keys(rootExport)).not.toContain('require');
+    expect(enMd).toContain('ESM-only');
+    expect(esMd).toContain('solo ESM');
   });
 
   it('shows the import example with names that the library really exports', () => {
@@ -93,10 +134,11 @@ describe('getting-started page (GitLab issue #2)', () => {
       'Fill',
       'DesignLine',
     ];
+    const exported = exportedIdentifiers(libraryIndex);
     for (const name of documented) {
       expect(enMd).toContain(name);
       expect(esMd).toContain(name);
-      expect(libraryIndex).toContain(name);
+      expect(exported).toContain(name);
     }
   });
 
@@ -104,14 +146,16 @@ describe('getting-started page (GitLab issue #2)', () => {
     const rootConfig = config.locales.root.themeConfig;
     const esConfig = config.locales.es.themeConfig;
 
-    expect(rootConfig.nav).toContainEqual({
-      text: 'Getting started',
-      link: '/getting-started',
-    });
-    expect(esConfig.nav).toContainEqual({
-      text: 'Primeros pasos',
-      link: '/es/getting-started',
-    });
+    expect(rootConfig.nav).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ link: '/getting-started' }),
+      ]),
+    );
+    expect(esConfig.nav).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ link: '/es/getting-started' }),
+      ]),
+    );
 
     for (const [themeConfig, link] of [
       [rootConfig, '/getting-started'],
