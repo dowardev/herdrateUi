@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [0.4.2] - 2026-10-25
+
+### Changed
+- No library changes in this release: the delivery only updates the documentation site (`/getting-started` and `/es/getting-started`). The version is aligned with the product release (root 0.4.2, docs 0.7.1)
+
 ## [0.4.1] - 2026-10-22
 
 ### Fixed

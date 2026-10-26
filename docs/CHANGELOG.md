@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [0.7.1] - 2026-10-25
+
 ### Added
 - **Getting started page (issue #2)**: new `/getting-started` page and `/es/getting-started` mirror documenting how to install `@dowardev/herdrate-vue` (`pnpm add` / `npm install`), the `vue ^3.4` peer dependency, the optional `prettier` peer dependency and when it is actually loaded (only when a formatter built with `usePrettierFormatter()` is passed to `<CodeBlock>`), the automatic CSS injection, the single root export (`.`, ESM-only, no per-component subpaths), a live example and the next steps. Registered in the nav and the sidebar of both locales and linked from the home pages. Regression spec: `docs/.vitepress/__tests__/getting-started.spec.ts`
 

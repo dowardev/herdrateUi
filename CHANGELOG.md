@@ -16,6 +16,8 @@ Three changelogs, no duplication:
 
 ## [Unreleased]
 
+## [0.4.2] - 2026-10-25
+
 ### Added
 - The docs site now has a getting started page that explains how to install the library and import its components
 
