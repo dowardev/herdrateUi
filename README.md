@@ -128,7 +128,7 @@ docs/                 — VitePress documentation
 
 ## Deploy
 
-See [DEPLOY.md](DEPLOY.md) for deploying docs via GitLab CI/CD or
+See [DEPLOY.md](DEPLOY.md) for deploying docs via GitHub Actions or
 manually.
 
 ## License

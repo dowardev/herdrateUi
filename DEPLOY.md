@@ -5,8 +5,8 @@ Documentation for deploying the project docs and publishing the library.
 ## Table of contents
 
 - [Deploy methods](#deploy-methods)
-- [Automatic deploy with GitLab CI/CD](#automatic-deploy-with-gitlab-cicd)
-- [Manual deploy (without GitLab)](#manual-deploy-without-gitlab)
+- [Automatic deploy with GitHub Actions](#automatic-deploy-with-github-actions)
+- [Manual deploy (without CI)](#manual-deploy-without-ci)
 - [Local verification](#local-verification)
 - [Publish the library to npm (manual)](#publish-the-library-to-npm-manual)
 - [Rollback](#rollback)
@@ -20,37 +20,37 @@ There are two ways to deploy the project docs:
 
 | Method | When to use | Requirements |
 |--------|-------------|--------------|
-| **GitLab CI/CD** | Official releases with tag | GitLab Maintainer, runner, SSH configured in CI variables |
+| **GitHub Actions** | Official releases with tag | Write access to the repo, SSH configured in the workflow |
 | **Manual** | Debug, hotfix, local dev | Node + pnpm + direct SSH access to server |
 
 Choose the one that best fits your case.
 
 ---
 
-## Automatic deploy with GitLab CI/CD
+## Automatic deploy with GitHub Actions
 
 The pipeline runs automatically when a tag matching `v*.*.*` is created.
 
 ### Requirements (CI/CD)
 
-- **Access to the GitLab repository** with at least `Maintainer` role.
-- **GitLab CI/CD enabled** (a runner must be active for the project/group).
+- **Write access to the GitHub repository** (to push the release tag).
+- **GitHub Actions enabled** for this repository.
 - **SSH access to the target server** where docs will be deployed.
 - **Private SSH key** to authenticate against the server.
 
-### Configure CI/CD variables
+### Configure secrets and variables
 
-The pipeline uses GitLab environment variables instead of hardcoded
-values. Configure them at:
+The workflow reads secrets and variables instead of hardcoded values.
+Configure them at:
 
-#### GitLab path
+#### GitHub path
 
 ```
-Settings → CI/CD → Variables
+Settings → Secrets and variables → Actions
 ```
 
-Add each variable with "Protect variable" disabled and "Mask variable"
-enabled for secrets:
+`SSH_PRIVATE_KEY` and `SSH_KNOWN_HOSTS` are repository **secrets**; the rest
+are repository **variables** (the Variables tab):
 
 | Variable | Description | Example |
 |----------|-------------|---------|
@@ -61,7 +61,6 @@ enabled for secrets:
 | `SSH_USER` | SSH user | `deploy_user` |
 | `DEPLOY_PATH_DOCS` | Server path for docs | `/var/www/herdrate-docs` |
 
-Mark `SSH_PRIVATE_KEY` and `SSH_KNOWN_HOSTS` as **Masked**.
 `SSH_KNOWN_HOSTS` is obtained once locally with `ssh-keyscan -p <port> <host>`.
 
 ### Trigger a deploy
@@ -75,7 +74,20 @@ git tag v0.2.0
 git push origin v0.2.0
 ```
 
-View the pipeline at: **GitLab → CI/CD → Pipelines**
+View the workflow run at: **GitHub → Actions**
+
+### SSH key preflight
+
+Before anything is built, the `ssh_preflight` job checks that the deploy key
+is actually authorized on the server: the secret is not empty, it is a valid
+private key, and the host accepts it. A missing or unauthorized key fails in
+seconds with a message that says what to do, instead of failing at the end of
+the deploy. The npm publish does not depend on that job, so publishing the
+package is not blocked by it.
+
+To authorize it, add the **public** key of `SSH_PRIVATE_KEY` to the hosting
+panel (SSH keys of the deploy user) and make sure `SSH_KNOWN_HOSTS` holds the
+matching host key entry.
 
 ### Validation deploys (dryrun)
 
@@ -110,9 +122,9 @@ If **lint** or **test** fail, the pipeline stops and nothing is deployed.
 
 ---
 
-## Manual deploy (without GitLab)
+## Manual deploy (without CI)
 
-For deploying from your local machine without GitLab CI/CD.
+For deploying from your local machine without the CI pipeline.
 
 ### Requirements (manual)
 
