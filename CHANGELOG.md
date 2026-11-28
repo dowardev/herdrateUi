@@ -16,9 +16,10 @@ Three changelogs, no duplication:
 
 ## [Unreleased]
 
+## [0.4.3] - 2026-11-28
+
 ### Changed
 - The pipeline now runs on pull requests: lint, tests and the library build validate every PR, while the docs deploy and the npm publish stay tag-only.
-### Changed
 - The deploy verifies the SSH key against the server before anything is built: a missing, invalid or unauthorized key now fails in seconds with a message that says exactly what to fix, instead of failing at the end of the deploy.
 
 ## [0.4.2] - 2026-10-25

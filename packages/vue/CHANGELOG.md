@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [0.4.3] - 2026-11-28
+
+### Changed
+- No library changes in this release: the delivery only updates the release pipeline (the CI now runs on pull requests and the deploy verifies the SSH key against the server before it starts) and the documentation site (`/getting-started` and `/es/getting-started`). The version is aligned with the product release (root 0.4.3, docs 0.7.2)
+
 ## [0.4.2] - 2026-10-25
 
 ### Changed
