@@ -16,6 +16,9 @@ Three changelogs, no duplication:
 
 ## [Unreleased]
 
+### Fixed
+- **`packages/vue/package.json`**: the package declares its repository, which npm requires to validate the provenance of a publication. Without it the registry rejected the 0.4.3 publication with a `422 Unprocessable Entity` even though the trusted publisher was configured correctly and the provenance statement was signed.
+
 ## [0.4.3] - 2026-11-28
 
 ### Changed

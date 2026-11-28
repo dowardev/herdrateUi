@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Fixed
+- **`packages/vue/package.json`**: the package now declares its repository. npm validates the provenance of a publication against the repository declared in the package metadata, so without this field the registry rejected the 0.4.3 publication with a `422 Unprocessable Entity` (`repository.url is ""`), even though the trusted publisher was configured correctly and the provenance statement was signed.
+
 ## [0.4.3] - 2026-11-28
 
 ### Changed

@@ -2,6 +2,10 @@
   "name": "@dowardev/herdrate-vue",
   "version": "0.4.3",
   "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dowardev/herdrateUi"
+  },
   "type": "module",
   "main": "./dist/herdrate-vue.es.js",
   "module": "./dist/herdrate-vue.es.js",
